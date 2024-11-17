@@ -1,0 +1,13 @@
+
+/.vs/RimDialogue/CopilotIndices
+/.vs/RimDialogue/FileContentIndex
+/.vs/RimDialogue/DesignTimeBuild
+/build
+/releases
+/RimDialogue/bin
+/RimDialogue/obj
+/RimDialogue/wwwroot/lib
+/.vs
+/RimDialogue/Output
+RimDialogue/appsettings.json
+RimDialogue/appsettings.Development.json
