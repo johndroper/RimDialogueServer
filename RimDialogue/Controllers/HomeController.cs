@@ -9,13 +9,17 @@ using Amazon.Runtime;
 using Amazon.BedrockRuntime.Model;
 using Amazon.Runtime.Internal;
 using Microsoft.Extensions.Caching.Memory;
+using static System.Net.Mime.MediaTypeNames;
+using GroqSharp.Models;
+using GroqSharp;
+using Azure.AI.OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
 
 namespace RimDialogue.Controllers
 {
   public class HomeController(IConfiguration Configuration, IMemoryCache memoryCache) : Controller
   {
-    private readonly BasicAWSCredentials awsCredentials = new(Configuration["AwsKey"], Configuration["AwsSecret"]);
-
     public List<Conversation>? GetConversations(string key)
     {
       if (memoryCache.TryGetValue(key, out List<Conversation>? conversations))
@@ -53,6 +57,114 @@ namespace RimDialogue.Controllers
     public IActionResult Index()
     {
       return View();
+    }
+
+    private async Task<string> GetFromAws(string prompt)
+    {
+      try
+      {
+        var awsAccessKey = Configuration["AwsAccessKey"];
+        if (String.IsNullOrWhiteSpace(awsAccessKey))
+          throw new Exception("AWS Access Key is empty in appsettings.");
+        var awsSecret = Configuration["AwsSecret"];
+        if (String.IsNullOrWhiteSpace(awsSecret))
+          throw new Exception("AWS Secret is empty in appsettings.");
+        var awsRegion = Configuration["AwsRegion"];
+        if (String.IsNullOrWhiteSpace(awsRegion))
+          throw new Exception("AWS Region is empty in appsettings.");
+        BasicAWSCredentials awsCredentials = new(awsAccessKey, awsSecret);
+        var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
+        AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
+        Message message = new Message();
+        message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
+        message.Role = ConversationRole.User;
+        ConverseRequest request = new ConverseRequest
+        {
+          ModelId = Configuration["AwsModelId"],
+          Messages = new List<Message> { message }
+        };
+        var converseResponse = await client.ConverseAsync(request);
+        return converseResponse.Output.Message.Content.First().Text;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error accessing Bedrock.", ex);
+        exception.Data.Add("prompt", prompt);
+        throw exception;
+      }
+    }
+
+    private async Task<string> GetFromOpenAi(string prompt)
+    {
+      var openAiUri = Configuration["OpenAiUri"];
+      if (String.IsNullOrWhiteSpace(openAiUri))
+        throw new Exception("Provider is set to OpenAi but 'OpenAiUri' is empty in appsettings.");
+      var openAiApiKey = Configuration["OpenAiApiKey"];
+      if (String.IsNullOrWhiteSpace(openAiApiKey))
+        throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
+      var openAiDeployment = Configuration["OpenAiDeployment"];
+      if (String.IsNullOrWhiteSpace(openAiDeployment))
+        throw new Exception("Provider is set to OpenAi but 'OpenAiDeployment' is empty in appsettings.");
+
+      AzureOpenAIClient azureClient = new(
+        new Uri(openAiUri),
+        new ApiKeyCredential(openAiApiKey));
+      ChatClient chatClient = azureClient.GetChatClient(openAiDeployment);
+
+      var results = await chatClient.CompleteChatAsync(new OpenAI.Chat.UserChatMessage(prompt));
+
+      return results.Value.Content.First().Text;
+    }
+
+    private async Task<string> GetFromGroq(string prompt)
+    {
+      var apiKey = Configuration["GroqApiKey"];
+      if (String.IsNullOrWhiteSpace(apiKey))
+        throw new Exception("Provider is set to Groq but 'GroqApiKey' is empty in appsettings.");
+      var groqModelId = Configuration["GroqModelId"];
+      if (String.IsNullOrWhiteSpace(groqModelId))
+        throw new Exception("Provider is set to Groq but 'GroqModelId' is empty in appsettings.");
+      var groqClient = new GroqClient(apiKey, groqModelId);
+      var text = await groqClient.CreateChatCompletionAsync(
+        new GroqSharp.Models.Message { Role = MessageRoleType.User, Content = prompt });
+      if (text == null)
+        throw new Exception("Groq response is null.");
+      return text;
+    }
+
+    private async Task<string> GetFromOllama(string prompt)
+    {
+      var ollamaUrl = Configuration["OllamaUrl"];
+      if (String.IsNullOrWhiteSpace(ollamaUrl))
+        throw new Exception("Provider is set to Ollama but 'OllamaUrl' is empty in appsettings.");
+      var ollamaModelId = Configuration["OllamaModelId"];
+      if (String.IsNullOrWhiteSpace(ollamaModelId))
+        throw new Exception("Provider is set to Ollama but 'OllamaModelId' is empty in appsettings.");
+      IChatClient client = new OllamaChatClient(new Uri(ollamaUrl), ollamaModelId);
+      var result = await client.CompleteAsync(
+        [
+            new Microsoft.Extensions.AI.ChatMessage(ChatRole.User, prompt)
+        ]);
+      var text = result.Message.Text;
+      if (text == null)
+        throw new Exception("Ollama response is null.");
+      return text;
+    }
+    private async Task<string> GetResults(string prompt)
+    {
+      switch(Configuration["provider"]?.ToUpper())
+      {
+        case "AWS":
+          return await GetFromAws(prompt);
+        case "OLLAMA":
+          return await GetFromOllama(prompt);
+        case "OPENAI":
+          return await GetFromOpenAi(prompt);
+        case null:
+          throw new Exception($"Provider not set.");
+        default:
+          throw new Exception($"Unknown provider:'{Configuration["provider"]}'");
+      }
     }
 
     public async Task<IActionResult> GetDialogue(string dialogueDataJSON)
@@ -126,29 +238,9 @@ namespace RimDialogue.Controllers
           throw exception;
         }
       }
-      string? text = null;
-      try
-      {
-        AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, Amazon.RegionEndpoint.USEast1);
-        Message message = new Message();
-        message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
-        message.Role = ConversationRole.User;
-        ConverseRequest request = new ConverseRequest
-        {
-          ModelId = "arn:aws:bedrock:us-east-1:370824788989:inference-profile/us.meta.llama3-2-3b-instruct-v1:0",
-          Messages = new List<Message> { message }
-        };
-        var converseResponse = await client.ConverseAsync(request);
-        text = converseResponse.Output.Message.Content.First().Text;
-        if (text == null)
-          throw new Exception("No text returned.");
-      }
-      catch(Exception ex)
-      {
-        Exception exception = new("Error accessing Bedrock.", ex);
-        exception.Data.Add("prompt", prompt);
-        throw exception;
-      }
+
+      string text = await GetResults(prompt);
+
       DialogueResponse? dialogueResponse = null;
       try
       {
