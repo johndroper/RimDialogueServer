@@ -20,7 +20,7 @@ namespace RimDialogue
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class ErrorMail : ErrorMailBase
     {
@@ -32,21 +32,21 @@ namespace RimDialogue
         {
             this.Write("\r\n\r\n<dl>\r\n    <dt>\r\n        Message:\r\n    </dt>\r\n    <dd>\r\n        ");
             
-            #line 16 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(this.Message)));
             
             #line default
             #line hidden
             this.Write("\r\n    </dd>\r\n    <dt>\r\n        Stack Trace:\r\n    </dt>\r\n    <dd>\r\n        ");
             
-            #line 22 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Stacktrace));
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.StackTrace));
             
             #line default
             #line hidden
             this.Write("\r\n    </dd>\r\n    <dt>\r\n        Data:\r\n    </dt>\r\n    <dd>\r\n        <ul>\r\n");
             
-            #line 29 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
 
     foreach (var key in this.Data.Keys) 
     {
@@ -57,44 +57,115 @@ namespace RimDialogue
             #line hidden
             this.Write("    <li>");
             
-            #line 34 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(key.ToString())));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 34 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(item.ToString())));
             
             #line default
             #line hidden
             this.Write("</li>\r\n");
             
-            #line 35 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
 
     }
 
             
             #line default
             #line hidden
-            this.Write("       </ul>\r\n    </dd>\r\n    <dt>\r\n        Url:\r\n    </dt>\r\n    <dd>\r\n        ");
+            this.Write("       </ul>\r\n    </dd>\r\n\t<dt>\r\n\t\tInner Exceptions:\r\n\t</dt>\r\n\r\n\t");
             
-            #line 44 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+ if (this.InnerException != null) { 
+            
+            #line default
+            #line hidden
+            this.Write("\t\r\n\t<dd>\r\n\t\t<dl>\r\n\t");
+            
+            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+ foreach(var inner in this.GetInnerExceptions()) { 
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t<dt>\r\n\t\t\t\tInner Exception:\r\n\t\t\t</dt>\r\n\t\t\t<dd>\r\n\t\t\t\t");
+            
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(inner.Message)));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\t\t</dd>\r\n\t\t\t<dt>\r\n\t\t\t\tStack Trace:\r\n\t\t\t</dt>\r\n\t\t\t<dd>\r\n\t\t\t\t");
+            
+            #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(inner.StackTrace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\t\t</dd>\r\n\t\t\t<dt>\r\n\t\t\t\tData:\r\n\t\t\t</dt>\r\n\t\t\t<dd>\r\n\t\t\t\t<ul>\r\n\t\t\t\t");
+            
+            #line 65 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+ foreach (var key in inner.Data.Keys) {
+					var item = inner.Data[key];	
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\t<li>");
+            
+            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(key.ToString())));
+            
+            #line default
+            #line hidden
+            this.Write(": ");
+            
+            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(item.ToString())));
+            
+            #line default
+            #line hidden
+            this.Write("</li>\r\n\t\t\t\t");
+            
+            #line 68 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t</ul>\r\n\t\t\t</dd>\r\n\t\t\t");
+            
+            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\t\t</dl>\r\n\t</dd>\r\n\t");
+            
+            #line 74 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    <dt>\r\n        Url:\r\n    </dt>\r\n    <dd>\r\n        ");
+            
+            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(this.Url)));
             
             #line default
             #line hidden
             this.Write("\r\n    </dd>\r\n    <dt>\r\n        User Agent:\r\n    </dt>\r\n    <dd>\r\n        ");
             
-            #line 50 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 85 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(this.Headers.UserAgent)));
             
             #line default
             #line hidden
             this.Write("\r\n    </dd>\r\n    <dt>\r\n        IP:\r\n    </dt>\r\n    <dd>\r\n        ");
             
-            #line 56 "C:\Users\madja\source\repos\RimDialogue\RimDialogue\ErrorMail.tt"
+            #line 91 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\ErrorMail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(HtmlEncoder.Default.Encode(this.Ip)));
             
             #line default

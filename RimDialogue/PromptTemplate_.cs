@@ -127,7 +127,7 @@ namespace RimDialogue
         return "thrilled by";
     }
 
-    public string WealthDescription(float wealth)
+    public static string WealthDescription(float wealth)
     {
       if (wealth < 0)
         throw new ArgumentOutOfRangeException(nameof(wealth), "Wealth must be greater than 0.");
@@ -156,14 +156,54 @@ namespace RimDialogue
         return "The colony is a powerhouse, reaching millionaire status with a vast wealth of resources.";
     }
 
-
-    public PromptTemplate(DialogueData dialogueData, List<Conversation>? initiatorConversations, List<Conversation>? recipientConversations)
+    public PromptTemplate(
+      DialogueData dialogueData, 
+      List<Conversation>? initiatorConversations, 
+      List<Conversation>? recipientConversations)
     {
       DialogueData = dialogueData;
       InitiatorConversations = initiatorConversations;
       RecipientConversations = recipientConversations;
     }
 
+    public bool ShowFullName { get; } = false;
+    public bool ShowGender { get; } = false;
+    public bool ShowRace { get; } = false;
+    public bool ShowSubrace { get; } = false;
+    public bool ShowAnimal { get; } = false;
+    public bool ShowAge { get; } = false;
+    public bool ShowIsColonist { get; } = false;
+    public bool ShowIsPrisoner { get; } = false;
+    public bool ShowRoyaltyTitle { get; } = false;
+    public bool ShowHair { get; } = false;
+    public bool ShowBeard { get; } = false;
+    public bool ShowTattoo { get; } = false;
+    public bool ShowFaction { get; } = false;
+    public bool ShowIdeology { get; } = false;
+    public bool ShowPrecepts { get; } = false;
+    public bool ShowAdulthood { get; } = false;
+    public bool ShowChildhood { get; } = false;
+    public bool ShowRelations { get; } = false;
+    public bool ShowTraits { get; } = false;
+    public bool ShowSkills { get; } = false;
+    public bool ShowMoodThoughts { get; } = false;
+    public bool ShowHealth { get; } = false;
+    public bool ShowApparel { get; } = false;
+    public bool ShowWeapons { get; } = false;
+    public bool ShowMoodString { get; } = false;
+    public bool ShowNeeds { get; } = false;
+    public bool ShowOpinions { get; } = false;
+    public bool ShowConversations { get; } = false;
+    public bool ShowScenario { get; } = true;
+    public bool ShowDaysAgo { get; } = false;
+    public bool ShowWealth { get; } = false;
+    public bool ShowBiome { get; } = false;
+    public bool ShowRoom { get; } = false;
+    public bool ShowWeather { get; } = false;
+    public bool ShowRecentIncidents { get; } = false;
+    public bool RepeatInstructions { get; } = false;
+    public bool ShowSpecialInstructions { get; } = false;
+    public bool ShowExposition { get; } = true;
     public DialogueData DialogueData { get; }
     public List<Conversation>? InitiatorConversations { get; set; }
     public List<Conversation>? RecipientConversations { get; set; }

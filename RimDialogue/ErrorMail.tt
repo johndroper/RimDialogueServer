@@ -19,7 +19,7 @@
         Stack Trace:
     </dt>
     <dd>
-        <#= this.Stacktrace #>
+        <#= this.StackTrace #>
     </dd>
     <dt>
         Data:
@@ -37,6 +37,41 @@
 #>
        </ul>
     </dd>
+	<dt>
+		Inner Exceptions:
+	</dt>
+
+	<# if (this.InnerException != null) { #>	
+	<dd>
+		<dl>
+	<# foreach(var inner in this.GetInnerExceptions()) { #>
+			<dt>
+				Inner Exception:
+			</dt>
+			<dd>
+				<#= HtmlEncoder.Default.Encode(inner.Message) #>
+			</dd>
+			<dt>
+				Stack Trace:
+			</dt>
+			<dd>
+				<#= inner.StackTrace #>
+			</dd>
+			<dt>
+				Data:
+			</dt>
+			<dd>
+				<ul>
+				<# foreach (var key in inner.Data.Keys) {
+					var item = inner.Data[key];	#>
+					<li><#= HtmlEncoder.Default.Encode(key.ToString()) #>: <#= HtmlEncoder.Default.Encode(item.ToString()) #></li>
+				<# } #>
+				</ul>
+			</dd>
+			<# } #>
+		</dl>
+	</dd>
+	<# } #>
     <dt>
         Url:
     </dt>

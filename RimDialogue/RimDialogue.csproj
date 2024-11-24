@@ -23,6 +23,8 @@
     <PackageReference Include="AWSSDK.BedrockRuntime" Version="3.7.408.3" />
     <PackageReference Include="AWSSDK.Core" Version="3.7.400.49" />
     <PackageReference Include="AWSSDK.SimpleEmailV2" Version="3.7.404.5" />
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0-beta.2" />
+    <PackageReference Include="GroqSharp" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.AI.Ollama" Version="9.0.0-preview.9.24525.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="StackTraceBeautify" Version="1.0.1" />

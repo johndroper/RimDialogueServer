@@ -32,14 +32,18 @@ namespace RimDialogue.Controllers
     {
       if (!memoryCache.TryGetValue(key, out List<Conversation>? conversations))
       {
+        if (int.TryParse(Configuration["ConversationsCacheMinutes"], out int conversationsCacheMinutes))
+          conversationsCacheMinutes = 60;
         var cacheEntryOptions = new MemoryCacheEntryOptions()
-            .SetSlidingExpiration(TimeSpan.FromHours(1));
-
+            .SetSlidingExpiration(TimeSpan.FromMinutes(conversationsCacheMinutes));
         memoryCache.Set(key, new List<Conversation> { conversation }, cacheEntryOptions);
       }
       else if (conversations != null)
       {
-        conversations = conversations.TakeLast(10).ToList();
+        if (!int.TryParse(Configuration["MaxConversationsPerPawn"], out int maxConversations))
+          maxConversations = 10;
+        if (conversations.Count > maxConversations)
+          conversations.RemoveRange(0, conversations.Count - maxConversations);
         conversations.Add(conversation);
       }
     }
@@ -72,16 +76,20 @@ namespace RimDialogue.Controllers
         var awsRegion = Configuration["AwsRegion"];
         if (String.IsNullOrWhiteSpace(awsRegion))
           throw new Exception("AWS Region is empty in appsettings.");
+        var modelId = Configuration["AwsModelId"];
+        if (String.IsNullOrWhiteSpace(modelId))
+          throw new Exception("AWS ModelId is empty in appsettings.");
+
         BasicAWSCredentials awsCredentials = new(awsAccessKey, awsSecret);
         var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
-        Message message = new Message();
+        var message = new Amazon.BedrockRuntime.Model.Message();
         message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
         message.Role = ConversationRole.User;
         ConverseRequest request = new ConverseRequest
         {
-          ModelId = Configuration["AwsModelId"],
-          Messages = new List<Message> { message }
+          ModelId = modelId,
+          Messages = new List<Amazon.BedrockRuntime.Model.Message> { message }
         };
         var converseResponse = await client.ConverseAsync(request);
         return converseResponse.Output.Message.Content.First().Text;
@@ -105,14 +113,11 @@ namespace RimDialogue.Controllers
       var openAiDeployment = Configuration["OpenAiDeployment"];
       if (String.IsNullOrWhiteSpace(openAiDeployment))
         throw new Exception("Provider is set to OpenAi but 'OpenAiDeployment' is empty in appsettings.");
-
       AzureOpenAIClient azureClient = new(
         new Uri(openAiUri),
         new ApiKeyCredential(openAiApiKey));
       ChatClient chatClient = azureClient.GetChatClient(openAiDeployment);
-
       var results = await chatClient.CompleteChatAsync(new OpenAI.Chat.UserChatMessage(prompt));
-
       return results.Value.Content.First().Text;
     }
 
@@ -150,6 +155,7 @@ namespace RimDialogue.Controllers
         throw new Exception("Ollama response is null.");
       return text;
     }
+
     private async Task<string> GetResults(string prompt)
     {
       switch(Configuration["provider"]?.ToUpper())
@@ -160,6 +166,8 @@ namespace RimDialogue.Controllers
           return await GetFromOllama(prompt);
         case "OPENAI":
           return await GetFromOpenAi(prompt);
+        case "GROQ":
+          return await GetFromGroq(prompt);
         case null:
           throw new Exception($"Provider not set.");
         default:
@@ -183,10 +191,11 @@ namespace RimDialogue.Controllers
             throw new Exception("Remote IP address is null.");
           if (memoryCache.TryGetValue(key, out RequestRate? requestRate) && requestRate != null)
           {
-            if (requestRate.Count > 10)
+            if (!int.TryParse(Configuration["MinRateLimitRequestCount"], out int minRateLimitRequestCount))
+              minRateLimitRequestCount = 10;
+            if (requestRate.Count > minRateLimitRequestCount)
             {
-              float rateLimit;
-              if (float.TryParse(Configuration["RateLimit"], out rateLimit))
+              if (float.TryParse(Configuration["RateLimit"], out float rateLimit))
               {
                 var rate = requestRate.GetRate();
 #if DEBUG
@@ -200,9 +209,11 @@ namespace RimDialogue.Controllers
           }
           else
           {
+            if (!int.TryParse(Configuration["RateLimitCacheMinutes"], out int rateLimitCacheMinutes))
+              rateLimitCacheMinutes = 1;
             requestRate = new RequestRate(key);
             var cacheEntryOptions = new MemoryCacheEntryOptions()
-              .SetSlidingExpiration(TimeSpan.FromMinutes(1));
+              .SetSlidingExpiration(TimeSpan.FromMinutes(rateLimitCacheMinutes));
             memoryCache.Set(key, requestRate, cacheEntryOptions);
           }
         }
@@ -239,7 +250,17 @@ namespace RimDialogue.Controllers
         }
       }
 
-      string text = await GetResults(prompt);
+      string? text = null;
+      try
+      {
+        text = await GetResults(prompt);
+      }
+      catch(Exception ex)
+      {
+        Exception exception = new("An error occurred fetching results.", ex);
+        exception.Data.Add("prompt", prompt);
+        throw exception;
+      }
 
       DialogueResponse? dialogueResponse = null;
       try

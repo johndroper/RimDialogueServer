@@ -5,20 +5,21 @@ using System.Net.Mail;
 
 namespace RimDialogue
 {
-  public class GlobalExceptionHandler(IHostEnvironment env, ILogger<GlobalExceptionHandler> logger)
+  public class GlobalExceptionHandler(IConfiguration Configuration) //IHostEnvironment env, ILogger<GlobalExceptionHandler> logger)
   : Microsoft.AspNetCore.Diagnostics.IExceptionHandler
   {
-    public static void HandleException(Exception ex, HttpContext httpContext)
+    public static void EmailException(Exception ex, HttpContext httpContext, string fromEmailAddress, List<string> toAddresses, string awsKey, string awsSecret)
     {
-      var stackTrace = ex.StackTrace?.ToString();
+      var stackTrace = ex.StackTrace;
       ErrorMail errorMail = new ErrorMail(
         ex.Message,
-        stackTrace, 
+        stackTrace,
+        ex.InnerException,
         ex.Data,
         httpContext.Request.GetDisplayUrl(),
         httpContext.Request.Headers,
         httpContext.Connection.RemoteIpAddress?.ToString());
-      var credentials = new BasicAWSCredentials("AKIAVMVXBHP6TA3S4475", "olZdcdY4VD152bSTSYJp6UP5aN7/lx4T5VCHgjJr");
+      var credentials = new BasicAWSCredentials(awsKey, awsSecret);
       Amazon.SimpleEmailV2.AmazonSimpleEmailServiceV2Client client = new Amazon.SimpleEmailV2.AmazonSimpleEmailServiceV2Client(credentials, Amazon.RegionEndpoint.USEast1);
       var message = new Amazon.SimpleEmailV2.Model.Message
       {
@@ -38,10 +39,10 @@ namespace RimDialogue
       };
       var sendEmailRequest = new Amazon.SimpleEmailV2.Model.SendEmailRequest
       {
-        FromEmailAddress = "errors@proceduralproducts.com",
+        FromEmailAddress = fromEmailAddress,
         Destination = new Amazon.SimpleEmailV2.Model.Destination
         {
-          ToAddresses = new List<string> { "john.roper@gmail.com" },
+          ToAddresses = toAddresses
         },
         Content = new Amazon.SimpleEmailV2.Model.EmailContent
         {
@@ -56,8 +57,25 @@ namespace RimDialogue
           Exception exception,
           CancellationToken cancellationToken)
     {
-      HandleException(exception, httpContext);
 
+      if (!bool.TryParse(Configuration["EmailErrors"], out bool emailErrors))
+        emailErrors = false;
+      if(emailErrors)
+      {
+        var errorEmailTo = Configuration["ErrorMailTo"];
+        List<string>? toAddresses = null;
+        if (!String.IsNullOrWhiteSpace(errorEmailTo))
+          toAddresses = errorEmailTo.Split(',').ToList();
+        var errorMailFrom = Configuration["ErrorMailFrom"];
+        var awsKey = Configuration["AwsKey"];
+        var awsSecret = Configuration["AwsSecret"];
+        if (!String.IsNullOrWhiteSpace(errorMailFrom) && 
+          !String.IsNullOrWhiteSpace(awsKey) && 
+          !String.IsNullOrWhiteSpace(awsSecret) &&
+          toAddresses != null &&
+          toAddresses.Any())
+          EmailException(exception, httpContext, errorMailFrom, toAddresses, awsKey, awsSecret);
+      }
       return ValueTask.FromResult(false);
     }
   }
