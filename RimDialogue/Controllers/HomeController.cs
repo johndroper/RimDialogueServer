@@ -40,8 +40,7 @@ namespace RimDialogue.Controllers
       }
       else if (conversations != null)
       {
-        if (!int.TryParse(Configuration["MaxConversationsPerPawn"], out int maxConversations))
-          maxConversations = 10;
+        int maxConversations = Configuration.GetValue<int>("MaxConversationsPerPawn", 5);
         if (conversations.Count > maxConversations)
           conversations.RemoveRange(0, conversations.Count - maxConversations);
         conversations.Add(conversation);
@@ -65,9 +64,9 @@ namespace RimDialogue.Controllers
 
     private async Task<string> GetFromAws(string prompt)
     {
-      var awsAccessKey = Configuration["AwsAccessKey"];
-      if (String.IsNullOrWhiteSpace(awsAccessKey))
-        throw new Exception("AWS Access Key is empty in appsettings.");
+      var awsKey = Configuration["AwsKey"];
+      if (String.IsNullOrWhiteSpace(awsKey))
+        throw new Exception("AWS Key is empty in appsettings.");
       var awsSecret = Configuration["AwsSecret"];
       if (String.IsNullOrWhiteSpace(awsSecret))
         throw new Exception("AWS Secret is empty in appsettings.");
@@ -79,7 +78,7 @@ namespace RimDialogue.Controllers
         throw new Exception("AWS ModelId is empty in appsettings.");
       try
       {
-        BasicAWSCredentials awsCredentials = new(awsAccessKey, awsSecret);
+        BasicAWSCredentials awsCredentials = new(awsKey, awsSecret);
         var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
         var message = new Amazon.BedrockRuntime.Model.Message();
@@ -227,26 +226,22 @@ namespace RimDialogue.Controllers
       {
         if (memoryCache.TryGetValue(key, out RequestRate? requestRate) && requestRate != null)
         {
-          if (!int.TryParse(Configuration["MinRateLimitRequestCount"], out int minRateLimitRequestCount))
-            minRateLimitRequestCount = 10;
+          int minRateLimitRequestCount = Configuration.GetValue<int>("MinRateLimitRequestCount", 5);
           if (requestRate.Count > minRateLimitRequestCount)
           {
-            if (float.TryParse(Configuration["RateLimit"], out float rateLimit))
+            float rateLimit = Configuration.GetValue<float>("RateLimit", 0.1f);
+            var rate = requestRate.GetRate();
+            if (rate > rateLimit)
             {
-              var rate = requestRate.GetRate();
-              if (rate > rateLimit)
-              {
-                Console.WriteLine($"{key} was rate limited to {rateLimit} requests per second. Current rate is {rate} requests per second.");
-                return new JsonResult(new DialogueResponse { RateLimited = true });
-              }
+              Console.WriteLine($"{key} was rate limited to {rateLimit} requests per second. Current rate is {rate} requests per second.");
+              return new JsonResult(new DialogueResponse { RateLimited = true });
             }
           }
           requestRate.Increment();
         }
         else
         {
-          if (!int.TryParse(Configuration["RateLimitCacheMinutes"], out int rateLimitCacheMinutes))
-            rateLimitCacheMinutes = 1;
+          int rateLimitCacheMinutes = Configuration.GetValue<int>("RateLimitCacheMinutes", 1);
           requestRate = new RequestRate(key);
           var cacheEntryOptions = new MemoryCacheEntryOptions()
             .SetSlidingExpiration(TimeSpan.FromMinutes(rateLimitCacheMinutes));
@@ -278,10 +273,9 @@ namespace RimDialogue.Controllers
           throw new Exception("dialogueData is null.");
         var initiatorConversations = GetConversations(dialogueData.clientId + dialogueData.initiatorThingID);
         var recipientConversations = GetConversations(dialogueData.clientId + dialogueData.recipientThingID);
-        PromptTemplate promptTemplate = new(dialogueData, initiatorConversations, recipientConversations);
+        PromptTemplate promptTemplate = new(dialogueData, initiatorConversations, recipientConversations, Configuration);
         prompt = promptTemplate.TransformText();
-        if (int.TryParse(Configuration["MaxPromptLength"], out int maxPromptLength))
-          maxPromptLength = 5000;
+        int maxPromptLength = Configuration.GetValue<int>("MaxPromptLength", 5000);
         if (prompt.Length > maxPromptLength)
         {
           Console.WriteLine($"Prompt truncated to { maxPromptLength } characters. Original length was {prompt.Length} characters.");
@@ -306,8 +300,13 @@ namespace RimDialogue.Controllers
         exception.Data.Add("prompt", prompt);
         throw exception;
       }
+      //******Metrics******
+      ServerMetrics.AddRequest(
+        this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
+        prompt.Length,
+        text.Length);
       //******Response Serialization******
-      DialogueResponse? dialogueResponse = null;
+      DialogueResponse ? dialogueResponse = null;
       try
       {
         dialogueResponse  = new DialogueResponse();

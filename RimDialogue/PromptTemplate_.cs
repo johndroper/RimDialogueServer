@@ -159,11 +159,51 @@ namespace RimDialogue
     public PromptTemplate(
       DialogueData dialogueData, 
       List<Conversation>? initiatorConversations, 
-      List<Conversation>? recipientConversations)
+      List<Conversation>? recipientConversations,
+      IConfiguration Configuration)
     {
       DialogueData = dialogueData;
       InitiatorConversations = initiatorConversations;
       RecipientConversations = recipientConversations;
+
+      ShowFullName = Configuration.GetValue<bool>(nameof(ShowFullName), false);
+      ShowGender = Configuration.GetValue<bool>(nameof(ShowGender), false);
+      ShowRace = Configuration.GetValue<bool>(nameof(ShowRace), false);
+      ShowSubrace = Configuration.GetValue<bool>(nameof(ShowSubrace), false);
+      ShowAnimal = Configuration.GetValue<bool>(nameof(ShowAnimal), false);
+      ShowAge = Configuration.GetValue<bool>(nameof(ShowAge), false);
+      ShowIsColonist = Configuration.GetValue<bool>(nameof(ShowIsColonist), false);
+      ShowIsPrisoner = Configuration.GetValue<bool>(nameof(ShowIsPrisoner), false);
+      ShowRoyaltyTitle = Configuration.GetValue<bool>(nameof(ShowRoyaltyTitle), false);
+      ShowHair = Configuration.GetValue<bool>(nameof(ShowHair), false);
+      ShowBeard = Configuration.GetValue<bool>(nameof(ShowBeard), false);
+      ShowTattoo = Configuration.GetValue<bool>(nameof(ShowTattoo), false);
+      ShowFaction = Configuration.GetValue<bool>(nameof(ShowFaction), false);
+      ShowIdeology = Configuration.GetValue<bool>(nameof(ShowIdeology), false);
+      ShowPrecepts = Configuration.GetValue<bool>(nameof(ShowPrecepts), false);
+      ShowAdulthood = Configuration.GetValue<bool>(nameof(ShowAdulthood), false);
+      ShowChildhood = Configuration.GetValue<bool>(nameof(ShowChildhood), false);
+      ShowRelations = Configuration.GetValue<bool>(nameof(ShowRelations), false);
+      ShowTraits = Configuration.GetValue<bool>(nameof(ShowTraits), false);
+      ShowSkills = Configuration.GetValue<bool>(nameof(ShowSkills), false);
+      ShowMoodThoughts = Configuration.GetValue<bool>(nameof(ShowMoodThoughts), false);
+      ShowHealth = Configuration.GetValue<bool>(nameof(ShowHealth), false);
+      ShowApparel = Configuration.GetValue<bool>(nameof(ShowApparel), false);
+      ShowWeapons = Configuration.GetValue<bool>(nameof(ShowWeapons), false);
+      ShowMoodString = Configuration.GetValue<bool>(nameof(ShowMoodString), false);
+      ShowNeeds = Configuration.GetValue<bool>(nameof(ShowNeeds), false);
+      ShowOpinions = Configuration.GetValue<bool>(nameof(ShowOpinions), false);
+      ShowConversations = Configuration.GetValue<bool>(nameof(ShowConversations), false);
+      ShowScenario = Configuration.GetValue<bool>(nameof(ShowScenario), false);
+      ShowDaysAgo = Configuration.GetValue<bool>(nameof(ShowDaysAgo), false);
+      ShowWealth = Configuration.GetValue<bool>(nameof(ShowWealth), false);
+      ShowBiome = Configuration.GetValue<bool>(nameof(ShowBiome), false);
+      ShowRoom = Configuration.GetValue<bool>(nameof(ShowRoom), false);
+      ShowWeather = Configuration.GetValue<bool>(nameof(ShowWeather), false);
+      ShowRecentIncidents = Configuration.GetValue<bool>(nameof(ShowRecentIncidents), false);
+      RepeatInstructions = Configuration.GetValue<bool>(nameof(RepeatInstructions), false);
+      ShowSpecialInstructions = Configuration.GetValue<bool>(nameof(ShowSpecialInstructions), false);
+      ShowExposition = Configuration.GetValue<bool>(nameof(ShowExposition), false);
     }
 
     public bool ShowFullName { get; } = false;

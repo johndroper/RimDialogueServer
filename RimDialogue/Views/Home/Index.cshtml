@@ -1,8 +1,123 @@
-﻿@*
+﻿@using RimDialogue
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
 <h1>RimDialogue</h1>
-<p>If you are seeing this text then RimDialogue is running. Now go away.</p>
+
+<dl>
+  <dt>
+    Start Time
+  </dt>
+  <dd>
+    @ServerMetrics.StartTime
+  </dd>
+  <dt>
+    Uptime
+  </dt>
+  <dd>
+    @ServerMetrics.Uptime
+  </dd>
+  <dt>
+    Total Errors
+  </dt>
+  <dd>
+    @ServerMetrics.TotalErrors
+  </dd>
+  <dt>
+    Total Requests
+  </dt>
+  <dd>
+    @ServerMetrics.RequestCount
+  </dd>
+  <dt>
+    Request Per Minute
+  </dt>
+  <dd>
+    @ServerMetrics.RequestsPerMinute
+  </dd>
+  <dt>
+    Total Input Length
+  </dt>
+  <dd>
+    @ServerMetrics.TotalInputLength
+  </dd>
+  <dt>
+    Average Input Length
+  </dt>
+  <dd>
+    @ServerMetrics.AverageInputLength
+  </dd>
+  <dt>
+    Average Input Per Minute
+  </dt>
+  <dd>
+    @ServerMetrics.AverageInputPerMinute
+  </dd>
+  <dt>
+    Total Output Length
+  </dt>
+  <dd>
+    @ServerMetrics.TotalOutputLength
+  </dd>
+  <dt>
+    Average Output Length
+  </dt>
+  <dd>
+    @ServerMetrics.AverageOutputLength
+  </dd>
+  <dt>
+    Average Output Per Minute
+  </dt>
+  <dd>
+    @ServerMetrics.AverageOutputPerMinute
+  </dd>
+  <dt>
+    Distinct IP Count
+  </dt>
+  <dd>
+    @ServerMetrics.DistinctIPCount
+  </dd>
+  <dt>
+    Average Requests Per IP
+  </dt>
+  <dd>
+    @ServerMetrics.AverageRequestsPerIP
+  </dd>
+  <dt>
+    Top 10 Requesters
+  </dt>
+  <dd>
+    <ul>
+      @foreach (var ip in ServerMetrics.GetTopRequesters(10))
+      {
+        <li>@ip.Key - @ip.Value</li>
+      }
+    </ul>
+  </dd>
+  <dt>
+    Top 10 Requesters By Input
+  </dt>
+  <dd>
+    <ul>
+      @foreach (var ip in ServerMetrics.GetTopRequestersByInput(10))
+      {
+        <li>@ip.Key - @ip.Value</li>
+      }
+    </ul>
+  </dd>
+  <dt>
+    Top 10 Requesters By Output
+  </dt>
+  <dd>
+    <ul>
+      @foreach (var ip in ServerMetrics.GetTopRequestersByOutput(10))
+      {
+        <li>@ip.Key - @ip.Value</li>
+      }
+    </ul>
+  </dd>
+</dl>
+
