@@ -57,7 +57,7 @@ namespace RimDialogue
           Exception exception,
           CancellationToken cancellationToken)
     {
-
+      Console.WriteLine(exception.ToString());
       if (!bool.TryParse(Configuration["EmailErrors"], out bool emailErrors))
         emailErrors = false;
       if(emailErrors)

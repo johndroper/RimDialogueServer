@@ -65,21 +65,20 @@ namespace RimDialogue.Controllers
 
     private async Task<string> GetFromAws(string prompt)
     {
+      var awsAccessKey = Configuration["AwsAccessKey"];
+      if (String.IsNullOrWhiteSpace(awsAccessKey))
+        throw new Exception("AWS Access Key is empty in appsettings.");
+      var awsSecret = Configuration["AwsSecret"];
+      if (String.IsNullOrWhiteSpace(awsSecret))
+        throw new Exception("AWS Secret is empty in appsettings.");
+      var awsRegion = Configuration["AwsRegion"];
+      if (String.IsNullOrWhiteSpace(awsRegion))
+        throw new Exception("AWS Region is empty in appsettings.");
+      var modelId = Configuration["AwsModelId"];
+      if (String.IsNullOrWhiteSpace(modelId))
+        throw new Exception("AWS ModelId is empty in appsettings.");
       try
       {
-        var awsAccessKey = Configuration["AwsAccessKey"];
-        if (String.IsNullOrWhiteSpace(awsAccessKey))
-          throw new Exception("AWS Access Key is empty in appsettings.");
-        var awsSecret = Configuration["AwsSecret"];
-        if (String.IsNullOrWhiteSpace(awsSecret))
-          throw new Exception("AWS Secret is empty in appsettings.");
-        var awsRegion = Configuration["AwsRegion"];
-        if (String.IsNullOrWhiteSpace(awsRegion))
-          throw new Exception("AWS Region is empty in appsettings.");
-        var modelId = Configuration["AwsModelId"];
-        if (String.IsNullOrWhiteSpace(modelId))
-          throw new Exception("AWS ModelId is empty in appsettings.");
-
         BasicAWSCredentials awsCredentials = new(awsAccessKey, awsSecret);
         var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
@@ -97,7 +96,8 @@ namespace RimDialogue.Controllers
       catch (Exception ex)
       {
         Exception exception = new("Error accessing Bedrock.", ex);
-        exception.Data.Add("prompt", prompt);
+        exception.Data.Add("awsRegion", awsRegion);
+        exception.Data.Add("modelId", modelId);
         throw exception;
       }
     }
@@ -113,12 +113,22 @@ namespace RimDialogue.Controllers
       var openAiDeployment = Configuration["OpenAiDeployment"];
       if (String.IsNullOrWhiteSpace(openAiDeployment))
         throw new Exception("Provider is set to OpenAi but 'OpenAiDeployment' is empty in appsettings.");
-      AzureOpenAIClient azureClient = new(
-        new Uri(openAiUri),
-        new ApiKeyCredential(openAiApiKey));
-      ChatClient chatClient = azureClient.GetChatClient(openAiDeployment);
-      var results = await chatClient.CompleteChatAsync(new OpenAI.Chat.UserChatMessage(prompt));
-      return results.Value.Content.First().Text;
+      try
+      {
+        AzureOpenAIClient azureClient = new(
+          new Uri(openAiUri),
+          new ApiKeyCredential(openAiApiKey));
+        ChatClient chatClient = azureClient.GetChatClient(openAiDeployment);
+        var results = await chatClient.CompleteChatAsync(new OpenAI.Chat.UserChatMessage(prompt));
+        return results.Value.Content.First().Text;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error accessing Azure.", ex);
+        exception.Data.Add("openAiUri", openAiUri);
+        exception.Data.Add("openAiDeployment", openAiDeployment);
+        throw exception;
+      }
     }
 
     private async Task<string> GetFromGroq(string prompt)
@@ -129,12 +139,21 @@ namespace RimDialogue.Controllers
       var groqModelId = Configuration["GroqModelId"];
       if (String.IsNullOrWhiteSpace(groqModelId))
         throw new Exception("Provider is set to Groq but 'GroqModelId' is empty in appsettings.");
-      var groqClient = new GroqClient(apiKey, groqModelId);
-      var text = await groqClient.CreateChatCompletionAsync(
-        new GroqSharp.Models.Message { Role = MessageRoleType.User, Content = prompt });
-      if (text == null)
-        throw new Exception("Groq response is null.");
-      return text;
+      try
+      {
+        var groqClient = new GroqClient(apiKey, groqModelId);
+        var text = await groqClient.CreateChatCompletionAsync(
+          new GroqSharp.Models.Message { Role = MessageRoleType.User, Content = prompt });
+        if (text == null)
+          throw new Exception("Groq response is null.");
+        return text;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error accessing Groq.", ex);
+        exception.Data.Add("groqModelId", groqModelId);
+        throw exception;
+      }
     }
 
     private async Task<string> GetFromOllama(string prompt)
@@ -145,111 +164,137 @@ namespace RimDialogue.Controllers
       var ollamaModelId = Configuration["OllamaModelId"];
       if (String.IsNullOrWhiteSpace(ollamaModelId))
         throw new Exception("Provider is set to Ollama but 'OllamaModelId' is empty in appsettings.");
-      IChatClient client = new OllamaChatClient(new Uri(ollamaUrl), ollamaModelId);
-      var result = await client.CompleteAsync(
-        [
-            new Microsoft.Extensions.AI.ChatMessage(ChatRole.User, prompt)
-        ]);
-      var text = result.Message.Text;
-      if (text == null)
-        throw new Exception("Ollama response is null.");
-      return text;
+      try
+      {
+        IChatClient client = new OllamaChatClient(new Uri(ollamaUrl), ollamaModelId);
+        var result = await client.CompleteAsync(
+          [
+              new Microsoft.Extensions.AI.ChatMessage(ChatRole.User, prompt)
+          ]);
+        var text = result.Message.Text;
+        if (text == null)
+          throw new Exception("Ollama response is null.");
+        return text;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error accessing Ollama.", ex);
+        exception.Data.Add("ollamaUrl", ollamaUrl);
+        exception.Data.Add("ollamaModelId", ollamaModelId);
+        throw exception;
+      }
     }
 
     private async Task<string> GetResults(string prompt)
     {
-      switch(Configuration["provider"]?.ToUpper())
+      var provider = Configuration["provider"];
+      try
       {
-        case "AWS":
-          return await GetFromAws(prompt);
-        case "OLLAMA":
-          return await GetFromOllama(prompt);
-        case "OPENAI":
-          return await GetFromOpenAi(prompt);
-        case "GROQ":
-          return await GetFromGroq(prompt);
-        case null:
-          throw new Exception($"Provider not set.");
-        default:
-          throw new Exception($"Unknown provider:'{Configuration["provider"]}'");
+        switch (provider?.ToUpper())
+        {
+          case "AWS":
+            return await GetFromAws(prompt);
+          case "OLLAMA":
+            return await GetFromOllama(prompt);
+          case "OPENAI":
+            return await GetFromOpenAi(prompt);
+          case "GROQ":
+            return await GetFromGroq(prompt);
+          case null:
+            throw new Exception($"Provider not set.");
+          default:
+            throw new Exception($"Unknown provider:'{provider}'");
+        }
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error fetching results.", ex);
+        exception.Data.Add("provider", provider);
+        throw exception;
       }
     }
 
     public async Task<IActionResult> GetDialogue(string dialogueDataJSON)
     {
-      string prompt = string.Empty;
       DialogueData? dialogueData = null;
       if (dialogueDataJSON == null)
         throw new Exception("dialogueDataJSON is null.");
-      else
+      //******Rate Limiting******
+      string? key = this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString();
+      if (key == null)
+        throw new Exception("Remote IP address is null.");
+      try
       {
-        try
+        if (memoryCache.TryGetValue(key, out RequestRate? requestRate) && requestRate != null)
         {
-          //rate limiting
-          string? key = this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString();
-          if (key == null)
-            throw new Exception("Remote IP address is null.");
-          if (memoryCache.TryGetValue(key, out RequestRate? requestRate) && requestRate != null)
+          if (!int.TryParse(Configuration["MinRateLimitRequestCount"], out int minRateLimitRequestCount))
+            minRateLimitRequestCount = 10;
+          if (requestRate.Count > minRateLimitRequestCount)
           {
-            if (!int.TryParse(Configuration["MinRateLimitRequestCount"], out int minRateLimitRequestCount))
-              minRateLimitRequestCount = 10;
-            if (requestRate.Count > minRateLimitRequestCount)
+            if (float.TryParse(Configuration["RateLimit"], out float rateLimit))
             {
-              if (float.TryParse(Configuration["RateLimit"], out float rateLimit))
+              var rate = requestRate.GetRate();
+              if (rate > rateLimit)
               {
-                var rate = requestRate.GetRate();
-#if DEBUG
-                Console.WriteLine("Rate: " + rate);
-#endif
-                if (rate > rateLimit)
-                  return new JsonResult(new DialogueResponse { RateLimited = true });
+                Console.WriteLine($"{key} was rate limited to {rateLimit} requests per second. Current rate is {rate} requests per second.");
+                return new JsonResult(new DialogueResponse { RateLimited = true });
               }
             }
-            requestRate.Increment();
           }
-          else
-          {
-            if (!int.TryParse(Configuration["RateLimitCacheMinutes"], out int rateLimitCacheMinutes))
-              rateLimitCacheMinutes = 1;
-            requestRate = new RequestRate(key);
-            var cacheEntryOptions = new MemoryCacheEntryOptions()
-              .SetSlidingExpiration(TimeSpan.FromMinutes(rateLimitCacheMinutes));
-            memoryCache.Set(key, requestRate, cacheEntryOptions);
-          }
+          requestRate.Increment();
         }
-        catch (Exception ex)
+        else
         {
-          Exception exception = new("An error occurred in rate limiting.", ex);
-          throw exception;
-        }
-
-        try
-        {
-          dialogueData = JsonConvert.DeserializeObject<DialogueData>(dialogueDataJSON);
-        }
-        catch (Exception ex)
-        {
-          Exception exception = new("An error occurred deserializing JSON.", ex);
-          exception.Data.Add("dialogueDataJSON", dialogueDataJSON);
-          throw exception;
-        }
-        try
-        {
-          if (dialogueData == null)
-            throw new Exception("dialogueData is null.");
-          var initiatorConversations = GetConversations(dialogueData.clientId + dialogueData.initiatorThingID);
-          var recipientConversations = GetConversations(dialogueData.clientId + dialogueData.recipientThingID);
-          PromptTemplate promptTemplate = new(dialogueData, initiatorConversations, recipientConversations);
-          prompt = promptTemplate.TransformText();
-        }
-        catch(Exception ex)
-        {
-          Exception exception = new("An error occurred generating prompt.", ex);
-          exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
-          throw exception;
+          if (!int.TryParse(Configuration["RateLimitCacheMinutes"], out int rateLimitCacheMinutes))
+            rateLimitCacheMinutes = 1;
+          requestRate = new RequestRate(key);
+          var cacheEntryOptions = new MemoryCacheEntryOptions()
+            .SetSlidingExpiration(TimeSpan.FromMinutes(rateLimitCacheMinutes));
+          memoryCache.Set(key, requestRate, cacheEntryOptions);
         }
       }
-
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred in rate limiting.", ex);
+        exception.Data.Add("key", key);
+        throw exception;
+      }
+      //******Deserialization******
+      try
+      {
+        dialogueData = JsonConvert.DeserializeObject<DialogueData>(dialogueDataJSON);
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred deserializing JSON.", ex);
+        exception.Data.Add("dialogueDataJSON", dialogueDataJSON);
+        throw exception;
+      }
+      //******Prompt Generation******
+      string? prompt = null;
+      try
+      {
+        if (dialogueData == null)
+          throw new Exception("dialogueData is null.");
+        var initiatorConversations = GetConversations(dialogueData.clientId + dialogueData.initiatorThingID);
+        var recipientConversations = GetConversations(dialogueData.clientId + dialogueData.recipientThingID);
+        PromptTemplate promptTemplate = new(dialogueData, initiatorConversations, recipientConversations);
+        prompt = promptTemplate.TransformText();
+        if (int.TryParse(Configuration["MaxPromptLength"], out int maxPromptLength))
+          maxPromptLength = 5000;
+        if (prompt.Length > maxPromptLength)
+        {
+          Console.WriteLine($"Prompt truncated to { maxPromptLength } characters. Original length was {prompt.Length} characters.");
+          prompt = prompt.Substring(0, maxPromptLength);
+        }
+      }
+      catch(Exception ex)
+      {
+        Exception exception = new("An error occurred generating prompt.", ex);
+        exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
+        throw exception;
+      }
+      //******Response Generation******
       string? text = null;
       try
       {
@@ -261,14 +306,29 @@ namespace RimDialogue.Controllers
         exception.Data.Add("prompt", prompt);
         throw exception;
       }
-
+      //******Response Serialization******
       DialogueResponse? dialogueResponse = null;
       try
       {
         dialogueResponse  = new DialogueResponse();
-
-        if (text.Length > 1000)
-          text = text.Substring(0, 1000) + "...";
+        if (int.TryParse(Configuration["MaxResponseLength"], out int maxResponseLength))
+          maxResponseLength = 5000;
+        if (text.Length > maxResponseLength)
+        {
+          Console.WriteLine($"Response truncated to {maxResponseLength} characters. Original length was {text.Length} characters.");
+          text = text.Substring(0, maxResponseLength) + "...";
+        }
+        dialogueResponse.text = text;
+      }
+      catch(Exception ex)
+      {
+        Exception exception = new("Error creating DialogueResponse.", ex);
+        exception.Data.Add("text", text);
+        throw exception;
+      }
+      //******Cache Conversation******
+      try
+      {
         if (dialogueData != null)
         {
           var conversation = new Conversation(dialogueData.initiatorFullName, dialogueData.recipientFullName, dialogueData.interaction, text);
@@ -279,14 +339,16 @@ namespace RimDialogue.Controllers
             dialogueData.clientId + dialogueData.recipientThingID,
             conversation);
         }
-        dialogueResponse.text = text;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
-        Exception exception = new("Error creating DialogueResponse.", ex);
-        exception.Data.Add("text", text);
+        Exception exception = new("Error adding conversation.", ex);
+        exception.Data.Add("clientId", dialogueData.clientId);
+        exception.Data.Add("initiatorThingID", dialogueData.initiatorThingID);
+        exception.Data.Add("recipientThingID", dialogueData.recipientThingID);
         throw exception;
       }
+      //******Logging******
       try
       {
         if (LoggingEnabled)
