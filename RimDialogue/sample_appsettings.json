@@ -37,13 +37,16 @@
   "AwsKey": "put your AwsKey here",
   "AwsSecret": "put your AwsSecret here",
 
+  //OPENAI SETTINGS
+  //TBD - Not tested yet. 
+
   //CONVERSATIONS  
   "MaxConversationsPerPawn": 5,
   "ConversationsCacheMinutes": 60,
 
   //PROMPT SETTINGS
   "MaxPromptLength": 1200,
-  "MaxResponseLength": 500,
+  "MaxResponseLength": 1000,
   "ShowExposition": true,
   "ShowScenario": true,
   "ShowSpecialInstructions": true,
