@@ -1,0 +1,85 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "LoggingEnabled": false,
+
+  //ERROR HANDLING
+  //Requires AwsKey and AwsSecret to be set also.
+  "EmailErrors": false,
+  "ErrorMailFrom": "errors@yourdomain.com",
+  "ErrorMailTo": "email@address.com",
+
+  //RATE LIMITING
+  "RateLimit": 0.2,
+  "RateLimitCacheMinutes": 1,
+  "MinRateLimitRequestCount": 5,
+
+  //****Provider Settings****
+  //AWS, OLLAMA, OPENAI, or GROQ
+  "Provider": "OLLAMA",
+
+  //GROQ SETTINGS
+  "GroqApiKey": "put your GroqApiKey here",
+  "GroqModelId": "llama-3.2-3b-preview",
+
+  //OLLAMA SETTINGS
+  "OllamaUrl": "http://localhost:11434/",
+  "OllamaModelId": "llama3.2",
+
+  //AWS SETTINGS
+  "AwsModelId": "arn:aws:bedrock:us-east-1:370824788989:inference-profile/us.meta.llama3-2-1b-instruct-v1:0",
+  "AwsRegion": "us-east-1",
+  "AwsKey": "put your AwsKey here",
+  "AwsSecret": "put your AwsSecret here",
+
+  //CONVERSATIONS  
+  "MaxConversationsPerPawn": 5,
+  "ConversationsCacheMinutes": 60,
+
+  //PROMPT SETTINGS
+  "MaxPromptLength": 1200,
+  "MaxResponseLength": 500,
+  "ShowExposition": true,
+  "ShowScenario": true,
+  "ShowSpecialInstructions": true,
+  "ShowFullName": false,
+  "ShowGender": false,
+  "ShowRace": false,
+  "ShowSubrace": false,
+  "ShowAnimal": false,
+  "ShowAge": false,
+  "ShowIsColonist": false,
+  "ShowIsPrisoner": false,
+  "ShowRoyaltyTitle": false,
+  "ShowHair": false,
+  "ShowBeard": false,
+  "ShowTattoo": false,
+  "ShowFaction": false,
+  "ShowIdeology": false,
+  "ShowPrecepts": false, //This is often a lot of data.  ~6700 characters
+  "ShowAdulthood": false,
+  "ShowChildhood": false,
+  "ShowRelations": false,
+  "ShowTraits": false,
+  "ShowSkills": false,
+  "ShowMoodThoughts": false,
+  "ShowHealth": false,
+  "ShowApparel": false,
+  "ShowWeapons": false,
+  "ShowMoodString": false,
+  "ShowNeeds": false,
+  "ShowOpinions": false,
+  "ShowConversations": false, //This can be a lot of data.
+  "ShowDaysAgo": false,
+  "ShowWealth": false,
+  "ShowBiome": false,
+  "ShowWeather": false,
+  "ShowRecentIncidents": false,
+  "ShowRoom": false,
+  "RepeatInstructions": false
+}

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -66,5 +66,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\RimDialogueClient\source\RimDialogueClient.csproj" />
   </ItemGroup>
+
+  <Target Name="ReplaceAppSettings" AfterTargets="Publish">
+    <Copy SourceFiles="sample_appsettings.json"
+          DestinationFiles="$(PublishDir)appsettings.json" />
+    <Delete Files="$(PublishDir)sample_appsettings.json" />
+    <Delete Files="$(PublishDir)appsettings.Development.json" />
+  </Target>
 
 </Project>

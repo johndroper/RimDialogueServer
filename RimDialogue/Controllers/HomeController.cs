@@ -1,19 +1,14 @@
-﻿using RimDialogue.Core;
+﻿using Amazon.BedrockRuntime;
+using Amazon.BedrockRuntime.Model;
+using Amazon.Runtime;
+using Azure.AI.OpenAI;
+using GroqSharp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.AI;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json;
-using System.IO;
-using Amazon.BedrockRuntime;
-using Amazon.Runtime;
-using Amazon.BedrockRuntime.Model;
-using Amazon.Runtime.Internal;
 using Microsoft.Extensions.Caching.Memory;
-using static System.Net.Mime.MediaTypeNames;
-using GroqSharp.Models;
-using GroqSharp;
-using Azure.AI.OpenAI;
+using Newtonsoft.Json;
 using OpenAI.Chat;
+using RimDialogue.Core;
 using System.ClientModel;
 
 namespace RimDialogue.Controllers
@@ -32,8 +27,7 @@ namespace RimDialogue.Controllers
     {
       if (!memoryCache.TryGetValue(key, out List<Conversation>? conversations))
       {
-        if (int.TryParse(Configuration["ConversationsCacheMinutes"], out int conversationsCacheMinutes))
-          conversationsCacheMinutes = 60;
+        int conversationsCacheMinutes = Configuration.GetValue<int>("ConversationsCacheMinutes", 60);
         var cacheEntryOptions = new MemoryCacheEntryOptions()
             .SetSlidingExpiration(TimeSpan.FromMinutes(conversationsCacheMinutes));
         memoryCache.Set(key, new List<Conversation> { conversation }, cacheEntryOptions);
@@ -54,8 +48,6 @@ namespace RimDialogue.Controllers
         return Configuration["LoggingEnabled"]?.ToLower() == "true";
       }
     }
-
-    private readonly object _monitorObject = new object();
 
     public IActionResult Index()
     {
@@ -275,7 +267,7 @@ namespace RimDialogue.Controllers
         var recipientConversations = GetConversations(dialogueData.clientId + dialogueData.recipientThingID);
         PromptTemplate promptTemplate = new(dialogueData, initiatorConversations, recipientConversations, Configuration);
         prompt = promptTemplate.TransformText();
-        int maxPromptLength = Configuration.GetValue<int>("MaxPromptLength", 5000);
+        int maxPromptLength = Configuration.GetValue<int>("MaxPromptLength", 1200);
         if (prompt.Length > maxPromptLength)
         {
           Console.WriteLine($"Prompt truncated to { maxPromptLength } characters. Original length was {prompt.Length} characters.");
@@ -310,8 +302,7 @@ namespace RimDialogue.Controllers
       try
       {
         dialogueResponse  = new DialogueResponse();
-        if (int.TryParse(Configuration["MaxResponseLength"], out int maxResponseLength))
-          maxResponseLength = 5000;
+        int maxResponseLength = Configuration.GetValue<int>("MaxResponseLength", 5000);
         if (text.Length > maxResponseLength)
         {
           Console.WriteLine($"Response truncated to {maxResponseLength} characters. Original length was {text.Length} characters.");

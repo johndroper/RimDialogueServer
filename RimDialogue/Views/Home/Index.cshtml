@@ -3,10 +3,16 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "_Layout";
+}
+
+@section Head {
+  <meta http-equiv="refresh" content="30">
 }
 
 <h1>RimDialogue</h1>
 
+<h2>Server Stats as of @DateTime.Now</h2>
 <dl>
   <dt>
     Start Time
@@ -24,67 +30,67 @@
     Total Errors
   </dt>
   <dd>
-    @ServerMetrics.TotalErrors
+    @ServerMetrics.TotalErrors.ToString("N0")
   </dd>
   <dt>
     Total Requests
   </dt>
   <dd>
-    @ServerMetrics.RequestCount
+    @ServerMetrics.RequestCount.ToString("N0")
   </dd>
   <dt>
     Request Per Minute
   </dt>
   <dd>
-    @ServerMetrics.RequestsPerMinute
+    @ServerMetrics.RequestsPerMinute.ToString("N0")
   </dd>
   <dt>
     Total Input Length
   </dt>
   <dd>
-    @ServerMetrics.TotalInputLength
+    @ServerMetrics.TotalInputLength.ToString("N0")
   </dd>
   <dt>
     Average Input Length
   </dt>
   <dd>
-    @ServerMetrics.AverageInputLength
+    @ServerMetrics.AverageInputLength.ToString("N0")
   </dd>
   <dt>
     Average Input Per Minute
   </dt>
   <dd>
-    @ServerMetrics.AverageInputPerMinute
+    @ServerMetrics.AverageInputPerMinute.ToString("N0")
   </dd>
   <dt>
     Total Output Length
   </dt>
   <dd>
-    @ServerMetrics.TotalOutputLength
+    @ServerMetrics.TotalOutputLength.ToString("N0")
   </dd>
   <dt>
     Average Output Length
   </dt>
   <dd>
-    @ServerMetrics.AverageOutputLength
+    @ServerMetrics.AverageOutputLength.ToString("N0")
   </dd>
   <dt>
     Average Output Per Minute
   </dt>
   <dd>
-    @ServerMetrics.AverageOutputPerMinute
+    @ServerMetrics.AverageOutputPerMinute.ToString("N0")
   </dd>
   <dt>
     Distinct IP Count
   </dt>
   <dd>
-    @ServerMetrics.DistinctIPCount
+    @ServerMetrics.DistinctIPCount.ToString("N0")
   </dd>
   <dt>
     Average Requests Per IP
   </dt>
   <dd>
-    @ServerMetrics.AverageRequestsPerIP
+    @ServerMetrics.AverageRequestsPerIP.ToString("N0")
   </dd>
   <dt>
     Top 10 Requesters
@@ -93,7 +99,7 @@
     <ul>
       @foreach (var ip in ServerMetrics.GetTopRequesters(10))
       {
-        <li>@ip.Key - @ip.Value</li>
+        <li>@ip.Key - @ip.Value.ToString("N0")</li>
       }
     </ul>
   </dd>
@@ -104,7 +110,7 @@
     <ul>
       @foreach (var ip in ServerMetrics.GetTopRequestersByInput(10))
       {
-        <li>@ip.Key - @ip.Value</li>
+        <li>@ip.Key - @ip.Value.ToString("N0")</li>
       }
     </ul>
   </dd>
@@ -115,7 +121,7 @@
     <ul>
       @foreach (var ip in ServerMetrics.GetTopRequestersByOutput(10))
       {
-        <li>@ip.Key - @ip.Value</li>
+        <li>@ip.Key - @ip.Value.ToString("N0")</li>
       }
     </ul>
   </dd>
