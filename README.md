@@ -73,6 +73,9 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hoste
      - Fill in your API credentials in the `SETTINGS` section for your provider (e.g., `GroqApiKey` and `GroqModelId` for Groq).
 
 3. Adjust optional settings:
+   _ **RateLimit**: Sets the number of requests per second allowed.  
+	 - For Ollama you can set this higher (0.5 - 1.0) depending on your machine.
+	 - For cloud providers this will depend on your token budget. 
    - **MaxPromptLength**: Limits prompt size before truncation.  
      - Set lower for tight input token budgets or higher (40,000–50,000) for local setups.  
    - **Prompt Settings**:  
