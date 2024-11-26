@@ -1,4 +1,5 @@
 {
+  "Urls": "http://localhost:7293/", //Change this run on a different port
   "Logging": {
     "LogLevel": {
       "Default": "Information",
@@ -8,16 +9,16 @@
   "AllowedHosts": "*",
   "LoggingEnabled": false,
 
-  //ERROR HANDLING
+  //ERROR EMAILS
   //Requires AwsKey and AwsSecret to be set also.
   "EmailErrors": false,
   "ErrorMailFrom": "errors@yourdomain.com",
   "ErrorMailTo": "email@address.com",
 
   //RATE LIMITING
-  "RateLimit": 0.2,
-  "RateLimitCacheMinutes": 1,
-  "MinRateLimitRequestCount": 5,
+  "RateLimit": 0.2, //Requests per second 
+  "RateLimitCacheMinutes": 1, //How long to cache the rate limit
+  "MinRateLimitRequestCount": 5, //Minimum number of requests before rate limiting kicks in
 
   //****Provider Settings****
   //AWS, OLLAMA, OPENAI, or GROQ
@@ -41,12 +42,16 @@
   //TBD - Not tested yet. 
 
   //CONVERSATIONS  
-  "MaxConversationsPerPawn": 5,
-  "ConversationsCacheMinutes": 60,
+  "MaxConversationsPerPawn": 5, //This is the maximum number of conversations that can be stored for a pawn
+  "ConversationsCacheMinutes": 60, //This is how long in muinutes the conversations are stored in the cache
 
   //PROMPT SETTINGS
-  "MaxPromptLength": 1200,
-  "MaxResponseLength": 1000,
+  "MaxPromptLength": 1200, //This is the maximum length of the prompt that is sent to the AI
+  "MaxResponseLength": 1000, //This is the maximum length of the response that is returned from the AI
+
+  //PROMPT OPTIONS
+  //Set these to true to add more data to your prompt and make it more interesting
+  //Set these to false if you are hitting your token limit
   "ShowExposition": true,
   "ShowScenario": true,
   "ShowSpecialInstructions": true,
