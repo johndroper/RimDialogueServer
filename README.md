@@ -47,12 +47,12 @@ If you prefer uncensored models, here are some options:
 
 ### Using a Cloud LLM with an API Key
 
-If running a local LLM isn’t an option, you can use an API key for a cloud-hosted LLM.  
+If running a local LLM isnâ€™t an option, you can use an API key for a cloud-hosted LLM.  
 
 **Supported Providers:**
 - **Groq**  
   Get API keys: [Groq API Keys](https://groq.com/)  
-  > Groq offers a free tier, but it’s heavily throttled.
+  > Groq offers a free tier, but itâ€™s heavily throttled.
 
 - **AWS & OpenAI**  
   > **Warning:** These options are complex to configure and may incur high costs if set up improperly.
@@ -64,7 +64,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hoste
 ### 1. Download the Server
 
 1. Go to the [RimDialogue Server Releases](https://github.com/johndroper/RimDialogueServer/releases).  
-2. Download the latest `RimDialogueLocal_<version>.zip`.  
+2. Download the latest `RimDialogueLocalServer_<version>.zip`.  
 3. Unzip the file to a directory of your choice.
 
 ### 2. Configure the Server
@@ -82,7 +82,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hoste
 	 - For Ollama you can set this higher (0.5 - 1.0) depending on your machine.
 	 - For cloud providers this will depend on your token budget. 
    - **MaxPromptLength**: Limits prompt size before truncation.  
-     - Set lower for tight input token budgets or higher (40,000–50,000) for local setups.  
+     - Set lower for tight input token budgets or higher (40,000â€“50,000) for local setups.  
    - **Prompt Settings**:  
      - Enable additional data with boolean options under `//PROMPT SETTINGS`.
    - **Server Port**:  
@@ -101,7 +101,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hoste
 
 ### 2. Enable the Mod
 
-1. From RimWorld’s main menu, press **Mods**.  
+1. From RimWorldâ€™s main menu, press **Mods**.  
 2. Find **RimDialogue** in the left column.  
 3. Click **Enable** in the mod description window.  
 4. Press **Save and apply changes**.
