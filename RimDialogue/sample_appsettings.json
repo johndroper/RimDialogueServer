@@ -89,5 +89,5 @@
   "ShowWeather": false,
   "ShowRecentIncidents": false,
   "ShowRoom": false,
-  "RepeatInstructions": false
+  "RepeatInstructions": false //turn this on if the AI output stuff other than dialogue.
 }

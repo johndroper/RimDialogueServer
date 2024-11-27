@@ -28,6 +28,11 @@ To run RimDialogue with a local LLM:
 > The hosted version uses **Llama 3.2 3B** and **Llama 3.2 1B**.  
 > Find more models here: [Ollama Model Library](https://ollama.com/library)
 
+#### Downloading Models
+1. Go to the model page on the Ollama website and copy the model name. 
+2. Open a command prompt by type `cmd` in the Windows search bar.
+3. Type "ollama pull <paste model name>" and press enter.  The model should now start downloading.
+
 #### Uncensored Models  
 If you prefer uncensored models, here are some options:
 - [Llama 2 Uncensored](https://ollama.ai/library/llama2-uncensored)

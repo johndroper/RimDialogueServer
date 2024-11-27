@@ -206,45 +206,45 @@ namespace RimDialogue
       ShowExposition = Configuration.GetValue<bool>(nameof(ShowExposition), false);
     }
 
-    public bool ShowFullName { get; } = false;
-    public bool ShowGender { get; } = false;
-    public bool ShowRace { get; } = false;
-    public bool ShowSubrace { get; } = false;
-    public bool ShowAnimal { get; } = false;
-    public bool ShowAge { get; } = false;
-    public bool ShowIsColonist { get; } = false;
-    public bool ShowIsPrisoner { get; } = false;
-    public bool ShowRoyaltyTitle { get; } = false;
-    public bool ShowHair { get; } = false;
-    public bool ShowBeard { get; } = false;
-    public bool ShowTattoo { get; } = false;
-    public bool ShowFaction { get; } = false;
-    public bool ShowIdeology { get; } = false;
-    public bool ShowPrecepts { get; } = false;
-    public bool ShowAdulthood { get; } = false;
-    public bool ShowChildhood { get; } = false;
-    public bool ShowRelations { get; } = false;
-    public bool ShowTraits { get; } = false;
-    public bool ShowSkills { get; } = false;
-    public bool ShowMoodThoughts { get; } = false;
-    public bool ShowHealth { get; } = false;
-    public bool ShowApparel { get; } = false;
-    public bool ShowWeapons { get; } = false;
-    public bool ShowMoodString { get; } = false;
-    public bool ShowNeeds { get; } = false;
-    public bool ShowOpinions { get; } = false;
-    public bool ShowConversations { get; } = false;
-    public bool ShowScenario { get; } = true;
-    public bool ShowDaysAgo { get; } = false;
-    public bool ShowWealth { get; } = false;
-    public bool ShowBiome { get; } = false;
-    public bool ShowRoom { get; } = false;
-    public bool ShowWeather { get; } = false;
-    public bool ShowRecentIncidents { get; } = false;
-    public bool RepeatInstructions { get; } = false;
-    public bool ShowSpecialInstructions { get; } = false;
-    public bool ShowExposition { get; } = true;
-    public DialogueData DialogueData { get; }
+    public bool ShowFullName { get; set; } = false;
+    public bool ShowGender { get; set; } = false;
+    public bool ShowRace { get; set; } = false;
+    public bool ShowSubrace { get; set; } = false;
+    public bool ShowAnimal { get; set; } = false;
+    public bool ShowAge { get; set; } = false;
+    public bool ShowIsColonist { get; set; } = false;
+    public bool ShowIsPrisoner { get; set; } = false;
+    public bool ShowRoyaltyTitle { get; set; } = false;
+    public bool ShowHair { get; set; } = false;
+    public bool ShowBeard { get; set; } = false;
+    public bool ShowTattoo { get; set; } = false;
+    public bool ShowFaction { get; set; } = false;
+    public bool ShowIdeology { get; set; } = false;
+    public bool ShowPrecepts { get; set; } = false;
+    public bool ShowAdulthood { get; set; } = false;
+    public bool ShowChildhood { get; set; } = false;
+    public bool ShowRelations { get; set; } = false;
+    public bool ShowTraits { get; set; } = false;
+    public bool ShowSkills { get; set; } = false;
+    public bool ShowMoodThoughts { get; set; } = false;
+    public bool ShowHealth { get; set; } = false;
+    public bool ShowApparel { get; set; } = false;
+    public bool ShowWeapons { get; set; } = false;
+    public bool ShowMoodString { get; set; } = false;
+    public bool ShowNeeds { get; set; } = false;
+    public bool ShowOpinions { get; set; } = false;
+    public bool ShowConversations { get; set; } = false;
+    public bool ShowScenario { get; set; } = true;
+    public bool ShowDaysAgo { get; set; } = false;
+    public bool ShowWealth { get; set; } = false;
+    public bool ShowBiome { get; set; } = false;
+    public bool ShowRoom { get; set; } = false;
+    public bool ShowWeather { get; set; } = false;
+    public bool ShowRecentIncidents { get; set; } = false;
+    public bool RepeatInstructions { get; set; } = false;
+    public bool ShowSpecialInstructions { get; set; } = false;
+    public bool ShowExposition { get; set; } = true;
+    public DialogueData DialogueData { get; set; }
     public List<Conversation>? InitiatorConversations { get; set; }
     public List<Conversation>? RecipientConversations { get; set; }
 
