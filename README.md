@@ -31,7 +31,7 @@ To run RimDialogue with a local LLM:
 #### Downloading Models
 1. Go to the model page on the Ollama website and copy the model name. 
 2. Open a command prompt by typing `cmd` in the Windows search bar.
-3. In the command window, type "ollama pull <paste model name>" and press enter.  The model should now start downloading.
+3. In the command window, type `ollama pull <paste model name>` and press enter.  The model should now start downloading.
 
 #### Uncensored Models  
 If you prefer uncensored models, here are some options:
