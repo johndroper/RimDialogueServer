@@ -65,7 +65,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 
 1. Go to the [RimDialogue Server Releases](https://github.com/johndroper/RimDialogueServer/releases).  
 2. Download the latest `RimDialogueLocalServer_<version>.zip`.  
-3. Unzip the file to a directory of your choice.
+3. Unzip to a directory of your choice.
 
 ### 2. Configure the Server
 
