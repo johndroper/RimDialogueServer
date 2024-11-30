@@ -4,17 +4,20 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
-<# if (this.ShowExposition) {#>
-RimWorld is a sci-fi colony simulation game where players manage a group of characters stranded on a distant, lawless planet.
-<# } #>
-<# if (this.ShowScenario) {#>
+<# if (this.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
 This games scenario is: <#= this.DialogueData.scenario #>
 <# } #>
-You are a dialogue writer for the game RimWorld. Your job is to create a dialogue exchange of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based primarily on the following interaction: <#= this.DialogueData.interaction #>
-When pawns have an interaction and speak to each other about a subject, they are speaking about the subject in the abstract and the subject is not something that is present with them.  Pawns often speaks wistfully about subjects they desire.     
-Start the dialogue with <#= this.DialogueData.initiatorNickName #>'s part in the interaction.
+You are a dialogue writer for the game RimWorld a sci-fi colony simulation game where players manage a group of characters stranded on a distant, lawless planet.
+Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
+<# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
+<#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<# } #>
+<# if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
+<#= this.DialogueData.recipientNickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<# } #>
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
-It is important that you respond with only the dialogue exchange. Do not include any additional information or context.
+It is important that you respond with only the dialogue exchange. Use the information you are provided to add depth to the dialogue exchange.
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
 <# } #>
@@ -22,39 +25,43 @@ It is important that you respond with only the dialogue exchange. Do not include
 <#= this.DialogueData.initiatorNickName #>'s full name is <#= this.DialogueData.initiatorFullName #>.
 <#= this.DialogueData.recipientNickName #>'s full name is <#= this.DialogueData.recipientFullName #>.
 <# } #>
-<# if (this.ShowGender) {#>
-<#= this.DialogueData.initiatorNickName #>'s gender is <#= this.DialogueData.initiatorGender #>.
-<#= this.DialogueData.recipientNickName #>'s gender is <#= this.DialogueData.recipientGender #>.
-<# } #>
-<# if (this.ShowRace) {#>
-<#= this.DialogueData.initiatorNickName #>'s race is <#= this.DialogueData.initiatorRace #>.
-<#= this.DialogueData.recipientNickName #>'s race is <#= this.DialogueData.recipientRace #>.
-<# } #>
+<#= this.DialogueData.initiatorNickName #>'s is a <#= this.DialogueData.initiatorGender #> <#= this.DialogueData.initiatorRace #> age <#= this.DialogueData.initiatorAge #> years old.
+<#= this.DialogueData.recipientNickName #>'s is a <#= this.DialogueData.recipientGender #> <#= this.DialogueData.recipientRace #> age <#= this.DialogueData.recipientAge #> years old.
 <# if (this.ShowSubrace) {#>
-<#= this.DialogueData.initiatorNickName #>'s subrace is <#= this.DialogueData.initiatorDescription #>
-<#= this.DialogueData.recipientNickName #>'s subrace is <#= this.DialogueData.recipientDescription #>
-<# } #>
-<# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
-<#= this.DialogueData.initiatorNickName #> is an animal. <#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language. C
-<# } #>
-<# if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
-<#= this.DialogueData.recipientNickName #> is an animal. <#= this.DialogueData.recipientNickName #> can't speak, but they can communicate through actions, sounds, and body language.
-<# } #>
-<# if (this.ShowAge) { #>)
-<#= this.DialogueData.initiatorNickName #>'s age is <#= this.DialogueData.initiatorAge #> years old.
-<#= this.DialogueData.recipientNickName #>'s age is <#= this.DialogueData.recipientAge #> years old.
+<#   if (this.DialogueData.initiatorDescription == this.DialogueData.recipientDescription) { #>
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are <#= this.DialogueData.initiatorDescription #>.
+<#   } else { #>
+<#= this.DialogueData.initiatorNickName #>'s is <#= this.DialogueData.initiatorDescription #>
+<#= this.DialogueData.recipientNickName #>'s is <#= this.DialogueData.recipientDescription #>
+<#   } #>
 <# } #>
 <# if (this.ShowIsColonist) { #>
-<#= this.DialogueData.initiatorNickName #> is<#= this.DialogueData.initiatorIsColonist ? " " : " not " #>a colonist.
-<#= this.DialogueData.recipientNickName #> is<#= this.DialogueData.recipientIsColonist ? " " : " not " #>a colonist.
-<# } #>
-<# if (this.ShowIsColonist && (!this.DialogueData.initiatorIsColonist || !this.DialogueData.recipientIsColonist)) { #>
-Pawns who are not colonists or animals are just temporary visitors to the colony.  They might be traders, raiders, or just visitors. 
-<# } #>
-<# if (this.ShowIsPrisoner) { #>
-<#= this.DialogueData.initiatorNickName #> is<#= this.DialogueData.initiatorIsPrisoner ? " " : " not " #>a prisoner. 
-<#= this.DialogueData.recipientNickName #> is<#= this.DialogueData.recipientIsPrisoner ? " " : " not " #>a prisoner.
-<# if (this.DialogueData.initiatorIsPrisoner || this.DialogueData.recipientIsPrisoner) { #>In RimWorld, prisoners play a complex role, as they can be both valuable resources and potential threats. Captured characters are held in designated prison cells, where colonists provide for their basic needs, like food, medical care, and sometimes recreational activities, to keep them content and prevent escape attempts. Prisoners can serve various purposes: they can be recruited to join the colony, traded with visiting factions, or even used for labor or medical resources like organ harvesting (though these actions can negatively impact colony morale). Recruitable prisoners require attention to their mood, health, and resistance level, as colonists must reduce their resistance through repeated "recruit" interactions to eventually persuade them to join. <# } #>
+<#   if (this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are colonists and members of the player's colony.
+<#   } else if (this.DialogueData.initiatorIsPrisoner && this.DialogueData.recipientIsPrisoner) { #>
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are prisoners. In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#   } else if (this.DialogueData.initiatorIsHostile && this.DialogueData.recipientIsHostile) { #>
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are hostiles and are here to attack the player's colony.
+<#   } else { #>
+<#     if (this.DialogueData.initiatorIsColonist) { #>
+<#= this.DialogueData.initiatorNickName #> is a colonist and a member of the player's colony.  
+<#     } else if (this.DialogueData.initiatorIsPrisoner) { #>
+<#= this.DialogueData.initiatorNickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#     } else if (this.DialogueData.initiatorIsHostile) { #>
+<#= this.DialogueData.initiatorNickName #> is a hostile and is here to attack the player's colony.
+<#     } else { #>
+<#= this.DialogueData.initiatorNickName #> is just a temporary visitor to the player's colony.
+<#     } #>
+<#     if (this.DialogueData.recipientIsColonist) { #>
+<#= this.DialogueData.recipientNickName #> is a colonist and a member of the player's colony.  
+<#     } else if (this.DialogueData.recipientIsPrisoner) { #>
+<#= this.DialogueData.recipientNickName #> is a prisoner. In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#     } else if (this.DialogueData.recipientIsHostile) { #>
+<#= this.DialogueData.recipientNickName #> is a hostile and is here to attack the player's colony.
+<#     } else { #>
+<#= this.DialogueData.recipientNickName #> is just a temporary visitor to the player's colony.
+<#     } #>
+<#   } #>
 <# } #>
 <# if (this.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorRoyaltyTitle)) { #>
 <#= this.DialogueData.initiatorNickName #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
@@ -64,6 +71,62 @@ Pawns who are not colonists or animals are just temporary visitors to the colony
 <#= this.DialogueData.recipientRoyaltyTitle #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
 <#= this.DialogueData.recipientNickName #>'s royal title is <#= this.DialogueData.recipientRoyaltyTitle #>
 <# } #>
+<# if (this.ShowFaction) { #>
+<#   if (this.DialogueData.initiatorFactionName == this.DialogueData.recipientFactionName) { #>
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> belong to the same faction, called "<#= this.DialogueData.initiatorFactionName #>". It is a <#= this.DialogueData.initiatorFactionLabel #> faction. <#= this.DialogueData.initiatorFactionDescription #>
+<#   } else { #>
+The faction <#= this.DialogueData.initiatorNickName #> belongs to is called "<#= this.DialogueData.initiatorFactionName #>". It is a <#= this.DialogueData.initiatorFactionLabel #> faction. <#= this.DialogueData.initiatorFactionDescription #>
+The faction <#= this.DialogueData.recipientNickName #> belongs to is called "<#= this.DialogueData.recipientFactionName #>". It is a <#= this.DialogueData.recipientFactionLabel #> faction. <#= this.DialogueData.recipientFactionDescription #>
+<#   } #>
+<# } #>
+<# if (this.ShowIdeology) { #>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeologyName) && this.DialogueData.initiatorIdeologyName == this.DialogueData.recipientIdeologyName) { #>
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> share the same ideology, called "<#= this.DialogueData.initiatorIdeologyName #>".
+The narrative of this ideology is: <#= this.DialogueData.initiatorIdeologyDescription #>
+<#     if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
+The precepts of their ideology are: <#= String.Join(", ", this.DialogueData.initiatorIdeologyPrecepts) #>
+<#     } #>
+<#  } else { #>
+<#    if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeologyName)) { #>
+<#= this.DialogueData.initiatorNickName #>'s ideology is <#= this.DialogueData.initiatorIdeologyName #>.
+The narrative of this ideology is: <#= this.DialogueData.initiatorIdeologyDescription #>
+<#      if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
+The precepts of <#= this.DialogueData.initiatorNickName #>'s ideology are: <#= String.Join(", ", this.DialogueData.recipientIdeologyPrecepts) #>
+<#      } #>
+<#    } #>
+<#    if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientIdeologyName)) { #>
+<#= this.DialogueData.recipientNickName #>'s ideology is <#= this.DialogueData.recipientIdeologyName #>.
+The narrative of this ideology is: <#= this.DialogueData.recipientIdeologyDescription #>
+<#      if (this.ShowPrecepts && this.DialogueData.recipientIdeologyPrecepts.Any()) {#>
+The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= String.Join(", ", this.DialogueData.recipientIdeologyPrecepts) #>
+<#      } #>
+<#	  } #>
+<#  } #>
+<#} #>
+<# if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorAdulthood)) { #>
+<#= this.DialogueData.initiatorNickName #>'s adulthood was spent as: <#= this.DialogueData.initiatorAdulthood #>
+<# } #>
+<# if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientAdulthood)) { #>
+<#= this.DialogueData.recipientNickName #>'s adulthood was spent as: <#= this.DialogueData.recipientAdulthood #>
+<# } #>
+<# if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorChildhood)) { #>
+<#= this.DialogueData.initiatorNickName #>'s childhood was spent as: <#= this.DialogueData.initiatorChildhood #>
+<# } #>
+<# if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientChildhood)) { #>
+<#= this.DialogueData.recipientNickName #>'s childhood was spent as: <#= this.DialogueData.recipientChildhood #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorJobReport)) { #>
+<#= this.DialogueData.initiatorNickName #>'s current activity is <#= this.DialogueData.initiatorJobReport #>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorCarrying)) { #>
+<#= this.DialogueData.initiatorNickName #> is carrying <#= this.DialogueData.initiatorCarrying #>.
+<#   } #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientJobReport)) { #>
+<#= this.DialogueData.recipientNickName #>'s current activity is <#= this.DialogueData.recipientJobReport #>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientCarrying)) { #>
+<#= this.DialogueData.recipientNickName #> is carrying <#= this.DialogueData.recipientCarrying #>.
+<#   } #>
+<# } #>
 <# if (this.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorHair)) { #>
 <#= this.DialogueData.initiatorNickName #>'s hair style is <#= this.DialogueData.initiatorHair #> 
 <# } #>
@@ -71,20 +134,12 @@ Pawns who are not colonists or animals are just temporary visitors to the colony
 <#= this.DialogueData.recipientNickName #>'s hair style is <#= this.DialogueData.recipientHair #> 
 <# } #>
 <# if (this.ShowBeard) { #>
-<# if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorBeard) || this.DialogueData.initiatorBeard == "no beard") { #>
-<# if (this.DialogueData.initiatorGender != "female") { #>
-<#= this.DialogueData.initiatorNickName #> does not have a beard.
-<# } #>
-<# } else { #>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorBeard) && this.DialogueData.initiatorBeard != "no beard") { #>
 <#= this.DialogueData.initiatorNickName #>'s beard style is <#= this.DialogueData.initiatorBeard #>.
-<# } #>
-<# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientBeard) || this.DialogueData.recipientBeard == "no beard") { #>
-<# if (this.DialogueData.recipientGender != "female") { #>
-<#= this.DialogueData.recipientNickName #> does not have a beard.
-<# } #>
-<# } else { #>
+<#   } #>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientBeard) && this.DialogueData.recipientBeard != "no beard") { #>
 <#= this.DialogueData.recipientNickName #>'s beard style is <#= this.DialogueData.recipientBeard #>.
-<# } #>
+<#   } #>
 <# } #>
 <# if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorFaceTattoo) && this.DialogueData.initiatorFaceTattoo != "none") { #>
 <#= this.DialogueData.initiatorNickName #> has a face tattoo of a <#= this.DialogueData.initiatorFaceTattoo #> 
@@ -98,32 +153,6 @@ Pawns who are not colonists or animals are just temporary visitors to the colony
 <# if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientBodyTattoo) && this.DialogueData.recipientBodyTattoo != "none") { #>
 <#= this.DialogueData.recipientNickName #> has body tattoo of a <#= this.DialogueData.recipientBodyTattoo #> 
 <# } #>
-<# if (this.ShowFaction) { #>
-The faction <#= this.DialogueData.initiatorNickName #> belongs to is called "<#= this.DialogueData.initiatorFactionName #>".
-The faction <#= this.DialogueData.recipientNickName #> belongs to is called "<#= this.DialogueData.recipientFactionName #>".
-<# } #>
-<# if (this.ShowIdeology && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeology)) { #>
-<#= this.DialogueData.initiatorNickName #>'s ideology is <#= this.DialogueData.initiatorIdeology #>.
-<# if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
-The precepts of <#= this.DialogueData.initiatorNickName #>'s ideology are: <#= String.Join(", ", this.DialogueData.initiatorIdeologyPrecepts) #>
-<# }} #>
-<# if (this.ShowIdeology && !string.IsNullOrWhiteSpace(this.DialogueData.recipientIdeology)) { #>
-<#= this.DialogueData.recipientNickName #>'s ideology is <#= this.DialogueData.recipientIdeology #>.
-<# if (this.ShowPrecepts && this.DialogueData.recipientIdeologyPrecepts.Any()) {#>
-The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= String.Join(", ", this.DialogueData.recipientIdeologyPrecepts) #>
-<# }} #>
-<# if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorAdulthood)) { #>
-<#= this.DialogueData.initiatorNickName #>'s profession is: <#= this.DialogueData.initiatorAdulthood #>
-<# } #>
-<# if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientAdulthood)) { #>
-<#= this.DialogueData.recipientNickName #>'s profession is: <#= this.DialogueData.recipientAdulthood #>
-<# } #>
-<# if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorChildhood)) { #>
-<#= this.DialogueData.initiatorNickName #>'s childhood was spent as: <#= this.DialogueData.initiatorChildhood #>
-<# } #>
-<# if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientChildhood)) { #>
-<#= this.DialogueData.recipientNickName #>'s childhood was spent as: <#= this.DialogueData.recipientChildhood #>
-<# } #>
 <# if (this.ShowRelations && this.DialogueData.initiatorRelations.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s family relations are: <#= String.Join(", ", this.DialogueData.initiatorRelations) #>
 <# } #>
@@ -131,10 +160,10 @@ The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= S
 <#= this.DialogueData.recipientNickName #>'s family relations are: <#= String.Join(", ", this.DialogueData.recipientRelations) #>
 <# } #>
 <# if (this.ShowTraits && this.DialogueData.initiatorTraits.Any()) { #>
-<#= this.DialogueData.initiatorNickName #>'s traits are: <#= String.Join(", ", this.DialogueData.initiatorTraits) #>
+<#= this.DialogueData.initiatorNickName #>'s traits are: <#= String.Join(" ", this.DialogueData.initiatorTraits) #>
 <# } #>
 <# if (this.ShowTraits && this.DialogueData.recipientTraits.Any()) { #>
-<#= this.DialogueData.recipientNickName #>'s traits are: <#= String.Join(", ", this.DialogueData.recipientTraits) #>
+<#= this.DialogueData.recipientNickName #>'s traits are: <#= String.Join(" ", this.DialogueData.recipientTraits) #>
 <# } #>
 <# if (this.ShowSkills && this.DialogueData.initiatorSkills.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s skills are: <#= String.Join(", ", this.DialogueData.initiatorSkills) #>
@@ -155,59 +184,54 @@ The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= S
 <#= this.DialogueData.recipientNickName #>'s health conditions are: <#= String.Join(", ", this.DialogueData.recipientHediffs) #>
 <# } #>
 <# if (this.ShowApparel && this.DialogueData.initiatorApparel.Any()) { #>
-<#= this.DialogueData.initiatorNickName #>'s apparel is: <#= String.Join(", ", this.DialogueData.initiatorApparel) #>
+<#= this.DialogueData.initiatorNickName #>'s apparel is: <#= String.Join(" ", this.DialogueData.initiatorApparel) #>
 <# } #>
 <# if (this.ShowApparel && this.DialogueData.recipientApparel.Any()) { #>
-<#= this.DialogueData.recipientNickName #>'s apparel is: <#= String.Join(", ", this.DialogueData.recipientApparel) #>
+<#= this.DialogueData.recipientNickName #>'s apparel is: <#= String.Join(" ", this.DialogueData.recipientApparel) #>
 <# } #>
 <# if (this.ShowWeapons && this.DialogueData.initiatorWeapons.Any()) { #>
-<#= this.DialogueData.initiatorNickName #>'s weapons and equipment are: <#=  String.Join(", ", this.DialogueData.initiatorWeapons) #>
+<#= this.DialogueData.initiatorNickName #>'s weapons and equipment are: <#=  String.Join(" ", this.DialogueData.initiatorWeapons) #>
 <# } #>
 <# if (this.ShowWeapons && this.DialogueData.recipientWeapons.Any()) { #>
-<#= this.DialogueData.recipientNickName #>'s weapons and equipment are: <#= String.Join(", ", this.DialogueData.recipientWeapons) #>
-<# } #>
-<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
-<#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>.
-<# } #>
-<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
-<#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>.
+<#= this.DialogueData.recipientNickName #>'s weapons and equipment are: <#= String.Join(" ", this.DialogueData.recipientWeapons) #>
 <# } #>
 <# if (this.ShowNeeds) { #>
-Comfort satisfaction reflects how physically comfortable a colonist feels.
 <# if (this.DialogueData.initiatorComfortPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #>'s comfort satisfaction is <#= PercentToLabel(this.DialogueData.initiatorComfortPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= DescribeComfortLevel(this.DialogueData.initiatorComfortPercentage) #>.
 <# } #>
 <# if (this.DialogueData.recipientComfortPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #>'s comfort satisfaction is <#= PercentToLabel(this.DialogueData.recipientComfortPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= DescribeComfortLevel(this.DialogueData.recipientComfortPercentage) #>.
 <# } #>
-Food satisfaction represents hunger and the quality of meals. 
 <# if (this.DialogueData.initiatorFoodPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #>'s food satisfaction is <#= PercentToLabel(this.DialogueData.initiatorFoodPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= DescribeHungerLevel(this.DialogueData.initiatorFoodPercentage) #>.
 <# } #>
 <# if (this.DialogueData.recipientFoodPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #>'s food satisfaction is <#= PercentToLabel(this.DialogueData.recipientFoodPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= DescribeHungerLevel(this.DialogueData.recipientFoodPercentage) #>.
 <# } #>
-Rest satisfaction tracks each colonist's need for sleep.
 <# if (this.DialogueData.initiatorRestPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #>'s rest satisfaction is <#= PercentToLabel(this.DialogueData.initiatorRestPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= DescribeRestLevel(this.DialogueData.initiatorRestPercentage) #>.
 <# } #>
 <# if (this.DialogueData.recipientRestPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #>'s rest satisfaction is <#= PercentToLabel(this.DialogueData.recipientRestPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= DescribeRestLevel(this.DialogueData.recipientRestPercentage) #>.
 <# } #>
-Joy satisfaction (or recreation) measures the fulfillment of a colonist's need for leisure activities, like playing horseshoes or watching television.
 <# if (this.DialogueData.initiatorJoyPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #>'s joy satisfaction is <#= PercentToLabel(this.DialogueData.initiatorJoyPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= DescribeEngagementLevel(this.DialogueData.initiatorJoyPercentage) #> with what they are doing.
 <# } #>
 <# if (this.DialogueData.recipientJoyPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #>'s joy satisfaction is <#= PercentToLabel(this.DialogueData.recipientJoyPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= DescribeEngagementLevel(this.DialogueData.recipientJoyPercentage) #> with what they are doing.
 <# } #>
-Beauty satisfaction is a pawn’s satisfaction with their environment's visual appeal.
 <# if (this.DialogueData.initiatorBeautyPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #>'s beauty satisfaction is <#= PercentToLabel(this.DialogueData.initiatorBeautyPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> feels their environment is <#= DescribeEnvironmentBeauty(this.DialogueData.initiatorBeautyPercentage) #>.
 <# } #>
 <# if (this.DialogueData.recipientBeautyPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #>'s beauty satisfaction is <#= PercentToLabel(this.DialogueData.recipientBeautyPercentage) #>.
+<#= this.DialogueData.recipientNickName #> feels their environment is <#= DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage) #>.
 <# } #>
+<# } #>
+<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
+<#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>
+<# } #>
+<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
+<#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>
 <# } #>
 <# if (this.ShowOpinions && (this.DialogueData.initiatorOpinionOfRecipient.Any() || this.DialogueData.recipientOpinionOfInitiator.Any())) { #>
 Use recent interactions provided to affect how positive or negative <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> feel about each other.
@@ -218,20 +242,17 @@ Use recent interactions provided to affect how positive or negative <#= this.Dia
 <# if (this.ShowOpinions && this.DialogueData.recipientOpinionOfInitiator.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s recent interactions with <#= this.DialogueData.initiatorNickName #> are: <#= GetThoughts(this.DialogueData.recipientNickName, this.DialogueData.recipientOpinionOfInitiator) #>
 <# } #>
-<# if (this.ShowConversations && this.InitiatorConversations != null && this.InitiatorConversations.Any()) { #>
-Use these past conversations provided to create consistent themes, word choice, and attitude for <#= this.DialogueData.initiatorNickName #>:
-<# foreach (var conversation in this.InitiatorConversations) { #>
-The interaction "<#= conversation.Interaction #>" resulted in this conversation: 
-<#= conversation.Dialogue #>
-<# }} #>
-<# if (this.ShowConversations && this.RecipientConversations != null && this.RecipientConversations.Any()) { #>
-Use these past conversations provided to create consistent themes, word choice, and attitude for <#= this.DialogueData.recipientNickName #>:
-<# foreach (var conversation in this.RecipientConversations) { #>
-The interaction was: <#= conversation.Interaction #>
-The dialogue of the conversation was: <#= conversation.Dialogue #>
-<# }} #>
 <# if (this.ShowDaysAgo) { #>
 The colony started <#= this.DaysAgoLabel #>.
+<# } #>
+<# if (this.DialogueData.foodTotal >= 0) { #>
+Food Total: <#= this.DialogueData.foodTotal #>
+<# } #>
+<# if (this.DialogueData.colonistsCount >= 0) { #>
+Colonists Count: <#= this.DialogueData.colonistsCount #>
+<# } #>
+<# if (this.DialogueData.prisonersCount >= 0) { #>
+Prisoners Count: <#= this.DialogueData.prisonersCount #>
 <# } #>
 <# if (this.ShowWealth) { #>
 <#= WealthDescription(this.DialogueData.wealthTotal) #>
@@ -247,18 +268,27 @@ The temperature outdoors in the colony is <#= TemperatureFeel(this.DialogueData.
 Recent incidents to occur in the colony are: <#= String.Join(", ",this.DialogueData.recentIncidents) #>
 <# } #>
 <# if (this.ShowRoom) { #>
-<# if (this.DialogueData.isOutside) { #>
+<#   if (this.DialogueData.isOutside) { #>
 <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently outside.
-<# } else { #>
+<#   } else { #>
 <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently indoors.
+<#     if (!string.IsNullOrWhiteSpace(this.DialogueData.room) && this.DialogueData.room != "none") { #>
 The room where <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently located is: <#= this.DialogueData.room #>.
+<#     } #>
+<#   } #>
 <# } #>
-<# } #>
-<# if (this.RepeatInstructions) { #>)
-You are a dialogue writer for the game RimWorld. Your job is to create a dialogue exchange of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based primarily on the following interaction: <#= this.DialogueData.interaction #>
-Start the dialogue with <#= this.DialogueData.initiatorNickName #>'s part in the interaction.
+<# if (this.RepeatInstructions) { #>
+You are a dialogue writer for the game RimWorld a sci-fi colony simulation game where players manage a group of characters stranded on a distant, lawless planet.
+Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
-It is important that you respond with only the dialogue exchange. Do not include any additional information or context.
+<# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
+<#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<# } #>
+<# if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
+<#= this.DialogueData.recipientNickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<# } #>
+It is important that you respond with only the dialogue exchange. Use the information you are provided to add depth to the dialogue exchange.
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
 <# } #>

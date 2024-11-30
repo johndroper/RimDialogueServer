@@ -22,6 +22,25 @@ namespace RimDialogue
   {
     public static Regex GetDataRegex = new(@"(\w+)\s\[([+-]?[0-9]+[.]?[0-9]+)\]", RegexOptions.Compiled);
 
+    private static Random rand = new Random();
+
+    private static string Rand(string[] input)
+    {
+      return input[rand.Next(input.Length)];
+    }
+
+    //private static Func<DialogueData, string?>[] factories =
+    //{
+    //  (data) => string.IsNullOrWhiteSpace(data.initiatorFullName) ? null : $"{data.initiatorNickName}'s full name is {data.initiatorFullName}",
+    //  (data) => $"{data.recipientNickName}'s full name is {data.recipientFullName}",
+    //  (data) => $"{data.initiatorNickName}'s gender is {data.initiatorGender}",
+    //  (data) => $"{data.recipientNickName}'s gender is {data.recipientGender}",
+    //  (data) => $"{data.initiatorNickName}'s race is {data.initiatorRace}",
+    //  (data) => $"{data.recipientNickName}'s race is {data.recipientRace}",
+    //  (data) => $"One of the precepts of {data.initiatorNickName}'s ideology is {Rand(data.initiatorIdeologyPrecepts)}",
+      
+    //};
+
     public static FloatData? GetFloatData(string data)
     {
       Match match = GetDataRegex.Match(data);
@@ -260,6 +279,132 @@ namespace RimDialogue
         return $"{floatData.Label} - {name} was {FeelingsLabel(floatData.Value)} this";
       return data;
     }
+
+    public static string DescribeComfortLevel(float comfort)
+    {
+      if (comfort < 0 || comfort > 1)
+      {
+        throw new ArgumentOutOfRangeException(nameof(comfort), "Comfort level must be between 0 and 1.");
+      }
+
+      if (comfort == 0)
+        return "very uncomfortable";
+      else if (comfort < 0.15f)
+        return "uncomfortable";
+      else if (comfort < 0.3f)
+        return "somewhat uncomfortable";
+      else if (comfort < 0.5f)
+        return "a little uncomfortable";
+      else if (comfort < 0.7f)
+        return "somewhat comfortable";
+      else if (comfort < 0.85f)
+        return "comfortable";
+      else if (comfort < 1f)
+        return "very comfortable";
+      else // comfort == 1
+        return "perfectly comfortable";
+    }
+
+    public static string DescribeHungerLevel(float hunger)
+    {
+      if (hunger < 0 || hunger > 1)
+      {
+        throw new ArgumentOutOfRangeException(nameof(hunger), "Hunger level must be between 0 and 1.");
+      }
+
+      if (hunger == 0)
+        return "starving";
+      else if (hunger < 0.15f)
+        return "very hungry";
+      else if (hunger < 0.3f)
+        return "hungry";
+      else if (hunger < 0.5f)
+        return "peckish";
+      else if (hunger < 0.7f)
+        return "not very hungry";
+      else if (hunger < 0.85f)
+        return "full";
+      else if (hunger < 1f)
+        return "very full";
+      else // hunger == 1
+        return "stuffed";
+    }
+
+    public static string DescribeRestLevel(float restLevel)
+    {
+      if (restLevel < 0 || restLevel > 1)
+      {
+        throw new ArgumentOutOfRangeException(nameof(restLevel), "Rest level must be between 0 and 1.");
+      }
+
+      if (restLevel == 0)
+        return "exhausted";
+      else if (restLevel < 0.15f)
+        return "very tired";
+      else if (restLevel < 0.3f)
+        return "tired";
+      else if (restLevel < 0.5f)
+        return "drowsy";
+      else if (restLevel < 0.7f)
+        return "somewhat rested";
+      else if (restLevel < 0.85f)
+        return "rested";
+      else if (restLevel < 1f)
+        return "very well rested";
+      else // restLevel == 1
+        return "completely refreshed";
+    }
+
+    public static string DescribeEngagementLevel(float engagementLevel)
+    {
+      if (engagementLevel < 0 || engagementLevel > 1)
+      {
+        throw new ArgumentOutOfRangeException(nameof(engagementLevel), "Engagement level must be between 0 and 1.");
+      }
+
+      if (engagementLevel == 0)
+        return "completely bored";
+      else if (engagementLevel < 0.15f)
+        return "very bored";
+      else if (engagementLevel < 0.3f)
+        return "bored";
+      else if (engagementLevel < 0.5f)
+        return "somewhat uninterested";
+      else if (engagementLevel < 0.7f)
+        return "moderately engaged";
+      else if (engagementLevel < 0.85f)
+        return "engaged";
+      else if (engagementLevel < 1f)
+        return "very interested";
+      else // engagementLevel == 1
+        return "completely enthralled";
+    }
+
+    public static string DescribeEnvironmentBeauty(float beautyLevel)
+    {
+      if (beautyLevel < 0 || beautyLevel > 1)
+      {
+        throw new ArgumentOutOfRangeException(nameof(beautyLevel), "Beauty level must be between 0 and 1.");
+      }
+
+      if (beautyLevel == 0)
+        return "absolutely hideous";
+      else if (beautyLevel < 0.15f)
+        return "very ugly";
+      else if (beautyLevel < 0.3f)
+        return "ugly";
+      else if (beautyLevel < 0.5f)
+        return "plain and uninspiring";
+      else if (beautyLevel < 0.7f)
+        return "somewhat pleasant";
+      else if (beautyLevel < 0.85f)
+        return "attractive";
+      else if (beautyLevel < 1f)
+        return "beautiful";
+      else // beautyLevel == 1
+        return "breathtakingly stunning";
+    }
+
 
     public string PercentToLabel(float value)
     {
