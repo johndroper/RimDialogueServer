@@ -53,6 +53,32 @@ namespace RimDialogue
       return null;
     }
 
+    public static string DescribeDefenses(int defenseCount)
+    {
+      if (defenseCount < 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(defenseCount), "Defense count must be greater than or equal to 0");
+      }
+
+      if (defenseCount == 0)
+        return "no defenses at all.";
+      else if (defenseCount <= 5)
+        return "minimal defenses.";
+      else if (defenseCount <= 10)
+        return "a few defenses.";
+      else if (defenseCount <= 20)
+        return "some basic defenses.";
+      else if (defenseCount <= 40)
+        return "moderate defenses.";
+      else if (defenseCount <= 80)
+        return "strong defenses.";
+      else if (defenseCount <= 160)
+        return "very strong defenses.";
+      else 
+        return "an impenetrable wall of defenses.";
+    }
+
+
     public static string TemperatureFeel(float temperatureCelsius)
     {
       if (temperatureCelsius <= -30.0f)
@@ -112,38 +138,6 @@ namespace RimDialogue
         return "several years back";
       else
         return "a very long time ago";
-    }
-
-    public static string FeelingsLabel(float? value)
-    {
-      if (value == null)
-        return "None";
-
-      if (value < -100.0f || value > 100.0f)
-        throw new ArgumentOutOfRangeException(nameof(value), "Value must be between -100.0 and 100.0.");
-
-      if (value <= -20.0f)
-        return "devastated by";
-      else if (value <= -15.0f)
-        return "hurt by";
-      else if (value <= -10.0f)
-        return "upset by";
-      else if (value <= -5.0f)
-        return "disappointed with";
-      else if (value <= -1.0f)
-        return "let down by";
-      else if (value < 1.0f)
-        return "indifferent to";
-      else if (value <= 5.0f)
-        return "content with";
-      else if (value <= 10.0f)
-        return "pleased by";
-      else if (value <= 15.0f)
-        return "happy with";
-      else if (value <= 20.0f)
-        return "delighted by";
-      else
-        return "thrilled by";
     }
 
     public static string WealthDescription(float wealth)
@@ -269,15 +263,199 @@ namespace RimDialogue
 
     public string GetThoughts(string name, string[] thoughts)
     {
-      return string.Join(", ", this.DialogueData.initiatorOpinionOfRecipient.Select(opinion => GetThoughtLabel(name, opinion)));
+      return string.Join(", ", thoughts);
     }
 
-    public string GetThoughtLabel(string name, string data)
+    public static string DescribeFoodAmount(float foodTotal, int colonistCount, int prisonerCount)
     {
-      FloatData? floatData = GetFloatData(data);
-      if (floatData != null)
-        return $"{floatData.Label} - {name} was {FeelingsLabel(floatData.Value)} this";
-      return data;
+      if (colonistCount + prisonerCount < 1)
+        throw new ArgumentOutOfRangeException(nameof(colonistCount), "Colonist count plus prisoner count must be greater than or equal to 1.");
+
+      if (foodTotal < 0)
+        throw new ArgumentOutOfRangeException(nameof(foodTotal), "Food Total must be greater than or equal to 0.");
+
+      float foodAmount = foodTotal / ((float)colonistCount + (float)prisonerCount);
+
+      if (foodAmount == 0f)
+        return "no food at all.";
+      else if (foodAmount < 5f)
+        return "barely any food.";
+      else if (foodAmount < 10f)
+        return "a small amount of food.";
+      else if (foodAmount < 20f)
+        return "a moderate supply of food.";
+      else if (foodAmount < 30f)
+        return "a good amount of food.";
+      else if (foodAmount < 40f)
+        return "a lot of food.";
+      else if (foodAmount < 50f)
+        return "almost overflowing with food.";
+      else
+        return "an enormous stockpile of food.";
+    }
+
+    public static string DescribeImpressiveness(float impressiveness)
+    {
+      if (impressiveness < 20)
+        return "awful";
+      else if (impressiveness < 30)
+        return "dull";
+      else if (impressiveness < 40)
+        return "mediocre";
+      else if (impressiveness < 50)
+        return "decent";
+      else if (impressiveness < 65)
+        return "slightly impressive";
+      else if (impressiveness < 85)
+        return "somewhat impressive";
+      else if (impressiveness < 120)
+        return "very impressive";
+      else if (impressiveness < 170)
+        return "extremely impressive";
+      else if (impressiveness < 240)
+        return "unbelievably impressive";
+      else
+        return "wondrously impressive";
+    }
+    public static string DescribeCleanliness(float cleanliness)
+    {
+      if (cleanliness < -1.1f)
+        return "very dirty";
+      else if (cleanliness < -0.4f)
+        return "dirty";
+      else if (cleanliness < -0.05f)
+        return "slightly dirty";
+      else if (cleanliness < 0.4f)
+        return "clean";
+      else
+        return "sterile";
+    }
+
+    public static string DescribeOpinion(float opinion)
+    {
+      if (opinion < -110)
+        return "utterly despises";
+      else if (opinion < -90)
+        return "loathes";
+      else if (opinion < -70)
+        return "detests";
+      else if (opinion < -50)
+        return "hates";
+      else if (opinion < -30)
+        return "strongly dislikes";
+      else if (opinion < -15)
+        return "dislikes";
+      else if (opinion < -5)
+        return "has mildly negative feelings toward";
+      else if (opinion < 5)
+        return "is neutral toward";
+      else if (opinion < 15)
+        return "has mild positive feelings toward";
+      else if (opinion < 30)
+        return "likes";
+      else if (opinion < 50)
+        return "strongly likes";
+      else if (opinion < 70)
+        return "admires";
+      else if (opinion < 90)
+        return "greatly admires";
+      else if (opinion < 110)
+        return "loves";
+      else
+        return "deeply loves";
+    }
+    public static string DescribeDrugSupply(int drugsCount, int colonistCount)
+    {
+      if (colonistCount <= 0)
+        throw new ArgumentOutOfRangeException(nameof(colonistCount), "Colonist count must be greater than 0.");
+      if (drugsCount < 0)
+        throw new ArgumentOutOfRangeException(nameof(drugsCount), "Drugs count cannot be negative.");
+
+      float drugsPerColonist = (float)drugsCount / colonistCount;
+
+      if (drugsPerColonist == 0)
+        return "no drugs at all.";
+      else if (drugsPerColonist < 1.0f)
+        return "almost no drugs.";
+      else if (drugsPerColonist < 5.0f)
+        return "a small supply of drugs.";
+      else if (drugsPerColonist < 10.0f)
+        return "a moderate supply of drugs.";
+      else if (drugsPerColonist < 20.0f)
+        return "a good surplus of drugs.";
+      else if (drugsPerColonist < 30.0f)
+        return "a large stockpile of drugs.";
+      else
+        return "an overwhelming amount of drugs.";
+    }
+
+    public static string DescribeMedicineSupply(int medicineCount)
+    {
+      if (medicineCount < 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(medicineCount), "Medicine count must be greater than or equal to 0.");
+      }
+
+      if (medicineCount == 0)
+        return "no medicine.";
+      else if (medicineCount <= 5)
+        return "almost no medicine.";
+      else if (medicineCount <= 10)
+        return "a small supply of medicine.";
+      else if (medicineCount <= 20)
+        return "a modest amount of medicine.";
+      else if (medicineCount <= 40)
+        return "a decent supply of medicine.";
+      else if (medicineCount <= 80)
+        return "a large amount of medicine.";
+      else if (medicineCount <= 160)
+        return "a very large supply of medicine.";
+      else
+        return "a huge amount of medicine.";
+    }
+
+
+    public static string DescribeColonySize(int colonistCount)
+    {
+      if (colonistCount < 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(colonistCount), "Colonist count must be between greater than or equal to 0.");
+      }
+
+      if (colonistCount <= 3)
+        return "a tiny colony.";
+      else if (colonistCount <= 6)
+        return "a small colony.";
+      else if (colonistCount <= 10)
+        return "a modest-sized colony.";
+      else if (colonistCount <= 20)
+        return "a large colony.";
+      else if (colonistCount <= 40)
+        return "a very large colony.";
+      else if (colonistCount <= 80)
+        return "a massive colony.";
+      else 
+        return "an enormous colony.";
+    }
+
+    public static string DescribePrisonerCount(int prisonerCount)
+    {
+      if (prisonerCount <= 0)
+        return "no prisoners.";
+      else if (prisonerCount <= 2)
+        return "a couple of prisoners.";
+      else if (prisonerCount <= 5)
+        return "a small number of prisoners.";
+      else if (prisonerCount <= 10)
+        return "a modest group of prisoners.";
+      else if (prisonerCount <= 15)
+        return "a significant number of prisoners.";
+      else if (prisonerCount <= 20)
+        return "a large group of prisoners.";
+      else if (prisonerCount <= 25)
+        return "a very large group of prisoners.";
+      else 
+        return "a huge amount of prisoners.";
     }
 
     public static string DescribeComfortLevel(float comfort)

@@ -4,11 +4,11 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
-<# if (this.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
-This games scenario is: <#= this.DialogueData.scenario #>
-<# } #>
-You are a dialogue writer for the game RimWorld a sci-fi colony simulation game where players manage a group of characters stranded on a distant, lawless planet.
+You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+<# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
+	The word "lovin'" is a euphamism for sex.
+<# } #>
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 <# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
 <#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
@@ -20,6 +20,19 @@ Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueDat
 It is important that you respond with only the dialogue exchange. Use the information you are provided to add depth to the dialogue exchange.
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
+<# } #>
+<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
+<#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>.
+<# } #>
+<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
+<#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>.
+<# } #>
+<# if (this.ShowOpinions) { #>
+<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient) #> <#= this.DialogueData.recipientNickName #>.
+<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator) #> <#= this.DialogueData.initiatorNickName #>.
+<# } #>
+<# if (this.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
+This games scenario is: <#= this.DialogueData.scenario #>
 <# } #>
 <# if (this.ShowFullName) {#>
 <#= this.DialogueData.initiatorNickName #>'s full name is <#= this.DialogueData.initiatorFullName #>.
@@ -41,25 +54,25 @@ Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipi
 <#   } else if (this.DialogueData.initiatorIsPrisoner && this.DialogueData.recipientIsPrisoner) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are prisoners. In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
 <#   } else if (this.DialogueData.initiatorIsHostile && this.DialogueData.recipientIsHostile) { #>
-Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are hostiles and are here to attack the player's colony.
+Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are raiders and are here to attack the player's colony.
 <#   } else { #>
 <#     if (this.DialogueData.initiatorIsColonist) { #>
 <#= this.DialogueData.initiatorNickName #> is a colonist and a member of the player's colony.  
 <#     } else if (this.DialogueData.initiatorIsPrisoner) { #>
 <#= this.DialogueData.initiatorNickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
 <#     } else if (this.DialogueData.initiatorIsHostile) { #>
-<#= this.DialogueData.initiatorNickName #> is a hostile and is here to attack the player's colony.
+<#= this.DialogueData.initiatorNickName #> is a raider and is here to attack the player's colony.
 <#     } else { #>
-<#= this.DialogueData.initiatorNickName #> is just a temporary visitor to the player's colony.
+<#= this.DialogueData.initiatorNickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
 <#     } #>
 <#     if (this.DialogueData.recipientIsColonist) { #>
 <#= this.DialogueData.recipientNickName #> is a colonist and a member of the player's colony.  
 <#     } else if (this.DialogueData.recipientIsPrisoner) { #>
 <#= this.DialogueData.recipientNickName #> is a prisoner. In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
 <#     } else if (this.DialogueData.recipientIsHostile) { #>
-<#= this.DialogueData.recipientNickName #> is a hostile and is here to attack the player's colony.
+<#= this.DialogueData.recipientNickName #> is a raider and is here to attack the player's colony.
 <#     } else { #>
-<#= this.DialogueData.recipientNickName #> is just a temporary visitor to the player's colony.
+<#= this.DialogueData.recipientNickName #> is an NPC and just a temporary visitor here.
 <#     } #>
 <#   } #>
 <# } #>
@@ -82,14 +95,14 @@ The faction <#= this.DialogueData.recipientNickName #> belongs to is called "<#=
 <# if (this.ShowIdeology) { #>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeologyName) && this.DialogueData.initiatorIdeologyName == this.DialogueData.recipientIdeologyName) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> share the same ideology, called "<#= this.DialogueData.initiatorIdeologyName #>".
-The narrative of this ideology is: <#= this.DialogueData.initiatorIdeologyDescription #>
+The narrative of "<#= this.DialogueData.initiatorIdeologyName #>" is: <#= this.DialogueData.initiatorIdeologyDescription #>
 <#     if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
 The precepts of their ideology are: <#= String.Join(", ", this.DialogueData.initiatorIdeologyPrecepts) #>
 <#     } #>
 <#  } else { #>
 <#    if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeologyName)) { #>
-<#= this.DialogueData.initiatorNickName #>'s ideology is <#= this.DialogueData.initiatorIdeologyName #>.
-The narrative of this ideology is: <#= this.DialogueData.initiatorIdeologyDescription #>
+<#= this.DialogueData.initiatorNickName #>'s ideology is "<#= this.DialogueData.initiatorIdeologyName #>".
+The narrative of "<#= this.DialogueData.initiatorIdeologyName #>" is: <#= this.DialogueData.initiatorIdeologyDescription #>
 <#      if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
 The precepts of <#= this.DialogueData.initiatorNickName #>'s ideology are: <#= String.Join(", ", this.DialogueData.recipientIdeologyPrecepts) #>
 <#      } #>
@@ -227,45 +240,41 @@ The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= S
 <#= this.DialogueData.recipientNickName #> feels their environment is <#= DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage) #>.
 <# } #>
 <# } #>
-<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
-<#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>
-<# } #>
-<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
-<#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>
-<# } #>
-<# if (this.ShowOpinions && (this.DialogueData.initiatorOpinionOfRecipient.Any() || this.DialogueData.recipientOpinionOfInitiator.Any())) { #>
-Use recent interactions provided to affect how positive or negative <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> feel about each other.
-<# } #>
-<# if (this.ShowOpinions &&  this.DialogueData.initiatorOpinionOfRecipient.Any()) { #>
-<#= this.DialogueData.initiatorNickName #>'s recent interactions with <#= this.DialogueData.recipientNickName #> are: <#= GetThoughts(this.DialogueData.initiatorNickName, this.DialogueData.initiatorOpinionOfRecipient) #>
-<# } #>
-<# if (this.ShowOpinions && this.DialogueData.recipientOpinionOfInitiator.Any()) { #>
-<#= this.DialogueData.recipientNickName #>'s recent interactions with <#= this.DialogueData.initiatorNickName #> are: <#= GetThoughts(this.DialogueData.recipientNickName, this.DialogueData.recipientOpinionOfInitiator) #>
-<# } #>
+<# if (this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
 <# if (this.ShowDaysAgo) { #>
 The colony started <#= this.DaysAgoLabel #>.
 <# } #>
-<# if (this.DialogueData.foodTotal >= 0) { #>
-Food Total: <#= this.DialogueData.foodTotal #>
-<# } #>
 <# if (this.DialogueData.colonistsCount >= 0) { #>
-Colonists Count: <#= this.DialogueData.colonistsCount #>
-<# } #>
-<# if (this.DialogueData.prisonersCount >= 0) { #>
-Prisoners Count: <#= this.DialogueData.prisonersCount #>
+It is <#= DescribeColonySize(this.DialogueData.colonistsCount) #>
 <# } #>
 <# if (this.ShowWealth) { #>
 <#= WealthDescription(this.DialogueData.wealthTotal) #>
 <# } #>
-<# if (this.ShowBiome) { #>
-The biome of the colony is <#= this.DialogueData.biome #>
+<# if (this.DialogueData.defensesTotal >= 0) { #>
+The colony has <#= DescribeDefenses(this.DialogueData.defensesTotal) #>
 <# } #>
-<# if (this.ShowWeather) { #>
-The current weather in the colony is <#= this.DialogueData.currentWeather #>
-The temperature outdoors in the colony is <#= TemperatureFeel(this.DialogueData.outdoorTemp) #>.
+<# if (this.DialogueData.foodTotal >= 0) { #>
+The colony has <#= DescribeFoodAmount(this.DialogueData.foodTotal, this.DialogueData.colonistsCount, this.DialogueData.prisonersCount) #>
+<# } #>
+<# if (this.DialogueData.prisonersCount >= 0) { #>
+The colony has <#= DescribePrisonerCount(this.DialogueData.prisonersCount) #>
+<# } #>
+<# if (this.DialogueData.medicineTotal >= 0) { #>
+The colony has <#= DescribeMedicineSupply(this.DialogueData.medicineTotal) #>
+<# } #>
+<# if (this.DialogueData.drugsTotal >= 0) { #>
+The colony has <#= DescribeDrugSupply(this.DialogueData.drugsTotal, this.DialogueData.colonistsCount) #>
 <# } #>
 <# if (this.ShowRecentIncidents) { #>
 Recent incidents to occur in the colony are: <#= String.Join(", ",this.DialogueData.recentIncidents) #>
+<# } #>
+<# } #>
+<# if (this.ShowBiome) { #>
+The biome of this area is <#= this.DialogueData.biome #>
+<# } #>
+<# if (this.ShowWeather) { #>
+The current weather is <#= this.DialogueData.currentWeather #>
+The temperature outdoors is <#= TemperatureFeel(this.DialogueData.outdoorTemp) #>.
 <# } #>
 <# if (this.ShowRoom) { #>
 <#   if (this.DialogueData.isOutside) { #>
@@ -273,21 +282,36 @@ Recent incidents to occur in the colony are: <#= String.Join(", ",this.DialogueD
 <#   } else { #>
 <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently indoors.
 <#     if (!string.IsNullOrWhiteSpace(this.DialogueData.room) && this.DialogueData.room != "none") { #>
-The room where <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently located is: <#= this.DialogueData.room #>.
+<#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are in the <#= this.DialogueData.room #>.
+The <#= this.DialogueData.room #> is <#= DescribeImpressiveness(this.DialogueData.roomImpressiveness) #>.
+The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.roomCleanliness) #>.
 <#     } #>
 <#   } #>
 <# } #>
 <# if (this.RepeatInstructions) { #>
-You are a dialogue writer for the game RimWorld a sci-fi colony simulation game where players manage a group of characters stranded on a distant, lawless planet.
-Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
-Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
-Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
+<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
+<#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>.
+<# } #>
+<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
+<#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>.
+<# } #>
 <# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
 <#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
 <# if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
 <#= this.DialogueData.recipientNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
+<# if (this.ShowOpinions) { #>
+<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient) #> <#= this.DialogueData.recipientNickName #>.
+<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator) #> <#= this.DialogueData.initiatorNickName #>.
+<# } #>
+You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
+Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+<# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
+	The word "lovin'" is a euphamism for sex.
+<# } #>
+Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
+Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 It is important that you respond with only the dialogue exchange. Use the information you are provided to add depth to the dialogue exchange.
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
