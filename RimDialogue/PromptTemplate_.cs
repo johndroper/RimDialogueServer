@@ -171,22 +171,15 @@ namespace RimDialogue
 
     public PromptTemplate(
       DialogueData dialogueData, 
-      List<Conversation>? initiatorConversations, 
-      List<Conversation>? recipientConversations,
       IConfiguration Configuration)
     {
       DialogueData = dialogueData;
-      InitiatorConversations = initiatorConversations;
-      RecipientConversations = recipientConversations;
 
       ShowFullName = Configuration.GetValue<bool>(nameof(ShowFullName), false);
-      ShowGender = Configuration.GetValue<bool>(nameof(ShowGender), false);
-      ShowRace = Configuration.GetValue<bool>(nameof(ShowRace), false);
-      ShowSubrace = Configuration.GetValue<bool>(nameof(ShowSubrace), false);
+      ShowAgeRaceAndGender = Configuration.GetValue<bool>(nameof(ShowAgeRaceAndGender), false);
+      ShowDescription = Configuration.GetValue<bool>(nameof(ShowDescription), false);
       ShowAnimal = Configuration.GetValue<bool>(nameof(ShowAnimal), false);
-      ShowAge = Configuration.GetValue<bool>(nameof(ShowAge), false);
-      ShowIsColonist = Configuration.GetValue<bool>(nameof(ShowIsColonist), false);
-      ShowIsPrisoner = Configuration.GetValue<bool>(nameof(ShowIsPrisoner), false);
+      ShowPawnType = Configuration.GetValue<bool>(nameof(ShowPawnType), false);
       ShowRoyaltyTitle = Configuration.GetValue<bool>(nameof(ShowRoyaltyTitle), false);
       ShowHair = Configuration.GetValue<bool>(nameof(ShowHair), false);
       ShowBeard = Configuration.GetValue<bool>(nameof(ShowBeard), false);
@@ -206,27 +199,29 @@ namespace RimDialogue
       ShowMoodString = Configuration.GetValue<bool>(nameof(ShowMoodString), false);
       ShowNeeds = Configuration.GetValue<bool>(nameof(ShowNeeds), false);
       ShowOpinions = Configuration.GetValue<bool>(nameof(ShowOpinions), false);
-      ShowConversations = Configuration.GetValue<bool>(nameof(ShowConversations), false);
       ShowScenario = Configuration.GetValue<bool>(nameof(ShowScenario), false);
       ShowDaysAgo = Configuration.GetValue<bool>(nameof(ShowDaysAgo), false);
-      ShowWealth = Configuration.GetValue<bool>(nameof(ShowWealth), false);
+      ShowColonyData = Configuration.GetValue<bool>(nameof(ShowColonyData), false);
       ShowBiome = Configuration.GetValue<bool>(nameof(ShowBiome), false);
       ShowRoom = Configuration.GetValue<bool>(nameof(ShowRoom), false);
       ShowWeather = Configuration.GetValue<bool>(nameof(ShowWeather), false);
       ShowRecentIncidents = Configuration.GetValue<bool>(nameof(ShowRecentIncidents), false);
       RepeatInstructions = Configuration.GetValue<bool>(nameof(RepeatInstructions), false);
       ShowSpecialInstructions = Configuration.GetValue<bool>(nameof(ShowSpecialInstructions), false);
-      ShowExposition = Configuration.GetValue<bool>(nameof(ShowExposition), false);
+      ShowPersonality = Configuration.GetValue<bool>(nameof(ShowPersonality), false);
+      ShowJob = Configuration.GetValue<bool>(nameof(ShowJob), false);
+      ShowCombatLog = Configuration.GetValue<bool>(nameof(ShowCombatLog), false);
+      ShowOtherFactions = Configuration.GetValue<bool>(nameof(ShowOtherFactions), false);
     }
 
+    public bool ShowOtherFactions { get; set; } = false;
+    public bool ShowCombatLog { get; set; } = false;
+    public bool ShowJob { get; set; } = false;
     public bool ShowFullName { get; set; } = false;
-    public bool ShowGender { get; set; } = false;
-    public bool ShowRace { get; set; } = false;
-    public bool ShowSubrace { get; set; } = false;
+    public bool ShowAgeRaceAndGender { get; set; } = false;
+    public bool ShowDescription { get; set; } = false;
     public bool ShowAnimal { get; set; } = false;
-    public bool ShowAge { get; set; } = false;
-    public bool ShowIsColonist { get; set; } = false;
-    public bool ShowIsPrisoner { get; set; } = false;
+    public bool ShowPawnType { get; set; } = false;
     public bool ShowRoyaltyTitle { get; set; } = false;
     public bool ShowHair { get; set; } = false;
     public bool ShowBeard { get; set; } = false;
@@ -246,20 +241,17 @@ namespace RimDialogue
     public bool ShowMoodString { get; set; } = false;
     public bool ShowNeeds { get; set; } = false;
     public bool ShowOpinions { get; set; } = false;
-    public bool ShowConversations { get; set; } = false;
     public bool ShowScenario { get; set; } = true;
     public bool ShowDaysAgo { get; set; } = false;
-    public bool ShowWealth { get; set; } = false;
+    public bool ShowColonyData { get; set; } = false;
     public bool ShowBiome { get; set; } = false;
     public bool ShowRoom { get; set; } = false;
     public bool ShowWeather { get; set; } = false;
     public bool ShowRecentIncidents { get; set; } = false;
     public bool RepeatInstructions { get; set; } = false;
     public bool ShowSpecialInstructions { get; set; } = false;
-    public bool ShowExposition { get; set; } = true;
+    public bool ShowPersonality { get; private set; } = false;
     public DialogueData DialogueData { get; set; }
-    public List<Conversation>? InitiatorConversations { get; set; }
-    public List<Conversation>? RecipientConversations { get; set; }
 
     public string GetThoughts(string name, string[] thoughts)
     {

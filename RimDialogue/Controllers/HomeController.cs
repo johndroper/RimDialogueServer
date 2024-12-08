@@ -15,32 +15,6 @@ namespace RimDialogue.Controllers
 {
   public class HomeController(IConfiguration Configuration, IMemoryCache memoryCache) : Controller
   {
-    public List<Conversation>? GetConversations(string key)
-    {
-      if (memoryCache.TryGetValue(key, out List<Conversation>? conversations))
-        return conversations;
-      else
-        return null;
-    }
-
-    public void AddConversation(string key, Conversation conversation)
-    {
-      if (!memoryCache.TryGetValue(key, out List<Conversation>? conversations))
-      {
-        int conversationsCacheMinutes = Configuration.GetValue<int>("ConversationsCacheMinutes", 60);
-        var cacheEntryOptions = new MemoryCacheEntryOptions()
-            .SetSlidingExpiration(TimeSpan.FromMinutes(conversationsCacheMinutes));
-        memoryCache.Set(key, new List<Conversation> { conversation }, cacheEntryOptions);
-      }
-      else if (conversations != null)
-      {
-        int maxConversations = Configuration.GetValue<int>("MaxConversationsPerPawn", 5);
-        if (conversations.Count > maxConversations)
-          conversations.RemoveRange(0, conversations.Count - maxConversations);
-        conversations.Add(conversation);
-      }
-    }
-
     private bool LoggingEnabled
     {
       get
@@ -263,9 +237,7 @@ namespace RimDialogue.Controllers
       {
         if (dialogueData == null)
           throw new Exception("dialogueData is null.");
-        var initiatorConversations = GetConversations(dialogueData.clientId + dialogueData.initiatorThingID);
-        var recipientConversations = GetConversations(dialogueData.clientId + dialogueData.recipientThingID);
-        PromptTemplate promptTemplate = new(dialogueData, initiatorConversations, recipientConversations, Configuration);
+        PromptTemplate promptTemplate = new(dialogueData, Configuration);
         prompt = promptTemplate.TransformText();
         int maxPromptLength = Configuration.GetValue<int>("MaxPromptLength", 1200);
         if (prompt.Length > maxPromptLength)
@@ -314,28 +286,6 @@ namespace RimDialogue.Controllers
       {
         Exception exception = new("Error creating DialogueResponse.", ex);
         exception.Data.Add("text", text);
-        throw exception;
-      }
-      //******Cache Conversation******
-      try
-      {
-        if (dialogueData != null)
-        {
-          var conversation = new Conversation(dialogueData.initiatorFullName, dialogueData.recipientFullName, dialogueData.interaction, text);
-          AddConversation(
-            dialogueData.clientId + dialogueData.initiatorThingID,
-            conversation);
-          AddConversation(
-            dialogueData.clientId + dialogueData.recipientThingID,
-            conversation);
-        }
-      }
-      catch (Exception ex)
-      {
-        Exception exception = new("Error adding conversation.", ex);
-        exception.Data.Add("clientId", dialogueData.clientId);
-        exception.Data.Add("initiatorThingID", dialogueData.initiatorThingID);
-        exception.Data.Add("recipientThingID", dialogueData.recipientThingID);
         throw exception;
       }
       //******Logging******
