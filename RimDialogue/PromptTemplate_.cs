@@ -169,6 +169,35 @@ namespace RimDialogue
         return "The colony is a powerhouse, reaching millionaire status with a vast wealth of resources.";
     }
 
+    public static string DescribeTimeOfDay(int hourOfDay)
+    {
+      if (hourOfDay < 0 || hourOfDay > 24)
+        throw new ArgumentOutOfRangeException(nameof(hourOfDay), "Hour of day must be between 0 and 24.");
+
+      if (hourOfDay < 3)
+        return "late night";
+      else if (hourOfDay < 6)
+        return "early morning";
+      else if (hourOfDay < 9)
+        return "morning";
+      else if (hourOfDay < 12)
+        return "late morning";
+      else if (hourOfDay < 14)
+        return "midday";
+      else if (hourOfDay < 16)
+        return "early afternoon";
+      else if (hourOfDay < 18)
+        return "afternoon";
+      else if (hourOfDay < 20)
+        return "early evening";
+      else if (hourOfDay < 22)
+        return "evening";
+      else if (hourOfDay < 24)
+        return "late evening";
+      else
+        return "midnight";
+    }
+
     public PromptTemplate(
       DialogueData dialogueData, 
       IConfiguration Configuration)
@@ -200,7 +229,7 @@ namespace RimDialogue
       ShowNeeds = Configuration.GetValue<bool>(nameof(ShowNeeds), false);
       ShowOpinions = Configuration.GetValue<bool>(nameof(ShowOpinions), false);
       ShowScenario = Configuration.GetValue<bool>(nameof(ShowScenario), false);
-      ShowDaysAgo = Configuration.GetValue<bool>(nameof(ShowDaysAgo), false);
+      ShowTimeData = Configuration.GetValue<bool>(nameof(ShowTimeData), false);
       ShowColonyData = Configuration.GetValue<bool>(nameof(ShowColonyData), false);
       ShowBiome = Configuration.GetValue<bool>(nameof(ShowBiome), false);
       ShowRoom = Configuration.GetValue<bool>(nameof(ShowRoom), false);
@@ -242,7 +271,7 @@ namespace RimDialogue
     public bool ShowNeeds { get; set; } = false;
     public bool ShowOpinions { get; set; } = false;
     public bool ShowScenario { get; set; } = true;
-    public bool ShowDaysAgo { get; set; } = false;
+    public bool ShowTimeData { get; set; } = false;
     public bool ShowColonyData { get; set; } = false;
     public bool ShowBiome { get; set; } = false;
     public bool ShowRoom { get; set; } = false;

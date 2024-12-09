@@ -5,11 +5,16 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
+<# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
 Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
+Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
+<# } else { #>
+Your job is to create a very short monologue of <#= this.DialogueData.maxWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+<# } #>
 <# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
 	The word "lovin'" is a euphamism for sex.
 <# } #>
-Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
 <#  if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorInstructions)) { #>
@@ -19,8 +24,7 @@ Instructions for <#= this.DialogueData.initiatorNickName #>: <#= this.DialogueDa
 Instructions for <#= this.DialogueData.recipientNickName #>: <#= this.DialogueData.recipientInstructions #>
 <#  } #>
 <# } #>
-Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
-It is important that you respond with only the dialogue exchange. Use the information you are provided to add depth to the dialogue exchange.
+It is important that you respond with only the dialogue exchange.
 <# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
 <#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
@@ -51,19 +55,27 @@ It is important that you respond with only the dialogue exchange. Use the inform
 This games scenario is: <#= this.DialogueData.scenario #>
 <# } #>
 <# if (this.ShowFullName) {#>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorFullName)) { #>
 <#= this.DialogueData.initiatorNickName #>'s full name is <#= this.DialogueData.initiatorFullName #>.
+<#   } #>
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientFullName)) { #>
 <#= this.DialogueData.recipientNickName #>'s full name is <#= this.DialogueData.recipientFullName #>.
+<#   } #>
 <# } #>
 <# if (this.ShowAgeRaceAndGender) {#>
 <#= this.DialogueData.initiatorNickName #>'s is a <#= this.DialogueData.initiatorGender #> <#= this.DialogueData.initiatorRace #> age <#= this.DialogueData.initiatorAge #> years old.
+<#   if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
 <#= this.DialogueData.recipientNickName #>'s is a <#= this.DialogueData.recipientGender #> <#= this.DialogueData.recipientRace #> age <#= this.DialogueData.recipientAge #> years old.
+<#   } #>
 <# } #>
 <# if (this.ShowDescription) {#>
 <#   if (this.DialogueData.initiatorDescription == this.DialogueData.recipientDescription) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are <#= this.DialogueData.initiatorDescription #>.
 <#   } else { #>
 <#= this.DialogueData.initiatorNickName #>'s is <#= this.DialogueData.initiatorDescription #>
+<#     if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
 <#= this.DialogueData.recipientNickName #>'s is <#= this.DialogueData.recipientDescription #>
+<#     } #>
 <#   } #>
 <# } #>
 <# if (this.ShowPawnType) { #>
@@ -80,7 +92,7 @@ Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipi
 <#= this.DialogueData.initiatorNickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
 <#     } else if (this.DialogueData.initiatorIsHostile) { #>
 <#= this.DialogueData.initiatorNickName #> is a raider and is here to attack the player's colony.
-<#     } else { #>
+<#     } else if (!this.DialogueData.initiatorIsAnimal) { #>
 <#= this.DialogueData.initiatorNickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
 <#     } #>
 <#     if (this.DialogueData.recipientIsColonist) { #>
@@ -89,7 +101,7 @@ Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipi
 <#= this.DialogueData.recipientNickName #> is a prisoner. In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
 <#     } else if (this.DialogueData.recipientIsHostile) { #>
 <#= this.DialogueData.recipientNickName #> is a raider and is here to attack the player's colony.
-<#     } else { #>
+<#     } else if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName) && !this.DialogueData.recipientIsAnimal) { #>
 <#= this.DialogueData.recipientNickName #> is an NPC and just a temporary visitor here.
 <#     } #>
 <#   } #>
@@ -106,8 +118,12 @@ Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipi
 <#   if (this.DialogueData.initiatorFactionName == this.DialogueData.recipientFactionName) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> belong to the same faction, called "<#= this.DialogueData.initiatorFactionName #>". It is a <#= this.DialogueData.initiatorFactionLabel #> faction. <#= this.DialogueData.initiatorFactionDescription #>
 <#   } else { #>
+<#     if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorFactionName)) { #> 
 The faction <#= this.DialogueData.initiatorNickName #> belongs to is called "<#= this.DialogueData.initiatorFactionName #>". It is a <#= this.DialogueData.initiatorFactionLabel #> faction. <#= this.DialogueData.initiatorFactionDescription #>
+<#     } #>
+<#     if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientFactionName)) { #> 
 The faction <#= this.DialogueData.recipientNickName #> belongs to is called "<#= this.DialogueData.recipientFactionName #>". It is a <#= this.DialogueData.recipientFactionLabel #> faction. <#= this.DialogueData.recipientFactionDescription #>
+<#     } #>
 <#   } #>
 <# } #>
 <# if (this.ShowIdeology) { #>
@@ -160,7 +176,7 @@ The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= S
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.ShowCombatLog) { #>)
+<# if (this.ShowCombatLog) { #>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorLastBattle) && this.DialogueData.initiatorCombatLog.Any()) { #>
 In the recent battle "<#= this.DialogueData.initiatorLastBattle #>" this happened: <#= String.Join(" ", this.DialogueData.initiatorCombatLog) #>
 <#   } #>
@@ -269,8 +285,10 @@ In the recent battle "<#=this.DialogueData.recipientLastBattle #>" this happened
 <#   } #>
 <# } #>
 <# if (this.ShowColonyData && this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
-<#   if (this.ShowDaysAgo) { #>
+<#   if (this.ShowTimeData) { #>
 The colony started <#= this.DaysAgoLabel #>.
+The current season is <#= this.DialogueData.season #>.
+The current time of day is <#= DescribeTimeOfDay(this.DialogueData.hourOfDay) #>.
 <#   } #>
 <#   if (this.DialogueData.colonistsCount >= 0) { #>
 It is <#= DescribeColonySize(this.DialogueData.colonistsCount) #>
@@ -340,18 +358,23 @@ The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.r
 <#= this.DialogueData.recipientNickName #>'s personality is <#= this.DialogueData.recipientPersonality #>
 <#     } #>
 <#   } #>
-<#   if (this.ShowOpinions) { #>
+<#   if (this.ShowOpinions && !string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
 <#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient) #> <#= this.DialogueData.recipientNickName #>.
 <#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator) #> <#= this.DialogueData.initiatorNickName #>.
 <#   } #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
+<# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
 Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
+Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
+<# } else { #>
+Your job is to create a very short monologue of <#= this.DialogueData.maxWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
+<# } #>
 <#   if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
 	The word "lovin'" is a euphamism for sex.
 <#   } #>
-Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
-Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
-It is important that you respond with only the dialogue exchange. Use the information you are provided to add depth to the dialogue exchange.
+It is important that you respond with only the dialogue exchange.
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
 <#  if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorInstructions)) { #>

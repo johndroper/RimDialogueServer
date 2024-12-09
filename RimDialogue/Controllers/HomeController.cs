@@ -10,16 +10,32 @@ using Newtonsoft.Json;
 using OpenAI.Chat;
 using RimDialogue.Core;
 using System.ClientModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RimDialogue.Controllers
 {
   public class HomeController(IConfiguration Configuration, IMemoryCache memoryCache) : Controller
   {
-    private bool LoggingEnabled
+    public void Log(params string[] data)
     {
-      get
+      //******Logging******
+      try
       {
-        return Configuration["LoggingEnabled"]?.ToLower() == "true";
+        if (Configuration["LoggingEnabled"]?.ToLower() == "true")
+        {
+          if (!Directory.Exists("Output"))
+            Directory.CreateDirectory("Output");
+          using (StreamWriter log = System.IO.File.CreateText($"Output\\data-log-{DateTime.Now.Ticks}.txt"))
+          {
+            foreach(var item in data)
+              log.WriteLine(item);
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error logging data.", ex);
+        throw exception;
       }
     }
 
@@ -179,11 +195,8 @@ namespace RimDialogue.Controllers
       }
     }
 
-    public async Task<IActionResult> GetDialogue(string dialogueDataJSON)
+    public bool CheckRateLimit()
     {
-      DialogueData? dialogueData = null;
-      if (dialogueDataJSON == null)
-        throw new Exception("dialogueDataJSON is null.");
       //******Rate Limiting******
       string? key = this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString();
       if (key == null)
@@ -200,7 +213,7 @@ namespace RimDialogue.Controllers
             if (rate > rateLimit)
             {
               Console.WriteLine($"{key} was rate limited to {rateLimit} requests per second. Current rate is {rate} requests per second.");
-              return new JsonResult(new DialogueResponse { RateLimited = true });
+              return true;
             }
           }
           requestRate.Increment();
@@ -213,6 +226,7 @@ namespace RimDialogue.Controllers
             .SetSlidingExpiration(TimeSpan.FromMinutes(rateLimitCacheMinutes));
           memoryCache.Set(key, requestRate, cacheEntryOptions);
         }
+        return false;
       }
       catch (Exception ex)
       {
@@ -220,6 +234,17 @@ namespace RimDialogue.Controllers
         exception.Data.Add("key", key);
         throw exception;
       }
+    }
+
+    public async Task<IActionResult> GetDialogue(string dialogueDataJSON)
+    {
+      DialogueData? dialogueData = null;
+      if (dialogueDataJSON == null)
+        throw new Exception("dialogueDataJSON is null.");
+
+      if (CheckRateLimit())
+        return new JsonResult(new DialogueResponse { RateLimited = true });
+
       //******Deserialization******
       try
       {
@@ -231,6 +256,7 @@ namespace RimDialogue.Controllers
         exception.Data.Add("dialogueDataJSON", dialogueDataJSON);
         throw exception;
       }
+
       //******Prompt Generation******
       string? prompt = null;
       try
@@ -252,6 +278,7 @@ namespace RimDialogue.Controllers
         exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
         throw exception;
       }
+      
       //******Response Generation******
       string? text = null;
       try
@@ -264,11 +291,13 @@ namespace RimDialogue.Controllers
         exception.Data.Add("prompt", prompt);
         throw exception;
       }
+      
       //******Metrics******
       ServerMetrics.AddRequest(
         this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
         prompt.Length,
         text.Length);
+
       //******Response Serialization******
       DialogueResponse ? dialogueResponse = null;
       try
@@ -288,26 +317,9 @@ namespace RimDialogue.Controllers
         exception.Data.Add("text", text);
         throw exception;
       }
-      //******Logging******
-      try
-      {
-        if (LoggingEnabled)
-        {
-          if (!Directory.Exists("Output"))
-            Directory.CreateDirectory("Output");
-          using (StreamWriter log = System.IO.File.CreateText($"Output\\data-log-{DateTime.Now.Ticks}.txt"))
-          {
-            log.WriteLine(dialogueDataJSON);
-            log.WriteLine(prompt);
-            log.WriteLine(text);
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        Exception exception = new("Error logging data.", ex);
-        throw exception;
-      }
+
+      Log(prompt, text);
+
       return new JsonResult(dialogueResponse);
     }
   }
