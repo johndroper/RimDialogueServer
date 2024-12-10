@@ -27,7 +27,7 @@ namespace RimDialogue.Controllers
             Directory.CreateDirectory("Output");
           using (StreamWriter log = System.IO.File.CreateText($"Output\\data-log-{DateTime.Now.Ticks}.txt"))
           {
-            foreach(var item in data)
+            foreach (var item in data)
               log.WriteLine(item);
           }
         }
@@ -268,30 +268,30 @@ namespace RimDialogue.Controllers
         int maxPromptLength = Configuration.GetValue<int>("MaxPromptLength", 1200);
         if (prompt.Length > maxPromptLength)
         {
-          Console.WriteLine($"Prompt truncated to { maxPromptLength } characters. Original length was {prompt.Length} characters.");
+          Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
           prompt = prompt.Substring(0, maxPromptLength);
         }
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         Exception exception = new("An error occurred generating prompt.", ex);
         exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
         throw exception;
       }
-      
+
       //******Response Generation******
       string? text = null;
       try
       {
         text = await GetResults(prompt);
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         Exception exception = new("An error occurred fetching results.", ex);
         exception.Data.Add("prompt", prompt);
         throw exception;
       }
-      
+
       //******Metrics******
       ServerMetrics.AddRequest(
         this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
@@ -299,10 +299,10 @@ namespace RimDialogue.Controllers
         text.Length);
 
       //******Response Serialization******
-      DialogueResponse ? dialogueResponse = null;
+      DialogueResponse? dialogueResponse = null;
       try
       {
-        dialogueResponse  = new DialogueResponse();
+        dialogueResponse = new DialogueResponse();
         int maxResponseLength = Configuration.GetValue<int>("MaxResponseLength", 5000);
         if (text.Length > maxResponseLength)
         {
@@ -311,7 +311,7 @@ namespace RimDialogue.Controllers
         }
         dialogueResponse.text = text;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         Exception exception = new("Error creating DialogueResponse.", ex);
         exception.Data.Add("text", text);

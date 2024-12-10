@@ -13,7 +13,7 @@ Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueDat
 Your job is to create a very short monologue of <#= this.DialogueData.maxWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 <# } #>
 <# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
-	The word "lovin'" is a euphamism for sex.
+The word "lovin'" is a euphemism for sex.
 <# } #>
 <# if (this.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
@@ -372,7 +372,7 @@ Your job is to create a very short monologue of <#= this.DialogueData.maxWords #
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 <# } #>
 <#   if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
-	The word "lovin'" is a euphamism for sex.
+The word "lovin'" is a euphemism for sex.
 <#   } #>
 It is important that you respond with only the dialogue exchange.
 <# if (this.ShowSpecialInstructions) { #>

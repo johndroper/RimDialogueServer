@@ -127,7 +127,7 @@ namespace RimDialogue
             
             #line default
             #line hidden
-            this.Write("\tThe word \"lovin\'\" is a euphamism for sex.\r\n");
+            this.Write("The word \"lovin\'\" is a euphemism for sex.\r\n");
             
             #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\PromptTemplate.tt"
  } 
@@ -3184,7 +3184,7 @@ namespace RimDialogue
             
             #line default
             #line hidden
-            this.Write("\tThe word \"lovin\'\" is a euphamism for sex.\r\n");
+            this.Write("The word \"lovin\'\" is a euphemism for sex.\r\n");
             
             #line 376 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogue\PromptTemplate.tt"
    } 
