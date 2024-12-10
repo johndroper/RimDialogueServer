@@ -1,4 +1,4 @@
-﻿namespace RimDialogue
+﻿namespace RimDialogueLocal
 {
   public class RequestRate
   {

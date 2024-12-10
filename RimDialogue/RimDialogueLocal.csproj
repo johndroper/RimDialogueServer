@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="ErrorMail.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ErrorMail.tt</DependentUpon>
-    </None>
     <None Include="PromptTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -36,11 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ErrorMail.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ErrorMail.tt</DependentUpon>
-    </Compile>
     <Compile Update="PromptTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -49,10 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ErrorMail.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ErrorMail.cs</LastGenOutput>
-    </None>
     <None Update="PromptTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PromptTemplate.cs</LastGenOutput>
@@ -68,8 +54,7 @@
   </ItemGroup>
 
   <Target Name="ReplaceAppSettings" AfterTargets="Publish">
-    <Copy SourceFiles="sample_appsettings.json"
-          DestinationFiles="$(PublishDir)appsettings.json" />
+    <Copy SourceFiles="sample_appsettings.json" DestinationFiles="$(PublishDir)appsettings.json" />
     <Delete Files="$(PublishDir)sample_appsettings.json" />
     <Delete Files="$(PublishDir)appsettings.Development.json" />
   </Target>

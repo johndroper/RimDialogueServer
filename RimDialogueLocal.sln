@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35323.107
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimDialogue", "RimDialogue\RimDialogue.csproj", "{4718F519-481E-4E6D-97DA-501F0F0FACE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimDialogueLocal", "RimDialogue\RimDialogueLocal.csproj", "{4718F519-481E-4E6D-97DA-501F0F0FACE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimDialogueClient", "..\RimDialogueClient\source\RimDialogueClient.csproj", "{61B57A41-B985-4C1C-9BED-D25689996E89}"
 EndProject

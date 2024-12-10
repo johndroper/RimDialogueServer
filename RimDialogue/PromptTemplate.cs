@@ -7,12 +7,12 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace RimDialogue
+namespace RimDialogueLocal
 {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using RimDialogue.Core;
+    using RimDialogueLocal.Core;
     using System;
     
     /// <summary>

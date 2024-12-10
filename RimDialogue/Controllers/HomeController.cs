@@ -8,11 +8,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using OpenAI.Chat;
-using RimDialogue.Core;
+using RimDialogueLocal.Core;
 using System.ClientModel;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace RimDialogue.Controllers
+namespace RimDialogueLocal.Controllers
 {
   public class HomeController(IConfiguration Configuration, IMemoryCache memoryCache) : Controller
   {
