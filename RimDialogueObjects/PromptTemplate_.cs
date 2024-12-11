@@ -1,10 +1,12 @@
-﻿using RimDialogueLocal.Core;
+﻿using RimDialogue.Core;
 using System;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
-namespace RimDialogueLocal
+namespace RimDialogueObjects
 {
   public class FloatData
   {
@@ -22,12 +24,12 @@ namespace RimDialogueLocal
   {
     public static Regex GetDataRegex = new(@"(\w+)\s\[([+-]?[0-9]+[.]?[0-9]+)\]", RegexOptions.Compiled);
 
-    private static Random rand = new Random();
+    //private static Random rand = new Random();
 
-    private static string Rand(string[] input)
-    {
-      return input[rand.Next(input.Length)];
-    }
+    //private static string Rand(string[] input)
+    //{
+    //  return input[rand.Next(input.Length)];
+    //}
 
     //private static Func<DialogueData, string?>[] factories =
     //{
@@ -40,6 +42,34 @@ namespace RimDialogueLocal
     //  (data) => $"One of the precepts of {data.initiatorNickName}'s ideology is {Rand(data.initiatorIdeologyPrecepts)}",
       
     //};
+
+    public static string Generate(IConfiguration configuration, DialogueData dialogueData)
+    {
+      //******Prompt Generation******
+      string? prompt = null;
+      try
+      {
+        if (dialogueData == null)
+          throw new Exception("dialogueData is null.");
+        PromptTemplate promptTemplate = new(dialogueData, configuration);
+        prompt = promptTemplate.TransformText();
+        if (prompt == null)
+          throw new Exception("Prompt is null.");
+        int maxPromptLength = configuration.GetValue<int>("MaxPromptLength", 1200);
+        if (prompt.Length > maxPromptLength)
+        {
+          Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
+          return prompt.Substring(0, maxPromptLength);
+        }
+        return prompt;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred generating prompt.", ex);
+        exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
+        throw exception;
+      }
+    }
 
     public static FloatData? GetFloatData(string data)
     {

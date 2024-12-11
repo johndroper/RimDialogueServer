@@ -1,4 +1,4 @@
-﻿namespace RimDialogueLocal
+﻿namespace RimDialogueObjects
 {
   public class ClientMetrics
   {
