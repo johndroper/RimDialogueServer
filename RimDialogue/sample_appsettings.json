@@ -15,11 +15,6 @@
   "ErrorMailFrom": "errors@yourdomain.com",
   "ErrorMailTo": "email@address.com",
 
-  //RATE LIMITING
-  "RateLimit": 0.2, //Requests per second 
-  "RateLimitCacheMinutes": 1, //How long to cache the rate limit
-  "MinRateLimitRequestCount": 5, //Minimum number of requests before rate limiting kicks in
-
   //****Provider Settings****
   //AWS, OLLAMA, OPENAI, or GROQ
   "Provider": "OLLAMA",
@@ -52,42 +47,49 @@
   //PROMPT OPTIONS
   //Set these to true to add more data to your prompt and make it more interesting
   //Set these to false if you are hitting your token limit
-  "ShowExposition": true,
-  "ShowScenario": true,
-  "ShowSpecialInstructions": true,
-  "ShowFullName": false,
-  "ShowGender": false,
-  "ShowRace": false,
-  "ShowSubrace": false,
-  "ShowAnimal": false,
-  "ShowAge": false,
-  "ShowIsColonist": false,
-  "ShowIsPrisoner": false,
-  "ShowRoyaltyTitle": false,
-  "ShowHair": false,
-  "ShowBeard": false,
-  "ShowTattoo": false,
-  "ShowFaction": false,
-  "ShowIdeology": false,
-  "ShowPrecepts": false, //This is often a lot of data.  ~6700 characters
-  "ShowAdulthood": false,
-  "ShowChildhood": false,
-  "ShowRelations": false,
-  "ShowTraits": false,
-  "ShowSkills": false,
-  "ShowMoodThoughts": false,
-  "ShowHealth": false,
-  "ShowApparel": false,
-  "ShowWeapons": false,
-  "ShowMoodString": false,
-  "ShowNeeds": false,
-  "ShowOpinions": false,
-  "ShowConversations": false, //This can be a lot of data.
-  "ShowDaysAgo": false,
-  "ShowWealth": false,
-  "ShowBiome": false,
-  "ShowWeather": false,
-  "ShowRecentIncidents": false,
-  "ShowRoom": false,
-  "RepeatInstructions": false //turn this on if the AI output stuff other than dialogue.
+  //PROMPT SETTINGS
+  "tier": {
+    "RateLimit": 1,
+    "RateLimitCacheMinutes": 1,
+    "MinRateLimitRequestCount": 5,
+    "MaxPromptLength": 20000,
+    "MaxResponseLength": 1000,
+    "ShowScenario": true,
+    "ShowSpecialInstructions": true,
+    "ShowPawnType": true,
+    "ShowPersonality": true,
+    "ShowAgeRaceAndGender": true,
+    "ShowFullName": true,
+    "ShowDescription": true,
+    "ShowAnimal": true,
+    "ShowRoyaltyTitle": true,
+    "ShowHair": true,
+    "ShowBeard": true,
+    "ShowTattoo": true,
+    "ShowFaction": true,
+    "ShowIdeology": true,
+    "ShowPrecepts": true,
+    "ShowAdulthood": true,
+    "ShowChildhood": true,
+    "ShowJob": true,
+    "ShowCombatLog": true,
+    "ShowRelations": true,
+    "ShowTraits": true,
+    "ShowSkills": true,
+    "ShowMoodThoughts": true,
+    "ShowHealth": true,
+    "ShowApparel": true,
+    "ShowWeapons": true,
+    "ShowMoodString": true,
+    "ShowNeeds": true,
+    "ShowOpinions": true,
+    "ShowTimeData": true,
+    "ShowColonyData": true,
+    "ShowOtherFactions": true,
+    "ShowBiome": true,
+    "ShowWeather": true,
+    "ShowRecentIncidents": true,
+    "ShowRoom": true,
+    "RepeatInstructions": true //turn this on if the AI stops giving only dialogue.
+  }
 }

@@ -40,7 +40,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create a very short conversation of ");
             
             #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.DialogueData.maxWords));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
             
             #line default
             #line hidden
@@ -96,7 +96,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create a very short monologue of ");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.DialogueData.maxWords));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
             
             #line default
             #line hidden
@@ -136,7 +136,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowSpecialInstructions) { 
+ if (this.Config.ShowSpecialInstructions) { 
             
             #line default
             #line hidden
@@ -210,7 +210,7 @@ namespace RimDialogueObjects
             this.Write("It is important that you respond with only the dialogue exchange.\r\n");
             
             #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { 
+ if (this.Config.ShowAnimal && this.DialogueData.initiatorIsAnimal) { 
             
             #line default
             #line hidden
@@ -230,7 +230,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { 
+ if (this.Config.ShowAnimal && this.DialogueData.recipientIsAnimal) { 
             
             #line default
             #line hidden
@@ -250,7 +250,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowPersonality) { 
+ if (this.Config.ShowPersonality) { 
             
             #line default
             #line hidden
@@ -328,7 +328,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { 
+ if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { 
             
             #line default
             #line hidden
@@ -354,7 +354,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { 
+ if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { 
             
             #line default
             #line hidden
@@ -380,7 +380,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowOpinions) { 
+ if (this.Config.ShowOpinions) { 
             
             #line default
             #line hidden
@@ -393,7 +393,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2)));
             
             #line default
             #line hidden
@@ -414,7 +414,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2)));
             
             #line default
             #line hidden
@@ -434,7 +434,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {
+ if (this.Config.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {
             
             #line default
             #line hidden
@@ -454,7 +454,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 57 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowFullName) {
+ if (this.Config.ShowFullName) {
             
             #line default
             #line hidden
@@ -518,7 +518,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 65 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowAgeRaceAndGender) {
+ if (this.Config.ShowAgeRaceAndGender) {
             
             #line default
             #line hidden
@@ -598,7 +598,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowDescription) {
+ if (this.Config.ShowDescription) {
             
             #line default
             #line hidden
@@ -690,7 +690,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowPawnType) { 
+ if (this.Config.ShowPawnType) { 
             
             #line default
             #line hidden
@@ -903,7 +903,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorRoyaltyTitle)) { 
+ if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorRoyaltyTitle)) { 
             
             #line default
             #line hidden
@@ -937,7 +937,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 113 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.recipientRoyaltyTitle)) { 
+ if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.recipientRoyaltyTitle)) { 
             
             #line default
             #line hidden
@@ -971,7 +971,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowFaction) { 
+ if (this.Config.ShowFaction) { 
             
             #line default
             #line hidden
@@ -1119,7 +1119,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 129 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowIdeology) { 
+ if (this.Config.ShowIdeology) { 
             
             #line default
             #line hidden
@@ -1167,7 +1167,7 @@ namespace RimDialogueObjects
             this.Write("\r\n");
             
             #line 133 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-     if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {
+     if (this.Config.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
@@ -1227,7 +1227,7 @@ namespace RimDialogueObjects
             this.Write("\r\n");
             
             #line 140 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-      if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {
+      if (this.Config.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
@@ -1287,7 +1287,7 @@ namespace RimDialogueObjects
             this.Write("\r\n");
             
             #line 147 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-      if (this.ShowPrecepts && this.DialogueData.recipientIdeologyPrecepts.Any()) {
+      if (this.Config.ShowPrecepts && this.DialogueData.recipientIdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
@@ -1332,7 +1332,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 153 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorAdulthood)) { 
+ if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorAdulthood)) { 
             
             #line default
             #line hidden
@@ -1358,7 +1358,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 156 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientAdulthood)) { 
+ if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientAdulthood)) { 
             
             #line default
             #line hidden
@@ -1384,7 +1384,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 159 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorChildhood)) { 
+ if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorChildhood)) { 
             
             #line default
             #line hidden
@@ -1410,7 +1410,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 162 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientChildhood)) { 
+ if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientChildhood)) { 
             
             #line default
             #line hidden
@@ -1436,7 +1436,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 165 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowJob) { 
+ if (this.Config.ShowJob) { 
             
             #line default
             #line hidden
@@ -1552,7 +1552,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 179 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowCombatLog) { 
+ if (this.Config.ShowCombatLog) { 
             
             #line default
             #line hidden
@@ -1618,7 +1618,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 187 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorHair)) { 
+ if (this.Config.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorHair)) { 
             
             #line default
             #line hidden
@@ -1644,7 +1644,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 190 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.recipientHair)) { 
+ if (this.Config.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.recipientHair)) { 
             
             #line default
             #line hidden
@@ -1670,7 +1670,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 193 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowBeard) { 
+ if (this.Config.ShowBeard) { 
             
             #line default
             #line hidden
@@ -1734,7 +1734,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 201 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorFaceTattoo) && this.DialogueData.initiatorFaceTattoo != "none") { 
+ if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorFaceTattoo) && this.DialogueData.initiatorFaceTattoo != "none") { 
             
             #line default
             #line hidden
@@ -1760,7 +1760,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 204 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientFaceTattoo) && this.DialogueData.recipientFaceTattoo != "none") { 
+ if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientFaceTattoo) && this.DialogueData.recipientFaceTattoo != "none") { 
             
             #line default
             #line hidden
@@ -1786,7 +1786,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 207 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorBodyTattoo) && this.DialogueData.initiatorBodyTattoo != "none") { 
+ if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorBodyTattoo) && this.DialogueData.initiatorBodyTattoo != "none") { 
             
             #line default
             #line hidden
@@ -1812,7 +1812,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 210 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientBodyTattoo) && this.DialogueData.recipientBodyTattoo != "none") { 
+ if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientBodyTattoo) && this.DialogueData.recipientBodyTattoo != "none") { 
             
             #line default
             #line hidden
@@ -1838,7 +1838,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 213 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowRelations && this.DialogueData.initiatorRelations.Any()) { 
+ if (this.Config.ShowRelations && this.DialogueData.initiatorRelations.Any()) { 
             
             #line default
             #line hidden
@@ -1864,7 +1864,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 216 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowRelations && this.DialogueData.recipientRelations.Any()) { 
+ if (this.Config.ShowRelations && this.DialogueData.recipientRelations.Any()) { 
             
             #line default
             #line hidden
@@ -1890,7 +1890,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 219 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowTraits && this.DialogueData.initiatorTraits.Any()) { 
+ if (this.Config.ShowTraits && this.DialogueData.initiatorTraits.Any()) { 
             
             #line default
             #line hidden
@@ -1916,7 +1916,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 222 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowTraits && this.DialogueData.recipientTraits.Any()) { 
+ if (this.Config.ShowTraits && this.DialogueData.recipientTraits.Any()) { 
             
             #line default
             #line hidden
@@ -1942,7 +1942,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 225 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowSkills && this.DialogueData.initiatorSkills.Any()) { 
+ if (this.Config.ShowSkills && this.DialogueData.initiatorSkills.Any()) { 
             
             #line default
             #line hidden
@@ -1968,7 +1968,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 228 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowSkills && this.DialogueData.recipientSkills.Any()) { 
+ if (this.Config.ShowSkills && this.DialogueData.recipientSkills.Any()) { 
             
             #line default
             #line hidden
@@ -1994,7 +1994,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 231 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowMoodThoughts && this.DialogueData.initiatorMoodThoughts.Any()) { 
+ if (this.Config.ShowMoodThoughts && this.DialogueData.initiatorMoodThoughts.Any()) { 
             
             #line default
             #line hidden
@@ -2020,7 +2020,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 234 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowMoodThoughts && this.DialogueData.recipientMoodThoughts.Any()) { 
+ if (this.Config.ShowMoodThoughts && this.DialogueData.recipientMoodThoughts.Any()) { 
             
             #line default
             #line hidden
@@ -2046,7 +2046,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 237 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowHealth && this.DialogueData.initiatorHediffs.Any()) { 
+ if (this.Config.ShowHealth && this.DialogueData.initiatorHediffs.Any()) { 
             
             #line default
             #line hidden
@@ -2072,7 +2072,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 240 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowHealth && this.DialogueData.recipientHediffs.Any()) { 
+ if (this.Config.ShowHealth && this.DialogueData.recipientHediffs.Any()) { 
             
             #line default
             #line hidden
@@ -2098,7 +2098,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 243 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowApparel && this.DialogueData.initiatorApparel.Any()) { 
+ if (this.Config.ShowApparel && this.DialogueData.initiatorApparel.Any()) { 
             
             #line default
             #line hidden
@@ -2124,7 +2124,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 246 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowApparel && this.DialogueData.recipientApparel.Any()) { 
+ if (this.Config.ShowApparel && this.DialogueData.recipientApparel.Any()) { 
             
             #line default
             #line hidden
@@ -2150,7 +2150,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 249 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowWeapons && this.DialogueData.initiatorWeapons.Any()) { 
+ if (this.Config.ShowWeapons && this.DialogueData.initiatorWeapons.Any()) { 
             
             #line default
             #line hidden
@@ -2176,7 +2176,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 252 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowWeapons && this.DialogueData.recipientWeapons.Any()) { 
+ if (this.Config.ShowWeapons && this.DialogueData.recipientWeapons.Any()) { 
             
             #line default
             #line hidden
@@ -2202,7 +2202,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 255 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowNeeds) { 
+ if (this.Config.ShowNeeds) { 
             
             #line default
             #line hidden
@@ -2474,13 +2474,13 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 287 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowColonyData && this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { 
+ if (this.Config.ShowColonyData && this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { 
             
             #line default
             #line hidden
             
             #line 288 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowTimeData) { 
+   if (this.Config.ShowTimeData) { 
             
             #line default
             #line hidden
@@ -2653,7 +2653,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 314 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowRecentIncidents) { 
+   if (this.Config.ShowRecentIncidents) { 
             
             #line default
             #line hidden
@@ -2673,7 +2673,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 317 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowOtherFactions && this.DialogueData.otherFactions.Any()) { 
+   if (this.Config.ShowOtherFactions && this.DialogueData.otherFactions.Any()) { 
             
             #line default
             #line hidden
@@ -2699,7 +2699,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 321 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowBiome) { 
+ if (this.Config.ShowBiome) { 
             
             #line default
             #line hidden
@@ -2719,7 +2719,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 324 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowWeather) { 
+ if (this.Config.ShowWeather) { 
             
             #line default
             #line hidden
@@ -2746,7 +2746,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 328 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowRoom) { 
+ if (this.Config.ShowRoom) { 
             
             #line default
             #line hidden
@@ -2865,13 +2865,13 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 340 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.RepeatInstructions) { 
+ if (this.Config.RepeatInstructions) { 
             
             #line default
             #line hidden
             
             #line 341 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { 
+   if (this.Config.ShowAnimal && this.DialogueData.initiatorIsAnimal) { 
             
             #line default
             #line hidden
@@ -2891,7 +2891,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 344 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { 
+   if (this.Config.ShowAnimal && this.DialogueData.recipientIsAnimal) { 
             
             #line default
             #line hidden
@@ -2911,7 +2911,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 347 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { 
+   if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { 
             
             #line default
             #line hidden
@@ -2937,7 +2937,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 350 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { 
+   if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { 
             
             #line default
             #line hidden
@@ -2963,7 +2963,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 353 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowPersonality) {
+   if (this.Config.ShowPersonality) {
             
             #line default
             #line hidden
@@ -3027,7 +3027,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 361 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-   if (this.ShowOpinions && !string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { 
+   if (this.Config.ShowOpinions && !string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { 
             
             #line default
             #line hidden
@@ -3040,7 +3040,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 362 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2)));
             
             #line default
             #line hidden
@@ -3061,7 +3061,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 363 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2)));
             
             #line default
             #line hidden
@@ -3090,7 +3090,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create a very short conversation of ");
             
             #line 367 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.DialogueData.maxWords));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
             
             #line default
             #line hidden
@@ -3146,7 +3146,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create a very short monologue of ");
             
             #line 371 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.DialogueData.maxWords));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
             
             #line default
             #line hidden
@@ -3194,7 +3194,7 @@ namespace RimDialogueObjects
             this.Write("It is important that you respond with only the dialogue exchange.\r\n");
             
             #line 378 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.ShowSpecialInstructions) { 
+ if (this.Config.ShowSpecialInstructions) { 
             
             #line default
             #line hidden

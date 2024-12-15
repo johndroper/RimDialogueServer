@@ -43,7 +43,7 @@ namespace RimDialogueObjects
       
     //};
 
-    public static string Generate(IConfiguration configuration, DialogueData dialogueData)
+    public static string Generate(Config config, DialogueData dialogueData)
     {
       //******Prompt Generation******
       string? prompt = null;
@@ -51,11 +51,11 @@ namespace RimDialogueObjects
       {
         if (dialogueData == null)
           throw new Exception("dialogueData is null.");
-        PromptTemplate promptTemplate = new(dialogueData, configuration);
+        PromptTemplate promptTemplate = new(dialogueData, config);
         prompt = promptTemplate.TransformText();
         if (prompt == null)
           throw new Exception("Prompt is null.");
-        int maxPromptLength = configuration.GetValue<int>("MaxPromptLength", 1200);
+        int maxPromptLength = config.MaxPromptLength;
         if (prompt.Length > maxPromptLength)
         {
           Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
@@ -230,87 +230,15 @@ namespace RimDialogueObjects
 
     public PromptTemplate(
       DialogueData dialogueData, 
-      IConfiguration Configuration)
+      Config tier)
     {
       DialogueData = dialogueData;
-
-      ShowFullName = Configuration.GetValue<bool>(nameof(ShowFullName), false);
-      ShowAgeRaceAndGender = Configuration.GetValue<bool>(nameof(ShowAgeRaceAndGender), false);
-      ShowDescription = Configuration.GetValue<bool>(nameof(ShowDescription), false);
-      ShowAnimal = Configuration.GetValue<bool>(nameof(ShowAnimal), false);
-      ShowPawnType = Configuration.GetValue<bool>(nameof(ShowPawnType), false);
-      ShowRoyaltyTitle = Configuration.GetValue<bool>(nameof(ShowRoyaltyTitle), false);
-      ShowHair = Configuration.GetValue<bool>(nameof(ShowHair), false);
-      ShowBeard = Configuration.GetValue<bool>(nameof(ShowBeard), false);
-      ShowTattoo = Configuration.GetValue<bool>(nameof(ShowTattoo), false);
-      ShowFaction = Configuration.GetValue<bool>(nameof(ShowFaction), false);
-      ShowIdeology = Configuration.GetValue<bool>(nameof(ShowIdeology), false);
-      ShowPrecepts = Configuration.GetValue<bool>(nameof(ShowPrecepts), false);
-      ShowAdulthood = Configuration.GetValue<bool>(nameof(ShowAdulthood), false);
-      ShowChildhood = Configuration.GetValue<bool>(nameof(ShowChildhood), false);
-      ShowRelations = Configuration.GetValue<bool>(nameof(ShowRelations), false);
-      ShowTraits = Configuration.GetValue<bool>(nameof(ShowTraits), false);
-      ShowSkills = Configuration.GetValue<bool>(nameof(ShowSkills), false);
-      ShowMoodThoughts = Configuration.GetValue<bool>(nameof(ShowMoodThoughts), false);
-      ShowHealth = Configuration.GetValue<bool>(nameof(ShowHealth), false);
-      ShowApparel = Configuration.GetValue<bool>(nameof(ShowApparel), false);
-      ShowWeapons = Configuration.GetValue<bool>(nameof(ShowWeapons), false);
-      ShowMoodString = Configuration.GetValue<bool>(nameof(ShowMoodString), false);
-      ShowNeeds = Configuration.GetValue<bool>(nameof(ShowNeeds), false);
-      ShowOpinions = Configuration.GetValue<bool>(nameof(ShowOpinions), false);
-      ShowScenario = Configuration.GetValue<bool>(nameof(ShowScenario), false);
-      ShowTimeData = Configuration.GetValue<bool>(nameof(ShowTimeData), false);
-      ShowColonyData = Configuration.GetValue<bool>(nameof(ShowColonyData), false);
-      ShowBiome = Configuration.GetValue<bool>(nameof(ShowBiome), false);
-      ShowRoom = Configuration.GetValue<bool>(nameof(ShowRoom), false);
-      ShowWeather = Configuration.GetValue<bool>(nameof(ShowWeather), false);
-      ShowRecentIncidents = Configuration.GetValue<bool>(nameof(ShowRecentIncidents), false);
-      RepeatInstructions = Configuration.GetValue<bool>(nameof(RepeatInstructions), false);
-      ShowSpecialInstructions = Configuration.GetValue<bool>(nameof(ShowSpecialInstructions), false);
-      ShowPersonality = Configuration.GetValue<bool>(nameof(ShowPersonality), false);
-      ShowJob = Configuration.GetValue<bool>(nameof(ShowJob), false);
-      ShowCombatLog = Configuration.GetValue<bool>(nameof(ShowCombatLog), false);
-      ShowOtherFactions = Configuration.GetValue<bool>(nameof(ShowOtherFactions), false);
+      Config = tier;
     }
 
-    public bool ShowOtherFactions { get; set; } = false;
-    public bool ShowCombatLog { get; set; } = false;
-    public bool ShowJob { get; set; } = false;
-    public bool ShowFullName { get; set; } = false;
-    public bool ShowAgeRaceAndGender { get; set; } = false;
-    public bool ShowDescription { get; set; } = false;
-    public bool ShowAnimal { get; set; } = false;
-    public bool ShowPawnType { get; set; } = false;
-    public bool ShowRoyaltyTitle { get; set; } = false;
-    public bool ShowHair { get; set; } = false;
-    public bool ShowBeard { get; set; } = false;
-    public bool ShowTattoo { get; set; } = false;
-    public bool ShowFaction { get; set; } = false;
-    public bool ShowIdeology { get; set; } = false;
-    public bool ShowPrecepts { get; set; } = false;
-    public bool ShowAdulthood { get; set; } = false;
-    public bool ShowChildhood { get; set; } = false;
-    public bool ShowRelations { get; set; } = false;
-    public bool ShowTraits { get; set; } = false;
-    public bool ShowSkills { get; set; } = false;
-    public bool ShowMoodThoughts { get; set; } = false;
-    public bool ShowHealth { get; set; } = false;
-    public bool ShowApparel { get; set; } = false;
-    public bool ShowWeapons { get; set; } = false;
-    public bool ShowMoodString { get; set; } = false;
-    public bool ShowNeeds { get; set; } = false;
-    public bool ShowOpinions { get; set; } = false;
-    public bool ShowScenario { get; set; } = true;
-    public bool ShowTimeData { get; set; } = false;
-    public bool ShowColonyData { get; set; } = false;
-    public bool ShowBiome { get; set; } = false;
-    public bool ShowRoom { get; set; } = false;
-    public bool ShowWeather { get; set; } = false;
-    public bool ShowRecentIncidents { get; set; } = false;
-    public bool RepeatInstructions { get; set; } = false;
-    public bool ShowSpecialInstructions { get; set; } = false;
-    public bool ShowPersonality { get; private set; } = false;
     public DialogueData DialogueData { get; set; }
+
+    public Config Config { get; set; }
 
     public string GetThoughts(string name, string[] thoughts)
     {
@@ -663,6 +591,17 @@ namespace RimDialogueObjects
         return "maximum";
       else
         return "unknown";
+    }
+
+    public int MaxOutputWords
+    {
+      get
+      {
+        if (this.DialogueData.maxWords > Config.MaxOutputWords)
+          return Config.MaxOutputWords;
+        else
+          return this.DialogueData.maxWords;
+      }
     }
 
     public string DaysAgoLabel

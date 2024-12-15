@@ -25,7 +25,19 @@ namespace RimDialogueObjects
         switch (provider?.ToUpper())
         {
           case "AWS":
-            return await GetFromAws(configuration, prompt);
+            var awsKey = configuration["AwsKey"];
+            if (String.IsNullOrWhiteSpace(awsKey))
+              throw new Exception("AWS Key is empty in appsettings.");
+            var awsSecret = configuration["AwsSecret"];
+            if (String.IsNullOrWhiteSpace(awsSecret))
+              throw new Exception("AWS Secret is empty in appsettings.");
+            var awsRegion = configuration["AwsRegion"];
+            if (String.IsNullOrWhiteSpace(awsRegion))
+              throw new Exception("AWS Region is empty in appsettings.");
+            var modelId = configuration["AwsModelId"];
+            if (String.IsNullOrWhiteSpace(modelId))
+              throw new Exception("AWS ModelId is empty in appsettings.");
+            return await GetFromAws(awsKey, awsSecret, awsRegion, modelId, prompt);
           case "OLLAMA":
             return await GetFromOllama(configuration, prompt);
           case "OPENAI":
@@ -46,21 +58,13 @@ namespace RimDialogueObjects
       }
     }
 
-
-    public static async Task<string> GetFromAws(IConfiguration configuration, string prompt)
+    public static async Task<string> GetFromAws(
+      string awsKey,
+      string awsSecret,
+      string awsRegion,
+      string modelId,
+      string prompt)
     {
-      var awsKey = configuration["AwsKey"];
-      if (String.IsNullOrWhiteSpace(awsKey))
-        throw new Exception("AWS Key is empty in appsettings.");
-      var awsSecret = configuration["AwsSecret"];
-      if (String.IsNullOrWhiteSpace(awsSecret))
-        throw new Exception("AWS Secret is empty in appsettings.");
-      var awsRegion = configuration["AwsRegion"];
-      if (String.IsNullOrWhiteSpace(awsRegion))
-        throw new Exception("AWS Region is empty in appsettings.");
-      var modelId = configuration["AwsModelId"];
-      if (String.IsNullOrWhiteSpace(modelId))
-        throw new Exception("AWS ModelId is empty in appsettings.");
       try
       {
         BasicAWSCredentials awsCredentials = new(awsKey, awsSecret);

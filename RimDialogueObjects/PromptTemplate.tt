@@ -6,16 +6,16 @@
 <#@ import namespace="RimDialogue.Core" #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a very short conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 <# } else { #>
-Your job is to create a very short monologue of <#= this.DialogueData.maxWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a very short monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 <# } #>
 <# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
 The word "lovin'" is a euphemism for sex.
 <# } #>
-<# if (this.ShowSpecialInstructions) { #>
+<# if (this.Config.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
 <#  if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorInstructions)) { #>
 Instructions for <#= this.DialogueData.initiatorNickName #>: <#= this.DialogueData.initiatorInstructions #>
@@ -25,13 +25,13 @@ Instructions for <#= this.DialogueData.recipientNickName #>: <#= this.DialogueDa
 <#  } #>
 <# } #>
 It is important that you respond with only the dialogue exchange.
-<# if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
+<# if (this.Config.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
 <#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
-<# if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
+<# if (this.Config.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
 <#= this.DialogueData.recipientNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
-<# if (this.ShowPersonality) { #>
+<# if (this.Config.ShowPersonality) { #>
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorPersonality)) { #>
 <#= this.DialogueData.initiatorNickName #>'s personality is <#= this.DialogueData.initiatorPersonality #>
 <#= this.DialogueData.initiatorPersonalityDescription #>
@@ -41,20 +41,20 @@ It is important that you respond with only the dialogue exchange.
 <#= this.DialogueData.recipientNickName #>'s personality is <#= this.DialogueData.recipientPersonality #>
 <#= this.DialogueData.recipientPersonalityDescription #>
 <# } #>
-<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
+<# if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
 <#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>.
 <# } #>
-<# if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
+<# if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
 <#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>.
 <# } #>
-<# if (this.ShowOpinions) { #>
-<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient) #> <#= this.DialogueData.recipientNickName #>.
-<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator) #> <#= this.DialogueData.initiatorNickName #>.
+<# if (this.Config.ShowOpinions) { #>
+<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
+<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
 <# } #>
-<# if (this.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
+<# if (this.Config.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
 This games scenario is: <#= this.DialogueData.scenario #>
 <# } #>
-<# if (this.ShowFullName) {#>
+<# if (this.Config.ShowFullName) {#>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorFullName)) { #>
 <#= this.DialogueData.initiatorNickName #>'s full name is <#= this.DialogueData.initiatorFullName #>.
 <#   } #>
@@ -62,13 +62,13 @@ This games scenario is: <#= this.DialogueData.scenario #>
 <#= this.DialogueData.recipientNickName #>'s full name is <#= this.DialogueData.recipientFullName #>.
 <#   } #>
 <# } #>
-<# if (this.ShowAgeRaceAndGender) {#>
+<# if (this.Config.ShowAgeRaceAndGender) {#>
 <#= this.DialogueData.initiatorNickName #>'s is a <#= this.DialogueData.initiatorGender #> <#= this.DialogueData.initiatorRace #> age <#= this.DialogueData.initiatorAge #> years old.
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
 <#= this.DialogueData.recipientNickName #>'s is a <#= this.DialogueData.recipientGender #> <#= this.DialogueData.recipientRace #> age <#= this.DialogueData.recipientAge #> years old.
 <#   } #>
 <# } #>
-<# if (this.ShowDescription) {#>
+<# if (this.Config.ShowDescription) {#>
 <#   if (this.DialogueData.initiatorDescription == this.DialogueData.recipientDescription) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are <#= this.DialogueData.initiatorDescription #>.
 <#   } else { #>
@@ -78,7 +78,7 @@ Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipi
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.ShowPawnType) { #>
+<# if (this.Config.ShowPawnType) { #>
 <#   if (this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are colonists and members of the player's colony.
 <#   } else if (this.DialogueData.initiatorIsPrisoner && this.DialogueData.recipientIsPrisoner) { #>
@@ -106,15 +106,15 @@ Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipi
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorRoyaltyTitle)) { #>
+<# if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorRoyaltyTitle)) { #>
 <#= this.DialogueData.initiatorNickName #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
 <#= this.DialogueData.initiatorNickName #>'s royal title is <#= this.DialogueData.initiatorRoyaltyTitle #>
 <# } #>
-<# if (this.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.recipientRoyaltyTitle)) { #>
+<# if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.DialogueData.recipientRoyaltyTitle)) { #>
 <#= this.DialogueData.recipientRoyaltyTitle #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
 <#= this.DialogueData.recipientNickName #>'s royal title is <#= this.DialogueData.recipientRoyaltyTitle #>
 <# } #>
-<# if (this.ShowFaction) { #>
+<# if (this.Config.ShowFaction) { #>
 <#   if (this.DialogueData.initiatorFactionName == this.DialogueData.recipientFactionName) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> belong to the same faction, called "<#= this.DialogueData.initiatorFactionName #>". It is a <#= this.DialogueData.initiatorFactionLabel #> faction. <#= this.DialogueData.initiatorFactionDescription #>
 <#   } else { #>
@@ -126,43 +126,43 @@ The faction <#= this.DialogueData.recipientNickName #> belongs to is called "<#=
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.ShowIdeology) { #>
+<# if (this.Config.ShowIdeology) { #>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeologyName) && this.DialogueData.initiatorIdeologyName == this.DialogueData.recipientIdeologyName) { #>
 Both <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> share the same ideology, called "<#= this.DialogueData.initiatorIdeologyName #>".
 The narrative of "<#= this.DialogueData.initiatorIdeologyName #>" is: <#= this.DialogueData.initiatorIdeologyDescription #>
-<#     if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
+<#     if (this.Config.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
 The precepts of their ideology are: <#= String.Join(" ", this.DialogueData.initiatorIdeologyPrecepts) #>
 <#     } #>
 <#  } else { #>
 <#    if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorIdeologyName)) { #>
 <#= this.DialogueData.initiatorNickName #>'s ideology is "<#= this.DialogueData.initiatorIdeologyName #>".
 The narrative of "<#= this.DialogueData.initiatorIdeologyName #>" is: <#= this.DialogueData.initiatorIdeologyDescription #>
-<#      if (this.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
+<#      if (this.Config.ShowPrecepts && this.DialogueData.initiatorIdeologyPrecepts.Any()) {#>
 The precepts of <#= this.DialogueData.initiatorNickName #>'s ideology are: <#= String.Join(" ", this.DialogueData.recipientIdeologyPrecepts) #>
 <#      } #>
 <#    } #>
 <#    if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientIdeologyName)) { #>
 <#= this.DialogueData.recipientNickName #>'s ideology is <#= this.DialogueData.recipientIdeologyName #>.
 The narrative of this ideology is: <#= this.DialogueData.recipientIdeologyDescription #>
-<#      if (this.ShowPrecepts && this.DialogueData.recipientIdeologyPrecepts.Any()) {#>
+<#      if (this.Config.ShowPrecepts && this.DialogueData.recipientIdeologyPrecepts.Any()) {#>
 The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= String.Join(" ", this.DialogueData.recipientIdeologyPrecepts) #>
 <#      } #>
 <#	  } #>
 <#  } #>
 <#} #>
-<# if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorAdulthood)) { #>
+<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorAdulthood)) { #>
 <#= this.DialogueData.initiatorNickName #>'s adulthood was spent as: <#= this.DialogueData.initiatorAdulthood #>
 <# } #>
-<# if (this.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientAdulthood)) { #>
+<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientAdulthood)) { #>
 <#= this.DialogueData.recipientNickName #>'s adulthood was spent as: <#= this.DialogueData.recipientAdulthood #>
 <# } #>
-<# if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorChildhood)) { #>
+<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorChildhood)) { #>
 <#= this.DialogueData.initiatorNickName #>'s childhood was spent as: <#= this.DialogueData.initiatorChildhood #>
 <# } #>
-<# if (this.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientChildhood)) { #>
+<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.DialogueData.recipientChildhood)) { #>
 <#= this.DialogueData.recipientNickName #>'s childhood was spent as: <#= this.DialogueData.recipientChildhood #>
 <# } #>
-<# if (this.ShowJob) { #>
+<# if (this.Config.ShowJob) { #>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorJobReport)) { #>
 <#= this.DialogueData.initiatorNickName #>'s current activity is <#= this.DialogueData.initiatorJobReport #>
 <#     if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorCarrying)) { #>
@@ -176,7 +176,7 @@ The precepts of <#= this.DialogueData.recipientNickName #>'s ideology are: <#= S
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.ShowCombatLog) { #>
+<# if (this.Config.ShowCombatLog) { #>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorLastBattle) && this.DialogueData.initiatorCombatLog.Any()) { #>
 In the recent battle "<#= this.DialogueData.initiatorLastBattle #>" this happened: <#= String.Join(" ", this.DialogueData.initiatorCombatLog) #>
 <#   } #>
@@ -184,13 +184,13 @@ In the recent battle "<#= this.DialogueData.initiatorLastBattle #>" this happene
 In the recent battle "<#=this.DialogueData.recipientLastBattle #>" this happened: <#= String.Join(" ", this.DialogueData.recipientCombatLog) #>
 <#   } #>
 <# } #>
-<# if (this.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorHair)) { #>
+<# if (this.Config.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorHair)) { #>
 <#= this.DialogueData.initiatorNickName #>'s hair style is <#= this.DialogueData.initiatorHair #> 
 <# } #>
-<# if (this.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.recipientHair)) { #>
+<# if (this.Config.ShowHair && !string.IsNullOrWhiteSpace(this.DialogueData.recipientHair)) { #>
 <#= this.DialogueData.recipientNickName #>'s hair style is <#= this.DialogueData.recipientHair #> 
 <# } #>
-<# if (this.ShowBeard) { #>
+<# if (this.Config.ShowBeard) { #>
 <#   if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorBeard) && this.DialogueData.initiatorBeard != "no beard") { #>
 <#= this.DialogueData.initiatorNickName #>'s beard style is <#= this.DialogueData.initiatorBeard #>.
 <#   } #>
@@ -198,61 +198,61 @@ In the recent battle "<#=this.DialogueData.recipientLastBattle #>" this happened
 <#= this.DialogueData.recipientNickName #>'s beard style is <#= this.DialogueData.recipientBeard #>.
 <#   } #>
 <# } #>
-<# if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorFaceTattoo) && this.DialogueData.initiatorFaceTattoo != "none") { #>
+<# if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorFaceTattoo) && this.DialogueData.initiatorFaceTattoo != "none") { #>
 <#= this.DialogueData.initiatorNickName #> has a face tattoo of a <#= this.DialogueData.initiatorFaceTattoo #> 
 <# } #>
-<# if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientFaceTattoo) && this.DialogueData.recipientFaceTattoo != "none") { #>
+<# if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientFaceTattoo) && this.DialogueData.recipientFaceTattoo != "none") { #>
 <#= this.DialogueData.recipientNickName #> has a face tattoo of a <#= this.DialogueData.recipientFaceTattoo #> 
 <# } #>
-<# if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorBodyTattoo) && this.DialogueData.initiatorBodyTattoo != "none") { #>
+<# if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorBodyTattoo) && this.DialogueData.initiatorBodyTattoo != "none") { #>
 <#= this.DialogueData.initiatorNickName #> has body tattoo of a <#= this.DialogueData.initiatorBodyTattoo #> 
 <# } #>
-<# if (this.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientBodyTattoo) && this.DialogueData.recipientBodyTattoo != "none") { #>
+<# if (this.Config.ShowTattoo && !string.IsNullOrWhiteSpace(this.DialogueData.recipientBodyTattoo) && this.DialogueData.recipientBodyTattoo != "none") { #>
 <#= this.DialogueData.recipientNickName #> has body tattoo of a <#= this.DialogueData.recipientBodyTattoo #> 
 <# } #>
-<# if (this.ShowRelations && this.DialogueData.initiatorRelations.Any()) { #>
+<# if (this.Config.ShowRelations && this.DialogueData.initiatorRelations.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s family relations are: <#= String.Join(", ", this.DialogueData.initiatorRelations) #>
 <# } #>
-<# if (this.ShowRelations && this.DialogueData.recipientRelations.Any()) { #>
+<# if (this.Config.ShowRelations && this.DialogueData.recipientRelations.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s family relations are: <#= String.Join(", ", this.DialogueData.recipientRelations) #>
 <# } #>
-<# if (this.ShowTraits && this.DialogueData.initiatorTraits.Any()) { #>
+<# if (this.Config.ShowTraits && this.DialogueData.initiatorTraits.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s traits are: <#= String.Join(" ", this.DialogueData.initiatorTraits) #>
 <# } #>
-<# if (this.ShowTraits && this.DialogueData.recipientTraits.Any()) { #>
+<# if (this.Config.ShowTraits && this.DialogueData.recipientTraits.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s traits are: <#= String.Join(" ", this.DialogueData.recipientTraits) #>
 <# } #>
-<# if (this.ShowSkills && this.DialogueData.initiatorSkills.Any()) { #>
+<# if (this.Config.ShowSkills && this.DialogueData.initiatorSkills.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s skills are: <#= String.Join(", ", this.DialogueData.initiatorSkills) #>
 <# } #>
-<# if (this.ShowSkills && this.DialogueData.recipientSkills.Any()) { #>
+<# if (this.Config.ShowSkills && this.DialogueData.recipientSkills.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s skills are: <#= String.Join(", ", this.DialogueData.recipientSkills) #>
 <# } #>
-<# if (this.ShowMoodThoughts && this.DialogueData.initiatorMoodThoughts.Any()) { #>
+<# if (this.Config.ShowMoodThoughts && this.DialogueData.initiatorMoodThoughts.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s recent thoughts are: <#= GetThoughts(this.DialogueData.initiatorNickName, this.DialogueData.initiatorMoodThoughts) #>
 <# } #>
-<# if (this.ShowMoodThoughts && this.DialogueData.recipientMoodThoughts.Any()) { #>
+<# if (this.Config.ShowMoodThoughts && this.DialogueData.recipientMoodThoughts.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s recent thoughts are: <#= GetThoughts(this.DialogueData.recipientNickName, this.DialogueData.recipientMoodThoughts) #>
 <# } #>
-<# if (this.ShowHealth && this.DialogueData.initiatorHediffs.Any()) { #>
+<# if (this.Config.ShowHealth && this.DialogueData.initiatorHediffs.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s health conditions are: <#= String.Join(", ", this.DialogueData.initiatorHediffs) #>
 <# } #>
-<# if (this.ShowHealth && this.DialogueData.recipientHediffs.Any()) { #>
+<# if (this.Config.ShowHealth && this.DialogueData.recipientHediffs.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s health conditions are: <#= String.Join(", ", this.DialogueData.recipientHediffs) #>
 <# } #>
-<# if (this.ShowApparel && this.DialogueData.initiatorApparel.Any()) { #>
+<# if (this.Config.ShowApparel && this.DialogueData.initiatorApparel.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s apparel is: <#= String.Join(" ", this.DialogueData.initiatorApparel) #>
 <# } #>
-<# if (this.ShowApparel && this.DialogueData.recipientApparel.Any()) { #>
+<# if (this.Config.ShowApparel && this.DialogueData.recipientApparel.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s apparel is: <#= String.Join(" ", this.DialogueData.recipientApparel) #>
 <# } #>
-<# if (this.ShowWeapons && this.DialogueData.initiatorWeapons.Any()) { #>
+<# if (this.Config.ShowWeapons && this.DialogueData.initiatorWeapons.Any()) { #>
 <#= this.DialogueData.initiatorNickName #>'s weapons and equipment are: <#=  String.Join(" ", this.DialogueData.initiatorWeapons) #>
 <# } #>
-<# if (this.ShowWeapons && this.DialogueData.recipientWeapons.Any()) { #>
+<# if (this.Config.ShowWeapons && this.DialogueData.recipientWeapons.Any()) { #>
 <#= this.DialogueData.recipientNickName #>'s weapons and equipment are: <#= String.Join(" ", this.DialogueData.recipientWeapons) #>
 <# } #>
-<# if (this.ShowNeeds) { #>
+<# if (this.Config.ShowNeeds) { #>
 <#   if (this.DialogueData.initiatorComfortPercentage >= 0) { #>
 <#= this.DialogueData.initiatorNickName #> is <#= DescribeComfortLevel(this.DialogueData.initiatorComfortPercentage) #>.
 <#   } #>
@@ -284,8 +284,8 @@ In the recent battle "<#=this.DialogueData.recipientLastBattle #>" this happened
 <#= this.DialogueData.recipientNickName #> feels their environment is <#= DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage) #>.
 <#   } #>
 <# } #>
-<# if (this.ShowColonyData && this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
-<#   if (this.ShowTimeData) { #>
+<# if (this.Config.ShowColonyData && this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
+<#   if (this.Config.ShowTimeData) { #>
 The colony started <#= this.DaysAgoLabel #>.
 The current season is <#= this.DialogueData.season #>.
 The current time of day is <#= DescribeTimeOfDay(this.DialogueData.hourOfDay) #>.
@@ -311,21 +311,21 @@ The colony has <#= DescribeMedicineSupply(this.DialogueData.medicineTotal) #>
 <#   if (this.DialogueData.drugsTotal >= 0) { #>
 The colony has <#= DescribeDrugSupply(this.DialogueData.drugsTotal, this.DialogueData.colonistsCount) #>
 <#   } #>
-<#   if (this.ShowRecentIncidents) { #>
+<#   if (this.Config.ShowRecentIncidents) { #>
 Recent incidents to occur in the colony are: <#= String.Join(", ",this.DialogueData.recentIncidents) #>
 <#   } #>
-<#   if (this.ShowOtherFactions && this.DialogueData.otherFactions.Any()) { #>
+<#   if (this.Config.ShowOtherFactions && this.DialogueData.otherFactions.Any()) { #>
 Other factions in the area are: <#= String.Join(", ", this.DialogueData.otherFactions) #>
 <#   } #>
 <# } #>
-<# if (this.ShowBiome) { #>
+<# if (this.Config.ShowBiome) { #>
 The biome of this area is <#= this.DialogueData.biome #>
 <# } #>
-<# if (this.ShowWeather) { #>
+<# if (this.Config.ShowWeather) { #>
 The current weather is <#= this.DialogueData.currentWeather #>
 The temperature outdoors is <#= TemperatureFeel(this.DialogueData.outdoorTemp) #>.
 <# } #>
-<# if (this.ShowRoom) { #>
+<# if (this.Config.ShowRoom) { #>
 <#   if (this.DialogueData.isOutside) { #>
 <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently outside.
 <#   } else { #>
@@ -337,20 +337,20 @@ The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.r
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.RepeatInstructions) { #>
-<#   if (this.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
+<# if (this.Config.RepeatInstructions) { #>
+<#   if (this.Config.ShowAnimal && this.DialogueData.initiatorIsAnimal) { #>
 <#= this.DialogueData.initiatorNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <#   } #>
-<#   if (this.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
+<#   if (this.Config.ShowAnimal && this.DialogueData.recipientIsAnimal) { #>
 <#= this.DialogueData.recipientNickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <#   } #>
-<#   if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
+<#   if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.initiatorMoodString)) { #>
 <#= this.DialogueData.initiatorNickName #>'s overall mood is <#= this.DialogueData.initiatorMoodString #>.
 <#   } #>
-<#   if (this.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
+<#   if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.DialogueData.recipientMoodString)) { #>
 <#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>.
 <#   } #>
-<#   if (this.ShowPersonality) {#>
+<#   if (this.Config.ShowPersonality) {#>
 <#     if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorPersonality)) { #>
 <#= this.DialogueData.initiatorNickName #>'s personality is <#= this.DialogueData.initiatorPersonality #>
 <#     } #>
@@ -358,24 +358,24 @@ The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.r
 <#= this.DialogueData.recipientNickName #>'s personality is <#= this.DialogueData.recipientPersonality #>
 <#     } #>
 <#   } #>
-<#   if (this.ShowOpinions && !string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient) #> <#= this.DialogueData.recipientNickName #>.
-<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator) #> <#= this.DialogueData.initiatorNickName #>.
+<#   if (this.Config.ShowOpinions && !string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
+<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
+<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
 <#   } #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-Your job is to create a very short conversation of <#= this.DialogueData.maxWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a very short conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 <# } else { #>
-Your job is to create a very short monologue of <#= this.DialogueData.maxWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a very short monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 <# } #>
 <#   if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
 The word "lovin'" is a euphemism for sex.
 <#   } #>
 It is important that you respond with only the dialogue exchange.
-<# if (this.ShowSpecialInstructions) { #>
+<# if (this.Config.ShowSpecialInstructions) { #>
 <#= this.DialogueData.specialInstructions #>
 <#  if (!string.IsNullOrWhiteSpace(this.DialogueData.initiatorInstructions)) { #>
 Instructions for <#= this.DialogueData.initiatorNickName #>: <#= this.DialogueData.initiatorInstructions #>

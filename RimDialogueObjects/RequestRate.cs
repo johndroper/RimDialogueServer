@@ -5,29 +5,28 @@ namespace RimDialogueObjects
 {
   public class RequestRate
   {
-    public static bool CheckRateLimit(string key, IConfiguration configuration, IMemoryCache memoryCache)
+    public static bool CheckRateLimit(
+      string key, 
+      float rateLimit,
+      int minRateLimitRequestCount, 
+      int rateLimitCacheMinutes, 
+      IMemoryCache memoryCache)
     {
       //******Rate Limiting******
       try
       {
         if (memoryCache.TryGetValue(key, out RequestRate? requestRate) && requestRate != null)
         {
-          int minRateLimitRequestCount = configuration.GetValue<int>("MinRateLimitRequestCount", 5);
           if (requestRate.Count > minRateLimitRequestCount)
           {
-            float rateLimit = configuration.GetValue<float>("RateLimit", 0.1f);
             var rate = requestRate.GetRate();
             if (rate > rateLimit)
-            {
-              Console.WriteLine($"{key} was rate limited to {rateLimit} requests per second. Current rate is {rate} requests per second.");
               return true;
-            }
           }
           requestRate.Increment();
         }
         else
         {
-          int rateLimitCacheMinutes = configuration.GetValue<int>("RateLimitCacheMinutes", 1);
           requestRate = new RequestRate(key);
           var cacheEntryOptions = new MemoryCacheEntryOptions()
             .SetSlidingExpiration(TimeSpan.FromMinutes(rateLimitCacheMinutes));
@@ -42,7 +41,6 @@ namespace RimDialogueObjects
         throw exception;
       }
     }
-
 
     private int _count;
 

@@ -6,6 +6,8 @@ Join the [Discord](https://discord.gg/J79HSyWR) to get installation help, report
 
 ## Prerequisites
 
+Requires the [.NET 9 ASP.NET Core Runtime.](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)  
+
 RimDialogue Local can be run with:
 
 - A **local LLM** using Ollama, or  

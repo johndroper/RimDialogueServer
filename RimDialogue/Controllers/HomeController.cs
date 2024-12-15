@@ -55,7 +55,16 @@ namespace RimDialogueLocal.Controllers
       if (ipAddress == null) {
         throw new Exception("IP Address is null.");
       }
-      if (RequestRate.CheckRateLimit(ipAddress, Configuration, memoryCache))
+
+      var tier = Configuration.GetSection("Tier").Get<TierConfig>();
+      if (tier == null)
+        throw new Exception("Tier is null.");
+
+      if (RequestRate.CheckRateLimit(ipAddress,
+        tier.RateLimit,
+        tier.RateLimitCacheMinutes,
+        tier.MinRateLimitRequestCount,
+        memoryCache))
         return new JsonResult(new DialogueResponse { RateLimited = true });
 
       //******Deserialization******
@@ -73,7 +82,7 @@ namespace RimDialogueLocal.Controllers
       }
 
       //******Prompt Generation******
-      string prompt = PromptTemplate.Generate(Configuration, dialogueData);
+      string prompt = PromptTemplate.Generate(tier, dialogueData);
 
       //******Response Generation******
       string? text = null;
