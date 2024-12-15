@@ -1,6 +1,6 @@
 # RimDialogue Local Server Install Instructions
 
-Join the [Discord](https://discord.gg/J79HSyWR) to get installation help, report bugs, or show off the crazy conversations your pawns have!
+Join the [Discord](https://discord.gg/KavBmswUen) to get installation help, report bugs, or show off the crazy conversations your pawns have!
 
 ---
 
