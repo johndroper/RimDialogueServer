@@ -47,9 +47,10 @@ namespace RimDialogueLocal.Controllers
 
     public async Task<IActionResult> GetDialogue(string dialogueDataJSON)
     {
-      DialogueData? dialogueData = null;
       if (dialogueDataJSON == null)
         throw new Exception("dialogueDataJSON is null.");
+
+      DialogueData? dialogueData = null;
 
       string? ipAddress = this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString();
       if (ipAddress == null) {
