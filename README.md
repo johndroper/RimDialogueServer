@@ -131,9 +131,10 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 1. Run `RimDialogue.exe` from the installation folder.  
 2. Start your RimWorld game normally.
 
+---
 
-## Contributing 🤝
+## Contributing
 Contributions are welcome! Feel free to open issues or pull requests.
 
-## License 📜
+## License
 This project is licensed under the MIT License.
