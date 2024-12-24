@@ -10,7 +10,9 @@ Join the [Discord](https://discord.gg/KavBmswUen) to get installation help, repo
 
 ## Prerequisites
 
-Requires the [.NET 9 ASP.NET Core Runtime.](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)  
+Requires the [.NET 9 ASP.NET Core Runtime.](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+  - Be sure to get the `ASP.NET Core Runtime` and not the `SDK` or `.NET Desktop Runtime`
+  - On a Windows machine you probably want the x64 Installer.
 
 RimDialogue Local can be run with:
 
