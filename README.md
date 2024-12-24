@@ -77,10 +77,12 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 
 1. Open the `appsettings.json` file in a text editor.
 2. Configure your provider:
-   - **For Ollama:**  
+   - **For Ollama:**
+     - Set the `Provider` setting to `OLLAMA`.
      - Ensure `OllamaUrl` points to the correct port (default: `11434`).  
      - Set `OllamaModelId` to your chosen model (e.g., `"llama3.2"`).
    - **For Cloud Providers:**  
+     - Set the `Provider` setting to `AWS`, `OPENAI`, `GEMINI`, or `GROQ`.
      - Fill in your API credentials in the `SETTINGS` section for your provider (e.g., `GroqApiKey` and `GroqModelId` for Groq).
 
 3. Adjust optional settings:
@@ -89,8 +91,9 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 	 - For cloud providers this will depend on your token budget. 
    - **MaxPromptLength**: Limits prompt size before truncation.  
      - Set lower for tight input token budgets or higher (40,000–50,000) for local setups.  
-   - **Prompt Settings**:  
-     - Enable additional data with boolean options under `//PROMPT SETTINGS`.
+   - **Options Settings**:  
+     - Enable additional data with boolean options under `//OPTIONS SETTINGS`.
+     - If your cloud provider limits input tokens, turn some of these settings off to reduce the prompt size and the number of input tokens.
    - **Server Port**:  
      - By default, the server runs on port `7293`. Change this in the `Urls` field if needed.
 
