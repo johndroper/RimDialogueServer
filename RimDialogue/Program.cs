@@ -12,7 +12,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
 }
 app.UseExceptionHandler();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.MapControllerRoute(

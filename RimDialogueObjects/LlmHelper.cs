@@ -2,6 +2,8 @@
 using Amazon.BedrockRuntime.Model;
 using Amazon.Runtime;
 using Azure.AI.OpenAI;
+using DotnetGeminiSDK.Client;
+using DotnetGeminiSDK.Config;
 using GroqSharp.Models;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +46,8 @@ namespace RimDialogueObjects
             return await GetFromOpenAi(configuration, prompt);
           case "GROQ":
             return await GetFromGroq(configuration, prompt);
+          case "GEMINI":
+            return await GetFromGemini(configuration, prompt);
           case null:
             throw new Exception($"Provider not set.");
           default:
@@ -169,6 +173,43 @@ namespace RimDialogueObjects
         Exception exception = new("Error accessing Ollama.", ex);
         exception.Data.Add("ollamaUrl", ollamaUrl);
         exception.Data.Add("ollamaModelId", ollamaModelId);
+        throw exception;
+      }
+    }
+
+    public static async Task<string> GetFromGemini(IConfiguration configuration, string prompt)
+    {
+      var geminiApiKey = configuration["GeminiApiKey"];
+      if (String.IsNullOrWhiteSpace(geminiApiKey))
+        throw new Exception("Provider is set to Gemini but 'GeminiApiKey' is empty in appsettings.");
+      var geminiUrl = configuration["GeminiUrl"];
+      if (String.IsNullOrWhiteSpace(geminiUrl))
+        throw new Exception("Provider is set to Gemini but 'GeminiUrl' is empty in appsettings.");
+      try
+      {
+        var client = new GeminiClient(new GoogleGeminiConfig()
+        {
+          ApiKey = geminiApiKey,
+          TextBaseUrl = geminiUrl,
+        });
+        var response = await client.TextPrompt(prompt);
+        if (response == null)
+          throw new Exception("Gemini response is null.");
+        var candidate = response.Candidates.FirstOrDefault();
+        if (candidate == null)
+          throw new Exception("Gemini response has no candidates.");
+        var part = candidate.Content.Parts.FirstOrDefault();
+        if (part == null)
+          throw new Exception("Gemini response has no parts.");
+        var text = part.Text;
+        if (text == null)
+          throw new Exception("Gemini response is null.");
+        return text;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error accessing Gemini.", ex);
+        exception.Data.Add("geminiUrl", geminiUrl);
         throw exception;
       }
     }

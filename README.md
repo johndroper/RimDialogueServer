@@ -1,3 +1,7 @@
+
+
+
+
 # RimDialogue Local Server Install Instructions
 
 Join the [Discord](https://discord.gg/KavBmswUen) to get installation help, report bugs, or show off the crazy conversations your pawns have!
@@ -125,4 +129,8 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 2. Start your RimWorld game normally.
 
 
+## Contributing 🤝
+Contributions are welcome! Feel free to open issues or pull requests.
 
+## License 📜
+This project is licensed under the MIT License.

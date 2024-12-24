@@ -83,7 +83,7 @@ namespace RimDialogueLocal.Controllers
       }
 
       //******Prompt Generation******
-      string prompt = PromptTemplate.Generate(config, dialogueData);
+      string prompt = PromptTemplate.Generate(config, dialogueData, out bool inputTruncated);
 
       //******Response Generation******
       string? text = null;
@@ -98,20 +98,16 @@ namespace RimDialogueLocal.Controllers
         throw exception;
       }
 
-      //******Metrics******
-      ServerMetrics.AddRequest(
-        this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
-        prompt.Length,
-        text.Length);
-
       //******Response Serialization******
       DialogueResponse? dialogueResponse = null;
+      bool outputTruncated = false;
       try
       {
         dialogueResponse = new DialogueResponse();
         int maxResponseLength = Configuration.GetValue<int>("MaxResponseLength", 5000);
         if (text.Length > maxResponseLength)
         {
+          outputTruncated = true;
           Console.WriteLine($"Response truncated to {maxResponseLength} characters. Original length was {text.Length} characters.");
           text = text.Substring(0, maxResponseLength) + "...";
         }
@@ -123,6 +119,15 @@ namespace RimDialogueLocal.Controllers
         exception.Data.Add("text", text);
         throw exception;
       }
+
+      //******Metrics******
+      Metrics.AddRequest(
+        this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
+        prompt.Length,
+        text.Length,
+        inputTruncated,
+        outputTruncated,
+        null);
 
       Log(prompt, text);
 

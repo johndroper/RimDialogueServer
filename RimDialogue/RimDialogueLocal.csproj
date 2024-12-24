@@ -23,11 +23,4 @@
     <ProjectReference Include="..\..\RimDialogueClient\source\RimDialogueClient.csproj" />
     <ProjectReference Include="..\RimDialogueObjects\RimDialogueObjects.csproj" />
   </ItemGroup>
-
-  <Target Name="ReplaceAppSettings" AfterTargets="Publish">
-    <Copy SourceFiles="sample_appsettings.json" DestinationFiles="$(PublishDir)appsettings.json" />
-    <Delete Files="$(PublishDir)sample_appsettings.json" />
-    <Delete Files="$(PublishDir)appsettings.Development.json" />
-  </Target>
-
 </Project>

@@ -14,7 +14,7 @@ namespace RimDialogueLocal
           Exception exception,
           CancellationToken cancellationToken)
     {
-      ServerMetrics.IncrementErrors();
+      Metrics.metricsData.serverMetrics.IncrementErrors();
       Console.WriteLine(exception.ToString());
       return ValueTask.FromResult(false);
     }

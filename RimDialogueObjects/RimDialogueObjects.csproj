@@ -10,6 +10,7 @@
     <PackageReference Include="AWSSDK.BedrockRuntime" Version="4.0.0-preview.4" />
     <PackageReference Include="AWSSDK.Core" Version="4.0.0-preview.4" />
     <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
+    <PackageReference Include="DotnetGeminiSDK" Version="1.0.14" />
     <PackageReference Include="GroqSharp" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.AI.Ollama" Version="9.0.1-preview.1.24570.5" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />

@@ -43,12 +43,13 @@ namespace RimDialogueObjects
       
     //};
 
-    public static string Generate(Config config, DialogueData dialogueData)
+    public static string Generate(Config config, DialogueData dialogueData, out bool wasTruncated)
     {
       //******Prompt Generation******
       string? prompt = null;
       try
       {
+        wasTruncated = false;
         if (dialogueData == null)
           throw new Exception("dialogueData is null.");
         PromptTemplate promptTemplate = new(dialogueData, config);
@@ -58,6 +59,7 @@ namespace RimDialogueObjects
         int maxPromptLength = config.MaxPromptLength;
         if (prompt.Length > maxPromptLength)
         {
+          wasTruncated = true;
           Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
           return prompt.Substring(0, maxPromptLength);
         }

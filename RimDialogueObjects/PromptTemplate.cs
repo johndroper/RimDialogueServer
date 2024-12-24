@@ -37,7 +37,7 @@ namespace RimDialogueObjects
             
             #line default
             #line hidden
-            this.Write("Your job is to create a very short conversation of ");
+            this.Write("Your job is to create a short conversation of ");
             
             #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
@@ -93,7 +93,7 @@ namespace RimDialogueObjects
             
             #line default
             #line hidden
-            this.Write("Your job is to create a very short monologue of ");
+            this.Write("Your job is to create a short monologue of ");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
@@ -3087,7 +3087,7 @@ namespace RimDialogueObjects
             
             #line default
             #line hidden
-            this.Write("Your job is to create a very short conversation of ");
+            this.Write("Your job is to create a short conversation of ");
             
             #line 367 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
@@ -3143,7 +3143,7 @@ namespace RimDialogueObjects
             
             #line default
             #line hidden
-            this.Write("Your job is to create a very short monologue of ");
+            this.Write("Your job is to create a short monologue of ");
             
             #line 371 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));

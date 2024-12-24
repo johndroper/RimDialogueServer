@@ -19,86 +19,86 @@
     Start Time
   </dt>
   <dd>
-    @ServerMetrics.StartTime
+    @Metrics.StartTime
   </dd>
   <dt>
     Uptime
   </dt>
   <dd>
-    @ServerMetrics.Uptime
+    @Metrics.GetUpTime()
   </dd>
   <dt>
     Total Errors
   </dt>
   <dd>
-    @ServerMetrics.TotalErrors.ToString("N0")
+    @Metrics.metricsData.serverMetrics.TotalErrors.ToString("N0")
   </dd>
   <dt>
     Total Requests
   </dt>
   <dd>
-    @ServerMetrics.RequestCount.ToString("N0")
+    @Metrics.metricsData.serverMetrics.RequestCount.ToString("N0")
   </dd>
   <dt>
     Request Per Minute
   </dt>
   <dd>
-    @ServerMetrics.RequestsPerMinute.ToString("N0")
+    @Metrics.metricsData.serverMetrics.RequestsPerMinute.ToString("N0")
   </dd>
   <dt>
     Total Input Length
   </dt>
   <dd>
-    @ServerMetrics.TotalInputLength.ToString("N0")
+    @Metrics.metricsData.serverMetrics.TotalInputLength.ToString("N0")
   </dd>
   <dt>
     Average Input Length
   </dt>
   <dd>
-    @ServerMetrics.AverageInputLength.ToString("N0")
+    @Metrics.metricsData.serverMetrics.AverageInputLength.ToString("N0")
   </dd>
   <dt>
     Average Input Per Minute
   </dt>
   <dd>
-    @ServerMetrics.AverageInputPerMinute.ToString("N0")
+    @Metrics.metricsData.serverMetrics.AverageInputPerMinute.ToString("N0")
   </dd>
   <dt>
     Total Output Length
   </dt>
   <dd>
-    @ServerMetrics.TotalOutputLength.ToString("N0")
+    @Metrics.metricsData.serverMetrics.TotalOutputLength.ToString("N0")
   </dd>
   <dt>
     Average Output Length
   </dt>
   <dd>
-    @ServerMetrics.AverageOutputLength.ToString("N0")
+    @Metrics.metricsData.serverMetrics.AverageOutputLength.ToString("N0")
   </dd>
   <dt>
     Average Output Per Minute
   </dt>
   <dd>
-    @ServerMetrics.AverageOutputPerMinute.ToString("N0")
+    @Metrics.metricsData.serverMetrics.AverageOutputPerMinute.ToString("N0")
   </dd>
   <dt>
     Distinct IP Count
   </dt>
   <dd>
-    @ServerMetrics.DistinctIPCount.ToString("N0")
+    @Metrics.DistinctIPCount.ToString("N0")
   </dd>
   <dt>
     Average Requests Per IP
   </dt>
   <dd>
-    @ServerMetrics.AverageRequestsPerIP.ToString("N0")
+    @Metrics.AverageRequestsPerIP.ToString("N0")
   </dd>
   <dt>
     Top 10 Requesters
   </dt>
   <dd>
     <ul>
-      @foreach (var ip in ServerMetrics.GetTopRequesters(10))
+      @foreach (var ip in Metrics.GetTopRequesters(10))
       {
         <li>@ip.Key - @ip.Value.ToString("N0")</li>
       }
@@ -109,7 +109,7 @@
   </dt>
   <dd>
     <ul>
-      @foreach (var ip in ServerMetrics.GetTopRequestersByInput(10))
+      @foreach (var ip in Metrics.GetTopRequestersByInput(10))
       {
         <li>@ip.Key - @ip.Value.ToString("N0")</li>
       }
@@ -120,7 +120,7 @@
   </dt>
   <dd>
     <ul>
-      @foreach (var ip in ServerMetrics.GetTopRequestersByOutput(10))
+      @foreach (var ip in Metrics.GetTopRequestersByOutput(10))
       {
         <li>@ip.Key - @ip.Value.ToString("N0")</li>
       }

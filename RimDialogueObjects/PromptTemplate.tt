@@ -6,11 +6,11 @@
 <#@ import namespace="RimDialogue.Core" #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-Your job is to create a very short conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a short conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 <# } else { #>
-Your job is to create a very short monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a short monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 <# } #>
 <# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
 The word "lovin'" is a euphemism for sex.
@@ -364,11 +364,11 @@ The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.r
 <#   } #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-Your job is to create a very short conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a short conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 <# } else { #>
-Your job is to create a very short monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create a short monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 <# } #>
 <#   if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
