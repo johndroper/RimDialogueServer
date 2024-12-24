@@ -89,9 +89,9 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
    - **RateLimit**: Sets the number of requests per second allowed.  
 	 - For Ollama you can set this higher (0.5 - 1.0) depending on your machine.
 	 - For cloud providers this will depend on your token budget. If your provider limits requests per minute, turn this down.
-      - 0.016667 is 1 request per minute.
-      - 0.166667 is 10 requests per minute.
-      - 0.416667 is 25 requests per minute.  
+        - 0.016667 is 1 request per minute.
+        - 0.166667 is 10 requests per minute.
+        - 0.416667 is 25 requests per minute.  
    - **MaxPromptLength**: Limits prompt size before truncation.  
      - Set lower for tight input token budgets or higher (40,000–50,000) for local setups.  
    - **Options Settings**:  
