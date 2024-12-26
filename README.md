@@ -141,4 +141,4 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 Contributions are welcome! Feel free to open issues or pull requests.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the CC BY-NC-SA 4.0 International License.
