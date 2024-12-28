@@ -132,7 +132,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 
 ## Running RimDialogue Local Server
 
-1. Run `RimDialogue.exe` from the installation folder.  
+1. Run `RimDialogueLocal.exe` from the installation folder.  
 2. Start your RimWorld game normally.
 
 ---
