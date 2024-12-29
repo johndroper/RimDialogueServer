@@ -434,7 +434,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
- if (this.Config.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {
+ if (this.Config.ShowScenario && !string.IsNullOrWhiteSpace(this.DialogueData.scenario) && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {
             
             #line default
             #line hidden

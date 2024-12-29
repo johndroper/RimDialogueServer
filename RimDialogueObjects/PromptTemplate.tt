@@ -51,7 +51,7 @@ It is important that you respond with only the dialogue exchange.
 <#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
 <#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
 <# } #>
-<# if (this.Config.ShowScenario && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
+<# if (this.Config.ShowScenario && !string.IsNullOrWhiteSpace(this.DialogueData.scenario) && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
 This games scenario is: <#= this.DialogueData.scenario #>
 <# } #>
 <# if (this.Config.ShowFullName) {#>

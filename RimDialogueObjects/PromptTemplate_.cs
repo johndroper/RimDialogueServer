@@ -441,12 +441,7 @@ namespace RimDialogueObjects
 
     public static string DescribeComfortLevel(float comfort)
     {
-      if (comfort < 0 || comfort > 1)
-      {
-        throw new ArgumentOutOfRangeException(nameof(comfort), "Comfort level must be between 0 and 1.");
-      }
-
-      if (comfort == 0)
+      if (comfort <= 0)
         return "very uncomfortable";
       else if (comfort < 0.15f)
         return "uncomfortable";
@@ -466,12 +461,7 @@ namespace RimDialogueObjects
 
     public static string DescribeHungerLevel(float hunger)
     {
-      if (hunger < 0 || hunger > 1)
-      {
-        throw new ArgumentOutOfRangeException(nameof(hunger), "Hunger level must be between 0 and 1.");
-      }
-
-      if (hunger == 0)
+      if (hunger <= 0)
         return "starving";
       else if (hunger < 0.15f)
         return "very hungry";
@@ -485,18 +475,13 @@ namespace RimDialogueObjects
         return "full";
       else if (hunger < 1f)
         return "very full";
-      else // hunger == 1
+      else
         return "stuffed";
     }
 
     public static string DescribeRestLevel(float restLevel)
     {
-      if (restLevel < 0 || restLevel > 1)
-      {
-        throw new ArgumentOutOfRangeException(nameof(restLevel), "Rest level must be between 0 and 1.");
-      }
-
-      if (restLevel == 0)
+      if (restLevel <= 0)
         return "exhausted";
       else if (restLevel < 0.15f)
         return "very tired";
@@ -510,18 +495,13 @@ namespace RimDialogueObjects
         return "rested";
       else if (restLevel < 1f)
         return "very well rested";
-      else // restLevel == 1
+      else 
         return "completely refreshed";
     }
 
     public static string DescribeEngagementLevel(float engagementLevel)
     {
-      if (engagementLevel < 0 || engagementLevel > 1)
-      {
-        throw new ArgumentOutOfRangeException(nameof(engagementLevel), "Engagement level must be between 0 and 1.");
-      }
-
-      if (engagementLevel == 0)
+      if (engagementLevel <= 0)
         return "completely bored";
       else if (engagementLevel < 0.15f)
         return "very bored";
@@ -535,18 +515,13 @@ namespace RimDialogueObjects
         return "engaged";
       else if (engagementLevel < 1f)
         return "very interested";
-      else // engagementLevel == 1
+      else
         return "completely enthralled";
     }
 
     public static string DescribeEnvironmentBeauty(float beautyLevel)
     {
-      if (beautyLevel < 0 || beautyLevel > 1)
-      {
-        throw new ArgumentOutOfRangeException(nameof(beautyLevel), "Beauty level must be between 0 and 1.");
-      }
-
-      if (beautyLevel == 0)
+      if (beautyLevel <= 0)
         return "absolutely hideous";
       else if (beautyLevel < 0.15f)
         return "very ugly";
@@ -560,10 +535,9 @@ namespace RimDialogueObjects
         return "attractive";
       else if (beautyLevel < 1f)
         return "beautiful";
-      else // beautyLevel == 1
+      else
         return "breathtakingly stunning";
     }
-
 
     public string PercentToLabel(float value)
     {

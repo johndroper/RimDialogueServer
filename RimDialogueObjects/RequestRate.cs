@@ -10,8 +10,10 @@ namespace RimDialogueObjects
       float rateLimit,
       int minRateLimitRequestCount, 
       int rateLimitCacheMinutes, 
-      IMemoryCache memoryCache)
+      IMemoryCache memoryCache,
+      out float? rate)
     {
+      rate = null;
       //******Rate Limiting******
       try
       {
@@ -19,7 +21,7 @@ namespace RimDialogueObjects
         {
           if (requestRate.Count > minRateLimitRequestCount)
           {
-            var rate = requestRate.GetRate();
+            rate = requestRate.GetRate();
             if (rate > rateLimit)
               return true;
           }
