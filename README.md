@@ -10,9 +10,8 @@ Join the [Discord](https://discord.gg/KavBmswUen) to get installation help, repo
 
 ## Prerequisites
 
-Requires the [.NET 9 ASP.NET Core Runtime.](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-  - Be sure to get the `ASP.NET Core Runtime` and not the `SDK` or `.NET Desktop Runtime`
-  - On a Windows machine you probably want the x64 Installer.
+Requires .NET 9:
+  - The latest release should contain all the .NET files you need.
 
 RimDialogue Local can be run with:
 
@@ -133,7 +132,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 
 ## Running RimDialogue Local Server
 
-1. Run `RimDialogue.exe` from the installation folder.  
+1. Run `RimDialogueLocal.exe` from the installation folder.  
 2. Start your RimWorld game normally.
 
 ---
@@ -142,4 +141,4 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 Contributions are welcome! Feel free to open issues or pull requests.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the CC BY-NC-SA 4.0 International License.
