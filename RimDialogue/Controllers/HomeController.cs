@@ -15,6 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace RimDialogueLocal.Controllers
 {
@@ -139,6 +140,10 @@ namespace RimDialogueLocal.Controllers
           exception.Data.Add("prompt", prompt);
           throw exception;
         }
+
+        //****Remove everything between the start <think> tag and the end </think> tag ******
+        if (Configuration.GetValue("RemoveThinking", false))
+          text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
 
         //******Response Serialization******
         DialogueResponse? dialogueResponse = null;

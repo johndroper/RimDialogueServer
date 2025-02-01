@@ -39,7 +39,10 @@ namespace RimDialogueObjects
             var modelId = configuration["AwsModelId"];
             if (String.IsNullOrWhiteSpace(modelId))
               throw new Exception("AWS ModelId is empty in appsettings.");
-            return await GetFromAws(awsKey, awsSecret, awsRegion, modelId, prompt);
+            var maxOutputWords = configuration["MaxOutputWords"];
+            if (int.TryParse(maxOutputWords, out int maxTokens))
+              maxTokens = 25;
+            return await GetFromAws(awsKey, awsSecret, awsRegion, modelId, prompt, maxTokens);
           case "OLLAMA":
             return await GetFromOllama(configuration, prompt);
           case "OPENAI":
@@ -67,20 +70,24 @@ namespace RimDialogueObjects
       string awsSecret,
       string awsRegion,
       string modelId,
-      string prompt)
+      string prompt,
+      int maxTokens)
     {
       try
       {
         BasicAWSCredentials awsCredentials = new(awsKey, awsSecret);
         var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
-        var message = new Amazon.BedrockRuntime.Model.Message();
+                var message = new Amazon.BedrockRuntime.Model.Message();
         message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
         message.Role = ConversationRole.User;
         ConverseRequest request = new ConverseRequest
         {
           ModelId = modelId,
-          Messages = new List<Amazon.BedrockRuntime.Model.Message> { message }
+          Messages = new List<Amazon.BedrockRuntime.Model.Message> { message },
+          InferenceConfig = new InferenceConfiguration {
+            MaxTokens = maxTokens
+          }
         };
         var converseResponse = await client.ConverseAsync(request);
         return converseResponse.Output.Message.Content.First().Text;

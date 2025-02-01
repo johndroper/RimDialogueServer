@@ -85,6 +85,20 @@ namespace RimDialogueObjects
       return null;
     }
 
+    public static string DescribeOutputLength(int outputWords)
+    {
+      if (outputWords <= 25)
+        return "an extremely brief";
+      else if (outputWords <= 35)
+        return "a brief";
+      else if (outputWords <= 50)
+        return "a short";
+      else if (outputWords <= 80)
+        return "a compact";
+      else
+        return "a";
+    }
+
     public static string DescribeDefenses(int defenseCount)
     {
       if (defenseCount < 0)
