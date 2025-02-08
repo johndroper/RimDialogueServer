@@ -1,14 +1,12 @@
 ﻿using Amazon.BedrockRuntime;
 using Amazon.BedrockRuntime.Model;
 using Amazon.Runtime;
-using Azure.AI.OpenAI;
 using GroqSharp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using OpenAI.Chat;
-using System.ClientModel;
 using RimDialogue.Core;
 using RimDialogueObjects;
 using static System.Net.Mime.MediaTypeNames;

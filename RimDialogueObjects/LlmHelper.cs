@@ -1,15 +1,15 @@
 ﻿using Amazon.BedrockRuntime;
 using Amazon.BedrockRuntime.Model;
 using Amazon.Runtime;
-using Azure.AI.OpenAI;
 using DotnetGeminiSDK.Client;
 using DotnetGeminiSDK.Config;
 using GroqSharp.Models;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
+using OpenAI;
 using OpenAI.Chat;
+using OpenAI.Models;
 using System;
-using System.ClientModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +46,7 @@ namespace RimDialogueObjects
           case "OLLAMA":
             return await GetFromOllama(configuration, prompt);
           case "OPENAI":
-            return await GetFromOpenAi(configuration, prompt);
+            return await GetFromOpenAI(configuration, prompt);
           case "GROQ":
             return await GetFromGroq(configuration, prompt);
           case "GEMINI":
@@ -101,34 +101,36 @@ namespace RimDialogueObjects
       }
     }
 
-    public static async Task<string> GetFromOpenAi(IConfiguration configuration, string prompt)
-    {
-      var openAiUri = configuration["OpenAiUri"];
-      if (String.IsNullOrWhiteSpace(openAiUri))
-        throw new Exception("Provider is set to OpenAi but 'OpenAiUri' is empty in appsettings.");
-      var openAiApiKey = configuration["OpenAiApiKey"];
-      if (String.IsNullOrWhiteSpace(openAiApiKey))
-        throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
-      var openAiDeployment = configuration["OpenAiDeployment"];
-      if (String.IsNullOrWhiteSpace(openAiDeployment))
-        throw new Exception("Provider is set to OpenAi but 'OpenAiDeployment' is empty in appsettings.");
-      try
-      {
-        AzureOpenAIClient azureClient = new(
-          new Uri(openAiUri),
-          new ApiKeyCredential(openAiApiKey));
-        ChatClient chatClient = azureClient.GetChatClient(openAiDeployment);
-        var results = await chatClient.CompleteChatAsync(new OpenAI.Chat.UserChatMessage(prompt));
-        return results.Value.Content.First().Text;
-      }
-      catch (Exception ex)
-      {
-        Exception exception = new("Error accessing Azure.", ex);
-        exception.Data.Add("openAiUri", openAiUri);
-        exception.Data.Add("openAiDeployment", openAiDeployment);
-        throw exception;
-      }
-    }
+
+
+    //public static async Task<string> GetFromAzureOpenAi(IConfiguration configuration, string prompt)
+    //{
+    //  var openAiUri = configuration["OpenAiUri"];
+    //  if (String.IsNullOrWhiteSpace(openAiUri))
+    //    throw new Exception("Provider is set to OpenAi but 'OpenAiUri' is empty in appsettings.");
+    //  var openAiApiKey = configuration["OpenAiApiKey"];
+    //  if (String.IsNullOrWhiteSpace(openAiApiKey))
+    //    throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
+    //  var openAiDeployment = configuration["OpenAiDeployment"];
+    //  if (String.IsNullOrWhiteSpace(openAiDeployment))
+    //    throw new Exception("Provider is set to OpenAi but 'OpenAiDeployment' is empty in appsettings.");
+    //  try
+    //  {
+    //    AzureOpenAIClient azureClient = new(
+    //      new Uri(openAiUri),
+    //      new ApiKeyCredential(openAiApiKey));
+    //    ChatClient chatClient = azureClient.GetChatClient(openAiDeployment);
+    //    var results = await chatClient.CompleteChatAsync(new OpenAI.Chat.UserChatMessage(prompt));
+    //    return results.Value.Content.First().Text;
+    //  }
+    //  catch (Exception ex)
+    //  {
+    //    Exception exception = new("Error accessing Azure.", ex);
+    //    exception.Data.Add("openAiUri", openAiUri);
+    //    exception.Data.Add("openAiDeployment", openAiDeployment);
+    //    throw exception;
+    //  }
+    //}
 
     public static async Task<string> GetFromGroq(IConfiguration configuration, string prompt)
     {
@@ -217,6 +219,37 @@ namespace RimDialogueObjects
       {
         Exception exception = new("Error accessing Gemini.", ex);
         exception.Data.Add("geminiUrl", geminiUrl);
+        throw exception;
+      }
+    }
+    public static async Task<string> GetFromOpenAI(IConfiguration configuration, string prompt)
+    {
+      var openAiApiKey = configuration["OpenAiApiKey"];
+      if (String.IsNullOrWhiteSpace(openAiApiKey))
+        throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
+      //var openAiOrganizationId = configuration["OpenAiOrganizationId"];
+      //if (String.IsNullOrWhiteSpace(openAiOrganizationId))
+      //  throw new Exception("Provider is set to OpenAi but 'OpenAiOrganizationId' is empty in appsettings.");
+      //var openAiProjectId = configuration["OpenAiProjectId"];
+      var openAiModel = configuration["OpenAiModel"];
+      if (String.IsNullOrWhiteSpace(openAiModel))
+        throw new Exception("Provider is set to OpenAi but 'OpenAiModel' is empty in appsettings.");
+      try
+      {
+        OpenAIAuthentication openAiAuthentication = new(openAiApiKey);
+        var openAiClient = new OpenAIClient(openAiAuthentication);
+        var messages = new List<OpenAI.Chat.Message>
+        {
+          new OpenAI.Chat.Message(Role.User, prompt)
+        };
+        Model model = new Model(openAiModel);
+        var chatRequest = new ChatRequest(messages, model);
+        var response = await openAiClient.ChatEndpoint.GetCompletionAsync(chatRequest);
+        return response.FirstChoice.Message;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error accessing OpenAI.", ex);
         throw exception;
       }
     }
