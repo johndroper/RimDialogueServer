@@ -227,10 +227,6 @@ namespace RimDialogueObjects
       var openAiApiKey = configuration["OpenAiApiKey"];
       if (String.IsNullOrWhiteSpace(openAiApiKey))
         throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
-      //var openAiOrganizationId = configuration["OpenAiOrganizationId"];
-      //if (String.IsNullOrWhiteSpace(openAiOrganizationId))
-      //  throw new Exception("Provider is set to OpenAi but 'OpenAiOrganizationId' is empty in appsettings.");
-      //var openAiProjectId = configuration["OpenAiProjectId"];
       var openAiModel = configuration["OpenAiModel"];
       if (String.IsNullOrWhiteSpace(openAiModel))
         throw new Exception("Provider is set to OpenAi but 'OpenAiModel' is empty in appsettings.");
