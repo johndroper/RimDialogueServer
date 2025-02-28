@@ -6,11 +6,11 @@
 <#@ import namespace="RimDialogue.Core" #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-Your job is to create <#= DescribeOutputLength(this.MaxOutputWords) #> conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWords) #> conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 <# } else { #>
-Your job is to create <#= DescribeOutputLength(this.MaxOutputWords) #> monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWords) #> monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 <# } #>
 <# if (this.DialogueData.interaction.Contains(" lovin' ")) { #>
 The word "lovin'" is a euphemism for sex.
@@ -48,8 +48,8 @@ It is important that you respond with only the dialogue exchange.
 <#= this.DialogueData.recipientNickName #>'s overall mood is <#= this.DialogueData.recipientMoodString #>.
 <# } #>
 <# if (this.Config.ShowOpinions) { #>
-<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
-<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
+<#= this.DialogueData.initiatorNickName #> <#= TemplateHelper.DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
+<#= this.DialogueData.recipientNickName #> <#= TemplateHelper.DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
 <# } #>
 <# if (this.Config.ShowScenario && !string.IsNullOrWhiteSpace(this.DialogueData.scenario) && (this.DialogueData.initiatorIsColonist || this.DialogueData.recipientIsColonist)) {#>
 This games scenario is: <#= this.DialogueData.scenario #>
@@ -254,62 +254,62 @@ In the recent battle "<#=this.DialogueData.recipientLastBattle #>" this happened
 <# } #>
 <# if (this.Config.ShowNeeds) { #>
 <#   if (this.DialogueData.initiatorComfortPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #> is <#= DescribeComfortLevel(this.DialogueData.initiatorComfortPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= TemplateHelper.DescribeComfortLevel(this.DialogueData.initiatorComfortPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.recipientComfortPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #> is <#= DescribeComfortLevel(this.DialogueData.recipientComfortPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= TemplateHelper.DescribeComfortLevel(this.DialogueData.recipientComfortPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.initiatorFoodPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #> is <#= DescribeHungerLevel(this.DialogueData.initiatorFoodPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= TemplateHelper.DescribeHungerLevel(this.DialogueData.initiatorFoodPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.recipientFoodPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #> is <#= DescribeHungerLevel(this.DialogueData.recipientFoodPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= TemplateHelper.DescribeHungerLevel(this.DialogueData.recipientFoodPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.initiatorRestPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #> is <#= DescribeRestLevel(this.DialogueData.initiatorRestPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> is <#= TemplateHelper.DescribeRestLevel(this.DialogueData.initiatorRestPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.recipientRestPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #> is <#= DescribeRestLevel(this.DialogueData.recipientRestPercentage) #>.
+<#= this.DialogueData.recipientNickName #> is <#= TemplateHelper.DescribeRestLevel(this.DialogueData.recipientRestPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.initiatorJoyPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #> is <#= DescribeEngagementLevel(this.DialogueData.initiatorJoyPercentage) #> with what they are doing.
+<#= this.DialogueData.initiatorNickName #> is <#= TemplateHelper.DescribeEngagementLevel(this.DialogueData.initiatorJoyPercentage) #> with what they are doing.
 <#   } #>
 <#   if (this.DialogueData.recipientJoyPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #> is <#= DescribeEngagementLevel(this.DialogueData.recipientJoyPercentage) #> with what they are doing.
+<#= this.DialogueData.recipientNickName #> is <#= TemplateHelper.DescribeEngagementLevel(this.DialogueData.recipientJoyPercentage) #> with what they are doing.
 <#   } #>
 <#   if (this.DialogueData.initiatorBeautyPercentage >= 0) { #>
-<#= this.DialogueData.initiatorNickName #> feels their environment is <#= DescribeEnvironmentBeauty(this.DialogueData.initiatorBeautyPercentage) #>.
+<#= this.DialogueData.initiatorNickName #> feels their environment is <#= TemplateHelper.DescribeEnvironmentBeauty(this.DialogueData.initiatorBeautyPercentage) #>.
 <#   } #>
 <#   if (this.DialogueData.recipientBeautyPercentage >= 0) { #>
-<#= this.DialogueData.recipientNickName #> feels their environment is <#= DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage) #>.
+<#= this.DialogueData.recipientNickName #> feels their environment is <#= TemplateHelper.DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage) #>.
 <#   } #>
 <# } #>
 <# if (this.Config.ShowColonyData && this.DialogueData.initiatorIsColonist && this.DialogueData.recipientIsColonist) { #>
 <#   if (this.Config.ShowTimeData) { #>
-The colony started <#= this.DaysAgoLabel #>.
+The colony started <#= this.ColonyStartDaysAgoLabel #>.
 The current season is <#= this.DialogueData.season #>.
-The current time of day is <#= DescribeTimeOfDay(this.DialogueData.hourOfDay) #>.
+The current time of day is <#= TemplateHelper.DescribeTimeOfDay(this.DialogueData.hourOfDay) #>.
 <#   } #>
 <#   if (this.DialogueData.colonistsCount >= 0) { #>
-It is <#= DescribeColonySize(this.DialogueData.colonistsCount) #>
+It is <#= TemplateHelper.DescribeColonySize(this.DialogueData.colonistsCount) #>
 <#   } #>
 <#   if (this.DialogueData.wealthTotal >= 0) { #>
-<#= WealthDescription(this.DialogueData.wealthTotal) #>
+<#= TemplateHelper.WealthDescription(this.DialogueData.wealthTotal) #>
 <#   } #>
 <#   if (this.DialogueData.defensesTotal >= 0) { #>
-The colony has <#= DescribeDefenses(this.DialogueData.defensesTotal) #>
+The colony has <#= TemplateHelper.DescribeDefenses(this.DialogueData.defensesTotal) #>
 <#   } #>
 <#   if (this.DialogueData.foodTotal >= 0) { #>
-The colony has <#= DescribeFoodAmount(this.DialogueData.foodTotal, this.DialogueData.colonistsCount, this.DialogueData.prisonersCount) #>
+The colony has <#= TemplateHelper.DescribeFoodAmount(this.DialogueData.foodTotal, this.DialogueData.colonistsCount, this.DialogueData.prisonersCount) #>
 <#   } #>
 <#   if (this.DialogueData.prisonersCount >= 0) { #>
-The colony has <#= DescribePrisonerCount(this.DialogueData.prisonersCount) #>
+The colony has <#= TemplateHelper.DescribePrisonerCount(this.DialogueData.prisonersCount) #>
 <#   } #>
 <#   if (this.DialogueData.medicineTotal >= 0) { #>
-The colony has <#= DescribeMedicineSupply(this.DialogueData.medicineTotal) #>
+The colony has <#= TemplateHelper.DescribeMedicineSupply(this.DialogueData.medicineTotal) #>
 <#   } #>
 <#   if (this.DialogueData.drugsTotal >= 0) { #>
-The colony has <#= DescribeDrugSupply(this.DialogueData.drugsTotal, this.DialogueData.colonistsCount) #>
+The colony has <#= TemplateHelper.DescribeDrugSupply(this.DialogueData.drugsTotal, this.DialogueData.colonistsCount) #>
 <#   } #>
 <#   if (this.Config.ShowRecentIncidents) { #>
 Recent incidents to occur in the colony are: <#= String.Join(", ",this.DialogueData.recentIncidents) #>
@@ -323,7 +323,7 @@ The biome of this area is <#= this.DialogueData.biome #>
 <# } #>
 <# if (this.Config.ShowWeather) { #>
 The current weather is <#= this.DialogueData.currentWeather #>
-The temperature outdoors is <#= TemperatureFeel(this.DialogueData.outdoorTemp) #>.
+The temperature outdoors is <#= TemplateHelper.TemperatureFeel(this.DialogueData.outdoorTemp) #>.
 <# } #>
 <# if (this.Config.ShowRoom) { #>
 <#   if (this.DialogueData.isOutside) { #>
@@ -332,8 +332,8 @@ The temperature outdoors is <#= TemperatureFeel(this.DialogueData.outdoorTemp) #
 <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are currently indoors.
 <#     if (!string.IsNullOrWhiteSpace(this.DialogueData.room) && this.DialogueData.room != "none") { #>
 <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> are in the <#= this.DialogueData.room #>.
-The <#= this.DialogueData.room #> is <#= DescribeImpressiveness(this.DialogueData.roomImpressiveness) #>.
-The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.roomCleanliness) #>.
+The <#= this.DialogueData.room #> is <#= TemplateHelper.DescribeImpressiveness(this.DialogueData.roomImpressiveness) #>.
+The <#= this.DialogueData.room #> is <#= TemplateHelper.DescribeCleanliness(this.DialogueData.roomCleanliness) #>.
 <#     } #>
 <#   } #>
 <# } #>
@@ -359,16 +359,16 @@ The <#= this.DialogueData.room #> is <#= DescribeCleanliness(this.DialogueData.r
 <#     } #>
 <#   } #>
 <#   if (this.Config.ShowOpinions && !string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-<#= this.DialogueData.initiatorNickName #> <#= DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
-<#= this.DialogueData.recipientNickName #> <#= DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
+<#= this.DialogueData.initiatorNickName #> <#= TemplateHelper.DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2) #> <#= this.DialogueData.recipientNickName #>.
+<#= this.DialogueData.recipientNickName #> <#= TemplateHelper.DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2) #> <#= this.DialogueData.initiatorNickName #>.
 <#   } #>
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 <# if (!string.IsNullOrWhiteSpace(this.DialogueData.recipientNickName)) { #>
-Your job is to create <#= DescribeOutputLength(this.MaxOutputWords) #> conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWords) #> conversation of <#= this.MaxOutputWords #> words or less total between <#= this.DialogueData.initiatorNickName #> and <#= this.DialogueData.recipientNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 Always put <#= this.DialogueData.initiatorNickName #>'s and <#= this.DialogueData.recipientNickName #>'s name in the dialogue.
 <# } else { #>
-Your job is to create <#= DescribeOutputLength(this.MaxOutputWords) #> monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
+Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWords) #> monologue of <#= this.MaxOutputWords #> words for <#= this.DialogueData.initiatorNickName #> based on the data provided and this interaction: <#= this.DialogueData.interaction #> 
 Start the conversation with <#= this.DialogueData.initiatorNickName #>'s part.
 <# } #>
 <#   if (this.DialogueData.interaction.Contains(" lovin' ")) { #>

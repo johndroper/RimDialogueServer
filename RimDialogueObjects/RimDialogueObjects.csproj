@@ -29,6 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ChitChatRecentIncidentTemplate.cs">
+      <DependentUpon>ChitChatRecentIncidentTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="PromptTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -37,6 +42,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ChitChatRecentIncidentTemplate.tt">
+      <LastGenOutput>ChitChatRecentIncidentTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
     <None Update="PromptTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PromptTemplate.cs</LastGenOutput>

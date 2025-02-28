@@ -233,7 +233,19 @@ namespace RimDialogueObjects
       try
       {
         OpenAIAuthentication openAiAuthentication = new(openAiApiKey);
-        var openAiClient = new OpenAIClient(openAiAuthentication);
+        string? openAiResourceName = configuration["OpenAiResourceName"];
+        string? openAiVersion = configuration["OpenAiVersion"];
+        OpenAIClientSettings openAiClientSettings;
+        if (openAiResourceName != null)
+        {
+          if (openAiVersion != null)
+            openAiClientSettings = new(openAiResourceName, openAiVersion);
+          else
+            openAiClientSettings = new(openAiResourceName);
+        }
+        else
+          openAiClientSettings = new();
+        var openAiClient = new OpenAIClient(openAiAuthentication, openAiClientSettings);
         var messages = new List<OpenAI.Chat.Message>
         {
           new OpenAI.Chat.Message(Role.User, prompt)

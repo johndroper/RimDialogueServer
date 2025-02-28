@@ -40,7 +40,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create ");
             
             #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOutputLength(this.MaxOutputWords)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.MaxOutputWords)));
             
             #line default
             #line hidden
@@ -103,7 +103,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create ");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOutputLength(this.MaxOutputWords)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.MaxOutputWords)));
             
             #line default
             #line hidden
@@ -407,7 +407,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2)));
             
             #line default
             #line hidden
@@ -428,7 +428,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2)));
             
             #line default
             #line hidden
@@ -2235,7 +2235,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 257 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeComfortLevel(this.DialogueData.initiatorComfortPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeComfortLevel(this.DialogueData.initiatorComfortPercentage)));
             
             #line default
             #line hidden
@@ -2261,7 +2261,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 260 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeComfortLevel(this.DialogueData.recipientComfortPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeComfortLevel(this.DialogueData.recipientComfortPercentage)));
             
             #line default
             #line hidden
@@ -2287,7 +2287,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 263 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeHungerLevel(this.DialogueData.initiatorFoodPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeHungerLevel(this.DialogueData.initiatorFoodPercentage)));
             
             #line default
             #line hidden
@@ -2313,7 +2313,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 266 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeHungerLevel(this.DialogueData.recipientFoodPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeHungerLevel(this.DialogueData.recipientFoodPercentage)));
             
             #line default
             #line hidden
@@ -2339,7 +2339,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 269 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeRestLevel(this.DialogueData.initiatorRestPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeRestLevel(this.DialogueData.initiatorRestPercentage)));
             
             #line default
             #line hidden
@@ -2365,7 +2365,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 272 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeRestLevel(this.DialogueData.recipientRestPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeRestLevel(this.DialogueData.recipientRestPercentage)));
             
             #line default
             #line hidden
@@ -2391,7 +2391,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 275 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeEngagementLevel(this.DialogueData.initiatorJoyPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeEngagementLevel(this.DialogueData.initiatorJoyPercentage)));
             
             #line default
             #line hidden
@@ -2417,7 +2417,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 278 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeEngagementLevel(this.DialogueData.recipientJoyPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeEngagementLevel(this.DialogueData.recipientJoyPercentage)));
             
             #line default
             #line hidden
@@ -2443,7 +2443,7 @@ namespace RimDialogueObjects
             this.Write(" feels their environment is ");
             
             #line 281 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeEnvironmentBeauty(this.DialogueData.initiatorBeautyPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeEnvironmentBeauty(this.DialogueData.initiatorBeautyPercentage)));
             
             #line default
             #line hidden
@@ -2469,7 +2469,7 @@ namespace RimDialogueObjects
             this.Write(" feels their environment is ");
             
             #line 284 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeEnvironmentBeauty(this.DialogueData.recipientBeautyPercentage)));
             
             #line default
             #line hidden
@@ -2501,7 +2501,7 @@ namespace RimDialogueObjects
             this.Write("The colony started ");
             
             #line 289 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.DaysAgoLabel));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.ColonyStartDaysAgoLabel));
             
             #line default
             #line hidden
@@ -2515,7 +2515,7 @@ namespace RimDialogueObjects
             this.Write(".\r\nThe current time of day is ");
             
             #line 291 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeTimeOfDay(this.DialogueData.hourOfDay)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeTimeOfDay(this.DialogueData.hourOfDay)));
             
             #line default
             #line hidden
@@ -2535,7 +2535,7 @@ namespace RimDialogueObjects
             this.Write("It is ");
             
             #line 294 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeColonySize(this.DialogueData.colonistsCount)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeColonySize(this.DialogueData.colonistsCount)));
             
             #line default
             #line hidden
@@ -2554,7 +2554,7 @@ namespace RimDialogueObjects
             #line hidden
             
             #line 297 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(WealthDescription(this.DialogueData.wealthTotal)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.WealthDescription(this.DialogueData.wealthTotal)));
             
             #line default
             #line hidden
@@ -2574,7 +2574,7 @@ namespace RimDialogueObjects
             this.Write("The colony has ");
             
             #line 300 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeDefenses(this.DialogueData.defensesTotal)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeDefenses(this.DialogueData.defensesTotal)));
             
             #line default
             #line hidden
@@ -2594,7 +2594,7 @@ namespace RimDialogueObjects
             this.Write("The colony has ");
             
             #line 303 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeFoodAmount(this.DialogueData.foodTotal, this.DialogueData.colonistsCount, this.DialogueData.prisonersCount)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeFoodAmount(this.DialogueData.foodTotal, this.DialogueData.colonistsCount, this.DialogueData.prisonersCount)));
             
             #line default
             #line hidden
@@ -2614,7 +2614,7 @@ namespace RimDialogueObjects
             this.Write("The colony has ");
             
             #line 306 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribePrisonerCount(this.DialogueData.prisonersCount)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribePrisonerCount(this.DialogueData.prisonersCount)));
             
             #line default
             #line hidden
@@ -2634,7 +2634,7 @@ namespace RimDialogueObjects
             this.Write("The colony has ");
             
             #line 309 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeMedicineSupply(this.DialogueData.medicineTotal)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeMedicineSupply(this.DialogueData.medicineTotal)));
             
             #line default
             #line hidden
@@ -2654,7 +2654,7 @@ namespace RimDialogueObjects
             this.Write("The colony has ");
             
             #line 312 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeDrugSupply(this.DialogueData.drugsTotal, this.DialogueData.colonistsCount)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeDrugSupply(this.DialogueData.drugsTotal, this.DialogueData.colonistsCount)));
             
             #line default
             #line hidden
@@ -2747,7 +2747,7 @@ namespace RimDialogueObjects
             this.Write("\r\nThe temperature outdoors is ");
             
             #line 326 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemperatureFeel(this.DialogueData.outdoorTemp)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.TemperatureFeel(this.DialogueData.outdoorTemp)));
             
             #line default
             #line hidden
@@ -2840,7 +2840,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 335 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeImpressiveness(this.DialogueData.roomImpressiveness)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeImpressiveness(this.DialogueData.roomImpressiveness)));
             
             #line default
             #line hidden
@@ -2854,7 +2854,7 @@ namespace RimDialogueObjects
             this.Write(" is ");
             
             #line 336 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeCleanliness(this.DialogueData.roomCleanliness)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeCleanliness(this.DialogueData.roomCleanliness)));
             
             #line default
             #line hidden
@@ -3054,7 +3054,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 362 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.DialogueData.initiatorOpinionOfRecipient2)));
             
             #line default
             #line hidden
@@ -3075,7 +3075,7 @@ namespace RimDialogueObjects
             this.Write(" ");
             
             #line 363 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.DialogueData.recipientOpinionOfInitiator2)));
             
             #line default
             #line hidden
@@ -3104,7 +3104,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create ");
             
             #line 367 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOutputLength(this.MaxOutputWords)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.MaxOutputWords)));
             
             #line default
             #line hidden
@@ -3167,7 +3167,7 @@ namespace RimDialogueObjects
             this.Write("Your job is to create ");
             
             #line 371 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\PromptTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DescribeOutputLength(this.MaxOutputWords)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.MaxOutputWords)));
             
             #line default
             #line hidden
