@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace RimDialogueObjects
+namespace RimDialogueObjects.Templates
 {
   public class FloatData
   {

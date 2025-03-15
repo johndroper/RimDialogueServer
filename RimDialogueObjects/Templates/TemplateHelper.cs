@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RimDialogueObjects
+namespace RimDialogueObjects.Templates
 {
   public static class TemplateHelper
   {
@@ -173,7 +173,7 @@ namespace RimDialogueObjects
       if (foodTotal < 0)
         throw new ArgumentOutOfRangeException(nameof(foodTotal), "Food Total must be greater than or equal to 0.");
 
-      float foodAmount = foodTotal / ((float)colonistCount + (float)prisonerCount);
+      float foodAmount = foodTotal / (colonistCount + (float)prisonerCount);
 
       if (foodAmount == 0f)
         return "no food at all.";

@@ -191,21 +191,36 @@ namespace RimDialogueObjects
 
     static Metrics()
     {
-      if (File.Exists("metricsData.json"))
+      try
       {
-        string json = File.ReadAllText("metricsData.json");
-        metricsData = JsonConvert.DeserializeObject<MetricsData>(json) ?? new MetricsData();
-        return;
-      }
-      metricsData = new MetricsData();
-      Timer timer = new Timer((object? state) =>
+        if (File.Exists("metricsData.json"))
         {
-          string json = JsonConvert.SerializeObject(metricsData);
-          File.WriteAllText("metricsData.json", json);
-        }, 
-        null, 
-        0, 
-        (int)saveInterval.TotalMilliseconds);
+          string json = File.ReadAllText("metricsData.json");
+          metricsData = JsonConvert.DeserializeObject<MetricsData>(json) ?? new MetricsData();
+          return;
+        }
+        metricsData = new MetricsData();
+        Timer timer = new Timer((object? state) =>
+        {
+          try
+          {
+            string json = JsonConvert.SerializeObject(metricsData);
+            File.WriteAllText("metricsData.json", json);
+          }
+          catch (Exception ex)
+          {
+            Console.WriteLine($"Failed to save metrics data: {ex.ToString()}");
+          }
+        },
+          null,
+          0,
+          (int)saveInterval.TotalMilliseconds);
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine($"Failed to load metrics data: {ex.ToString()}");
+        metricsData = new MetricsData();
+      }
     }
     public static void Reset()
     {

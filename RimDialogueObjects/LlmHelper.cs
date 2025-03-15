@@ -6,19 +6,110 @@ using DotnetGeminiSDK.Config;
 using GroqSharp.Models;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using OpenAI;
 using OpenAI.Chat;
 using OpenAI.Models;
+using RimDialogue.Core;
+using RimDialogueObjects.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace RimDialogueObjects
 {
   public static class LlmHelper
   {
+
+    public static DialogueResponse SerializeResponse(string text, IConfiguration configuration, out bool outputTruncated)
+    {
+      DialogueResponse? dialogueResponse = null;
+      try
+      {
+        dialogueResponse = new DialogueResponse();
+        int maxResponseLength = configuration.GetValue<int>("MaxResponseLength", 5000);
+        if (text.Length > maxResponseLength)
+        {
+          outputTruncated = true;
+          text = text.Substring(0, maxResponseLength) + "...";
+        }
+        else
+          outputTruncated = false;
+        dialogueResponse.text = text;
+        return dialogueResponse;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("Error creating DialogueResponse.", ex);
+        exception.Data.Add("text", text);
+        throw exception;
+      }
+    }
+
+    public async static Task<string> GenerateResponse(string prompt, IConfiguration configuration)
+    {
+      string? text = null;
+      try
+      {
+        text = await GetResults(configuration, prompt);
+        //****Remove everything between the start <think> tag and the end </think> tag ******
+        if (configuration.GetValue("RemoveThinking", false))
+          text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
+        return text;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred fetching results.", ex);
+        exception.Data.Add("prompt", prompt);
+        throw exception;
+      }
+    }
+
+    public static string Generate<DataT, TemplateT>(
+      Config config,
+      PawnData initiator,
+      PawnData recipient,
+      DataT dialogueData,
+      PawnData? targetData, 
+      out bool wasTruncated) where TemplateT : DialoguePromptTemplate<DataT>, new()
+    {
+      //******Prompt Generation******
+      string? prompt = null;
+      try
+      {
+        wasTruncated = false;
+        if (dialogueData == null)
+          throw new Exception("dialogueData is null.");
+        TemplateT promptTemplate = new();
+        promptTemplate.Initiator = initiator;
+        promptTemplate.Recipient = recipient;
+        promptTemplate.Data = dialogueData;
+        promptTemplate.Target = targetData;
+        promptTemplate.Config = config;
+        prompt = promptTemplate.TransformText();
+        if (prompt == null)
+          throw new Exception("Prompt is null.");
+        int maxPromptLength = config.MaxPromptLength;
+        if (prompt.Length > maxPromptLength)
+        {
+          wasTruncated = true;
+          Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
+          return prompt.Substring(0, maxPromptLength);
+        }
+        return prompt;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred generating prompt.", ex);
+        exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
+        throw exception;
+      }
+    }
+
+
     public static async Task<string> GetResults(IConfiguration configuration, string prompt)
     {
       var provider = configuration["provider"];

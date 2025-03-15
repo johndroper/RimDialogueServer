@@ -5,12 +5,8 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
-
-Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWords) #> chitchat of <#= this.MaxOutputWords #> words or less total between <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> based on this recent incident: <#= this.Data.interaction #> 
-<#= this.Data.letterText #>
+Here is background information about <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #>. Use this information to help you write the conversation from thier perspectives.
 <# if (this.Config.ShowSpecialInstructions) { #>
-Scenario Instructions: <#= this.Data.scenarioInstructions #>
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
 Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions #>
 <#  } #>
@@ -18,9 +14,10 @@ Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions
 Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions #>
 <#  } #>
 <# } #>
-Start the conversation with <#= this.Initiator.NickName #>'s part.
-Always put <#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s name in the dialogue.
-It is important that you respond with only the dialogue exchange.
+<# if (this.Config.ShowOpinions) { #>
+<#= this.Initiator.NickName #> <#= TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfRecipient) #> <#= this.Recipient.NickName #>.
+<#= this.Recipient.NickName #> <#= TemplateHelper.DescribeOpinion(this.RecipientOpinionOfInitiator) #> <#= this.Initiator.NickName #>.
+<# } #>
 <# if (this.Config.ShowAnimal && this.Initiator.IsAnimal) { #>
 <#= this.Initiator.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
@@ -42,13 +39,6 @@ It is important that you respond with only the dialogue exchange.
 <# } #>
 <# if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.Recipient.MoodString)) { #>
 <#= this.Recipient.NickName #>'s overall mood is <#= this.Recipient.MoodString #>.
-<# } #>
-<# if (this.Config.ShowOpinions) { #>
-<#= this.Initiator.NickName #> <#= TemplateHelper.DescribeOpinion(this.Data.initiatorOpinionOfRecipient) #> <#= this.Recipient.NickName #>.
-<#= this.Recipient.NickName #> <#= TemplateHelper.DescribeOpinion(this.Data.recipientOpinionOfInitiator) #> <#= this.Initiator.NickName #>.
-<# } #>
-<# if (this.Config.ShowScenario && !string.IsNullOrWhiteSpace(this.Data.scenario) && (this.Initiator.IsColonist || this.Recipient.IsColonist)) {#>
-This games scenario is: <#= this.Data.scenario #>
 <# } #>
 <# if (this.Config.ShowFullName) {#>
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { #>

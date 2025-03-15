@@ -29,12 +29,47 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ChitChatRecentIncidentTemplate.cs">
+    <Compile Update="Templates\ChitChatAlertTemplate.cs">
+      <DependentUpon>ChitChatAlertTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatDialogueTemplate.cs">
+      <DependentUpon>ChitChatDialogueTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatMessageTemplate.cs">
+      <DependentUpon>ChitChatMessageTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatGameConditionTemplate.cs">
+      <DependentUpon>ChitChatGameConditionTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\TargetTemplate.cs">
+      <DependentUpon>TargetTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\InitiatorRecipientTemplate.cs">
+      <DependentUpon>InitiatorRecipientTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatBattleTemplate.cs">
+      <DependentUpon>ChitChatBattleTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatRecentIncidentTemplate.cs">
       <DependentUpon>ChitChatRecentIncidentTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="PromptTemplate.cs">
+    <Compile Update="Templates\PromptTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PromptTemplate.tt</DependentUpon>
@@ -42,11 +77,39 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ChitChatRecentIncidentTemplate.tt">
+    <None Update="Templates\ChitChatAlertTemplate.tt">
+      <LastGenOutput>ChitChatAlertTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatDialogueTemplate.tt">
+      <LastGenOutput>ChitChatDialogueTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatMessageTemplate.tt">
+      <LastGenOutput>ChitChatMessageTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatGameConditionTemplate.tt">
+      <LastGenOutput>ChitChatGameConditionTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\TargetTemplate.tt">
+      <LastGenOutput>TargetTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\InitiatorRecipientTemplate.tt">
+      <LastGenOutput>InitiatorRecipientTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatBattleTemplate.tt">
+      <LastGenOutput>ChitChatBattleTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatRecentIncidentTemplate.tt">
       <LastGenOutput>ChitChatRecentIncidentTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="PromptTemplate.tt">
+    <None Update="Templates\PromptTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PromptTemplate.cs</LastGenOutput>
     </None>

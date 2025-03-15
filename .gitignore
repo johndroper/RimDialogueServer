@@ -19,3 +19,5 @@ RimDialogue/Properties/PublishProfiles/Default Settings.pubxml.user
 RimDialogue/barebones_appsettings.json
 /RimDialogueObjects/bin
 /RimDialogueObjects/obj
+/Backup
+UpgradeLog.htm

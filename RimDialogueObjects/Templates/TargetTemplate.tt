@@ -1,0 +1,66 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="RimDialogue.Core" #>
+
+Here is background information about the person who is the subject of the conversation.
+<# if (this.Config.ShowSpecialInstructions) { #>
+<#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
+Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions #>
+<#  } #>
+<# } #>
+<# if (this.Config.ShowOpinions) { #>
+<#= this.Initiator.NickName #> <#= TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfTarget) #> <#= this.Target.NickName #>.
+<#= this.Recipient.NickName #> <#= TemplateHelper.DescribeOpinion(this.RecipientOpinionOfTarget) #> <#= this.Target.NickName #>.
+<# } #>
+<# if (this.Config.ShowAnimal && this.Target.IsAnimal) { #>
+<#= this.Target.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Target.Personality)) { #>
+<#= this.Target.NickName #>'s personality is <#= this.Target.Personality #>
+<#= this.Target.PersonalityDescription #>
+<# } #>
+<# if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.Target.MoodString)) { #>
+<#= this.Target.NickName #>'s overall mood is <#= this.Target.MoodString #>.
+<# } #>
+<# if (this.Config.ShowFullName) {#>
+<#   if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { #>
+<#= this.Target.NickName #>'s full name is <#= this.Target.FullName #>.
+<#   } #>
+<# } #>
+<# if (this.Config.ShowAgeRaceAndGender) {#>
+<#= this.Target.NickName #>'s is a <#= this.Target.Gender #> <#= this.Target.Race #> age <#= this.Target.Age #> years old.
+<# } #>
+<# if (this.Config.ShowDescription) {#>
+<#= this.Target.NickName #>'s is <#= this.Target.Description #>
+<# } #>
+<# if (this.Config.ShowPawnType) { #>
+<#     if (this.Target.IsColonist) { #>
+<#= this.Target.NickName #> is a colonist and a member of the player's colony.  
+<#     } else if (this.Target.IsPrisoner) { #>
+<#= this.Initiator.NickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#     } else if (this.Target.IsHostile) { #>
+<#= this.Initiator.NickName #> is a raider and is here to attack the player's colony.
+<#     } else if (!this.Target.IsAnimal) { #>
+<#= this.Target.NickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
+<#     } #>
+<# } #>
+<# if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.Target.RoyaltyTitle)) { #>
+<#= this.Target.NickName #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
+<#= this.Target.NickName #>'s royal title is <#= this.Initiator.RoyaltyTitle #>
+<# } #>
+<# if (this.Config.ShowFaction) { #>
+<#     if (!string.IsNullOrWhiteSpace(this.Target.FactionName)) { #> 
+The faction <#= this.Target.NickName #> belongs to is called "<#= this.Target.FactionName #>". It is a <#= this.Target.FactionLabel #> faction. <#= this.Target.FactionDescription #>
+<#     } #>
+<# } #>
+<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Target.Adulthood)) { #>
+<#= this.Target.NickName #>'s adulthood was spent as: <#= this.Target.Adulthood #>
+<# } #>
+<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Target.Childhood)) { #>
+<#= this.Target.NickName #>'s childhood was spent as: <#= this.Target.Childhood #>
+<# } #>
+
+

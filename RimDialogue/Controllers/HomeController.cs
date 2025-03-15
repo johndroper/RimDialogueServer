@@ -10,8 +10,12 @@ using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using OpenAI.Chat;
 using RimDialogue.Core;
+using RimDialogue.Core.InteractionData;
 using RimDialogueObjects;
+using RimDialogueObjects.Templates;
+using System.Diagnostics;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
@@ -36,8 +40,10 @@ namespace RimDialogueLocal.Controllers
       }
     }
 
-    public void InitLog(string action)
+    public void InitLog(string? action = null, [CallerMemberName] string? callerName = null)
     {
+      if (action == null)
+        action = callerName;
       if (log == null && Configuration["LoggingEnabled"]?.ToLower() == "true")
       {
         _startTime = DateTime.Now;
@@ -103,55 +109,6 @@ namespace RimDialogueLocal.Controllers
       return ipAddress;
     }
 
-    private DialogueResponse SerializeResponse(string text, out bool outputTruncated)
-    {
-      //******Response Serialization******
-      DialogueResponse? dialogueResponse = null;
-      try
-      {
-        dialogueResponse = new DialogueResponse();
-        int maxResponseLength = Configuration.GetValue<int>("MaxResponseLength", 5000);
-        if (text.Length > maxResponseLength)
-        {
-          outputTruncated = true;
-          Log($"Response truncated to {maxResponseLength} characters. Original length was {text.Length} characters.");
-          text = text.Substring(0, maxResponseLength) + "...";
-        }
-        else
-          outputTruncated = false;
-        dialogueResponse.text = text;
-        return dialogueResponse;
-      }
-      catch (Exception ex)
-      {
-        Exception exception = new("Error creating DialogueResponse.", ex);
-        exception.Data.Add("text", text);
-        throw exception;
-      }
-    }
-
-
-
-    public async Task<string> GenerateResponse(string prompt)
-    {
-      string? text = null;
-      try
-      {
-        text = await LlmHelper.GetResults(Configuration, prompt);
-        Log(text);
-        //****Remove everything between the start <think> tag and the end </think> tag ******
-        if (Configuration.GetValue("RemoveThinking", false))
-          text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
-        return text;
-      }
-      catch (Exception ex)
-      {
-        Exception exception = new("An error occurred fetching results.", ex);
-        exception.Data.Add("prompt", prompt);
-        throw exception;
-      }
-    }
-
     public void LogException(Exception ex)
     {
       StringBuilder sb = new();
@@ -168,33 +125,35 @@ namespace RimDialogueLocal.Controllers
       Log(sb.ToString());
     }
 
-    [HttpPost]
-    public async Task<IActionResult> GetChitChatRecentIncident(string initiatorJson, string recipientJson, string chitChatRecentIncidentJSON)
+
+    [NonAction]
+    public async Task<IActionResult> ProcessTwoParty<DataT, TemplateT>(string action, string initiatorJson, string recipientJson, string dataJson, string? targetJson) where TemplateT : DialoguePromptTemplate<DataT>, new()
     {
-      InitLog("GetChitChatRecentIncident");
+      InitLog(action);
       try
       {
-        if (chitChatRecentIncidentJSON == null)
-          throw new Exception("jsonData is null.");
+        if (dataJson == null)
+          return new BadRequestResult();
         if (initiatorJson == null)
           throw new Exception("initiatorJson is null.");
         if (recipientJson == null)
           throw new Exception("recipientJson is null.");
 
         string? ipAddress = GetIp();
-        Log(ipAddress, chitChatRecentIncidentJSON);
+        Log(ipAddress, dataJson);
         var config = Configuration.GetSection("Options").Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
         if (IsOverRateLimit(config, ipAddress))
           return new JsonResult(new DialogueResponse { RateLimited = true });
-        ChitChatRecentIncidentData? dialogueData = null;
+        DataT? dialogueData = default(DataT);
         PawnData? initiator = null;
         PawnData? recipient = null;
+        PawnData? target = null;
         //******Deserialization******
-        try                                                                                                                                                 
+        try
         {
-          dialogueData = JsonConvert.DeserializeObject<ChitChatRecentIncidentData>(chitChatRecentIncidentJSON);
+          dialogueData = JsonConvert.DeserializeObject<DataT>(dataJson);
           if (dialogueData == null)
             throw new Exception("DialogueData is null.");
           initiator = JsonConvert.DeserializeObject<PawnData>(initiatorJson);
@@ -203,6 +162,9 @@ namespace RimDialogueLocal.Controllers
           recipient = JsonConvert.DeserializeObject<PawnData>(recipientJson);
           if (recipient == null)
             throw new Exception("Recipient is null.");
+          if (targetJson != null)
+            target = JsonConvert.DeserializeObject<PawnData>(targetJson);
+
           Log("Deserialized dialogueData.");
         }
         catch (Exception ex)
@@ -210,15 +172,18 @@ namespace RimDialogueLocal.Controllers
           Exception exception = new("An error occurred deserializing JSON.", ex);
           exception.Data.Add("initiatorJson", initiatorJson);
           exception.Data.Add("recipientJson", recipientJson);
-          exception.Data.Add("chitChatRecentIncidentJSON", chitChatRecentIncidentJSON);
+          exception.Data.Add("dataJson", dataJson);
           throw exception;
         }
         //******Prompt Generation******
-        string prompt = ChitChatRecentIncidentTemplate.Generate(config, initiator, recipient, dialogueData, out bool inputTruncated);
+        string prompt = LlmHelper.Generate<DataT, TemplateT>(config, initiator, recipient, dialogueData, target, out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await GenerateResponse(prompt);
-        var dialogueResponse = SerializeResponse(text, out bool outputTruncated);
+        string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
+        Log(text);
+        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, out bool outputTruncated);
+        if (outputTruncated)
+          Log($"Response was truncated. Original length was {text.Length} characters.");
         Metrics.AddRequest(
           this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
           prompt.Length,
@@ -237,6 +202,38 @@ namespace RimDialogueLocal.Controllers
     }
 
     [HttpPost]
+    public async Task<IActionResult> RecentIncidentChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
+    {
+      return await ProcessTwoParty<DialogueDataIncident, ChitChatRecentIncidentTemplate>("RecentIncidentChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+    }
+
+    public async Task<IActionResult> RecentBattleChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessTwoParty<DialogueDataBattle, ChitChatBattleTemplate>("RecentBattleChitchat", initiatorJson, recipientJson, chitChatJson, null);
+    }
+
+    public async Task<IActionResult> GameConditionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessTwoParty<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson, null);
+    }
+
+    public async Task<IActionResult> MessageChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
+    {
+      return await ProcessTwoParty<DialogueDataMessage, ChitChatMessageTemplate>("MessageChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+    }
+
+    public async Task<IActionResult> AlertChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
+    {
+      return await ProcessTwoParty<DialogueDataAlert, ChitChatAlertTemplate>("AlertChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+    }
+
+    public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessTwoParty<DialogueDataAlert, ChitChatAlertTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson, null);
+    }
+
+
+    [HttpPost]
     public async Task<IActionResult> GetDialogue(string dialogueDataJSON)
     {
       try
@@ -251,11 +248,11 @@ namespace RimDialogueLocal.Controllers
           throw new Exception("config is null.");
         if (IsOverRateLimit(config, ipAddress))
           return new JsonResult(new DialogueResponse { RateLimited = true });
-        DialogueData? dialogueData = null;
+        RimDialogue.Core.DialogueData? dialogueData = null;
         //******Deserialization******
         try
         {
-          dialogueData = JsonConvert.DeserializeObject<DialogueData>(dialogueDataJSON);
+          dialogueData = JsonConvert.DeserializeObject<RimDialogue.Core.DialogueData>(dialogueDataJSON);
           if (dialogueData == null)
             throw new Exception("DialogueData is null.");
           Log("Deserialized dialogueData.");
@@ -270,11 +267,15 @@ namespace RimDialogueLocal.Controllers
         string prompt = PromptTemplate.Generate(config, dialogueData, out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await GenerateResponse(prompt);
+        string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
+        Log(text);
         //****Remove everything between the start <think> tag and the end </think> tag ******
         if (Configuration.GetValue("RemoveThinking", false))
           text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
-        var dialogueResponse = SerializeResponse(text, out bool outputTruncated);
+        //******Response Serialization******
+        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, out bool outputTruncated);
+        if (outputTruncated)
+          Log($"Response was truncated. Original length was {text.Length} characters.");
         //******Metrics******
         Metrics.AddRequest(
           this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),

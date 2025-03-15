@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace RimDialogueObjects
+namespace RimDialogueObjects.Templates
 {
     using System.Linq;
     using System.Text;
@@ -19,9 +19,9 @@ namespace RimDialogueObjects
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatRecentIncidentTemplate : ChitChatRecentIncidentTemplateBase
+    public partial class InitiatorRecipientTemplate : InitiatorRecipientTemplateBase
     {
 #line hidden
         /// <summary>
@@ -29,155 +29,150 @@ namespace RimDialogueObjects
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nYou are a dialogue writer for the game RimWorld a sci-fi colony simulation game" +
-                    " set on a distant, lawless planet.\r\n\r\nYour job is to create ");
+            this.Write("\r\nHere is background information about ");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.MaxOutputWords)));
-            
-            #line default
-            #line hidden
-            this.Write(" chitchat of ");
-            
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
-            
-            #line default
-            #line hidden
-            this.Write(" words or less total between ");
-            
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
-            this.Write(" based on this recent incident: ");
+            this.Write(". Use this information to help you write the conversation from thier perspectives" +
+                    ".\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.interaction));
-            
-            #line default
-            #line hidden
-            this.Write(" \r\n");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.letterText));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowSpecialInstructions) { 
             
             #line default
             #line hidden
-            this.Write("Scenario Instructions: ");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.scenarioInstructions));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
   if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { 
             
             #line default
             #line hidden
             this.Write("Instructions for ");
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Instructions));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
   if (!string.IsNullOrWhiteSpace(this.Recipient.Instructions)) { 
             
             #line default
             #line hidden
             this.Write("Instructions for ");
             
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Instructions));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("Start the conversation with ");
             
-            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
+ if (this.Config.ShowOpinions) { 
+            
+            #line default
+            #line hidden
+            
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write("\'s part.\r\nAlways put ");
+            this.Write(" ");
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfRecipient)));
             
             #line default
             #line hidden
-            this.Write("\'s and ");
+            this.Write(" ");
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
-            this.Write("\'s name in the dialogue.\r\nIt is important that you respond with only the dialogue" +
-                    " exchange.\r\n");
+            this.Write(".\r\n");
             
-            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.RecipientOpinionOfInitiator)));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\n");
+            
+            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowAnimal && this.Initiator.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -185,19 +180,19 @@ namespace RimDialogueObjects
             this.Write(" can\'t speak, but they can communicate through actions, sounds, and body language" +
                     ".\r\n");
             
-            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowAnimal && this.Recipient.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
@@ -205,494 +200,420 @@ namespace RimDialogueObjects
             this.Write(" can\'t speak, but they can communicate through actions, sounds, and body language" +
                     ".\r\n");
             
-            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowPersonality) { 
             
             #line default
             #line hidden
             
-            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (!string.IsNullOrWhiteSpace(this.Initiator.Personality)) { 
             
             #line default
             #line hidden
             
-            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s personality is ");
             
-            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Personality));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.PersonalityDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (!string.IsNullOrWhiteSpace(this.Recipient.Personality)) { 
             
             #line default
             #line hidden
             
-            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s personality is ");
             
-            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Personality));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.PersonalityDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.Initiator.MoodString)) { 
             
             #line default
             #line hidden
             
-            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s overall mood is ");
             
-            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.MoodString));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 42 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.Recipient.MoodString)) { 
             
             #line default
             #line hidden
             
-            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s overall mood is ");
             
-            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.MoodString));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 45 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 42 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 46 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
- if (this.Config.ShowOpinions) { 
-            
-            #line default
-            #line hidden
-            
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.Data.initiatorOpinionOfRecipient)));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(".\r\n");
-            
-            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.Data.recipientOpinionOfInitiator)));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(".\r\n");
-            
-            #line 49 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
- if (this.Config.ShowScenario && !string.IsNullOrWhiteSpace(this.Data.scenario) && (this.Initiator.IsColonist || this.Recipient.IsColonist)) {
-            
-            #line default
-            #line hidden
-            this.Write("This games scenario is: ");
-            
-            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.scenario));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 53 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowFullName) {
             
             #line default
             #line hidden
             
-            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { 
             
             #line default
             #line hidden
             
-            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 45 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s full name is ");
             
-            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 45 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FullName));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 46 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 57 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (!string.IsNullOrWhiteSpace(this.Recipient.FullName)) { 
             
             #line default
             #line hidden
             
-            #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s full name is ");
             
-            #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FullName));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 49 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowAgeRaceAndGender) {
             
             #line default
             #line hidden
             
-            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is a ");
             
-            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Gender));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Race));
             
             #line default
             #line hidden
             this.Write(" age ");
             
-            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Age));
             
             #line default
             #line hidden
             this.Write(" years old.\r\n");
             
-            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 53 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (!string.IsNullOrWhiteSpace(this.Recipient.NickName)) { 
             
             #line default
             #line hidden
             
-            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is a ");
             
-            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Gender));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Race));
             
             #line default
             #line hidden
             this.Write(" age ");
             
-            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Age));
             
             #line default
             #line hidden
             this.Write(" years old.\r\n");
             
-            #line 65 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 66 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 57 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowDescription) {
             
             #line default
             #line hidden
             
-            #line 68 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (this.Initiator.Description == this.Recipient.Description) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" are ");
             
-            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Description));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 70 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is ");
             
-            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Description));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 72 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      if (!string.IsNullOrWhiteSpace(this.Recipient.NickName)) { 
             
             #line default
             #line hidden
             
-            #line 73 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is ");
             
-            #line 73 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Description));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 74 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 75 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 65 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 76 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 66 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 77 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowPawnType) { 
             
             #line default
             #line hidden
             
-            #line 78 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 68 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (this.Initiator.IsColonist && this.Recipient.IsColonist) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" are colonists and members of the player\'s colony.\r\n");
             
-            #line 80 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 70 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } else if (this.Initiator.IsPrisoner && this.Recipient.IsPrisoner) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
@@ -702,53 +623,53 @@ namespace RimDialogueObjects
                     "escapes. Prisoners can be recruited, traded, or exploited for labor or medical r" +
                     "esources.\r\n");
             
-            #line 82 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 72 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } else if (this.Initiator.IsHostile && this.Recipient.IsHostile) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 83 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 73 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 83 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 73 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" are raiders and are here to attack the player\'s colony.\r\n");
             
-            #line 84 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 74 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 85 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 75 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      if (this.Initiator.IsColonist) { 
             
             #line default
             #line hidden
             
-            #line 86 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 76 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" is a colonist and a member of the player\'s colony.  \r\n");
             
-            #line 87 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 77 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } else if (this.Initiator.IsPrisoner) { 
             
             #line default
             #line hidden
             
-            #line 88 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 78 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -758,26 +679,26 @@ namespace RimDialogueObjects
                     " escapes. Prisoners can be recruited, traded, or exploited for labor or medical " +
                     "resources.\r\n");
             
-            #line 89 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } else if (this.Initiator.IsHostile) { 
             
             #line default
             #line hidden
             
-            #line 90 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 80 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" is a raider and is here to attack the player\'s colony.\r\n");
             
-            #line 91 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } else if (!this.Initiator.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 92 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 82 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -785,32 +706,32 @@ namespace RimDialogueObjects
             this.Write(" is an NPC and just a temporary visitor here.  They are probably here as part of " +
                     "a trade caravan.\r\n");
             
-            #line 93 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 83 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 94 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 84 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      if (this.Recipient.IsColonist) { 
             
             #line default
             #line hidden
             
-            #line 95 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 85 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is a colonist and a member of the player\'s colony.  \r\n");
             
-            #line 96 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 86 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } else if (this.Recipient.IsPrisoner) { 
             
             #line default
             #line hidden
             
-            #line 97 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 87 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
@@ -820,57 +741,57 @@ namespace RimDialogueObjects
                     "escapes. Prisoners can be recruited, traded, or exploited for labor or medical r" +
                     "esources.\r\n");
             
-            #line 98 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 88 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } else if (this.Recipient.IsHostile) { 
             
             #line default
             #line hidden
             
-            #line 99 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 89 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is a raider and is here to attack the player\'s colony.\r\n");
             
-            #line 100 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 90 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } else if (!string.IsNullOrWhiteSpace(this.Recipient.NickName) && !this.Recipient.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 101 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 91 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is an NPC and just a temporary visitor here.\r\n");
             
-            #line 102 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 92 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 93 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 104 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 94 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 95 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.Initiator.RoyaltyTitle)) { 
             
             #line default
             #line hidden
             
-            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 96 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -878,33 +799,33 @@ namespace RimDialogueObjects
             this.Write(" is royalty. Pawns speak differently to royalty, often with more respect and form" +
                     "ality.\r\n");
             
-            #line 107 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 97 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s royal title is ");
             
-            #line 107 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 97 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.RoyaltyTitle));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 98 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 99 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.Recipient.RoyaltyTitle)) { 
             
             #line default
             #line hidden
             
-            #line 110 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 100 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.RoyaltyTitle));
             
             #line default
@@ -912,486 +833,486 @@ namespace RimDialogueObjects
             this.Write(" is royalty. Pawns speak differently to royalty, often with more respect and form" +
                     "ality.\r\n");
             
-            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 101 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s royal title is ");
             
-            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 101 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.RoyaltyTitle));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 112 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 102 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 113 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowFaction) { 
             
             #line default
             #line hidden
             
-            #line 114 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 104 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (this.Initiator.FactionName == this.Recipient.FactionName) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" belong to the same faction, called \"");
             
-            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 116 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 107 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      if (!string.IsNullOrWhiteSpace(this.Initiator.FactionName)) { 
             
             #line default
             #line hidden
             this.Write(" \r\nThe faction ");
             
-            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" belongs to is called \"");
             
-            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 119 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 120 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 110 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      if (!string.IsNullOrWhiteSpace(this.Recipient.FactionName)) { 
             
             #line default
             #line hidden
             this.Write(" \r\nThe faction ");
             
-            #line 121 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" belongs to is called \"");
             
-            #line 121 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 121 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 121 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 122 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 112 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 123 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 113 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 124 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 114 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 125 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowIdeology) { 
             
             #line default
             #line hidden
             
-            #line 126 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 116 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
    if (!string.IsNullOrWhiteSpace(this.Initiator.IdeologyName) && this.Initiator.IdeologyName == this.Recipient.IdeologyName) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 127 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 127 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" share the same ideology, called \"");
             
-            #line 127 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.IdeologyName));
             
             #line default
             #line hidden
             this.Write("\".\r\nThe narrative of \"");
             
-            #line 128 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.IdeologyName));
             
             #line default
             #line hidden
             this.Write("\" is: ");
             
-            #line 128 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.IdeologyDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 129 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 119 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      if (this.Config.ShowPrecepts && this.Initiator.IdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
             this.Write("The precepts of their ideology are: ");
             
-            #line 130 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 120 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" ", this.Initiator.IdeologyPrecepts)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 131 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 121 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 132 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 122 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
   } else { 
             
             #line default
             #line hidden
             
-            #line 133 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 123 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
     if (!string.IsNullOrWhiteSpace(this.Initiator.IdeologyName)) { 
             
             #line default
             #line hidden
             
-            #line 134 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 124 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s ideology is \"");
             
-            #line 134 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 124 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.IdeologyName));
             
             #line default
             #line hidden
             this.Write("\".\r\nThe narrative of \"");
             
-            #line 135 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 125 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.IdeologyName));
             
             #line default
             #line hidden
             this.Write("\" is: ");
             
-            #line 135 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 125 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.IdeologyDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 136 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 126 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
       if (this.Config.ShowPrecepts && this.Initiator.IdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
             this.Write("The precepts of ");
             
-            #line 137 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 127 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s ideology are: ");
             
-            #line 137 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 127 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" ", this.Recipient.IdeologyPrecepts)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 138 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 128 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
       } 
             
             #line default
             #line hidden
             
-            #line 139 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 129 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
     } 
             
             #line default
             #line hidden
             
-            #line 140 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 130 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
     if (!string.IsNullOrWhiteSpace(this.Recipient.IdeologyName)) { 
             
             #line default
             #line hidden
             
-            #line 141 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 131 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s ideology is ");
             
-            #line 141 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 131 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.IdeologyName));
             
             #line default
             #line hidden
             this.Write(".\r\nThe narrative of this ideology is: ");
             
-            #line 142 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 132 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.IdeologyDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 143 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 133 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
       if (this.Config.ShowPrecepts && this.Recipient.IdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
             this.Write("The precepts of ");
             
-            #line 144 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 134 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s ideology are: ");
             
-            #line 144 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 134 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" ", this.Recipient.IdeologyPrecepts)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 145 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 135 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
       } 
             
             #line default
             #line hidden
             
-            #line 146 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 136 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
 	  } 
             
             #line default
             #line hidden
             
-            #line 147 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 137 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 148 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 138 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
 } 
             
             #line default
             #line hidden
             
-            #line 149 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 139 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Initiator.Adulthood)) { 
             
             #line default
             #line hidden
             
-            #line 150 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 140 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s adulthood was spent as: ");
             
-            #line 150 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 140 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Adulthood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 151 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 141 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 152 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 142 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Recipient.Adulthood)) { 
             
             #line default
             #line hidden
             
-            #line 153 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 143 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s adulthood was spent as: ");
             
-            #line 153 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 143 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Adulthood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 154 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 144 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 155 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 145 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Initiator.Childhood)) { 
             
             #line default
             #line hidden
             
-            #line 156 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 146 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s childhood was spent as: ");
             
-            #line 156 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 146 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Childhood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 157 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 147 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 158 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 148 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Recipient.Childhood)) { 
             
             #line default
             #line hidden
             
-            #line 159 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 149 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s childhood was spent as: ");
             
-            #line 159 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 149 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Childhood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 160 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\ChitChatRecentIncidentTemplate.tt"
+            #line 150 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplate.tt"
  } 
             
             #line default
@@ -1408,7 +1329,7 @@ namespace RimDialogueObjects
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatRecentIncidentTemplateBase
+    public class InitiatorRecipientTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;
