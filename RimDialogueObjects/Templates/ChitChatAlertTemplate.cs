@@ -29,60 +29,31 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nYou are a dialogue writer for the game RimWorld a sci-fi colony simulation game" +
-                    " set on a distant, lawless planet.\r\nYour job is to create ");
+            this.Write("\r\n");
             
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.MaxOutputWords)));
-            
-            #line default
-            #line hidden
-            this.Write(" conversation of ");
-            
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.MaxOutputWords));
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
             
             #line default
             #line hidden
-            this.Write(" words or less total between ");
+            this.Write("\r\nHere is the explanation of the alert.  Use this information to help you write t" +
+                    "he conversation.\r\n");
             
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" and ");
-            
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" based on this interaction, \"");
-            
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Interaction));
-            
-            #line default
-            #line hidden
-            this.Write("\" \r\nHere is the explanation of the alert.  Use this information to help you write" +
-                    " the conversation.\r\n");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Data.Explanation));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TargetString));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
             
             #line default

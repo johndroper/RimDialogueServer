@@ -5,7 +5,8 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-Here is background information about <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #>. Use this information to help you write the conversation from thier perspectives.
+Here is background information about <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #>. Use this information to help you write the conversation from their perspectives.
+Always put <#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s name in the dialogue.
 <# if (this.Config.ShowSpecialInstructions) { #>
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
 Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions #>
@@ -15,6 +16,7 @@ Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions
 <#  } #>
 <# } #>
 <# if (this.Config.ShowOpinions) { #>
+Opinion affects how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> feel about each other and how they will respond to each other.
 <#= this.Initiator.NickName #> <#= TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfRecipient) #> <#= this.Recipient.NickName #>.
 <#= this.Recipient.NickName #> <#= TemplateHelper.DescribeOpinion(this.RecipientOpinionOfInitiator) #> <#= this.Initiator.NickName #>.
 <# } #>
@@ -25,6 +27,7 @@ Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions
 <#= this.Recipient.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
 <# if (this.Config.ShowPersonality) { #>
+Personality affects how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> behave and interact with each other.
 <# if (!string.IsNullOrWhiteSpace(this.Initiator.Personality)) { #>
 <#= this.Initiator.NickName #>'s personality is <#= this.Initiator.Personality #>
 <#= this.Initiator.PersonalityDescription #>
@@ -34,6 +37,7 @@ Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions
 <#= this.Recipient.NickName #>'s personality is <#= this.Recipient.Personality #>
 <#= this.Recipient.PersonalityDescription #>
 <# } #>
+Mood is how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> are feeling and how positive or nagative they will be.
 <# if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.Initiator.MoodString)) { #>
 <#= this.Initiator.NickName #>'s overall mood is <#= this.Initiator.MoodString #>.
 <# } #>
@@ -41,6 +45,8 @@ Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions
 <#= this.Recipient.NickName #>'s overall mood is <#= this.Recipient.MoodString #>.
 <# } #>
 <# if (this.Config.ShowFullName) {#>
+Sometimes people are refered to by their full name.  This is usually a sign of respect or formality.
+Sometimes people are refered to by just their last name.  This is usually a sign of friendship or intimacy.
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { #>
 <#= this.Initiator.NickName #>'s full name is <#= this.Initiator.FullName #>.
 <#   } #>
@@ -49,6 +55,7 @@ Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions
 <#   } #>
 <# } #>
 <# if (this.Config.ShowAgeRaceAndGender) {#>
+Use age, race, and gender help to understand their perspective and how they might react to different situations. 
 <#= this.Initiator.NickName #>'s is a <#= this.Initiator.Gender #> <#= this.Initiator.Race #> age <#= this.Initiator.Age #> years old.
 <#   if (!string.IsNullOrWhiteSpace(this.Recipient.NickName)) { #>
 <#= this.Recipient.NickName #>'s is a <#= this.Recipient.Gender #> <#= this.Recipient.Race #> age <#= this.Recipient.Age #> years old.
@@ -92,6 +99,18 @@ Both <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> are raide
 <#     } #>
 <#   } #>
 <# } #>
+<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Initiator.Adulthood)) { #>
+<#= this.Initiator.NickName #>'s adulthood was spent as: <#= this.Initiator.Adulthood #>
+<# } #>
+<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Recipient.Adulthood)) { #>
+<#= this.Recipient.NickName #>'s adulthood was spent as: <#= this.Recipient.Adulthood #>
+<# } #>
+<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Initiator.Childhood)) { #>
+<#= this.Initiator.NickName #>'s childhood was spent as: <#= this.Initiator.Childhood #>
+<# } #>
+<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Recipient.Childhood)) { #>
+<#= this.Recipient.NickName #>'s childhood was spent as: <#= this.Recipient.Childhood #>
+<# } #>
 <# if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.Initiator.RoyaltyTitle)) { #>
 <#= this.Initiator.NickName #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
 <#= this.Initiator.NickName #>'s royal title is <#= this.Initiator.RoyaltyTitle #>
@@ -113,6 +132,7 @@ The faction <#= this.Recipient.NickName #> belongs to is called "<#= this.Recipi
 <#   } #>
 <# } #>
 <# if (this.Config.ShowIdeology) { #>
+<#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s ideology strongy affect how they see the world.
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.IdeologyName) && this.Initiator.IdeologyName == this.Recipient.IdeologyName) { #>
 Both <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> share the same ideology, called "<#= this.Initiator.IdeologyName #>".
 The narrative of "<#= this.Initiator.IdeologyName #>" is: <#= this.Initiator.IdeologyDescription #>
@@ -136,16 +156,5 @@ The precepts of <#= this.Recipient.NickName #>'s ideology are: <#= String.Join("
 <#	  } #>
 <#  } #>
 <#} #>
-<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Initiator.Adulthood)) { #>
-<#= this.Initiator.NickName #>'s adulthood was spent as: <#= this.Initiator.Adulthood #>
-<# } #>
-<# if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Recipient.Adulthood)) { #>
-<#= this.Recipient.NickName #>'s adulthood was spent as: <#= this.Recipient.Adulthood #>
-<# } #>
-<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Initiator.Childhood)) { #>
-<#= this.Initiator.NickName #>'s childhood was spent as: <#= this.Initiator.Childhood #>
-<# } #>
-<# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Recipient.Childhood)) { #>
-<#= this.Recipient.NickName #>'s childhood was spent as: <#= this.Recipient.Childhood #>
-<# } #>
+
 

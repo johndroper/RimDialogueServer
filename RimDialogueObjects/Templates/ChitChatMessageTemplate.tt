@@ -5,11 +5,9 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
-Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWords) #> conversation of <#= this.MaxOutputWords #> words or less total between <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> based on this interaction, "<#= this.Data.Interaction #>" 
+<#= this.BoilerPlate() #>
 <# if (!string.IsNullOrEmpty(Data.QuestName)) { #>
   This interaction is part of a quest, "<#= Data.QuestName #>", which is about <#= Data.QuestDescription #>.
 <# } #>
 <#= InitiatorRecipientTemplate.TransformText() #>
-
 <#= TargetString #>

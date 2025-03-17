@@ -49,6 +49,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\ChitChatBoilerPlate.cs">
+      <DependentUpon>ChitChatBoilerPlate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\TargetTemplate.cs">
       <DependentUpon>TargetTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -91,6 +96,10 @@
     </None>
     <None Update="Templates\ChitChatGameConditionTemplate.tt">
       <LastGenOutput>ChitChatGameConditionTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatBoilerPlate.tt">
+      <LastGenOutput>ChitChatBoilerPlate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\TargetTemplate.tt">

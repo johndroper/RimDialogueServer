@@ -127,10 +127,17 @@ namespace RimDialogueLocal.Controllers
 
 
     [NonAction]
-    public async Task<IActionResult> ProcessTwoParty<DataT, TemplateT>(string action, string initiatorJson, string recipientJson, string dataJson, string? targetJson) where TemplateT : DialoguePromptTemplate<DataT>, new()
+    public async Task<IActionResult> ProcessTwoParty<DataT, TemplateT>(
+      string action, 
+      string initiatorJson, 
+      string recipientJson, 
+      string dataJson, 
+      string? targetJson) 
+        where DataT : RimDialogue.Core.InteractionData.DialogueData 
+        where TemplateT : DialoguePromptTemplate<DataT>, new()
     {
       InitLog(action);
-      try
+      try 
       {
         if (dataJson == null)
           return new BadRequestResult();
@@ -164,7 +171,6 @@ namespace RimDialogueLocal.Controllers
             throw new Exception("Recipient is null.");
           if (targetJson != null)
             target = JsonConvert.DeserializeObject<PawnData>(targetJson);
-
           Log("Deserialized dialogueData.");
         }
         catch (Exception ex)
@@ -214,7 +220,7 @@ namespace RimDialogueLocal.Controllers
 
     public async Task<IActionResult> GameConditionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessTwoParty<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson, null);
+       return await ProcessTwoParty<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson, null);
     }
 
     public async Task<IActionResult> MessageChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
