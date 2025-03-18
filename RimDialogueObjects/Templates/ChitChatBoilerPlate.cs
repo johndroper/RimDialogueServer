@@ -65,24 +65,38 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\" \r\nIt is important that you respond with only the dialogue exchange.\r\nThe format" +
-                    " of the conversation should be as follows:\r\n");
+            this.Write("\" \r\nIt is important that you respond with only the dialogue exchange.\r\n\r\nThe form" +
+                    "at of the conversation should be as follows:\r\n");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write(": \"Initiation of dialogue.\"\r\n");
+            this.Write(": \"");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s part in the conversation goes here.\"\r\n");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
-            this.Write(": \"Response to dialogue.\"\r\n");
+            this.Write(": \"");
             
             #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s part in the conversation goes here.\"\r\n\r\n");
+            
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Instructions));
             
             #line default
