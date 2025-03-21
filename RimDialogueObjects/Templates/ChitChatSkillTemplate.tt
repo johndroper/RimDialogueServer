@@ -6,6 +6,15 @@
 <#@ import namespace="RimDialogue.Core" #>
 
 <#= this.BoilerPlate() #>
-<#= this.Initiator.NickName #>'s skill level in <#= this.Data.SkillName #> is '<#= this.Data.SkillLevel #>'.
+
 <#= this.Data.SkillName #> entails: <#= this.Data.SkillDescription #>
+<#= this.Initiator.NickName #>'s skill level in <#= this.Data.SkillName #> is '<#= this.Data.InitiatorSkillLevel #>'.
+<#= this.Recipient.NickName #>'s skill level in <#= this.Data.SkillName #> is '<#= this.Data.RecipientSkillLevel #>'.
+<# if (string.IsNullOrEmpty(this.Data.InitiatorPassion) && this.Data.InitiatorPassion != "none") { #>
+<#= this.Data.InitiatorPassion #> has a <#= this.Data.InitiatorPassion #> passion for <#= this.Data.SkillName #>.
+<# } #>
+<# if (string.IsNullOrEmpty(this.Data.RecipientPassion) && this.Data.RecipientPassion != "none") { #>
+<#= this.Data.RecipientPassion #> has a <#= this.Data.RecipientPassion #> passion for <#= this.Data.SkillName #>.
+<# } #>
+
 <#= InitiatorRecipientTemplate.TransformText() #>

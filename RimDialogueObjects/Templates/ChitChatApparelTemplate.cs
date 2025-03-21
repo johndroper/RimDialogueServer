@@ -19,9 +19,9 @@ namespace RimDialogueObjects.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatSkillTemplate : ChitChatSkillTemplateBase
+    public partial class ChitChatApparelTemplate : ChitChatApparelTemplateBase
     {
 #line hidden
         /// <summary>
@@ -31,142 +31,65 @@ namespace RimDialogueObjects.Templates
         {
             this.Write("\r\n");
             
-            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n");
+            this.Write("\r\n\r\nA description of ");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.SkillName));
-            
-            #line default
-            #line hidden
-            this.Write(" entails: ");
-            
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.SkillDescription));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.ApparelLabel));
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write(" is ");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write("\'s skill level in ");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.SkillName));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.ApparelDescription));
             
             #line default
             #line hidden
-            this.Write(" is \'");
+            this.Write(".\r\nThe quality of ");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.InitiatorSkillLevel));
-            
-            #line default
-            #line hidden
-            this.Write("\'.\r\n");
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.ApparelLabel));
             
             #line default
             #line hidden
-            this.Write("\'s skill level in ");
+            this.Write(" is ");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.SkillName));
-            
-            #line default
-            #line hidden
-            this.Write(" is \'");
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.RecipientSkillLevel));
-            
-            #line default
-            #line hidden
-            this.Write("\'.\r\n");
-            
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
- if (string.IsNullOrEmpty(this.Data.InitiatorPassion) && this.Data.InitiatorPassion != "none") { 
-            
-            #line default
-            #line hidden
-            
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.InitiatorPassion));
-            
-            #line default
-            #line hidden
-            this.Write(" has a ");
-            
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.InitiatorPassion));
-            
-            #line default
-            #line hidden
-            this.Write(" passion for ");
-            
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.SkillName));
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.ApparelQuality));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
+ if (this.Data.WornByCorpse) { 
+            
+            #line default
+            #line hidden
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.ApparelLabel));
+            
+            #line default
+            #line hidden
+            this.Write(" has been worn by a corpse.  This makes it highly undesirable.\r\n");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
- if (string.IsNullOrEmpty(this.Data.RecipientPassion) && this.Data.RecipientPassion != "none") { 
-            
-            #line default
-            #line hidden
-            
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.RecipientPassion));
-            
-            #line default
-            #line hidden
-            this.Write(" has a ");
-            
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.RecipientPassion));
-            
-            #line default
-            #line hidden
-            this.Write(" passion for ");
-            
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.SkillName));
-            
-            #line default
-            #line hidden
-            this.Write(".\r\n");
-            
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatSkillTemplate.tt"
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatApparelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
             
             #line default
             #line hidden
-            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -178,7 +101,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatSkillTemplateBase
+    public class ChitChatApparelTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

@@ -340,6 +340,10 @@ namespace RimDialogueLocal.Controllers
     {
       return await ProcessDialogue<DialogueDataHealth, ChitChatHealthTemplate>("HealthChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+    public async Task<IActionResult> ApparelChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataApparel, ChitChatApparelTemplate>("ApparelChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
 
     public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
     {
