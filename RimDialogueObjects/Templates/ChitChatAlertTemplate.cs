@@ -13,6 +13,7 @@ namespace RimDialogueObjects.Templates
     using System.Text;
     using System.Collections.Generic;
     using RimDialogue.Core;
+    using RimDialogue.Core.InteractionData;
     using System;
     
     /// <summary>
@@ -31,7 +32,7 @@ namespace RimDialogueObjects.Templates
         {
             this.Write("\r\n");
             
-            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
             
             #line default
@@ -39,26 +40,25 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\nHere is the explanation of the alert.  Use this information to help you write t" +
                     "he conversation.\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Data.Explanation));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TargetString));
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetTarget()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
             
             #line default
             #line hidden
-            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

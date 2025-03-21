@@ -6,8 +6,11 @@
 <#@ import namespace="RimDialogue.Core" #>
 
 <#= this.BoilerPlate() #>
+
 <# if (!string.IsNullOrEmpty(Data.QuestName)) { #>
   This interaction is part of a quest, "<#= Data.QuestName #>", which is about <#= Data.QuestDescription #>.
 <# } #>
+
+<#= this.GetTarget() #>
+
 <#= InitiatorRecipientTemplate.TransformText() #>
-<#= TargetString #>

@@ -29,6 +29,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Templates\ChitChatHealthTemplate.cs">
+      <DependentUpon>ChitChatHealthTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatColonistTemplate.cs">
+      <DependentUpon>ChitChatColonistTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatSkillTemplate.cs">
+      <DependentUpon>ChitChatSkillTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatIdeologyTemplate.cs">
+      <DependentUpon>ChitChatIdeologyTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatAlertTemplate.cs">
       <DependentUpon>ChitChatAlertTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -82,6 +102,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Templates\ChitChatHealthTemplate.tt">
+      <LastGenOutput>ChitChatHealthTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatColonistTemplate.tt">
+      <LastGenOutput>ChitChatColonistTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatSkillTemplate.tt">
+      <LastGenOutput>ChitChatSkillTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatIdeologyTemplate.tt">
+      <LastGenOutput>ChitChatIdeologyTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
     <None Update="Templates\ChitChatAlertTemplate.tt">
       <LastGenOutput>ChitChatAlertTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>

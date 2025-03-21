@@ -13,15 +13,16 @@ namespace RimDialogueObjects.Templates
     using System.Text;
     using System.Collections.Generic;
     using RimDialogue.Core;
+    using RimDialogue.Core.InteractionData;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatColonistTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatBattleTemplate : ChitChatBattleTemplateBase
+    public partial class ChitChatColonistTemplate : ChitChatColonistTemplateBase
     {
 #line hidden
         /// <summary>
@@ -31,39 +32,25 @@ namespace RimDialogueObjects.Templates
         {
             this.Write("\r\n");
             
-            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatColonistTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nHere are the events of the battle: \r\n");
+            this.Write("\r\n");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
- foreach(var entry in this.Data.Entries) { 
-            
-            #line default
-            #line hidden
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(entry));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatColonistTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetTarget()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatColonistTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
             
             #line default
             #line hidden
-            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -75,7 +62,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatBattleTemplateBase
+    public class ChitChatColonistTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

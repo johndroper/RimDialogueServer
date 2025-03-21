@@ -4,9 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
-
 Here is background information about <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #>. Use this information to help you write the conversation from their perspectives.
-Always put <#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s name in the dialogue.
 <# if (this.Config.ShowSpecialInstructions) { #>
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
 Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions #>
@@ -131,30 +129,5 @@ The faction <#= this.Recipient.NickName #> belongs to is called "<#= this.Recipi
 <#     } #>
 <#   } #>
 <# } #>
-<# if (this.Config.ShowIdeology) { #>
-<#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s ideology strongy affect how they see the world.
-<#   if (!string.IsNullOrWhiteSpace(this.Initiator.IdeologyName) && this.Initiator.IdeologyName == this.Recipient.IdeologyName) { #>
-Both <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> share the same ideology, called "<#= this.Initiator.IdeologyName #>".
-The narrative of "<#= this.Initiator.IdeologyName #>" is: <#= this.Initiator.IdeologyDescription #>
-<#     if (this.Config.ShowPrecepts && this.Initiator.IdeologyPrecepts.Any()) {#>
-The precepts of their ideology are: <#= String.Join(" ", this.Initiator.IdeologyPrecepts) #>
-<#     } #>
-<#  } else { #>
-<#    if (!string.IsNullOrWhiteSpace(this.Initiator.IdeologyName)) { #>
-<#= this.Initiator.NickName #>'s ideology is "<#= this.Initiator.IdeologyName #>".
-The narrative of "<#= this.Initiator.IdeologyName #>" is: <#= this.Initiator.IdeologyDescription #>
-<#      if (this.Config.ShowPrecepts && this.Initiator.IdeologyPrecepts.Any()) {#>
-The precepts of <#= this.Initiator.NickName #>'s ideology are: <#= String.Join(" ", this.Recipient.IdeologyPrecepts) #>
-<#      } #>
-<#    } #>
-<#    if (!string.IsNullOrWhiteSpace(this.Recipient.IdeologyName)) { #>
-<#= this.Recipient.NickName #>'s ideology is <#= this.Recipient.IdeologyName #>.
-The narrative of this ideology is: <#= this.Recipient.IdeologyDescription #>
-<#      if (this.Config.ShowPrecepts && this.Recipient.IdeologyPrecepts.Any()) {#>
-The precepts of <#= this.Recipient.NickName #>'s ideology are: <#= String.Join(" ", this.Recipient.IdeologyPrecepts) #>
-<#      } #>
-<#	  } #>
-<#  } #>
-<#} #>
 
 

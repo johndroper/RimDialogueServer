@@ -6,6 +6,9 @@
 <#@ import namespace="RimDialogue.Core" #>
 
 <#= this.BoilerPlate() #>
+
 <#= this.Data.Explanation #>
+
+<#= this.GetTarget() #>
+
 <#= InitiatorRecipientTemplate.TransformText() #>
-<#= TargetString #>

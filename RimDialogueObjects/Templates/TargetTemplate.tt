@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
-
 Here is background information about the person who is the subject of the conversation.
 <# if (this.Config.ShowSpecialInstructions) { #>
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
@@ -62,5 +61,3 @@ The faction <#= this.Target.NickName #> belongs to is called "<#= this.Target.Fa
 <# if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Target.Childhood)) { #>
 <#= this.Target.NickName #>'s childhood was spent as: <#= this.Target.Childhood #>
 <# } #>
-
-

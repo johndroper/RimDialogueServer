@@ -1,0 +1,18 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="RimDialogue.Core" #>
+
+<#= this.BoilerPlate() #>
+
+The severity of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffSeverity #>.
+The description of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffDescription #>
+<# if (!string.IsNullOrEmpty(this.Data.HediffPart)) { #>)
+The body part affected by '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffPart #>
+<# } #>
+<# if (!string.IsNullOrEmpty(this.Data.HediffSource)) { #>
+The source of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffSource #>
+<# } #>
+<#= InitiatorRecipientTemplate.TransformText() #>

@@ -4,10 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
-<#@ import namespace="RimDialogue.Core.InteractionData" #>
 
 <#= this.BoilerPlate() #>
-Here is the explanation of the alert.  Use this information to help you write the conversation.
-<#= Data.Explanation #>
-<#= this.GetTarget() #>
+<#= this.Initiator.NickName #>'s skill level in <#= this.Data.SkillName #> is '<#= this.Data.SkillLevel #>'.
+<#= this.Data.SkillName #> entails: <#= this.Data.SkillDescription #>
 <#= InitiatorRecipientTemplate.TransformText() #>

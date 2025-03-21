@@ -36,47 +36,49 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write("\r\n\r\n");
             
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
  if (!string.IsNullOrEmpty(Data.QuestName)) { 
             
             #line default
             #line hidden
             this.Write("  This interaction is part of a quest, \"");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Data.QuestName));
             
             #line default
             #line hidden
             this.Write("\", which is about ");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Data.QuestDescription));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
             #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
+ } 
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TargetString));
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetTarget()));
             
             #line default
             #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

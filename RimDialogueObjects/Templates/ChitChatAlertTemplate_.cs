@@ -9,29 +9,12 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatAlertTemplate : DialoguePromptTemplate<DialogueDataAlert>
+  public partial class ChitChatAlertTemplate : DialogueTargetTemplate<DialogueDataAlert>
   {
     public InitiatorRecipientTemplate InitiatorRecipientTemplate { 
       get
       {
         return new(Initiator, Recipient, Data.InitiatorOpinionOfRecipient, Data.RecipientOpinionOfInitiator, Config);
-      }
-    }
-
-    public string TargetString
-    {
-      get
-      {
-        if (Target != null)
-          return TargetTemplate.Generate(
-            Initiator,
-            Recipient,
-            Target,
-            Data.InitiatorOpinionOfTarget,
-            Data.RecipientOpinionOfTarget,
-            Config);
-        else
-          return string.Empty;
       }
     }
 

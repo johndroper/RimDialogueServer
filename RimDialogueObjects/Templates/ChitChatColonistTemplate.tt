@@ -7,7 +7,5 @@
 <#@ import namespace="RimDialogue.Core.InteractionData" #>
 
 <#= this.BoilerPlate() #>
-Here is the explanation of the alert.  Use this information to help you write the conversation.
-<#= Data.Explanation #>
 <#= this.GetTarget() #>
 <#= InitiatorRecipientTemplate.TransformText() #>

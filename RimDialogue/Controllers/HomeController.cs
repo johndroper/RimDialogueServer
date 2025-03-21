@@ -125,16 +125,99 @@ namespace RimDialogueLocal.Controllers
       Log(sb.ToString());
     }
 
+    [NonAction]
+    public async Task<IActionResult> ProcessDialogue<DataT, TemplateT>(
+      string action,
+      string initiatorJson,
+      string recipientJson,
+      string dataJson)
+    where DataT : RimDialogue.Core.InteractionData.DialogueData
+    where TemplateT : DialoguePromptTemplate<DataT>, new()
+    {
+      InitLog(action);
+      try
+      {
+        if (dataJson == null)
+          return new BadRequestResult();
+        if (initiatorJson == null)
+          throw new Exception("initiatorJson is null.");
+        if (recipientJson == null)
+          throw new Exception("recipientJson is null.");
+
+        string? ipAddress = GetIp();
+        Log(ipAddress, dataJson);
+        var config = Configuration.GetSection("Options").Get<Config>();
+        if (config == null)
+          throw new Exception("config is null.");
+        if (IsOverRateLimit(config, ipAddress))
+          return new JsonResult(new DialogueResponse { RateLimited = true });
+        DataT? dialogueData = default(DataT);
+        PawnData? initiator = null;
+        PawnData? recipient = null;
+        //******Deserialization******
+        try
+        {
+          dialogueData = JsonConvert.DeserializeObject<DataT>(dataJson);
+          if (dialogueData == null)
+            throw new Exception("DialogueData is null.");
+          initiator = JsonConvert.DeserializeObject<PawnData>(initiatorJson);
+          if (initiator == null)
+            throw new Exception("Initiator is null.");
+          recipient = JsonConvert.DeserializeObject<PawnData>(recipientJson);
+          if (recipient == null)
+            throw new Exception("Recipient is null.");
+          Log("Deserialized dialogueData.");
+        }
+        catch (Exception ex)
+        {
+          Exception exception = new("An error occurred deserializing JSON.", ex);
+          exception.Data.Add("initiatorJson", initiatorJson);
+          exception.Data.Add("recipientJson", recipientJson);
+          exception.Data.Add("dataJson", dataJson);
+          throw exception;
+        }
+        //******Prompt Generation******
+        string prompt = LlmHelper.Generate<DataT, TemplateT>(
+          config,
+          initiator,
+          recipient,
+          dialogueData,
+          out bool inputTruncated);
+        Log(prompt, $"inputTruncated: {inputTruncated}");
+        //******Response Generation******
+        string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
+        Log(text);
+        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, out bool outputTruncated);
+        if (outputTruncated)
+          Log($"Response was truncated. Original length was {text.Length} characters.");
+        Metrics.AddRequest(
+          this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
+          prompt.Length,
+          text.Length,
+          inputTruncated,
+          outputTruncated,
+          null);
+        Log("Metrics updated.");
+        return new JsonResult(dialogueResponse);
+      }
+      catch (Exception ex)
+      {
+        LogException(ex);
+        throw;
+      }
+    }
+
+
 
     [NonAction]
-    public async Task<IActionResult> ProcessTwoParty<DataT, TemplateT>(
+    public async Task<IActionResult> ProcessTargetDialogue<DataT, TemplateT>(
       string action, 
       string initiatorJson, 
       string recipientJson, 
       string dataJson, 
       string? targetJson) 
-        where DataT : RimDialogue.Core.InteractionData.DialogueData 
-        where TemplateT : DialoguePromptTemplate<DataT>, new()
+        where DataT : DialogueTargetData
+        where TemplateT : DialogueTargetTemplate<DataT>, new()
     {
       InitLog(action);
       try 
@@ -182,7 +265,13 @@ namespace RimDialogueLocal.Controllers
           throw exception;
         }
         //******Prompt Generation******
-        string prompt = LlmHelper.Generate<DataT, TemplateT>(config, initiator, recipient, dialogueData, target, out bool inputTruncated);
+        string prompt = LlmHelper.Generate<DataT, TemplateT>(
+          config, 
+          initiator, 
+          recipient, 
+          dialogueData, 
+          target, 
+          out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
         string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
@@ -210,34 +299,52 @@ namespace RimDialogueLocal.Controllers
     [HttpPost]
     public async Task<IActionResult> RecentIncidentChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTwoParty<DialogueDataIncident, ChitChatRecentIncidentTemplate>("RecentIncidentChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTargetDialogue<DialogueDataIncident, ChitChatRecentIncidentTemplate>("RecentIncidentChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
 
     public async Task<IActionResult> RecentBattleChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessTwoParty<DialogueDataBattle, ChitChatBattleTemplate>("RecentBattleChitchat", initiatorJson, recipientJson, chitChatJson, null);
+      return await ProcessDialogue<DialogueDataBattle, ChitChatBattleTemplate>("RecentBattleChitchat", initiatorJson, recipientJson, chitChatJson);
     }
 
     public async Task<IActionResult> GameConditionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-       return await ProcessTwoParty<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson, null);
+       return await ProcessDialogue<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson);
     }
 
     public async Task<IActionResult> MessageChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTwoParty<DialogueDataMessage, ChitChatMessageTemplate>("MessageChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTargetDialogue<DialogueDataMessage, ChitChatMessageTemplate>("MessageChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
 
     public async Task<IActionResult> AlertChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTwoParty<DialogueDataAlert, ChitChatAlertTemplate>("AlertChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTargetDialogue<DialogueDataAlert, ChitChatAlertTemplate>("AlertChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+    }
+
+    public async Task<IActionResult> IdeologyChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, ChitChatIdeologyTemplate>("IdeologyChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+
+    public async Task<IActionResult> SkillChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataSkill, ChitChatSkillTemplate>("SkillsChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+
+    public async Task<IActionResult> ColonistChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
+    {
+      return await ProcessTargetDialogue<DialogueTargetData, ChitChatColonistTemplate>("ColonistChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+    }
+    public async Task<IActionResult> HealthChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataHealth, ChitChatHealthTemplate>("HealthChitchat", initiatorJson, recipientJson, chitChatJson);
     }
 
     public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessTwoParty<DialogueDataAlert, ChitChatAlertTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson, null);
+      return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, ChitChatDialogueTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson);
     }
-
 
     [HttpPost]
     public async Task<IActionResult> GetDialogue(string dialogueDataJSON)

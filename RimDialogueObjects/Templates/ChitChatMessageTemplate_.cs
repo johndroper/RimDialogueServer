@@ -9,7 +9,7 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatMessageTemplate : DialoguePromptTemplate<DialogueDataMessage>
+  public partial class ChitChatMessageTemplate : DialogueTargetTemplate<DialogueDataMessage>
   {
 
     public InitiatorRecipientTemplate InitiatorRecipientTemplate 
@@ -25,22 +25,6 @@ namespace RimDialogueObjects.Templates
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
     public PawnData? Target { get; set; } = null;
-    public string TargetString
-    {
-      get
-      {
-        if (Target != null)
-          return TargetTemplate.Generate(
-            Initiator,
-            Recipient,
-            Target,
-            Data.InitiatorOpinionOfTarget,
-            Data.RecipientOpinionOfTarget,
-            Config);
-        else
-          return string.Empty;
-      }
-    }
     public int MaxOutputWords
     {
       get

@@ -36,27 +36,28 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write("\r\n\r\n");
             
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatRecentIncidentTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatRecentIncidentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Explanation));
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write("\r\n\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatRecentIncidentTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatRecentIncidentTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetTarget()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatRecentIncidentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
             
             #line default
             #line hidden
             this.Write("\r\n");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatRecentIncidentTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TargetString));
-            
-            #line default
-            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

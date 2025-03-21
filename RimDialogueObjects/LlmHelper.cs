@@ -72,9 +72,48 @@ namespace RimDialogueObjects
       Config config,
       PawnData initiator,
       PawnData recipient,
-      DataT dialogueData,
-      PawnData? targetData, 
+      DataT dialogueData, 
       out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : DialoguePromptTemplate<DataT>, new()
+    {
+      //******Prompt Generation******
+      string? prompt = null;
+      try
+      {
+        wasTruncated = false;
+        if (dialogueData == null)
+          throw new Exception("dialogueData is null.");
+        TemplateT promptTemplate = new();
+        promptTemplate.Initiator = initiator;
+        promptTemplate.Recipient = recipient;
+        promptTemplate.Data = dialogueData;
+        promptTemplate.Config = config;
+        prompt = promptTemplate.TransformText();
+        if (prompt == null)
+          throw new Exception("Prompt is null.");
+        int maxPromptLength = config.MaxPromptLength;
+        if (prompt.Length > maxPromptLength)
+        {
+          wasTruncated = true;
+          Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
+          return prompt.Substring(0, maxPromptLength);
+        }
+        return prompt;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred generating prompt.", ex);
+        exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
+        throw exception;
+      }
+    }
+
+  public static string Generate<DataT, TemplateT>(
+    Config config,
+    PawnData initiator,
+    PawnData recipient,
+    DataT dialogueData,
+    PawnData? targetData,
+  out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData where TemplateT : DialogueTargetTemplate<DataT>, new()
     {
       //******Prompt Generation******
       string? prompt = null;
@@ -108,6 +147,7 @@ namespace RimDialogueObjects
         throw exception;
       }
     }
+
 
 
     public static async Task<string> GetResults(IConfiguration configuration, string prompt)

@@ -6,10 +6,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RimDialogue.Core.InteractionData;
+using DialogueData = RimDialogue.Core.InteractionData.DialogueData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatBattleTemplate : DialoguePromptTemplate<DialogueDataBattle>
+  public partial class ChitChatIdeologyTemplate : DialoguePromptTemplate<DialogueData>
   {
     public InitiatorRecipientTemplate InitiatorRecipientTemplate { 
       get
@@ -18,10 +19,11 @@ namespace RimDialogueObjects.Templates
       }
     }
 
-    public DialogueDataBattle Data { get; set; }
+    public DialogueData Data { get; set; }
     public PawnData Initiator { get; set; }
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
+    public PawnData? Target { get; set; } = null;
 
   }
 }

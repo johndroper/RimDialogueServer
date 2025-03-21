@@ -1,4 +1,5 @@
 ﻿using RimDialogue.Core;
+using RimDialogue.Core.InteractionData;
 using RimDialogueObjects;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RimDialogueObjects.Templates
 {
-  public static class DialoguePromptTemplateExtentions
+  public static class DialoguePromptTemplateExtensions
   {
     public static string BoilerPlate<DataT>(this DialoguePromptTemplate<DataT> template) where DataT : RimDialogue.Core.InteractionData.DialogueData
     {
@@ -20,7 +21,7 @@ namespace RimDialogueObjects.Templates
         template.Config);
     }
 
-    public static string TargetString<DataT>(this DialoguePromptTemplate<DataT> template) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData
+    public static string GetTarget<DataT>(this DialogueTargetTemplate<DataT> template) where DataT : DialogueTargetData
     {
       if (template.Target != null)
         return TargetTemplate.Generate(
@@ -42,6 +43,10 @@ namespace RimDialogueObjects.Templates
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
     public string TransformText();
+  }
+
+  public interface DialogueTargetTemplate<DataT> : DialoguePromptTemplate<DataT> where DataT : DialogueTargetData
+  {
     public PawnData? Target { get; set; }
   }
 }

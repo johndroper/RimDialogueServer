@@ -29,68 +29,89 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nHere is background information about the person who is the subject of the conve" +
-                    "rsation.\r\n");
+            this.Write("Here is background information about the person who is the subject of the convers" +
+                    "ation.\r\n");
             
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowSpecialInstructions) { 
             
             #line default
             #line hidden
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
   if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { 
             
             #line default
             #line hidden
             this.Write("Instructions for ");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Instructions));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowOpinions) { 
             
             #line default
             #line hidden
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfTarget)));
             
             #line default
             #line hidden
             this.Write(" ");
             
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\n");
+            
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.RecipientOpinionOfTarget)));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
             #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
@@ -99,39 +120,18 @@ namespace RimDialogueObjects.Templates
             this.Write(".\r\n");
             
             #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.RecipientOpinionOfTarget)));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(".\r\n");
-            
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowAnimal && this.Target.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
@@ -139,201 +139,201 @@ namespace RimDialogueObjects.Templates
             this.Write(" can\'t speak, but they can communicate through actions, sounds, and body language" +
                     ".\r\n");
             
-            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (!string.IsNullOrWhiteSpace(this.Target.Personality)) { 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s personality is ");
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Personality));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.PersonalityDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowMoodString && !string.IsNullOrWhiteSpace(this.Target.MoodString)) { 
             
             #line default
             #line hidden
             
-            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s overall mood is ");
             
-            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.MoodString));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowFullName) {
             
             #line default
             #line hidden
             
-            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
    if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { 
             
             #line default
             #line hidden
             
-            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s full name is ");
             
-            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.FullName));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowAgeRaceAndGender) {
             
             #line default
             #line hidden
             
-            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is a ");
             
-            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Gender));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Race));
             
             #line default
             #line hidden
             this.Write(" age ");
             
-            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Age));
             
             #line default
             #line hidden
             this.Write(" years old.\r\n");
             
-            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowDescription) {
             
             #line default
             #line hidden
             
-            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is ");
             
-            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Description));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowPawnType) { 
             
             #line default
             #line hidden
             
-            #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      if (this.Target.IsColonist) { 
             
             #line default
             #line hidden
             
-            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write(" is a colonist and a member of the player\'s colony.  \r\n");
             
-            #line 42 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      } else if (this.Target.IsPrisoner) { 
             
             #line default
             #line hidden
             
-            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 42 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -343,26 +343,26 @@ namespace RimDialogueObjects.Templates
                     " escapes. Prisoners can be recruited, traded, or exploited for labor or medical " +
                     "resources.\r\n");
             
-            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      } else if (this.Target.IsHostile) { 
             
             #line default
             #line hidden
             
-            #line 45 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" is a raider and is here to attack the player\'s colony.\r\n");
             
-            #line 46 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 45 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      } else if (!this.Target.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 46 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
@@ -370,25 +370,25 @@ namespace RimDialogueObjects.Templates
             this.Write(" is an NPC and just a temporary visitor here.  They are probably here as part of " +
                     "a trade caravan.\r\n");
             
-            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 49 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 49 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.Target.RoyaltyTitle)) { 
             
             #line default
             #line hidden
             
-            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
@@ -396,131 +396,130 @@ namespace RimDialogueObjects.Templates
             this.Write(" is royalty. Pawns speak differently to royalty, often with more respect and form" +
                     "ality.\r\n");
             
-            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s royal title is ");
             
-            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.RoyaltyTitle));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 53 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 53 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowFaction) { 
             
             #line default
             #line hidden
             
-            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      if (!string.IsNullOrWhiteSpace(this.Target.FactionName)) { 
             
             #line default
             #line hidden
             this.Write(" \r\nThe faction ");
             
-            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write(" belongs to is called \"");
             
-            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 57 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 57 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowAdulthood && !string.IsNullOrWhiteSpace(this.Target.Adulthood)) { 
             
             #line default
             #line hidden
             
-            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s adulthood was spent as: ");
             
-            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Adulthood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  if (this.Config.ShowChildhood && !string.IsNullOrWhiteSpace(this.Target.Childhood)) { 
             
             #line default
             #line hidden
             
-            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.NickName));
             
             #line default
             #line hidden
             this.Write("\'s childhood was spent as: ");
             
-            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Target.Childhood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TargetTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

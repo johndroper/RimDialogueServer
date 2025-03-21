@@ -9,7 +9,7 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatBattleTemplate : DialoguePromptTemplate<DialogueDataBattle>
+  public partial class ChitChatSkillTemplate : DialoguePromptTemplate<DialogueDataSkill>
   {
     public InitiatorRecipientTemplate InitiatorRecipientTemplate { 
       get
@@ -18,10 +18,11 @@ namespace RimDialogueObjects.Templates
       }
     }
 
-    public DialogueDataBattle Data { get; set; }
+    public DialogueDataSkill Data { get; set; }
     public PawnData Initiator { get; set; }
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
+    public PawnData? Target { get; set; } = null;
 
   }
 }

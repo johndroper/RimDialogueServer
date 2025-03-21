@@ -19,9 +19,9 @@ namespace RimDialogueObjects.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatBattleTemplate : ChitChatBattleTemplateBase
+    public partial class ChitChatHealthTemplate : ChitChatHealthTemplateBase
     {
 #line hidden
         /// <summary>
@@ -31,39 +31,100 @@ namespace RimDialogueObjects.Templates
         {
             this.Write("\r\n");
             
-            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nHere are the events of the battle: \r\n");
+            this.Write("\r\n\r\nThe severity of \'");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
- foreach(var entry in this.Data.Entries) { 
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffLabel));
             
             #line default
             #line hidden
+            this.Write("\' is: ");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(entry));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffSeverity));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\nThe description of \'");
+            
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffLabel));
+            
+            #line default
+            #line hidden
+            this.Write("\' is: ");
+            
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+ if (!string.IsNullOrEmpty(this.Data.HediffPart)) { 
+            
+            #line default
+            #line hidden
+            this.Write(")\r\nThe body part affected by \'");
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffLabel));
+            
+            #line default
+            #line hidden
+            this.Write("\' is: ");
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffPart));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\r\n");
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+ if (!string.IsNullOrEmpty(this.Data.HediffSource)) { 
+            
+            #line default
+            #line hidden
+            this.Write("The source of \'");
+            
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffLabel));
+            
+            #line default
+            #line hidden
+            this.Write("\' is: ");
+            
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffSource));
             
             #line default
             #line hidden
             this.Write("\r\n");
+            
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -75,7 +136,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatBattleTemplateBase
+    public class ChitChatHealthTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;
