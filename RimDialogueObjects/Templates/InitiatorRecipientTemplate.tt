@@ -43,8 +43,6 @@ Mood is how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> ar
 <#= this.Recipient.NickName #>'s overall mood is <#= this.Recipient.MoodString #>.
 <# } #>
 <# if (this.Config.ShowFullName) {#>
-Sometimes people are refered to by their full name.  This is usually a sign of respect or formality.
-Sometimes people are refered to by just their last name.  This is usually a sign of friendship or intimacy.
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { #>
 <#= this.Initiator.NickName #>'s full name is <#= this.Initiator.FullName #>.
 <#   } #>
@@ -129,5 +127,18 @@ The faction <#= this.Recipient.NickName #> belongs to is called "<#= this.Recipi
 <#     } #>
 <#   } #>
 <# } #>
+<#   if (!string.IsNullOrWhiteSpace(this.Initiator.JobReport)) { #>
+<#= this.Initiator.NickName #>'s current activity is <#= this.Initiator.JobReport #>
+<#     if (!string.IsNullOrWhiteSpace(this.Initiator.Carrying)) { #>
+<#= this.Initiator.NickName #> is carrying <#= this.Initiator.Carrying #>.
+<#     } #>
+<#   } #>
+<#   if (!string.IsNullOrWhiteSpace(this.Recipient.JobReport)) { #>
+<#= this.Recipient.NickName #>'s current activity is <#= this.Recipient.JobReport #>
+<#     if (!string.IsNullOrWhiteSpace(this.Recipient.Carrying)) { #>
+<#= this.Recipient.NickName #> is carrying <#= this.Recipient.Carrying #>.
+<#     } #>
+<#   } #>
+
 
 

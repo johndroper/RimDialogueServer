@@ -71,7 +71,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(")\r\nThe body part affected by \'");
+            this.Write("The body part affected by \'");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatHealthTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.HediffLabel));
