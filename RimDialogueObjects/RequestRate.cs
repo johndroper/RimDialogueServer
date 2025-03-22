@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
 
 namespace RimDialogueObjects
 {
   public class RequestRate
   {
     public static bool CheckRateLimit(
-      string key, 
+      string key,
       float rateLimit,
-      int minRateLimitRequestCount, 
-      int rateLimitCacheMinutes, 
+      int minRateLimitRequestCount,
+      int rateLimitCacheMinutes,
       IMemoryCache memoryCache,
       out float? rate)
     {

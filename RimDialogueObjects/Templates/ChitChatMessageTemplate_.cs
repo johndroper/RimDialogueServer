@@ -1,10 +1,4 @@
 ﻿using RimDialogue.Core;
-using System;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
@@ -12,8 +6,8 @@ namespace RimDialogueObjects.Templates
   public partial class ChitChatMessageTemplate : DialogueTargetTemplate<DialogueDataMessage>
   {
 
-    public InitiatorRecipientTemplate InitiatorRecipientTemplate 
-    { 
+    public InitiatorRecipientTemplate InitiatorRecipientTemplate
+    {
       get
       {
         return new(Initiator, Recipient, Data.InitiatorOpinionOfRecipient, Data.RecipientOpinionOfInitiator, Config);

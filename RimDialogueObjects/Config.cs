@@ -2,6 +2,7 @@
 {
   public class Config
   {
+    public string? Name { get; set; }
     public string? ModelId { get; set; }
     public float RateLimit { get; set; }
     public int RateLimitCacheMinutes { get; set; }

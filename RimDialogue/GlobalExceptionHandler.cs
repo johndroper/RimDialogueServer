@@ -1,8 +1,4 @@
-﻿using Amazon.Runtime;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http.Extensions;
-using RimDialogueObjects;
-using System.Net.Mail;
+﻿using RimDialogueObjects;
 
 namespace RimDialogueLocal
 {

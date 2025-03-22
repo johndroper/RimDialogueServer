@@ -1,11 +1,5 @@
 ﻿using RimDialogue.Core;
 using DialogueData = RimDialogue.Core.InteractionData.DialogueData;
-using System;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace RimDialogueObjects.Templates
 {
@@ -19,8 +13,8 @@ namespace RimDialogueObjects.Templates
     }
 
     public ChitChatBoilerPlate(
-      DialogueData data, 
-      PawnData initiator, 
+      DialogueData data,
+      PawnData initiator,
       PawnData recipient,
       Config config)
     {

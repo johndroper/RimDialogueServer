@@ -12,19 +12,18 @@ using OpenAI.Chat;
 using OpenAI.Models;
 using RimDialogue.Core;
 using RimDialogueObjects.Templates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace RimDialogueObjects
 {
   public static class LlmHelper
   {
 
-    public static DialogueResponse SerializeResponse(string text, IConfiguration configuration, out bool outputTruncated)
+    public static DialogueResponse SerializeResponse(
+      string text, 
+      IConfiguration configuration,
+      float rate,
+      out bool outputTruncated)
     {
       DialogueResponse? dialogueResponse = null;
       try
@@ -38,7 +37,8 @@ namespace RimDialogueObjects
         }
         else
           outputTruncated = false;
-        dialogueResponse.text = text;
+        dialogueResponse.Text = text;
+        dialogueResponse.Rate = rate;
         return dialogueResponse;
       }
       catch (Exception ex)
@@ -72,7 +72,7 @@ namespace RimDialogueObjects
       Config config,
       PawnData initiator,
       PawnData recipient,
-      DataT dialogueData, 
+      DataT dialogueData,
       out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : DialoguePromptTemplate<DataT>, new()
     {
       //******Prompt Generation******
@@ -107,13 +107,13 @@ namespace RimDialogueObjects
       }
     }
 
-  public static string Generate<DataT, TemplateT>(
-    Config config,
-    PawnData initiator,
-    PawnData recipient,
-    DataT dialogueData,
-    PawnData? targetData,
-  out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData where TemplateT : DialogueTargetTemplate<DataT>, new()
+    public static string Generate<DataT, TemplateT>(
+      Config config,
+      PawnData initiator,
+      PawnData recipient,
+      DataT dialogueData,
+      PawnData? targetData,
+    out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData where TemplateT : DialogueTargetTemplate<DataT>, new()
     {
       //******Prompt Generation******
       string? prompt = null;
@@ -209,14 +209,15 @@ namespace RimDialogueObjects
         BasicAWSCredentials awsCredentials = new(awsKey, awsSecret);
         var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
-                var message = new Amazon.BedrockRuntime.Model.Message();
+        var message = new Amazon.BedrockRuntime.Model.Message();
         message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
         message.Role = ConversationRole.User;
         ConverseRequest request = new ConverseRequest
         {
           ModelId = modelId,
           Messages = new List<Amazon.BedrockRuntime.Model.Message> { message },
-          InferenceConfig = new InferenceConfiguration {
+          InferenceConfig = new InferenceConfiguration
+          {
             MaxTokens = maxTokens
           }
         };

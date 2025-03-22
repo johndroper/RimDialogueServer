@@ -1,10 +1,4 @@
 ﻿using RimDialogue.Core;
-using System;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace RimDialogueObjects.Templates
 {

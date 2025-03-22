@@ -1,34 +1,20 @@
-﻿using Amazon.BedrockRuntime;
-using Amazon.BedrockRuntime.Model;
-using Amazon.Runtime;
-using GroqSharp.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.SignalR.Protocol;
-using Microsoft.Extensions.AI;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
-using OpenAI.Chat;
 using RimDialogue.Core;
-using RimDialogue.Core.InteractionData;
 using RimDialogueObjects;
 using RimDialogueObjects.Templates;
-using System.Diagnostics;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RimDialogueLocal.Controllers
 {
   public class HomeController : DialogueController
   {
     public HomeController(
-      IConfiguration Configuration, 
+      IConfiguration Configuration,
       IMemoryCache memoryCache) : base(Configuration, memoryCache)
     {
- 
+
     }
 
     private DateTime? _startTime;
@@ -40,14 +26,14 @@ namespace RimDialogueLocal.Controllers
       return View();
     }
 
-    protected bool IsOverRateLimit(Config config, string ipAddress)
+    protected bool IsOverRateLimit(Config config, string ipAddress, out float? rate)
     {
       var rateLimit = RequestRate.CheckRateLimit(ipAddress,
         config.RateLimit,
         config.RateLimitCacheMinutes,
         config.MinRateLimitRequestCount,
         MemoryCache,
-        out float? rate);
+        out rate);
 
       if (rateLimit)
         Log("Rate limited.", $"Rate {rate} > {config.RateLimit}");
@@ -77,7 +63,7 @@ namespace RimDialogueLocal.Controllers
         var config = this.Configuration.GetSection("Options").Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
-        if (IsOverRateLimit(config, ipAddress))
+        if (IsOverRateLimit(config, ipAddress, out float? rate))
           return new JsonResult(new DialogueResponse { RateLimited = true });
         DataT? dialogueData = default(DataT);
         PawnData? initiator = null;
@@ -115,7 +101,7 @@ namespace RimDialogueLocal.Controllers
         //******Response Generation******
         string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
         Log(text);
-        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, out bool outputTruncated);
+        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
         if (outputTruncated)
           Log($"Response was truncated. Original length was {text.Length} characters.");
         Metrics.AddRequest(
@@ -137,14 +123,14 @@ namespace RimDialogueLocal.Controllers
 
     [NonAction]
     public override async Task<IActionResult> ProcessTargetDialogue<DataT, TemplateT>(
-      string action, 
-      string initiatorJson, 
-      string recipientJson, 
-      string dataJson, 
-      string? targetJson) 
+      string action,
+      string initiatorJson,
+      string recipientJson,
+      string dataJson,
+      string? targetJson)
     {
       InitLog(action);
-      try 
+      try
       {
         if (dataJson == null)
           return new BadRequestResult();
@@ -158,7 +144,7 @@ namespace RimDialogueLocal.Controllers
         var config = Configuration.GetSection("Options").Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
-        if (IsOverRateLimit(config, ipAddress))
+        if (IsOverRateLimit(config, ipAddress, out float? rate))
           return new JsonResult(new DialogueResponse { RateLimited = true });
         DataT? dialogueData = default(DataT);
         PawnData? initiator = null;
@@ -190,17 +176,17 @@ namespace RimDialogueLocal.Controllers
         }
         //******Prompt Generation******
         string prompt = LlmHelper.Generate<DataT, TemplateT>(
-          config, 
-          initiator, 
-          recipient, 
-          dialogueData, 
-          target, 
+          config,
+          initiator,
+          recipient,
+          dialogueData,
+          target,
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
         string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
         Log(text);
-        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, out bool outputTruncated);
+        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
           Log($"Response was truncated. Original length was {text.Length} characters.");
         Metrics.AddRequest(
@@ -233,7 +219,7 @@ namespace RimDialogueLocal.Controllers
         var config = Configuration.GetSection("Options").Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
-        if (IsOverRateLimit(config, ipAddress))
+        if (IsOverRateLimit(config, ipAddress, out float? rate))
           return new JsonResult(new DialogueResponse { RateLimited = true });
         RimDialogue.Core.DialogueData? dialogueData = null;
         //******Deserialization******
@@ -260,7 +246,7 @@ namespace RimDialogueLocal.Controllers
         if (Configuration.GetValue("RemoveThinking", false))
           text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
         //******Response Serialization******
-        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, out bool outputTruncated);
+        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
           Log($"Response was truncated. Original length was {text.Length} characters.");
         //******Metrics******

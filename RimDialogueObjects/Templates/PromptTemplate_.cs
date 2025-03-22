@@ -1,10 +1,6 @@
-﻿using RimDialogue.Core;
-using System;
-using System.Runtime.InteropServices;
+﻿using Newtonsoft.Json;
+using RimDialogue.Core;
 using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace RimDialogueObjects.Templates
 {
@@ -40,7 +36,7 @@ namespace RimDialogueObjects.Templates
     //  (data) => $"{data.initiatorNickName}'s race is {data.initiatorRace}",
     //  (data) => $"{data.recipientNickName}'s race is {data.recipientRace}",
     //  (data) => $"One of the precepts of {data.initiatorNickName}'s ideology is {Rand(data.initiatorIdeologyPrecepts)}",
-      
+
     //};
 
     public static string Generate(Config config, DialogueData dialogueData, out bool wasTruncated)
@@ -88,7 +84,7 @@ namespace RimDialogueObjects.Templates
 
 
     public PromptTemplate(
-      DialogueData dialogueData, 
+      DialogueData dialogueData,
       Config tier)
     {
       DialogueData = dialogueData;
@@ -103,7 +99,7 @@ namespace RimDialogueObjects.Templates
     {
       return string.Join(", ", thoughts);
     }
-     
+
 
     public int MaxOutputWords
     {
