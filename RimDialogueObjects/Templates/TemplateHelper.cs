@@ -351,6 +351,27 @@
         return "a huge amount of prisoners.";
     }
 
+    public static string DescribeNeedLevel(string need, float level)
+    {
+      switch(need)
+      {
+        case "Comfort":
+          return DescribeComfortLevel(level);
+        case "Hunger":
+          return DescribeHungerLevel(level);
+        case "Rest":
+          return DescribeRestLevel(level);
+        case "Engagement":
+          return DescribeEngagementLevel(level);
+        case "Beauty":
+          return DescribeEnvironmentBeauty(level);
+        default:
+          return string.Empty;
+      }
+    }
+
+
+
     public static string DescribeComfortLevel(float comfort)
     {
       if (comfort <= 0)

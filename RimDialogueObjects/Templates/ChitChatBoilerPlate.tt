@@ -11,6 +11,7 @@ Your job is to create <#= TemplateHelper.DescribeOutputLength(this.MaxOutputWord
 The format of the conversation should be as follows:
 <#= this.Initiator.NickName #>: "<#= this.Initiator.NickName #>'s part in the conversation goes here."
 <#= this.Recipient.NickName #>: "<#= this.Recipient.NickName #>'s part in the conversation goes here."
+
 It is important that you respond with only the dialogue exchange.
 
 <#= this.Data.Instructions #>

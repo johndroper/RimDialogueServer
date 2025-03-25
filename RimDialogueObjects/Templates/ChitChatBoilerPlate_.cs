@@ -28,6 +28,7 @@ namespace RimDialogueObjects.Templates
     public PawnData Initiator { get; set; }
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
+
     public int MaxOutputWords
     {
       get

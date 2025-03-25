@@ -116,7 +116,7 @@ namespace RimDialogueObjects
      string? targetJson)
         where DataT : DialogueTargetData
         where TemplateT : DialogueTargetTemplate<DataT>, new();
-
+    
     [HttpPost]
     public async Task<IActionResult> RecentIncidentChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
@@ -168,11 +168,15 @@ namespace RimDialogueObjects
       return await ProcessDialogue<DialogueDataApparel, ChitChatApparelTemplate>("ApparelChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
+    public async Task<IActionResult> NeedsChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataNeed, ChitChatNeedTemplate>("NeedsChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+    [HttpPost]
     public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
     {
       return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, ChitChatDialogueTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson);
     }
-
     public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);
   }
 }

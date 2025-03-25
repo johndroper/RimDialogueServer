@@ -17,10 +17,6 @@ namespace RimDialogueLocal.Controllers
 
     }
 
-    private DateTime? _startTime;
-    private DateTime? _lastLog = null;
-    private StreamWriter? log;
-
     public IActionResult Index()
     {
       return View();
@@ -60,7 +56,7 @@ namespace RimDialogueLocal.Controllers
 
         string? ipAddress = GetIp();
         Log(ipAddress, dataJson);
-        var config = this.Configuration.GetSection("Options").Get<Config>();
+        var config = this.Configuration.Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
         if (IsOverRateLimit(config, ipAddress, out float? rate))
@@ -90,6 +86,7 @@ namespace RimDialogueLocal.Controllers
           exception.Data.Add("dataJson", dataJson);
           throw exception;
         }
+
         //******Prompt Generation******
         string prompt = LlmHelper.Generate<DataT, TemplateT>(
           config,
@@ -99,7 +96,8 @@ namespace RimDialogueLocal.Controllers
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
+
+        string? text = await LlmHelper.GenerateResponse(prompt, config);
         Log(text);
         var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
         if (outputTruncated)
@@ -141,7 +139,7 @@ namespace RimDialogueLocal.Controllers
 
         string? ipAddress = GetIp();
         Log(ipAddress, dataJson);
-        var config = Configuration.GetSection("Options").Get<Config>();
+        var config = Configuration.Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
         if (IsOverRateLimit(config, ipAddress, out float? rate))
@@ -174,6 +172,7 @@ namespace RimDialogueLocal.Controllers
           exception.Data.Add("dataJson", dataJson);
           throw exception;
         }
+
         //******Prompt Generation******
         string prompt = LlmHelper.Generate<DataT, TemplateT>(
           config,
@@ -183,8 +182,9 @@ namespace RimDialogueLocal.Controllers
           target,
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
+
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
+        string? text = await LlmHelper.GenerateResponse(prompt, config);
         Log(text);
         var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
@@ -216,7 +216,7 @@ namespace RimDialogueLocal.Controllers
         InitLog("GetDialogue");
         string? ipAddress = GetIp();
         Log(ipAddress, dialogueDataJSON);
-        var config = Configuration.GetSection("Options").Get<Config>();
+        var config = Configuration.Get<Config>();
         if (config == null)
           throw new Exception("config is null.");
         if (IsOverRateLimit(config, ipAddress, out float? rate))
@@ -240,7 +240,7 @@ namespace RimDialogueLocal.Controllers
         string prompt = PromptTemplate.Generate(config, dialogueData, out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, Configuration);
+        string? text = await LlmHelper.GenerateResponse(prompt, config);
         Log(text);
         //****Remove everything between the start <think> tag and the end </think> tag ******
         if (Configuration.GetValue("RemoveThinking", false))

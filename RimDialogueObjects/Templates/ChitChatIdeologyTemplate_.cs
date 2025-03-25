@@ -1,4 +1,5 @@
-﻿using RimDialogue.Core;
+﻿# nullable disable
+using RimDialogue.Core;
 using DialogueData = RimDialogue.Core.InteractionData.DialogueData;
 
 namespace RimDialogueObjects.Templates
@@ -17,7 +18,10 @@ namespace RimDialogueObjects.Templates
     public PawnData Initiator { get; set; }
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
-    public PawnData? Target { get; set; } = null;
+    public PawnData Target { get; set; } = null;
+
+    public string[] PastConversations { get; set; } = [];
+
 
   }
 }

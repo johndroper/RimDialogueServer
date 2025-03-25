@@ -49,14 +49,14 @@ namespace RimDialogueObjects
       }
     }
 
-    public async static Task<string> GenerateResponse(string prompt, IConfiguration configuration)
+    public async static Task<string> GenerateResponse(string prompt, Config config)
     {
       string? text = null;
       try
       {
-        text = await GetResults(configuration, prompt);
+        text = await GetResults(config, prompt);
         //****Remove everything between the start <think> tag and the end </think> tag ******
-        if (configuration.GetValue("RemoveThinking", false))
+        if (config.RemoveThinking)
           text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
         return text;
       }
@@ -150,38 +150,36 @@ namespace RimDialogueObjects
 
 
 
-    public static async Task<string> GetResults(IConfiguration configuration, string prompt)
+    public static async Task<string> GetResults(Config config, string prompt)
     {
-      var provider = configuration["provider"];
+      var provider = config.Provider?.ToUpper();
       try
       {
-        switch (provider?.ToUpper())
+        switch (provider)
         {
           case "AWS":
-            var awsKey = configuration["AwsKey"];
+            var awsKey = config.AwsKey;
             if (String.IsNullOrWhiteSpace(awsKey))
               throw new Exception("AWS Key is empty in appsettings.");
-            var awsSecret = configuration["AwsSecret"];
+            var awsSecret = config.AwsKey;
             if (String.IsNullOrWhiteSpace(awsSecret))
               throw new Exception("AWS Secret is empty in appsettings.");
-            var awsRegion = configuration["AwsRegion"];
+            var awsRegion = config.AwsKey;
             if (String.IsNullOrWhiteSpace(awsRegion))
               throw new Exception("AWS Region is empty in appsettings.");
-            var modelId = configuration["AwsModelId"];
+            var modelId = config.AwsKey;
             if (String.IsNullOrWhiteSpace(modelId))
               throw new Exception("AWS ModelId is empty in appsettings.");
-            var maxOutputWords = configuration["MaxOutputWords"];
-            if (int.TryParse(maxOutputWords, out int maxTokens))
-              maxTokens = 25;
-            return await GetFromAws(awsKey, awsSecret, awsRegion, modelId, prompt, maxTokens);
+            var maxOutputWords = config.MaxOutputWords;
+            return await GetFromAws(config, prompt);
           case "OLLAMA":
-            return await GetFromOllama(configuration, prompt);
+            return await GetFromOllama(config, prompt);
           case "OPENAI":
-            return await GetFromOpenAI(configuration, prompt);
+            return await GetFromOpenAI(config, prompt);
           case "GROQ":
-            return await GetFromGroq(configuration, prompt);
+            return await GetFromGroq(config, prompt);
           case "GEMINI":
-            return await GetFromGemini(configuration, prompt);
+            return await GetFromGemini(config, prompt);
           case null:
             throw new Exception($"Provider not set.");
           default:
@@ -197,28 +195,24 @@ namespace RimDialogueObjects
     }
 
     public static async Task<string> GetFromAws(
-      string awsKey,
-      string awsSecret,
-      string awsRegion,
-      string modelId,
-      string prompt,
-      int maxTokens)
+      Config config,
+      string prompt)
     {
       try
       {
-        BasicAWSCredentials awsCredentials = new(awsKey, awsSecret);
-        var region = Amazon.RegionEndpoint.GetBySystemName(awsRegion);
+        BasicAWSCredentials awsCredentials = new(config.AwsKey, config.AwsSecret);
+        var region = Amazon.RegionEndpoint.GetBySystemName(config.AwsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
         var message = new Amazon.BedrockRuntime.Model.Message();
         message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
         message.Role = ConversationRole.User;
         ConverseRequest request = new ConverseRequest
         {
-          ModelId = modelId,
+          ModelId = config.AwsModelId,
           Messages = new List<Amazon.BedrockRuntime.Model.Message> { message },
           InferenceConfig = new InferenceConfiguration
           {
-            MaxTokens = maxTokens
+            MaxTokens = config.MaxOutputWords,
           }
         };
         var converseResponse = await client.ConverseAsync(request);
@@ -227,13 +221,11 @@ namespace RimDialogueObjects
       catch (Exception ex)
       {
         Exception exception = new("Error accessing Bedrock.", ex);
-        exception.Data.Add("awsRegion", awsRegion);
-        exception.Data.Add("modelId", modelId);
+        exception.Data.Add("awsRegion", config.AwsRegion);
+        exception.Data.Add("modelId", config.AwsModelId);
         throw exception;
       }
     }
-
-
 
     //public static async Task<string> GetFromAzureOpenAi(IConfiguration configuration, string prompt)
     //{
@@ -264,12 +256,12 @@ namespace RimDialogueObjects
     //  }
     //}
 
-    public static async Task<string> GetFromGroq(IConfiguration configuration, string prompt)
+    public static async Task<string> GetFromGroq(Config config, string prompt)
     {
-      var apiKey = configuration["GroqApiKey"];
+      var apiKey = config.GroqApiKey;
       if (String.IsNullOrWhiteSpace(apiKey))
         throw new Exception("Provider is set to Groq but 'GroqApiKey' is empty in appsettings.");
-      var groqModelId = configuration["GroqModelId"];
+      var groqModelId = config.GroqModelId;
       if (String.IsNullOrWhiteSpace(groqModelId))
         throw new Exception("Provider is set to Groq but 'GroqModelId' is empty in appsettings.");
       try
@@ -289,12 +281,12 @@ namespace RimDialogueObjects
       }
     }
 
-    public static async Task<string> GetFromOllama(IConfiguration configuration, string prompt)
+    public static async Task<string> GetFromOllama(Config config, string prompt)
     {
-      var ollamaUrl = configuration["OllamaUrl"];
+      var ollamaUrl = config.OllamaUrl;
       if (String.IsNullOrWhiteSpace(ollamaUrl))
         throw new Exception("Provider is set to Ollama but 'OllamaUrl' is empty in appsettings.");
-      var ollamaModelId = configuration["OllamaModelId"];
+      var ollamaModelId = config.OllamaModelId;
       if (String.IsNullOrWhiteSpace(ollamaModelId))
         throw new Exception("Provider is set to Ollama but 'OllamaModelId' is empty in appsettings.");
       try
@@ -318,12 +310,12 @@ namespace RimDialogueObjects
       }
     }
 
-    public static async Task<string> GetFromGemini(IConfiguration configuration, string prompt)
+    public static async Task<string> GetFromGemini(Config config, string prompt)
     {
-      var geminiApiKey = configuration["GeminiApiKey"];
+      var geminiApiKey = config.GeminiApiKey;
       if (String.IsNullOrWhiteSpace(geminiApiKey))
         throw new Exception("Provider is set to Gemini but 'GeminiApiKey' is empty in appsettings.");
-      var geminiUrl = configuration["GeminiUrl"];
+      var geminiUrl = config.GeminiUrl;
       if (String.IsNullOrWhiteSpace(geminiUrl))
         throw new Exception("Provider is set to Gemini but 'GeminiUrl' is empty in appsettings.");
       try
@@ -354,19 +346,19 @@ namespace RimDialogueObjects
         throw exception;
       }
     }
-    public static async Task<string> GetFromOpenAI(IConfiguration configuration, string prompt)
+    public static async Task<string> GetFromOpenAI(Config config, string prompt)
     {
-      var openAiApiKey = configuration["OpenAiApiKey"];
+      var openAiApiKey = config.OpenAiApiKey;
       if (String.IsNullOrWhiteSpace(openAiApiKey))
         throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
-      var openAiModel = configuration["OpenAiModel"];
+      var openAiModel = config.OpenAiModel;
       if (String.IsNullOrWhiteSpace(openAiModel))
         throw new Exception("Provider is set to OpenAi but 'OpenAiModel' is empty in appsettings.");
       try
       {
         OpenAIAuthentication openAiAuthentication = new(openAiApiKey);
-        string? openAiResourceName = configuration["OpenAiResourceName"];
-        string? openAiVersion = configuration["OpenAiVersion"];
+        string? openAiResourceName = config.OpenAiResourceName;
+        string? openAiVersion = config.OpenAiVersion;
         OpenAIClientSettings openAiClientSettings;
         if (openAiResourceName != null)
         {

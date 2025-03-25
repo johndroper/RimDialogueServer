@@ -4,7 +4,11 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
-Here is background information about <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #>. Use this information to help you write the conversation from their perspectives.
+
+Here are some background facts about <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #>. 
+Use this information to help you write the conversation from their perspectives.  
+If it is relevant, work one of these facts into the conversation.
+
 <# if (this.Config.ShowSpecialInstructions) { #>
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
 Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions #>
@@ -13,10 +17,11 @@ Instructions for <#= this.Initiator.NickName #>: <#= this.Initiator.Instructions
 Instructions for <#= this.Recipient.NickName #>: <#= this.Recipient.Instructions #>
 <#  } #>
 <# } #>
+
 <# if (this.Config.ShowOpinions) { #>
-Opinion affects how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> feel about each other and how they will respond to each other.
 <#= this.Initiator.NickName #> <#= TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfRecipient) #> <#= this.Recipient.NickName #>.
 <#= this.Recipient.NickName #> <#= TemplateHelper.DescribeOpinion(this.RecipientOpinionOfInitiator) #> <#= this.Initiator.NickName #>.
+Use <#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s opinion of each other to affect the tone of the conversation.
 <# } #>
 <# if (this.Config.ShowAnimal && this.Initiator.IsAnimal) { #>
 <#= this.Initiator.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
@@ -25,7 +30,7 @@ Opinion affects how <#= this.Initiator.NickName #> and <#= this.Recipient.NickNa
 <#= this.Recipient.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
 <# } #>
 <# if (this.Config.ShowPersonality) { #>
-Personality affects how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> behave and interact with each other.
+Use <#= this.Initiator.NickName #>'s and <#= this.Recipient.NickName #>'s personality to affect how they react to the interaction.
 <# if (!string.IsNullOrWhiteSpace(this.Initiator.Personality)) { #>
 <#= this.Initiator.NickName #>'s personality is <#= this.Initiator.Personality #>
 <#= this.Initiator.PersonalityDescription #>
@@ -51,7 +56,7 @@ Mood is how <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> ar
 <#   } #>
 <# } #>
 <# if (this.Config.ShowAgeRaceAndGender) {#>
-Use age, race, and gender help to understand their perspective and how they might react to different situations. 
+Use age, race, and gender help to understand their perspective. 
 <#= this.Initiator.NickName #>'s is a <#= this.Initiator.Gender #> <#= this.Initiator.Race #> age <#= this.Initiator.Age #> years old.
 <#   if (!string.IsNullOrWhiteSpace(this.Recipient.NickName)) { #>
 <#= this.Recipient.NickName #>'s is a <#= this.Recipient.Gender #> <#= this.Recipient.Race #> age <#= this.Recipient.Age #> years old.
@@ -139,6 +144,3 @@ The faction <#= this.Recipient.NickName #> belongs to is called "<#= this.Recipi
 <#= this.Recipient.NickName #> is carrying <#= this.Recipient.Carrying #>.
 <#     } #>
 <#   } #>
-
-
-
