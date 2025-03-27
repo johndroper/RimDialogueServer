@@ -172,6 +172,13 @@ namespace RimDialogueObjects
     {
       return await ProcessDialogue<DialogueDataNeed, ChitChatNeedTemplate>("NeedsChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+    //FamilyChitchat
+    [HttpPost]
+    public async Task<IActionResult> FamilyChitchat(string initiatorJson, string recipientJson, string chitChatJson, string targetJson)
+    {
+      return await ProcessTargetDialogue<DialogueDataFamily, ChitChatFamilyTemplate>("FamilyChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
     {

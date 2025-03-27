@@ -36,6 +36,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\ChitChatFamilyTemplate .cs">
+      <DependentUpon>ChitChatFamilyTemplate .tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatNeedTemplate.cs">
       <DependentUpon>ChitChatNeedTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -116,6 +121,10 @@
   <ItemGroup>
     <None Update="Templates\ChitChatApparelTemplate.tt">
       <LastGenOutput>ChitChatApparelTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatFamilyTemplate .tt">
+      <LastGenOutput>ChitChatFamilyTemplate .cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatNeedTemplate.tt">

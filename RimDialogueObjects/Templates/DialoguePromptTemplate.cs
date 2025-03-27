@@ -25,7 +25,7 @@ namespace RimDialogueObjects.Templates
           template.Data.RecipientOpinionOfTarget,
           template.Config);
       else
-        return string.Empty;
+        return "MISSING TARGET";
     }
   }
 
