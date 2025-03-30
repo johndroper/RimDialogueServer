@@ -6,4 +6,5 @@
 <#@ import namespace="RimDialogue.Core" #>
 
 <#= this.BoilerPlate() #>
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

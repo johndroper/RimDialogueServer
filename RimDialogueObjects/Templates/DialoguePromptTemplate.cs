@@ -14,10 +14,19 @@ namespace RimDialogueObjects.Templates
         template.Config);
     }
 
+    public static string Footer<DataT>(this DialoguePromptTemplate<DataT> template) where DataT : RimDialogue.Core.InteractionData.DialogueData
+    {
+      return ChitChatFooter.Generate(
+        template.Data,
+        template.Initiator,
+        template.Recipient,
+        template.Config);
+    }
+
     public static string GetTarget<DataT>(this DialogueTargetTemplate<DataT> template) where DataT : DialogueTargetData
     {
       if (template.Target != null)
-        return TargetTemplate.Generate(
+        return TargetTemplateSlim.Generate(
           template.Initiator,
           template.Recipient,
           template.Target,
@@ -25,7 +34,18 @@ namespace RimDialogueObjects.Templates
           template.Data.RecipientOpinionOfTarget,
           template.Config);
       else
-        return "MISSING TARGET";
+        return string.Empty;
+    }
+
+
+    public static string GetInitiatorRecipientTemplateSlim<DataT>(this DialoguePromptTemplate<DataT> template) where DataT : RimDialogue.Core.InteractionData.DialogueData
+    {
+      return InitiatorRecipientTemplateSlim.Generate(
+        template.Initiator,
+        template.Recipient,
+        template.Data.InitiatorOpinionOfRecipient,
+        template.Data.RecipientOpinionOfInitiator,
+        template.Config);
     }
   }
 

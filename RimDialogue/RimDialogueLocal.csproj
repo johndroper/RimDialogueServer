@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="appsettings.Development.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.CodeDom" Version="9.0.0" />
   </ItemGroup>
@@ -17,6 +21,12 @@
 
   <ItemGroup>
     <Folder Include="Output\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.Development.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

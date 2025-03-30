@@ -17,4 +17,5 @@
 <#= this.Data.RecipientPassion #> has a <#= this.Data.RecipientPassion #> passion for <#= this.Data.SkillName #>.
 <# } #>
 
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

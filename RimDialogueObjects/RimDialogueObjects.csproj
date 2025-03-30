@@ -36,6 +36,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\ChitChatFooter.cs">
+      <DependentUpon>ChitChatFooter.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatFamilyTemplate .cs">
       <DependentUpon>ChitChatFamilyTemplate .tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -91,6 +96,21 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\ChitChatWeatherTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ChitChatWeatherTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\InitiatorRecipientTemplateSlim.cs">
+      <DependentUpon>InitiatorRecipientTemplateSlim.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\TargetTemplateSlim.cs">
+      <DependentUpon>TargetTemplateSlim.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\TargetTemplate.cs">
       <DependentUpon>TargetTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -121,6 +141,10 @@
   <ItemGroup>
     <None Update="Templates\ChitChatApparelTemplate.tt">
       <LastGenOutput>ChitChatApparelTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatFooter.tt">
+      <LastGenOutput>ChitChatFooter.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatFamilyTemplate .tt">
@@ -165,6 +189,18 @@
     </None>
     <None Update="Templates\ChitChatBoilerPlate.tt">
       <LastGenOutput>ChitChatBoilerPlate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatWeatherTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ChitChatWeatherTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\InitiatorRecipientTemplateSlim.tt">
+      <LastGenOutput>InitiatorRecipientTemplateSlim.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\TargetTemplateSlim.tt">
+      <LastGenOutput>TargetTemplateSlim.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\TargetTemplate.tt">

@@ -30,4 +30,5 @@ The precepts of <#= this.Recipient.NickName #>'s ideology are: <#= String.Join("
 <#	  } #>
 <#  } #>
 
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

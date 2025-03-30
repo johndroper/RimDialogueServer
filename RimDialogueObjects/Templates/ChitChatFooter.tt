@@ -5,12 +5,4 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
-
-Here are the events of the battle: 
-<# foreach(var entry in this.Data.Entries) { #>
-<#= entry #>
-<# } #>
-
-<#= this.GetInitiatorRecipientTemplateSlim() #>
-<#= this.Footer() #>
+Write a snippet of the conversation. Do not include the beginning or end of the conversation. Just a fleeting moment from it. Start in the middle of the conversation and do not end it.

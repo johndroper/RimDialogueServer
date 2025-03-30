@@ -13,16 +13,15 @@ namespace RimDialogueObjects.Templates
     using System.Text;
     using System.Collections.Generic;
     using RimDialogue.Core;
-    using RimDialogue.Core.InteractionData;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatFooter.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatNeedTemplate : ChitChatNeedTemplateBase
+    public partial class ChitChatFooter : ChitChatFooterBase
     {
 #line hidden
         /// <summary>
@@ -30,55 +29,9 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n");
-            
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\n");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" is ");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.NeedLevel));
-            
-            #line default
-            #line hidden
-            this.Write(".\r\nA description of ");
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.NeedLabel));
-            
-            #line default
-            #line hidden
-            this.Write(" is: ");
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.NeedDescription));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\n");
-            
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatNeedTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
-            
-            #line default
-            #line hidden
+            this.Write("\r\nWrite a snippet of the conversation. Do not include the beginning or end of the" +
+                    " conversation. Just a fleeting moment from it. Start in the middle of the conver" +
+                    "sation and do not end it.");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -90,7 +43,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatNeedTemplateBase
+    public class ChitChatFooterBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

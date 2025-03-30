@@ -1,0 +1,46 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="RimDialogue.Core" #>
+---
+<#= this.Target.NickName #>
+<#  if (!string.IsNullOrWhiteSpace(this.Target.Instructions)) { #>
+Instructions for <#= this.Target.NickName #>: <#= this.Target.Instructions #>
+<#  } #>
+<#= this.Initiator.NickName #> <#= TemplateHelper.DescribeOpinion(this.InitiatorOpinionOfTarget) #> <#= this.Target.NickName #>.
+<#= this.Recipient.NickName #> <#= TemplateHelper.DescribeOpinion(this.RecipientOpinionOfTarget) #> <#= this.Target.NickName #>.
+<# if (!string.IsNullOrWhiteSpace(this.Target.Personality)) { #>
+personality: <#= this.Target.Personality #>
+<#= this.Target.PersonalityDescription #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Target.MoodString)) { #>
+mood: <#= this.Target.MoodString #>.
+<# } #>
+<#   if (!string.IsNullOrWhiteSpace(this.Initiator.FullName)) { #>
+full name: <#= this.Target.FullName #>.
+<#   } #>
+<#= this.Target.NickName #>'s is a <#= this.Target.Gender #> <#= this.Target.Race #> age <#= this.Target.Age #> years old.
+<#= this.Target.Description #>
+<#  if (this.Target.IsColonist) { #>
+<#= this.Target.NickName #> is a colonist and a member of the player's colony.  
+<#  } else if (this.Target.IsPrisoner) { #>
+<#= this.Initiator.NickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#  } else if (this.Target.IsHostile) { #>
+<#= this.Initiator.NickName #> is a raider and is here to attack the player's colony.
+<#  } else if (!this.Target.IsAnimal) { #>
+<#= this.Target.NickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Target.RoyaltyTitle)) { #>
+royal title: <#= this.Initiator.RoyaltyTitle #>
+<# } #>
+<#  if (!string.IsNullOrWhiteSpace(this.Target.FactionName)) { #> 
+The faction <#= this.Target.NickName #> belongs to is called "<#= this.Target.FactionName #>". It is a <#= this.Target.FactionLabel #> faction. <#= this.Target.FactionDescription #>
+<#  } #>
+<# if (!string.IsNullOrWhiteSpace(this.Target.Adulthood)) { #>
+adulthood: <#= this.Target.Adulthood #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Target.Childhood)) { #>
+childhood: <#= this.Target.Childhood #>
+<# } #>

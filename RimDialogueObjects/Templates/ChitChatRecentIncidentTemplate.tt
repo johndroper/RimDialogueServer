@@ -12,3 +12,4 @@
 <#= this.GetTarget() #>
 
 <#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.Footer() #>

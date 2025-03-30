@@ -11,4 +11,5 @@
 <#= this.Initiator.NickName #> is <#= this.NeedLevel #>.
 A description of <#= this.Data.NeedLabel #> is: <#= this.Data.NeedDescription #>
 
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

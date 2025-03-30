@@ -12,4 +12,5 @@ The quality of <#= this.Data.ApparelLabel #> is <#= this.Data.ApparelQuality #>.
 <# if (this.Data.WornByCorpse) { #>
 <#= this.Data.ApparelLabel #> has been worn by a corpse.  This makes it highly undesirable.
 <# } #>
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

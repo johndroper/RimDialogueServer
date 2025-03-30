@@ -10,6 +10,7 @@ namespace RimDialogueLocal.Controllers
 {
   public class HomeController : DialogueController
   {
+
     public HomeController(
       IConfiguration Configuration,
       IMemoryCache memoryCache) : base(Configuration, memoryCache)

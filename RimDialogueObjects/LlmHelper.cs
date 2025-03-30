@@ -158,19 +158,6 @@ namespace RimDialogueObjects
         switch (provider)
         {
           case "AWS":
-            var awsKey = config.AwsKey;
-            if (String.IsNullOrWhiteSpace(awsKey))
-              throw new Exception("AWS Key is empty in appsettings.");
-            var awsSecret = config.AwsKey;
-            if (String.IsNullOrWhiteSpace(awsSecret))
-              throw new Exception("AWS Secret is empty in appsettings.");
-            var awsRegion = config.AwsKey;
-            if (String.IsNullOrWhiteSpace(awsRegion))
-              throw new Exception("AWS Region is empty in appsettings.");
-            var modelId = config.AwsKey;
-            if (String.IsNullOrWhiteSpace(modelId))
-              throw new Exception("AWS ModelId is empty in appsettings.");
-            var maxOutputWords = config.MaxOutputWords;
             return await GetFromAws(config, prompt);
           case "OLLAMA":
             return await GetFromOllama(config, prompt);
@@ -349,8 +336,6 @@ namespace RimDialogueObjects
     public static async Task<string> GetFromOpenAI(Config config, string prompt)
     {
       var openAiApiKey = config.OpenAiApiKey;
-      if (String.IsNullOrWhiteSpace(openAiApiKey))
-        throw new Exception("Provider is set to OpenAi but 'OpenAiApiKey' is empty in appsettings.");
       var openAiModel = config.OpenAiModel;
       if (String.IsNullOrWhiteSpace(openAiModel))
         throw new Exception("Provider is set to OpenAi but 'OpenAiModel' is empty in appsettings.");
@@ -369,6 +354,7 @@ namespace RimDialogueObjects
         }
         else
           openAiClientSettings = new();
+
         var openAiClient = new OpenAIClient(openAiAuthentication, openAiClientSettings);
         var messages = new List<OpenAI.Chat.Message>
         {

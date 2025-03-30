@@ -55,7 +55,14 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(InitiatorRecipientTemplate.TransformText()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatAlertTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
             
             #line default
             #line hidden

@@ -10,4 +10,5 @@
 Here is the explanation of the alert.  Use this information to help you write the conversation.
 <#= Data.Explanation #>
 <#= this.GetTarget() #>
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

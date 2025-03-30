@@ -184,6 +184,11 @@ namespace RimDialogueObjects
     {
       return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, ChitChatDialogueTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+    [HttpPost]
+    public async Task<IActionResult> WeatherChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataWeather, ChitChatWeatherTemplate>("WeatherChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
     public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);
   }
 }

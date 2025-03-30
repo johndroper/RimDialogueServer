@@ -15,4 +15,5 @@ The body part affected by '<#= this.Data.HediffLabel #>' is: <#= this.Data.Hedif
 <# if (!string.IsNullOrEmpty(this.Data.HediffSource)) { #>
 The source of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffSource #>
 <# } #>
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

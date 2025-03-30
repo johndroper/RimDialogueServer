@@ -11,4 +11,5 @@ The <#= Data.LabelCap #> has been going on for <#= Data.Duration #>.
 <# if (Data.Permanent)  { #>
 The <#= Data.LabelCap #> is permanent and will not end.
 <# } #>
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>

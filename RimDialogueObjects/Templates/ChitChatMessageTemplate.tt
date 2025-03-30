@@ -13,4 +13,5 @@
 
 <#= this.GetTarget() #>
 
-<#= InitiatorRecipientTemplate.TransformText() #>
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Footer() #>
