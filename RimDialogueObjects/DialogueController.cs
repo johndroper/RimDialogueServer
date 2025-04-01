@@ -172,13 +172,11 @@ namespace RimDialogueObjects
     {
       return await ProcessDialogue<DialogueDataNeed, ChitChatNeedTemplate>("NeedsChitchat", initiatorJson, recipientJson, chitChatJson);
     }
-    //FamilyChitchat
     [HttpPost]
     public async Task<IActionResult> FamilyChitchat(string initiatorJson, string recipientJson, string chitChatJson, string targetJson)
     {
       return await ProcessTargetDialogue<DialogueDataFamily, ChitChatFamilyTemplate>("FamilyChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
-
     [HttpPost]
     public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
     {
@@ -188,6 +186,10 @@ namespace RimDialogueObjects
     public async Task<IActionResult> WeatherChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
       return await ProcessDialogue<DialogueDataWeather, ChitChatWeatherTemplate>("WeatherChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+    public async Task<IActionResult> FactionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataFaction, ChitChatFactionTemplate>("FactionChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);
   }

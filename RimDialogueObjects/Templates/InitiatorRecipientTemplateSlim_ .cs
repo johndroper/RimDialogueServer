@@ -11,26 +11,13 @@ namespace RimDialogueObjects.Templates
       int recipientOpinionOfInitiator,
       Config config)
     {
-      if (true)//config.Name == "Gold")
-      {
-        InitiatorRecipientTemplateSlim template = new(
-          initiator,
-          recipient,
-          initiatorOpinionOfRecipient,
-          recipientOpinionOfInitiator,
-          config);
-                return template.TransformText();
-      }
-      else
-      {
-        InitiatorRecipientTemplate template = new(
-          initiator,
-          recipient,
-          initiatorOpinionOfRecipient,
-          recipientOpinionOfInitiator,
-          config);
-        return template.TransformText();
-      }
+      InitiatorRecipientTemplateSlim template = new(
+        initiator,
+        recipient,
+        initiatorOpinionOfRecipient,
+        recipientOpinionOfInitiator,
+        config);
+              return template.TransformText();
     }
 
     public int InitiatorOpinionOfRecipient { get; set; }

@@ -89,23 +89,24 @@ namespace RimDialogueLocal.Controllers
         }
 
         //******Prompt Generation******
-        string prompt = LlmHelper.Generate<DataT, TemplateT>(
+        string truncatedPrompt = LlmHelper.Generate<DataT, TemplateT>(
           config,
           initiator,
           recipient,
           dialogueData,
-          out bool inputTruncated);
-        Log(prompt, $"inputTruncated: {inputTruncated}");
+          out bool inputTruncated,
+          out string prompt);
+        Log(truncatedPrompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
 
-        string? text = await LlmHelper.GenerateResponse(prompt, config);
+        string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config);
         Log(text);
         var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
         if (outputTruncated)
           Log($"Response was truncated. Original length was {text.Length} characters.");
         Metrics.AddRequest(
           this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
-          prompt.Length,
+          truncatedPrompt.Length,
           text.Length,
           inputTruncated,
           outputTruncated,

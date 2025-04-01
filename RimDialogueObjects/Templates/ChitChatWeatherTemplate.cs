@@ -55,7 +55,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" are outside. \nCurrent Weather: ");
+            this.Write(" are outsidetakinh about the weather. \nCurrent Weather: ");
             
             #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Data.WeatherLabel));

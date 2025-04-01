@@ -7,7 +7,7 @@
 
 <#= this.BoilerPlate() #>
 
-<#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> are outside. 
+<#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> are outsidetakinh about the weather. 
 Current Weather: <#= Data.WeatherLabel #> - <#= Data.WeatherDescription #>
 Biome: <#= Data.BiomeLabel #> - <#= Data.BiomeDescription #>
 Season: <#= Data.Season #>

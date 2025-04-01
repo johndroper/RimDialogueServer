@@ -96,6 +96,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\ChitChatFactionTemplate.cs">
+      <DependentUpon>ChitChatFactionTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatWeatherTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -189,6 +194,10 @@
     </None>
     <None Update="Templates\ChitChatBoilerPlate.tt">
       <LastGenOutput>ChitChatBoilerPlate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatFactionTemplate.tt">
+      <LastGenOutput>ChitChatFactionTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatWeatherTemplate.tt">

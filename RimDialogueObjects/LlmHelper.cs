@@ -73,10 +73,10 @@ namespace RimDialogueObjects
       PawnData initiator,
       PawnData recipient,
       DataT dialogueData,
-      out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : DialoguePromptTemplate<DataT>, new()
+      out bool wasTruncated,
+      out string prompt) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : DialoguePromptTemplate<DataT>, new()
     {
       //******Prompt Generation******
-      string? prompt = null;
       try
       {
         wasTruncated = false;
