@@ -185,7 +185,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\nadulthood: ");
+            this.Write("\r\npast occupation: ");
             
             #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Adulthood));
@@ -390,7 +390,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" years old.\r\nI have biobe past occupation: ");
+            this.Write(" years old.\r\npast occupation: ");
             
             #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\InitiatorRecipientTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Adulthood));

@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using RimDialogue.Core;
 using RimDialogueObjects;
 using RimDialogueObjects.Templates;
+using System;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace RimDialogueLocal.Controllers
@@ -206,6 +208,21 @@ namespace RimDialogueLocal.Controllers
         LogException(ex);
         throw;
       }
+    }
+
+    public override async Task<DialogueResponse> RunPrompt(string prompt, [CallerMemberName] string? callerName = null)
+    {
+      InitLog(callerName);
+      string? ipAddress = GetIp();
+      Log(ipAddress, prompt);
+      var config = Configuration.Get<Config>();
+      if (config == null)
+        throw new Exception("config is null.");
+      if (IsOverRateLimit(config, ipAddress, out float? rate))
+        throw new Exception("Rate limit exceeded. Please try again later.");
+      var results = await LlmHelper.GenerateResponse(prompt, config);
+      Log(results);
+      return LlmHelper.SerializeResponse(results, Configuration, rate ?? 0, out bool outputTruncated);
     }
 
     [HttpPost]

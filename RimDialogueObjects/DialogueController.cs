@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using RimDialogue.Core;
 using RimDialogue.Core.InteractionData;
 using RimDialogueObjects.Templates;
 using System.Runtime.CompilerServices;
@@ -187,10 +189,55 @@ namespace RimDialogueObjects
     {
       return await ProcessDialogue<DialogueDataWeather, ChitChatWeatherTemplate>("WeatherChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+    [HttpPost]
+    public async Task<IActionResult> WeaponChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataWeapon, ChitChatWeaponTemplate>("WeaponChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+    [HttpPost]
     public async Task<IActionResult> FactionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
       return await ProcessDialogue<DialogueDataFaction, ChitChatFactionTemplate>("FactionChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+    [HttpPost]
+    public async Task<IActionResult> AppearanceChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataAppearance, ChitChatAppearanceTemplate>("AppearanceChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+    [HttpPost]
+    public async Task<IActionResult> AnimalChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataAnimal, ChitChatAnimalTemplate>("AnimalChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+    [HttpPost]
+    public async Task<IActionResult> RoomChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataRoom, ChitChatRoomTemplate>("RoomChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+
     public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);
+
+    [HttpPost]
+    public async Task<IActionResult> GetScenarioPrompt(string scenarioText)
+    {
+      string prompt = "Write a one sentence prompt that succinctly describes this scenario from a Rimworld game from the third person perspective:\r\n" + scenarioText;
+      DialogueResponse response = await RunPrompt(prompt);
+      return Json(response);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GetCharacterPrompt(string pawnJson)
+    {
+      var pawnData = JsonConvert.DeserializeObject<PawnData>(pawnJson);
+      if (pawnData == null)
+        throw new Exception("pawnData is null.");
+      PawnTemplate pawnTemplate = new PawnTemplate(pawnData);
+      string prompt = pawnTemplate.TransformText();
+      DialogueResponse response = await RunPrompt(prompt);
+      return Json(response);
+    }
+
+    public abstract Task<DialogueResponse> RunPrompt(string prompt, [CallerMemberName] string? callerName = null);
+
   }
 }

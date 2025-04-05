@@ -31,6 +31,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Templates\ChitChatAnimalTemplate.cs">
+      <DependentUpon>ChitChatAnimalTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\ChitChatAppearanceTemplate.cs">
+      <DependentUpon>ChitChatAppearanceTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatApparelTemplate.cs">
       <DependentUpon>ChitChatApparelTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -101,10 +111,25 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\ChitChatWeaponTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ChitChatWeaponTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\ChitChatRoomTemplate.cs">
+      <DependentUpon>ChitChatRoomTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatWeatherTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ChitChatWeatherTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\PawnTemplate.cs">
+      <DependentUpon>PawnTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="Templates\InitiatorRecipientTemplateSlim.cs">
       <DependentUpon>InitiatorRecipientTemplateSlim.tt</DependentUpon>
@@ -144,6 +169,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Templates\ChitChatAnimalTemplate.tt">
+      <LastGenOutput>ChitChatAnimalTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\ChitChatAppearanceTemplate.tt">
+      <LastGenOutput>ChitChatAppearanceTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
     <None Update="Templates\ChitChatApparelTemplate.tt">
       <LastGenOutput>ChitChatApparelTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -200,9 +233,21 @@
       <LastGenOutput>ChitChatFactionTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
+    <None Update="Templates\ChitChatWeaponTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ChitChatWeaponTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\ChitChatRoomTemplate.tt">
+      <LastGenOutput>ChitChatRoomTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
     <None Update="Templates\ChitChatWeatherTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ChitChatWeatherTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\PawnTemplate.tt">
+      <LastGenOutput>PawnTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\InitiatorRecipientTemplateSlim.tt">
       <LastGenOutput>InitiatorRecipientTemplateSlim.cs</LastGenOutput>

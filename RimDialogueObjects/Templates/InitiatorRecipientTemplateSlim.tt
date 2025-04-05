@@ -23,7 +23,7 @@ mood: <#= this.Initiator.MoodString #>
 <# } #>
 <#= this.Initiator.NickName #>'s is a <#= this.Initiator.Gender #> <#= this.Initiator.Race #> age <#= this.Initiator.Age #> years old.
 full name: <#= this.Initiator.FullName #>
-adulthood: <#= this.Initiator.Adulthood #>
+past occupation: <#= this.Initiator.Adulthood #>
 childhood: <#= this.Initiator.Childhood #>
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.JobReport)) { #>
 current activity: <#= this.Initiator.JobReport #>
@@ -49,7 +49,7 @@ mood: <#= this.Recipient.MoodString #>
 <# } #>
 full name: <#= this.Recipient.FullName #>
 <#= this.Recipient.NickName #>'s is a <#= this.Recipient.Gender #> <#= this.Recipient.Race #> age <#= this.Recipient.Age #> years old.
-I have biobe past occupation: <#= this.Recipient.Adulthood #>
+past occupation: <#= this.Recipient.Adulthood #>
 childhood: <#= this.Recipient.Childhood #>
 <# if (!string.IsNullOrWhiteSpace(this.Initiator.RoyaltyTitle)) { #>
 <#= this.Initiator.NickName #> is royalty. Pawns speak differently to royalty, often with more respect and formality.

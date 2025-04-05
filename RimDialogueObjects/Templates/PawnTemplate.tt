@@ -1,0 +1,52 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="RimDialogue.Core" #>
+
+You are a character writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
+Your job is to create a one sentence character profile of, <#= this.Pawn.NickName #>, based on the data provided below:
+
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.Personality)) { #>
+<#= this.Pawn.NickName #>'s personality is <#= this.Pawn.Personality #>
+<#= this.Pawn.PersonalityDescription #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.MoodString)) { #>
+<#= this.Pawn.NickName #>'s overall mood is <#= this.Pawn.MoodString #>.
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.FullName)) { #>
+<#= this.Pawn.NickName #>'s full name is <#= this.Pawn.FullName #>.
+<# } #>
+<#= this.Pawn.NickName #>'s is a <#= this.Pawn.Gender #> <#= this.Pawn.Race #> age <#= this.Pawn.Age #> years old.
+<#= this.Pawn.NickName #>'s is <#= this.Pawn.Description #>
+<#  if (this.Pawn.IsColonist) { #>
+<#=		this.Pawn.NickName #> is a colonist and a member of the player's colony.  
+<#  } else if (this.Pawn.IsPrisoner) { #>
+<#=		this.Pawn.NickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#  } else if (this.Pawn.IsHostile) { #>
+<#=		this.Pawn.NickName #> is a raider and is here to attack the player's colony.
+<#  } else if (!this.Pawn.IsAnimal) { #>
+<#=		this.Pawn.NickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
+<#  } #>
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.Adulthood)) { #>
+<#= this.Pawn.NickName #>'s previous occupation was: <#= this.Pawn.Adulthood #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.Childhood)) { #>
+<#= this.Pawn.NickName #>'s childhood was spent as: <#= this.Pawn.Childhood #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.RoyaltyTitle)) { #>
+<#= this.Pawn.NickName #> is royalty. Pawns speak differently to royalty, often with more respect and formality.
+<#= this.Pawn.NickName #>'s royal title is <#= this.Pawn.RoyaltyTitle #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Pawn.FactionName)) { #> 
+The faction <#= this.Pawn.NickName #> belongs to is called "<#= this.Pawn.FactionName #>". It is a <#= this.Pawn.FactionLabel #> faction. <#= this.Pawn.FactionDescription #>
+<# } #>
+<# if (this.Pawn.Skills.Any()) { #>
+<#= this.Pawn.NickName #>'s skills are: 
+<#= String.Join(",\r\n", this.Pawn.Skills) #>
+<# } #>
+<# if (this.Pawn.Traits.Any()) { #>
+<#= this.Pawn.NickName #>'s traits are: 
+<#= String.Join(" ", this.Pawn.Traits) #>
+<# } #>

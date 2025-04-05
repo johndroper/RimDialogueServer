@@ -1,0 +1,29 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="RimDialogue.Core" #>
+
+<#= this.BoilerPlate() #>
+
+<#= this.Data.AnimalName #> is a <#= this.Data.AnimalType #> - <#= this.Data.AnimalDescription #>.
+<# if (this.Data.Predator) { #>
+<#= this.Data.AnimalName #> is a predator.
+<# } #>
+<# if (this.Data.HerdAnimal) { #>
+<#= this.Data.AnimalName #> is a herd animal.
+<# } #>
+<# if (this.Data.PackAnimal) { #>
+<#= this.Data.AnimalName #> is a pack animal.
+<# } #>
+The wildness of <#= this.Data.AnimalName #> is <#= this.Data.Wildness #>.
+The life expectancy of <#= this.Data.AnimalName #> is <#= this.Data.LifeExpectancy #> years.
+The base hunger rate of <#= this.Data.AnimalName #> is <#= this.Data.BaseHungerRate #>.
+The base body size of <#= this.Data.AnimalName #> is <#= this.Data.BaseBodySize #>.
+The base health scale of <#= this.Data.AnimalName #> is <#= this.Data.BaseHealthScale #>.
+The trainability of <#= this.Data.AnimalName #> is <#= this.Data.Trainability #>.
+
+<#= this.GetInitiatorRecipientTemplateSlim() #>
+
+<#= this.Footer() #>
