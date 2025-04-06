@@ -407,6 +407,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
+            this.Write("\r\nIt is important that you respond with only the character profile.");
             return this.GenerationEnvironment.ToString();
         }
     }

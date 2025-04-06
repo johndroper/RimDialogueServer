@@ -210,7 +210,7 @@ namespace RimDialogueLocal.Controllers
       }
     }
 
-    public override async Task<DialogueResponse> RunPrompt(string prompt, [CallerMemberName] string? callerName = null)
+    public override async Task<DialogueResponse> RunPrompt(string clientId, string prompt, [CallerMemberName] string? callerName = null)
     {
       InitLog(callerName);
       string? ipAddress = GetIp();

@@ -50,3 +50,5 @@ The faction <#= this.Pawn.NickName #> belongs to is called "<#= this.Pawn.Factio
 <#= this.Pawn.NickName #>'s traits are: 
 <#= String.Join(" ", this.Pawn.Traits) #>
 <# } #>
+
+It is important that you respond with only the character profile.

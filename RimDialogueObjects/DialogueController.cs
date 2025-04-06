@@ -218,26 +218,26 @@ namespace RimDialogueObjects
     public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);
 
     [HttpPost]
-    public async Task<IActionResult> GetScenarioPrompt(string scenarioText)
+    public async Task<IActionResult> GetScenarioPrompt(string clientId, string scenarioText)
     {
       string prompt = "Write a one sentence prompt that succinctly describes this scenario from a Rimworld game from the third person perspective:\r\n" + scenarioText;
-      DialogueResponse response = await RunPrompt(prompt);
+      DialogueResponse response = await RunPrompt(clientId, prompt);
       return Json(response);
     }
 
     [HttpPost]
-    public async Task<IActionResult> GetCharacterPrompt(string pawnJson)
+    public async Task<IActionResult> GetCharacterPrompt(string clientId, string pawnJson)
     {
       var pawnData = JsonConvert.DeserializeObject<PawnData>(pawnJson);
       if (pawnData == null)
         throw new Exception("pawnData is null.");
       PawnTemplate pawnTemplate = new PawnTemplate(pawnData);
       string prompt = pawnTemplate.TransformText();
-      DialogueResponse response = await RunPrompt(prompt);
+      DialogueResponse response = await RunPrompt(clientId, prompt);
       return Json(response);
     }
 
-    public abstract Task<DialogueResponse> RunPrompt(string prompt, [CallerMemberName] string? callerName = null);
+    public abstract Task<DialogueResponse> RunPrompt(string clientId, string prompt, [CallerMemberName] string? callerName = null);
 
   }
 }
