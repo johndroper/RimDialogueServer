@@ -118,17 +118,26 @@ namespace RimDialogueObjects
      string? targetJson)
         where DataT : DialogueTargetData
         where TemplateT : DialogueTargetTemplate<DataT>, new();
-    
+
     [HttpPost]
     public async Task<IActionResult> RecentIncidentChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
       return await ProcessTargetDialogue<DialogueDataIncident, ChitChatRecentIncidentTemplate>("RecentIncidentChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
+
     [HttpPost]
     public async Task<IActionResult> RecentBattleChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
+      //OLD - TO BE REMOVED
       return await ProcessDialogue<DialogueDataBattle, ChitChatBattleTemplate>("RecentBattleChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Battle(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessDialogue<DialogueDataBattle, ChitChatBattleTemplate>("Battle", initiatorJson, recipientJson, chitChatJson);
+    }
+
     [HttpPost]
     public async Task<IActionResult> GameConditionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
@@ -213,6 +222,11 @@ namespace RimDialogueObjects
     public async Task<IActionResult> RoomChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
       return await ProcessDialogue<DialogueDataRoom, ChitChatRoomTemplate>("RoomChitchat", initiatorJson, recipientJson, chitChatJson);
+    }
+    [HttpPost]
+    public async Task<IActionResult> DeadPawn(string initiatorJson, string recipientJson, string chitChatJson, string targetJson)
+    {
+      return await ProcessTargetDialogue<DialogueDataDeadPawn, DeadPawnTemplate>("DeadPawn", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
 
     public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);

@@ -5,7 +5,7 @@ namespace RimDialogueObjects.Templates
   public partial class InitiatorRecipientTemplateSlim
   {
     public static string Generate(
-      PawnData initiator, 
+      PawnData initiator,
       PawnData recipient,
       int initiatorOpinionOfRecipient,
       int recipientOpinionOfInitiator,
@@ -17,7 +17,7 @@ namespace RimDialogueObjects.Templates
         initiatorOpinionOfRecipient,
         recipientOpinionOfInitiator,
         config);
-              return template.TransformText();
+      return template.TransformText();
     }
 
     public int InitiatorOpinionOfRecipient { get; set; }

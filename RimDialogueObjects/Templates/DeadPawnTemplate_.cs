@@ -4,9 +4,9 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatMessageTemplate : DialogueTargetTemplate<DialogueDataMessage>
+  public partial class DeadPawnTemplate : DialogueTargetTemplate<DialogueDataDeadPawn>
   {
-    public DialogueDataMessage Data { get; set; }
+    public DialogueDataDeadPawn Data { get; set; }
     public PawnData Initiator { get; set; }
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }

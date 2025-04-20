@@ -46,6 +46,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Templates\DeadPawnTemplate.cs">
+      <DependentUpon>DeadPawnTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ChitChatFooter.cs">
       <DependentUpon>ChitChatFooter.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -179,6 +184,10 @@
     </None>
     <None Update="Templates\ChitChatApparelTemplate.tt">
       <LastGenOutput>ChitChatApparelTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\DeadPawnTemplate.tt">
+      <LastGenOutput>DeadPawnTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatFooter.tt">

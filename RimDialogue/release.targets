@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Zip" AfterTargets="Publish">
+    <!-- Define paths -->
+    <PropertyGroup>
+      <ReleaseVersion>v1.0.0</ReleaseVersion> <!-- Replace with dynamic version if desired -->
+      <ZipFile>$(PublishDir)\MyApp-$(ReleaseVersion).zip</ZipFile>
+    </PropertyGroup>
+
+    <!-- Remove existing zip file if it exists -->
+    <Delete Files="$(ZipFile)" />
+
+    <!-- Zip the published files -->
+    <Exec Command="powershell -Command &quot;Compress-Archive -Path '$(PublishDir)\*' -DestinationPath '$(ZipFile)'&quot;" />
+  </Target>
+</Project>

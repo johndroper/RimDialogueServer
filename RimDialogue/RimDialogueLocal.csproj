@@ -33,4 +33,6 @@
     <ProjectReference Include="..\..\RimDialogueClient\source\RimDialogueClient.csproj" />
     <ProjectReference Include="..\RimDialogueObjects\RimDialogueObjects.csproj" />
   </ItemGroup>
+
+  <Import Project="release.targets" />
 </Project>

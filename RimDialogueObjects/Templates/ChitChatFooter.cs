@@ -29,9 +29,8 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nWrite a snippet of the conversation. Do not include the beginning or end of the" +
-                    " conversation. Just a fleeting moment from it. Start in the middle of the conver" +
-                    "sation and do not end it.");
+            this.Write("\r\nWrite just a fragment of the conversation. Do not include the beginning or end " +
+                    "of the conversation, just a fleeting moment from it.");
             return this.GenerationEnvironment.ToString();
         }
     }

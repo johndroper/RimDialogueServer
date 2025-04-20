@@ -29,14 +29,22 @@ namespace RimDialogueObjects.Templates
     public PawnData Recipient { get; set; }
     public Config Config { get; set; }
 
-    public int MaxOutputWords
+    private int? wordCount;
+    public int WordCount
     {
       get
       {
-        if (this.Data.MaxWords > Config.MaxOutputWords)
-          return Config.MaxOutputWords;
-        else
-          return this.Data.MaxWords;
+        if (!wordCount.HasValue)
+        {
+          var maxWords = this.Data.MaxWords;
+          if (maxWords > Config.MaxOutputWords)
+            maxWords = Config.MaxOutputWords;
+          var minWords = this.Data.MinWords;
+          if (minWords > Config.MaxOutputWords)
+            minWords = Config.MaxOutputWords;
+          wordCount = Random.Shared.Next(minWords, maxWords);
+        }
+        return wordCount.Value;
       }
     }
   }

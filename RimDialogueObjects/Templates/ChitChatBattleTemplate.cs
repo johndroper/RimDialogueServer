@@ -36,16 +36,16 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nHere are the events of the battle: \r\n");
+            this.Write("\r\n\r\nHere are the factions involved in the battle:\r\n");
             
             #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
- foreach(var entry in this.Data.Entries) { 
+ foreach(var faction in this.Data.Factions) { 
             
             #line default
             #line hidden
             
             #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(entry));
+            this.Write(this.ToStringHelper.ToStringWithCulture(faction));
             
             #line default
             #line hidden
@@ -56,16 +56,56 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write("\r\nHere are the participants involved in the battle:\r\n");
             
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+ foreach(var participant in this.Data.Participants) { 
+            
+            #line default
+            #line hidden
+            
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(participant));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nHere are the events of the battle: \r\n");
+            
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+ foreach(var entry in this.Data.Entries) { 
+            
+            #line default
+            #line hidden
+            
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entry));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
             
             #line default

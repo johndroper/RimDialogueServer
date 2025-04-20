@@ -20,7 +20,7 @@ namespace RimDialogueObjects
   {
 
     public static DialogueResponse SerializeResponse(
-      string text, 
+      string text,
       IConfiguration configuration,
       float rate,
       out bool outputTruncated)

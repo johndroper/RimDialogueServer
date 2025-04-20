@@ -5,4 +5,4 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-Write a snippet of the conversation. Do not include the beginning or end of the conversation. Just a fleeting moment from it. Start in the middle of the conversation and do not end it.
+Write just a fragment of the conversation. Do not include the beginning or end of the conversation, just a fleeting moment from it.

@@ -2,15 +2,19 @@
 {
   public static class TemplateHelper
   {
-    public static string DescribeOutputLength(int outputWords)
+    public static string DescribeOutputLength(int words)
     {
-      if (outputWords <= 25)
-        return "an extremely brief";
-      else if (outputWords <= 35)
+      if (words <= 20)
+        return "an extremely terse";
+      if (words <= 25)
+        return "a terse";
+      if (words <= 35)
+        return "a concise";
+      else if (words <= 50)
         return "a brief";
-      else if (outputWords <= 50)
+      else if (words <= 75)
         return "a short";
-      else if (outputWords <= 80)
+      else if (words <= 100)
         return "a compact";
       else
         return "a";
@@ -353,7 +357,7 @@
 
     public static string DescribeNeedLevel(string need, float level)
     {
-      switch(need)
+      switch (need)
       {
         case "Comfort":
           return DescribeComfortLevel(level);

@@ -174,6 +174,7 @@ namespace RimDialogueLocal.Controllers
           exception.Data.Add("initiatorJson", initiatorJson);
           exception.Data.Add("recipientJson", recipientJson);
           exception.Data.Add("dataJson", dataJson);
+          exception.Data.Add("targetJson", targetJson);
           throw exception;
         }
 
@@ -186,7 +187,6 @@ namespace RimDialogueLocal.Controllers
           target,
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
-
         //******Response Generation******
         string? text = await LlmHelper.GenerateResponse(prompt, config);
         Log(text);
