@@ -403,8 +403,7 @@ namespace RimDialogueObjects
         catch(Exception ex)
         {
           var newEx = new Exception("Error getting response form OpenAI.", ex);
-          newEx.Data.Add()
-
+          throw newEx;
         }
       }
       catch (Exception ex)
