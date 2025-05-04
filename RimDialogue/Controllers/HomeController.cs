@@ -219,7 +219,7 @@ namespace RimDialogueLocal.Controllers
       if (config == null)
         throw new Exception("config is null.");
       if (IsOverRateLimit(config, ipAddress, out float? rate))
-        throw new Exception("Rate limit exceeded. Please try again later.");
+        throw new Exception($"Rate limit exceeded. Please try again later. Rate: {rate}");
       var results = await LlmHelper.GenerateResponse(prompt, config);
       Log(results);
       return LlmHelper.SerializeResponse(results, Configuration, rate ?? 0, out bool outputTruncated);

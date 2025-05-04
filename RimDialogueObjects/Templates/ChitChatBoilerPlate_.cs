@@ -42,6 +42,8 @@ namespace RimDialogueObjects.Templates
           var minWords = this.Data.MinWords;
           if (minWords > Config.MaxOutputWords)
             minWords = Config.MaxOutputWords;
+          if (minWords >= maxWords)
+            minWords = maxWords - 1;
           wordCount = Random.Shared.Next(minWords, maxWords);
         }
         return wordCount.Value;

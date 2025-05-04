@@ -315,16 +315,46 @@ namespace RimDialogueObjects
         var response = await client.TextPrompt(prompt);
         if (response == null)
           throw new Exception("Gemini response is null.");
-        var candidate = response.Candidates.FirstOrDefault();
-        if (candidate == null)
-          throw new Exception("Gemini response has no candidates.");
-        var part = candidate.Content.Parts.FirstOrDefault();
-        if (part == null)
-          throw new Exception("Gemini response has no parts.");
-        var text = part.Text;
-        if (text == null)
-          throw new Exception("Gemini response is null.");
-        return text;
+        try
+        {
+          if (response.Candidates == null)
+          {
+            var ex = new Exception("response.Candidates is null");
+            throw ex;
+          }
+          var candidate = response.Candidates.FirstOrDefault();
+          if (candidate == null)
+          {
+            var ex = new Exception("Gemini response has no candidates.");
+            throw ex;
+          }
+          try
+          {
+            var part = candidate.Content.Parts.FirstOrDefault();
+            if (part == null)
+            {
+              var ex = new Exception("Gemini response has no parts.");
+              throw ex;
+            }
+            var text = part.Text;
+            if (text == null)
+              throw new Exception("Gemini response is null.");
+            return text;
+          }
+          catch (Exception ex)
+          {
+            Exception exception = new("Error in Gemini candidates.", ex);
+            exception.Data.Add("SafetyRatings", candidate.SafetyRatings);
+            exception.Data.Add("FinishReason", candidate.FinishReason);
+            throw exception;
+          }
+        }
+        catch (Exception ex)
+        {
+          Exception exception = new("Error in Gemini response.", ex);
+          exception.Data.Add("PromptFeedback", response.PromptFeedback);
+          throw exception;
+        }
       }
       catch (Exception ex)
       {
@@ -362,8 +392,20 @@ namespace RimDialogueObjects
         };
         Model model = new Model(openAiModel);
         var chatRequest = new ChatRequest(messages, model);
-        var response = await openAiClient.ChatEndpoint.GetCompletionAsync(chatRequest);
-        return response.FirstChoice.Message;
+
+        ChatResponse response;
+        try
+        {
+          response = await openAiClient.ChatEndpoint.GetCompletionAsync(chatRequest);
+          return response.FirstChoice.Message;
+
+        }
+        catch(Exception ex)
+        {
+          var newEx = new Exception("Error getting response form OpenAI.", ex);
+          newEx.Data.Add()
+
+        }
       }
       catch (Exception ex)
       {

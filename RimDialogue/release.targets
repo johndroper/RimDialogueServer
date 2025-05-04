@@ -4,13 +4,13 @@
     <!-- Define paths -->
     <PropertyGroup>
       <ReleaseVersion>v1.0.0</ReleaseVersion> <!-- Replace with dynamic version if desired -->
-      <ZipFile>$(PublishDir)\MyApp-$(ReleaseVersion).zip</ZipFile>
+      <ZipFile>$(PublishDir)\RimDialogueLocal-$(ReleaseVersion)-x64.zip</ZipFile>
     </PropertyGroup>
 
     <!-- Remove existing zip file if it exists -->
     <Delete Files="$(ZipFile)" />
 
     <!-- Zip the published files -->
-    <Exec Command="powershell -Command &quot;Compress-Archive -Path '$(PublishDir)\*' -DestinationPath '$(ZipFile)'&quot;" />
+    <Exec Command="powershell -Command &quot;Compress-Archive -Path '$(PublishDir)*' -DestinationPath '$(ZipFile)'&quot;" />
   </Target>
 </Project>
