@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <#= this.Data.AnimalName #> is a <#= this.Data.AnimalType #> - <#= this.Data.AnimalDescription #>.
 <# if (this.Data.Predator) { #>
@@ -24,6 +24,6 @@ The base body size of <#= this.Data.AnimalName #> is <#= this.Data.BaseBodySize 
 The base health scale of <#= this.Data.AnimalName #> is <#= this.Data.BaseHealthScale #>.
 The trainability of <#= this.Data.AnimalName #> is <#= this.Data.Trainability #>.
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 
 <#= this.Footer() #>

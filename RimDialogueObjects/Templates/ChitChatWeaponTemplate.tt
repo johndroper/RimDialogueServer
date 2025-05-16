@@ -5,9 +5,9 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 A description of <#= this.Data.WeaponLabel #> is <#= this.Data.WeaponDescription #>.
 The quality of <#= this.Data.WeaponLabel #> is <#= this.Data.WeaponQuality #>.
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

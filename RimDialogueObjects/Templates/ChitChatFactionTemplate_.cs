@@ -4,7 +4,7 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatFactionTemplate : DialoguePromptTemplate<DialogueDataFaction>
+  public partial class ChitChatFactionTemplate : IRecipientPromptTemplate<DialogueDataFaction>
   {
     public static string DescribeGoodWill(int goodWill)
     {

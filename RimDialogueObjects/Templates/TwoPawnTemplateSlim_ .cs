@@ -2,7 +2,7 @@
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class InitiatorRecipientTemplateSlim
+  public partial class TwoPawnTemplateSlim
   {
     public static string Generate(
       PawnData initiator,
@@ -11,7 +11,7 @@ namespace RimDialogueObjects.Templates
       int recipientOpinionOfInitiator,
       Config config)
     {
-      InitiatorRecipientTemplateSlim template = new(
+      TwoPawnTemplateSlim template = new(
         initiator,
         recipient,
         initiatorOpinionOfRecipient,
@@ -26,7 +26,7 @@ namespace RimDialogueObjects.Templates
     public PawnData Initiator { get; set; }
     public PawnData Recipient { get; set; }
 
-    public InitiatorRecipientTemplateSlim(
+    public TwoPawnTemplateSlim(
       PawnData initiator,
       PawnData recipient,
       int initiatorOpinionOfRecipient,

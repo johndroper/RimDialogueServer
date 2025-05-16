@@ -6,10 +6,10 @@
 <#@ import namespace="RimDialogue.Core" #>
 <#@ import namespace="RimDialogue.Core.InteractionData" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <#= this.Initiator.NickName #> is <#= this.NeedLevel #>.
 A description of <#= this.Data.NeedLabel #> is: <#= this.Data.NeedDescription #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

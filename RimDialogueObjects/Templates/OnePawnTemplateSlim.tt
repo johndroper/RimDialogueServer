@@ -1,0 +1,45 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="RimDialogue.Core" #>
+
+---
+<#= this.Initiator.NickName #>
+<#  if (!string.IsNullOrWhiteSpace(this.Initiator.Instructions)) { #>
+<#= this.Initiator.NickName #>: <#= this.Initiator.Instructions #>
+<#  } #>
+<# if (this.Initiator.IsAnimal) { #>
+<#= this.Initiator.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<#  } #>
+<# if (!string.IsNullOrWhiteSpace(this.Initiator.Personality)) { #>
+personality: <#= this.Initiator.Personality #>
+<#= this.Initiator.PersonalityDescription #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Initiator.MoodString)) { #>
+mood: <#= this.Initiator.MoodString #>
+<# } #>
+<#= this.Initiator.NickName #>'s is a <#= this.Initiator.Gender #> <#= this.Initiator.Race #> age <#= this.Initiator.Age #> years old.
+full name: <#= this.Initiator.FullName #>
+past occupation: <#= this.Initiator.Adulthood #>
+childhood: <#= this.Initiator.Childhood #>
+<#   if (!string.IsNullOrWhiteSpace(this.Initiator.JobReport)) { #>
+current activity: <#= this.Initiator.JobReport #>
+<#     if (!string.IsNullOrWhiteSpace(this.Initiator.Carrying)) { #>
+carrying: <#= this.Initiator.Carrying #>
+<#     } #>
+<#   } #>
+---
+<#  if (this.Initiator.IsColonist) { #>
+<#= this.Initiator.NickName #> is a colonist and a member of the player's colony.  
+<#  } else if (this.Initiator.IsPrisoner) { #>
+<#= this.Initiator.NickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
+<#  } else if (this.Initiator.IsHostile) { #>
+<#= this.Initiator.NickName #> is a raider and is here to attack the player's colony.
+<#  } else if (!this.Initiator.IsAnimal) { #>
+<#= this.Initiator.NickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
+<#  } #>
+<#  if (!string.IsNullOrWhiteSpace(this.Initiator.FactionName)) { #> 
+The faction <#= this.Initiator.NickName #> belongs to is called "<#= this.Initiator.FactionName #>". It is a <#= this.Initiator.FactionLabel #> faction. <#= this.Initiator.FactionDescription #>
+<#  } #>

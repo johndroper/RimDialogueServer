@@ -19,9 +19,9 @@ namespace RimDialogueObjects.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatFooter.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatFooter : ChitChatFooterBase
+    public partial class BattleLogTemplate : BattleLogTemplateBase
     {
 #line hidden
         /// <summary>
@@ -29,8 +29,118 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nWrite just a fragment of the conversation. Do not include the beginning or end " +
-                    "of the conversation, just a fleeting moment from it.");
+            this.Write("\r\n");
+            
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Header()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\nThe attack: \r\n");
+            
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.BattleLogEntry));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\nData about the enemy ");
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetKind));
+            
+            #line default
+            #line hidden
+            this.Write(" that ");
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write(" is fighting:\r\nDescription: ");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nRace: ");
+            
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetRace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nWeapon: ");
+            
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetWeapon));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nApparel: ");
+            
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(", ", this.Data.TargetApparel)));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nIdeology: ");
+            
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.IdeologyName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nIdeology Description: ");
+            
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.IdeologyDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nFaction: ");
+            
+            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nFaction Description:");
+            
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nFactionTechLevel: ");
+            
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionTechLevel));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nFactionLeader: ");
+            
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionLeader));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawn()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -42,7 +152,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatFooterBase
+    public class BattleLogTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

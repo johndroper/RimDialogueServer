@@ -19,9 +19,9 @@ namespace RimDialogueObjects.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatDialogueTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnFooter.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatDialogueTemplate : ChitChatDialogueTemplateBase
+    public partial class OnePawnFooter : OnePawnFooterBase
     {
 #line hidden
         /// <summary>
@@ -30,26 +30,6 @@ namespace RimDialogueObjects.Templates
         public virtual string TransformText()
         {
             this.Write("\r\n");
-            
-            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatDialogueTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatDialogueTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatDialogueTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
-            
-            #line default
-            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -61,7 +41,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatDialogueTemplateBase
+    public class OnePawnFooterBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

@@ -5,11 +5,11 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 <#= Data.LabelCap #> Explanation: <#= Data.Explanation #>
 The <#= Data.LabelCap #> has been going on for <#= Data.Duration #>.
 <# if (Data.Permanent)  { #>
 The <#= Data.LabelCap #> is permanent and will not end.
 <# } #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

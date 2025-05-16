@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <#= this.Data.SkillName #> entails: <#= this.Data.SkillDescription #>
 <#= this.Initiator.NickName #>'s skill level in <#= this.Data.SkillName #> is '<#= this.Data.InitiatorSkillLevel #>'.
@@ -17,5 +17,5 @@
 <#= this.Data.RecipientPassion #> has a <#= this.Data.RecipientPassion #> passion for <#= this.Data.SkillName #>.
 <# } #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

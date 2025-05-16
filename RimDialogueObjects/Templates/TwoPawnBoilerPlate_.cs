@@ -4,15 +4,15 @@ using DialogueData = RimDialogue.Core.InteractionData.DialogueData;
 namespace RimDialogueObjects.Templates
 {
 
-  public partial class ChitChatBoilerPlate
+  public partial class TwoPawnBoilerPlate
   {
     public static string Generate(DialogueData data, PawnData initiator, PawnData recipient, Config config)
     {
-      ChitChatBoilerPlate template = new(data, initiator, recipient, config);
+      TwoPawnBoilerPlate template = new(data, initiator, recipient, config);
       return template.TransformText();
     }
 
-    public ChitChatBoilerPlate(
+    public TwoPawnBoilerPlate(
       DialogueData data,
       PawnData initiator,
       PawnData recipient,

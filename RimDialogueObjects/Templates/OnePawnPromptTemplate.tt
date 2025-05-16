@@ -5,6 +5,6 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.Header() #>
+<#= this.GetPawn() #>
 <#= this.Footer() #>

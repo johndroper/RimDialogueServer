@@ -3,7 +3,7 @@ using RimDialogue.Core;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatDialogueTemplate : DialoguePromptTemplate<RimDialogue.Core.InteractionData.DialogueData>
+  public partial class TwoPawnPromptTemplate : IRecipientPromptTemplate<RimDialogue.Core.InteractionData.DialogueData>
   {
     public RimDialogue.Core.InteractionData.DialogueData Data { get; set; }
     public PawnData Initiator { get; set; }

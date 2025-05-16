@@ -19,9 +19,9 @@ namespace RimDialogueObjects.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnPromptTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ChitChatBoilerPlate : ChitChatBoilerPlateBase
+    public partial class TwoPawnPromptTemplate : TwoPawnPromptTemplateBase
     {
 #line hidden
         /// <summary>
@@ -29,79 +29,27 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nYou are a dialogue writer for the game RimWorld a sci-fi colony simulation game" +
-                    " set on a distant, lawless planet.\r\n\r\nYour job is to create ");
+            this.Write("\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.WordCount)));
-            
-            #line default
-            #line hidden
-            this.Write(" conversation of ");
-            
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.WordCount));
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnPromptTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Header()));
             
             #line default
             #line hidden
-            this.Write(" words or less total between ");
+            this.Write("\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(" and ");
-            
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnPromptTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawns()));
             
             #line default
             #line hidden
-            this.Write(" based on this interaction: \"");
+            this.Write("\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Interaction));
-            
-            #line default
-            #line hidden
-            this.Write("\"\r\n\r\n");
-            
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Instructions));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnPromptTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nThe format of the conversation should be as follows:\r\n");
-            
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(": \"");
-            
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
-            
-            #line default
-            #line hidden
-            this.Write("\'s part in the conversation goes here.\"\r\n");
-            
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
-            
-            #line default
-            #line hidden
-            this.Write(": \"");
-            
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBoilerPlate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
-            
-            #line default
-            #line hidden
-            this.Write("\'s part in the conversation goes here.\"\r\n\r\nIt is important that you respond with " +
-                    "only the dialogue exchange.\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -113,7 +61,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ChitChatBoilerPlateBase
+    public class TwoPawnPromptTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

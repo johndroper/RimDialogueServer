@@ -32,7 +32,7 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n");
             
             #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Header()));
             
             #line default
             #line hidden
@@ -74,7 +74,7 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n\r\n");
             
             #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatMessageTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawns()));
             
             #line default
             #line hidden

@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 The severity of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffSeverity #>.
 The description of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffDescription #>
@@ -15,5 +15,5 @@ The body part affected by '<#= this.Data.HediffLabel #>' is: <#= this.Data.Hedif
 <# if (!string.IsNullOrEmpty(this.Data.HediffSource)) { #>
 The source of '<#= this.Data.HediffLabel #>' is: <#= this.Data.HediffSource #>
 <# } #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

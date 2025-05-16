@@ -6,12 +6,12 @@
 <#@ import namespace="RimDialogue.Core" #>
 <#@ import namespace="RimDialogue.Core.InteractionData" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 The character who died was: <#= Data.PawnName #>
 <#= Data.PawnName #>'s Cause of Death: <#= Data.CauseOfDeath #>
 Time Since <#= Data.PawnName #>'s Death: <#= Data.TimeSinceDeath #>
 
 <#= this.GetTarget() #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

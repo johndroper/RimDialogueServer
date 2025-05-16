@@ -51,8 +51,28 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Templates\ChitChatFooter.cs">
-      <DependentUpon>ChitChatFooter.tt</DependentUpon>
+    <Compile Update="Templates\OnePawnHeader.cs">
+      <DependentUpon>OnePawnHeader.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\OnePawnFooter.cs">
+      <DependentUpon>OnePawnFooter.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\BattleLogTemplate.cs">
+      <DependentUpon>BattleLogTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\OnePawnTargetPromptTemplate.cs">
+      <DependentUpon>OnePawnTargetPromptTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\TwoPawnFooter.cs">
+      <DependentUpon>TwoPawnFooter.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -91,8 +111,13 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Templates\ChitChatDialogueTemplate.cs">
-      <DependentUpon>ChitChatDialogueTemplate.tt</DependentUpon>
+    <Compile Update="Templates\OnePawnPromptTemplate.cs">
+      <DependentUpon>OnePawnPromptTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Templates\TwoPawnPromptTemplate.cs">
+      <DependentUpon>TwoPawnPromptTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -106,8 +131,8 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Templates\ChitChatBoilerPlate.cs">
-      <DependentUpon>ChitChatBoilerPlate.tt</DependentUpon>
+    <Compile Update="Templates\TwoPawnBoilerPlate.cs">
+      <DependentUpon>TwoPawnBoilerPlate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -131,28 +156,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ChitChatWeatherTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="Templates\OnePawnTemplateSlim.cs">
+      <DependentUpon>OnePawnTemplateSlim.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\PawnTemplate.cs">
       <DependentUpon>PawnTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Templates\InitiatorRecipientTemplateSlim.cs">
-      <DependentUpon>InitiatorRecipientTemplateSlim.tt</DependentUpon>
+    <Compile Update="Templates\TwoPawnTemplateSlim.cs">
+      <DependentUpon>TwoPawnTemplateSlim.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Templates\TargetTemplateSlim.cs">
-      <DependentUpon>TargetTemplateSlim.tt</DependentUpon>
+    <Compile Update="Templates\OnePawnTargetTemplate.cs">
+      <DependentUpon>OnePawnTargetTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Templates\TargetTemplate.cs">
-      <DependentUpon>TargetTemplate.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Templates\InitiatorRecipientTemplate.cs">
-      <DependentUpon>InitiatorRecipientTemplate.tt</DependentUpon>
+    <Compile Update="Templates\TwoPawnTargetTemplate.cs">
+      <DependentUpon>TwoPawnTargetTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -165,11 +190,6 @@
       <DependentUpon>ChitChatRecentIncidentTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Templates\PromptTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>PromptTemplate.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -190,8 +210,24 @@
       <LastGenOutput>DeadPawnTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Templates\ChitChatFooter.tt">
-      <LastGenOutput>ChitChatFooter.cs</LastGenOutput>
+    <None Update="Templates\OnePawnHeader.tt">
+      <LastGenOutput>OnePawnHeader.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\OnePawnFooter.tt">
+      <LastGenOutput>OnePawnFooter.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\BattleLogTemplate.tt">
+      <LastGenOutput>BattleLogTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\OnePawnTargetPromptTemplate.tt">
+      <LastGenOutput>OnePawnTargetPromptTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\TwoPawnFooter.tt">
+      <LastGenOutput>TwoPawnFooter.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatFamilyTemplate .tt">
@@ -222,8 +258,12 @@
       <LastGenOutput>ChitChatAlertTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Templates\ChitChatDialogueTemplate.tt">
-      <LastGenOutput>ChitChatDialogueTemplate.cs</LastGenOutput>
+    <None Update="Templates\OnePawnPromptTemplate.tt">
+      <LastGenOutput>OnePawnPromptTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\TwoPawnPromptTemplate.tt">
+      <LastGenOutput>TwoPawnPromptTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatMessageTemplate.tt">
@@ -234,8 +274,8 @@
       <LastGenOutput>ChitChatGameConditionTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Templates\ChitChatBoilerPlate.tt">
-      <LastGenOutput>ChitChatBoilerPlate.cs</LastGenOutput>
+    <None Update="Templates\TwoPawnBoilerPlate.tt">
+      <LastGenOutput>TwoPawnBoilerPlate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatFactionTemplate.tt">
@@ -254,24 +294,24 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ChitChatWeatherTemplate.cs</LastGenOutput>
     </None>
+    <None Update="Templates\OnePawnTemplateSlim.tt">
+      <LastGenOutput>OnePawnTemplateSlim.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
     <None Update="Templates\PawnTemplate.tt">
       <LastGenOutput>PawnTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Templates\InitiatorRecipientTemplateSlim.tt">
-      <LastGenOutput>InitiatorRecipientTemplateSlim.cs</LastGenOutput>
+    <None Update="Templates\TwoPawnTemplateSlim.tt">
+      <LastGenOutput>TwoPawnTemplateSlim.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Templates\TargetTemplateSlim.tt">
-      <LastGenOutput>TargetTemplateSlim.cs</LastGenOutput>
+    <None Update="Templates\OnePawnTargetTemplate.tt">
+      <LastGenOutput>OnePawnTargetTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Templates\TargetTemplate.tt">
-      <LastGenOutput>TargetTemplate.cs</LastGenOutput>
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-    </None>
-    <None Update="Templates\InitiatorRecipientTemplate.tt">
-      <LastGenOutput>InitiatorRecipientTemplate.cs</LastGenOutput>
+    <None Update="Templates\TwoPawnTargetTemplate.tt">
+      <LastGenOutput>TwoPawnTargetTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\ChitChatBattleTemplate.tt">
@@ -281,10 +321,6 @@
     <None Update="Templates\ChitChatRecentIncidentTemplate.tt">
       <LastGenOutput>ChitChatRecentIncidentTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
-    </None>
-    <None Update="Templates\PromptTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>PromptTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

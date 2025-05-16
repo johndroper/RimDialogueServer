@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.IdeologyName) && this.Initiator.IdeologyName == this.Recipient.IdeologyName) { #>
 Both <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> share the same ideology, called "<#= this.Initiator.IdeologyName #>".
@@ -30,5 +30,5 @@ The precepts of <#= this.Recipient.NickName #>'s ideology are: <#= String.Join("
 <#	  } #>
 <#  } #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

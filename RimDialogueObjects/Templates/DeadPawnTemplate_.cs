@@ -4,7 +4,7 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class DeadPawnTemplate : DialogueTargetTemplate<DialogueDataDeadPawn>
+  public partial class DeadPawnTemplate : IRecipientTargetPromptTemplate<DialogueDataDeadPawn>
   {
     public DialogueDataDeadPawn Data { get; set; }
     public PawnData Initiator { get; set; }

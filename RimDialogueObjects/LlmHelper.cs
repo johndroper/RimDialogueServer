@@ -68,13 +68,93 @@ namespace RimDialogueObjects
       }
     }
 
+    //One Pawn
+    public static string Generate<DataT, TemplateT>(
+      Config config,
+      PawnData initiator,
+      DataT dialogueData,
+      out bool wasTruncated,
+      out string prompt) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : IPromptTemplate<DataT>, new()
+    {
+      //******Prompt Generation******
+      try
+      {
+        wasTruncated = false;
+        if (dialogueData == null)
+          throw new Exception("dialogueData is null.");
+        TemplateT promptTemplate = new();
+        promptTemplate.Initiator = initiator;
+        promptTemplate.Data = dialogueData;
+        promptTemplate.Config = config;
+        prompt = promptTemplate.TransformText();
+        if (prompt == null)
+          throw new Exception("Prompt is null.");
+        int maxPromptLength = config.MaxPromptLength;
+        if (prompt.Length > maxPromptLength)
+        {
+          wasTruncated = true;
+          Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
+          return prompt.Substring(0, maxPromptLength);
+        }
+        return prompt;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred generating prompt.", ex);
+        exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
+        throw exception;
+      }
+    }
+
+    //One pawn with target
+    public static string Generate<DataT, TemplateT>(
+      Config config,
+      PawnData initiator,
+      DataT dialogueData,
+      PawnData? targetData,
+      out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData where TemplateT : ITargetPromptTemplate<DataT>, new()
+    {
+      //******Prompt Generation******
+      string? prompt = null;
+      try
+      {
+        wasTruncated = false;
+        if (dialogueData == null)
+          throw new Exception("dialogueData is null.");
+        TemplateT promptTemplate = new();
+        promptTemplate.Initiator = initiator;
+        promptTemplate.Data = dialogueData;
+        promptTemplate.Target = targetData;
+        promptTemplate.Config = config;
+        prompt = promptTemplate.TransformText();
+        if (prompt == null)
+          throw new Exception("Prompt is null.");
+        int maxPromptLength = config.MaxPromptLength;
+        if (prompt.Length > maxPromptLength)
+        {
+          wasTruncated = true;
+          Console.WriteLine($"Prompt truncated to {maxPromptLength} characters. Original length was {prompt.Length} characters.");
+          return prompt.Substring(0, maxPromptLength);
+        }
+        return prompt;
+      }
+      catch (Exception ex)
+      {
+        Exception exception = new("An error occurred generating prompt.", ex);
+        exception.Data.Add("dialogueData", JsonConvert.SerializeObject(dialogueData));
+        throw exception;
+      }
+    }
+
+
+    //Two pawn
     public static string Generate<DataT, TemplateT>(
       Config config,
       PawnData initiator,
       PawnData recipient,
       DataT dialogueData,
       out bool wasTruncated,
-      out string prompt) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : DialoguePromptTemplate<DataT>, new()
+      out string prompt) where DataT : RimDialogue.Core.InteractionData.DialogueData where TemplateT : IRecipientPromptTemplate<DataT>, new()
     {
       //******Prompt Generation******
       try
@@ -107,13 +187,14 @@ namespace RimDialogueObjects
       }
     }
 
+    //Two pawn with target 
     public static string Generate<DataT, TemplateT>(
       Config config,
       PawnData initiator,
       PawnData recipient,
       DataT dialogueData,
       PawnData? targetData,
-    out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData where TemplateT : DialogueTargetTemplate<DataT>, new()
+    out bool wasTruncated) where DataT : RimDialogue.Core.InteractionData.DialogueTargetData where TemplateT : IRecipientTargetPromptTemplate<DataT>, new()
     {
       //******Prompt Generation******
       string? prompt = null;
@@ -147,8 +228,6 @@ namespace RimDialogueObjects
         throw exception;
       }
     }
-
-
 
     public static async Task<string> GetResults(Config config, string prompt)
     {

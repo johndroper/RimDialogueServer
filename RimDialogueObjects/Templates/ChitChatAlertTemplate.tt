@@ -6,9 +6,9 @@
 <#@ import namespace="RimDialogue.Core" #>
 <#@ import namespace="RimDialogue.Core.InteractionData" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 Here is the explanation of the alert.  Use this information to help you write the conversation.
 <#= Data.Explanation #>
 <#= this.GetTarget() #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

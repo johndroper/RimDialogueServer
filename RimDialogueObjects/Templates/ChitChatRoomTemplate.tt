@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 Room:  <#= Data.RoomLabel #>
 Cleanliness: <#= Data.RoomCleanliness #>
@@ -14,7 +14,7 @@ Wealth: <#= Data.RoomWealth #>
 Space: <#= Data.RoomSpace #>
 Beauty: <#= Data.RoomBeauty #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 
 <#= this.Footer() #>
 

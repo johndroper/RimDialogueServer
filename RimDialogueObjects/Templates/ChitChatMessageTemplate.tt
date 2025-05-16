@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <# if (!string.IsNullOrEmpty(Data.QuestName)) { #>
   This interaction is part of a quest, "<#= Data.QuestName #>", which is about <#= Data.QuestDescription #>.
@@ -13,5 +13,5 @@
 
 <#= this.GetTarget() #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

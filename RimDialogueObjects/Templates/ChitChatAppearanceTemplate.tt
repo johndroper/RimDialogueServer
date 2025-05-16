@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <#= this.Data.Pawn #>'s appearance:
 - Face Tattoo: <#= this.Data.FaceTattoo #> (Category: <#= this.Data.FaceTattooCategory #>)
@@ -14,5 +14,5 @@
 - Hair Color: <#= this.Data.HairColor #>
 - Beard: <#= this.Data.Beard #> (Category: <#= this.Data.BeardCategory #>)
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

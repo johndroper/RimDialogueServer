@@ -4,7 +4,7 @@ using RimDialogue.Core.InteractionData;
 
 namespace RimDialogueObjects.Templates
 {
-  public partial class ChitChatGameConditionTemplate : DialoguePromptTemplate<DialogueDataCondition>
+  public partial class ChitChatGameConditionTemplate : IRecipientTargetPromptTemplate<DialogueDataCondition>
   {
     public DialogueDataCondition Data { get; set; }
     public PawnData Initiator { get; set; }

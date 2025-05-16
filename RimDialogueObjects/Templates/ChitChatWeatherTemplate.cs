@@ -37,7 +37,7 @@ namespace RimDialogueObjects.Templates
             this.Write("\n\n");
             
             #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.BoilerPlate()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Header()));
             
             #line default
             #line hidden
@@ -55,7 +55,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" are outsidetakinh about the weather. \nCurrent Weather: ");
+            this.Write(" are outside taking about the weather. \nCurrent Weather: ");
             
             #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Data.WeatherLabel));
@@ -104,10 +104,10 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\n");
+            this.Write("\n\n");
             
             #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetInitiatorRecipientTemplateSlim()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawns()));
             
             #line default
             #line hidden

@@ -5,12 +5,12 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 A description of <#= this.Data.ApparelLabel #> is <#= this.Data.ApparelDescription #>.
 The quality of <#= this.Data.ApparelLabel #> is <#= this.Data.ApparelQuality #>.
 <# if (this.Data.WornByCorpse) { #>
 <#= this.Data.ApparelLabel #> has been worn by a corpse.  This makes it highly undesirable.
 <# } #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

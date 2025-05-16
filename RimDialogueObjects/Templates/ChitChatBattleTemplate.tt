@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 Here are the factions involved in the battle:
 <# foreach(var faction in this.Data.Factions) { #>
@@ -22,6 +22,6 @@ Here are the events of the battle:
 <#= entry #>
 <# } #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 
 <#= this.Footer() #>

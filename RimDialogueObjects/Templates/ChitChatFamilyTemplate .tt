@@ -6,7 +6,7 @@
 <#@ import namespace="RimDialogue.Core" #>
 <#@ import namespace="RimDialogue.Core.InteractionData" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 <#= this.GetTarget() #>
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 <#= this.Footer() #>

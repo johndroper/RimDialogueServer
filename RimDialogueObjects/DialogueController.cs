@@ -105,131 +105,163 @@ namespace RimDialogueObjects
     public abstract Task<IActionResult> ProcessDialogue<DataT, TemplateT>(
       string action,
       string initiatorJson,
+      string dataJson)
+    where DataT : RimDialogue.Core.InteractionData.DialogueData
+    where TemplateT : IPromptTemplate<DataT>, new();
+
+    public abstract Task<IActionResult> ProcessTargetDialogue<DataT, TemplateT>(
+     string action,
+     string initiatorJson,
+     string dataJson,
+     string? targetJson)
+        where DataT : DialogueTargetData
+        where TemplateT : ITargetPromptTemplate<DataT>, new();
+
+    public abstract Task<IActionResult> ProcessTwoPawn<DataT, TemplateT>(
+      string action,
+      string initiatorJson,
       string recipientJson,
       string dataJson)
         where DataT : RimDialogue.Core.InteractionData.DialogueData
-        where TemplateT : DialoguePromptTemplate<DataT>, new();
+        where TemplateT : IRecipientPromptTemplate<DataT>, new();
 
-    public abstract Task<IActionResult> ProcessTargetDialogue<DataT, TemplateT>(
+    public abstract Task<IActionResult> ProcessTwoPawnTarget<DataT, TemplateT>(
      string action,
      string initiatorJson,
      string recipientJson,
      string dataJson,
      string? targetJson)
         where DataT : DialogueTargetData
-        where TemplateT : DialogueTargetTemplate<DataT>, new();
+        where TemplateT : IRecipientTargetPromptTemplate<DataT>, new();
 
     [HttpPost]
     public async Task<IActionResult> RecentIncidentChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTargetDialogue<DialogueDataIncident, ChitChatRecentIncidentTemplate>("RecentIncidentChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTwoPawnTarget<DialogueDataIncident, ChitChatRecentIncidentTemplate>("RecentIncidentChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
 
     [HttpPost]
+    [Obsolete]
     public async Task<IActionResult> RecentBattleChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      //OLD - TO BE REMOVED
-      return await ProcessDialogue<DialogueDataBattle, ChitChatBattleTemplate>("RecentBattleChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataBattle, ChitChatBattleTemplate>("RecentBattleChitchat", initiatorJson, recipientJson, chitChatJson);
     }
 
     [HttpPost]
     public async Task<IActionResult> Battle(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataBattle, ChitChatBattleTemplate>("Battle", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataBattle, ChitChatBattleTemplate>("Battle", initiatorJson, recipientJson, chitChatJson);
     }
 
     [HttpPost]
     public async Task<IActionResult> GameConditionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataCondition, ChitChatGameConditionTemplate>("GameConditionChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> MessageChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTargetDialogue<DialogueDataMessage, ChitChatMessageTemplate>("MessageChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTwoPawnTarget<DialogueDataMessage, ChitChatMessageTemplate>("MessageChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
     [HttpPost]
     public async Task<IActionResult> AlertChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTargetDialogue<DialogueDataAlert, ChitChatAlertTemplate>("AlertChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTwoPawnTarget<DialogueDataAlert, ChitChatAlertTemplate>("AlertChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
     [HttpPost]
     public async Task<IActionResult> IdeologyChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, ChitChatIdeologyTemplate>("IdeologyChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<RimDialogue.Core.InteractionData.DialogueData, ChitChatIdeologyTemplate>("IdeologyChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> SkillChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataSkill, ChitChatSkillTemplate>("SkillsChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataSkill, ChitChatSkillTemplate>("SkillsChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> ColonistChitchat(string initiatorJson, string recipientJson, string chitChatJson, string? targetJson)
     {
-      return await ProcessTargetDialogue<DialogueTargetData, ChitChatColonistTemplate>("ColonistChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTwoPawnTarget<DialogueTargetData, ChitChatColonistTemplate>("ColonistChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
     [HttpPost]
     public async Task<IActionResult> HealthChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataHealth, ChitChatHealthTemplate>("HealthChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataHealth, ChitChatHealthTemplate>("HealthChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> ApparelChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataApparel, ChitChatApparelTemplate>("ApparelChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataApparel, ChitChatApparelTemplate>("ApparelChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> NeedsChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataNeed, ChitChatNeedTemplate>("NeedsChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataNeed, ChitChatNeedTemplate>("NeedsChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> FamilyChitchat(string initiatorJson, string recipientJson, string chitChatJson, string targetJson)
     {
-      return await ProcessTargetDialogue<DialogueDataFamily, ChitChatFamilyTemplate>("FamilyChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTwoPawnTarget<DialogueDataFamily, ChitChatFamilyTemplate>("FamilyChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
     [HttpPost]
     public async Task<IActionResult> Dialogue(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, ChitChatDialogueTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<RimDialogue.Core.InteractionData.DialogueData, TwoPawnPromptTemplate>("DialogueChitchat", initiatorJson, recipientJson, chitChatJson);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> DialogueSinglePawn(string initiatorJson, string chitChatJson)
+    {
+      return await ProcessDialogue<RimDialogue.Core.InteractionData.DialogueData, OnePawnPromptTemplate>("DialogueChitchat", initiatorJson, chitChatJson);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DialogueSinglePawnTarget(string initiatorJson, string chitChatJson, string targetJson)
+    {
+      return await ProcessTargetDialogue<DialogueTargetData, OnePawnTargetPromptTemplate>("DialogueChitchat", initiatorJson, chitChatJson, targetJson);
+    }
+
     [HttpPost]
     public async Task<IActionResult> WeatherChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataWeather, ChitChatWeatherTemplate>("WeatherChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataWeather, ChitChatWeatherTemplate>("WeatherChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> WeaponChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataWeapon, ChitChatWeaponTemplate>("WeaponChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataWeapon, ChitChatWeaponTemplate>("WeaponChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> FactionChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataFaction, ChitChatFactionTemplate>("FactionChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataFaction, ChitChatFactionTemplate>("FactionChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> AppearanceChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataAppearance, ChitChatAppearanceTemplate>("AppearanceChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataAppearance, ChitChatAppearanceTemplate>("AppearanceChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> AnimalChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataAnimal, ChitChatAnimalTemplate>("AnimalChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataAnimal, ChitChatAnimalTemplate>("AnimalChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> RoomChitchat(string initiatorJson, string recipientJson, string chitChatJson)
     {
-      return await ProcessDialogue<DialogueDataRoom, ChitChatRoomTemplate>("RoomChitchat", initiatorJson, recipientJson, chitChatJson);
+      return await ProcessTwoPawn<DialogueDataRoom, ChitChatRoomTemplate>("RoomChitchat", initiatorJson, recipientJson, chitChatJson);
     }
     [HttpPost]
     public async Task<IActionResult> DeadPawn(string initiatorJson, string recipientJson, string chitChatJson, string targetJson)
     {
-      return await ProcessTargetDialogue<DialogueDataDeadPawn, DeadPawnTemplate>("DeadPawn", initiatorJson, recipientJson, chitChatJson, targetJson);
+      return await ProcessTwoPawnTarget<DialogueDataDeadPawn, DeadPawnTemplate>("DeadPawn", initiatorJson, recipientJson, chitChatJson, targetJson);
     }
 
-    public abstract Task<IActionResult> GetDialogue(string dialogueDataJSON);
+    [HttpPost]
+    public async Task<IActionResult> BattleLog(string initiatorJson, string chitChatJson)
+    {
+      return await ProcessDialogue<BattleLogData, BattleLogTemplate>("BattleLog", initiatorJson, chitChatJson);
+    }
 
     [HttpPost]
     public async Task<IActionResult> GetScenarioPrompt(string clientId, string scenarioText)

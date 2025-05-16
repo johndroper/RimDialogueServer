@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
-<#= this.BoilerPlate() #>
+<#= this.Header() #>
 
 <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> are talking about the faction <#= Data.FactionName #>.
 <#= Data.FactionName #> description: <#= Data.Label #> - <#= Data.Description #>
@@ -14,6 +14,6 @@ Goodwill: <#= GoodWill #>
 Player Relation: <#= Data.PlayerRelationKind #>
 Tech Level: <#= Data.TechLevel #>
 
-<#= this.GetInitiatorRecipientTemplateSlim() #>
+<#= this.GetPawns() #>
 
 <#= this.Footer() #>
