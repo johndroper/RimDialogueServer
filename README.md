@@ -32,7 +32,7 @@ To run RimDialogue with a local LLM:
 
 > **System Requirements:**  
 > Depending on the model you choose, Ollama may require a powerful machine.  
-> The hosted version uses **Llama 3.2 3B** and **Llama 3.2 1B**.  
+> **Llama 3.2 3B** and **Llama 3.2 1B** are OK and will run on most machines.  
 > Find more models here: [Ollama Model Library](https://ollama.com/library)
 
 #### Downloading Models
