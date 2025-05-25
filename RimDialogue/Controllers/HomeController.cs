@@ -20,6 +20,8 @@ namespace RimDialogueLocal.Controllers
 
     }
 
+
+
     public IActionResult Index()
     {
       return View();
@@ -108,7 +110,11 @@ namespace RimDialogueLocal.Controllers
         throw;
       }
     }
-    public override async Task<IActionResult> ProcessTargetDialogue<DataT, TemplateT>(string action, string initiatorJson, string dataJson, string? targetJson)
+    public override async Task<IActionResult> ProcessTargetDialogue<DataT, TemplateT>(
+      string action, 
+      string initiatorJson,
+      string dataJson, 
+      string? targetJson)
     {
       InitLog(action);
       try

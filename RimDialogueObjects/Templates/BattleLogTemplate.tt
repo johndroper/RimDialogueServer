@@ -7,7 +7,7 @@
 
 <#= this.Header() #>
 
-The attack: 
+The thought: 
 <#= this.Data.BattleLogEntry #>
 
 Data about the enemy <#= this.Data.TargetKind #> that <#= this.Initiator.NickName #> is fighting:

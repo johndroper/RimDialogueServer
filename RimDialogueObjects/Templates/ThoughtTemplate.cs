@@ -19,9 +19,9 @@ namespace RimDialogueObjects.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+    #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class BattleLogTemplate : BattleLogTemplateBase
+    public partial class ThoughtTemplate : ThoughtTemplateBase
     {
 #line hidden
         /// <summary>
@@ -29,114 +29,155 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n");
+            this.Write("\r\nYou are a dialogue writer for the game RimWorld a sci-fi colony simulation game" +
+                    " set on a distant, lawless planet.\r\n\r\nYour job is to create ");
             
-            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Header()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\nThe thought: \r\n");
-            
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.BattleLogEntry));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOutputLength(this.WordCount)));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nData about the enemy ");
+            this.Write(" thought of ");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetKind));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.WordCount));
             
             #line default
             #line hidden
-            this.Write(" that ");
+            this.Write(" words or less total for ");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write(" is fighting:\r\nDescription: ");
+            this.Write(" based on this: \"");
             
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetDescription));
-            
-            #line default
-            #line hidden
-            this.Write("\r\nRace: ");
-            
-            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetRace));
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Interaction));
             
             #line default
             #line hidden
-            this.Write("\r\nWeapon: ");
+            this.Write("\"\r\n");
             
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetWeapon));
-            
-            #line default
-            #line hidden
-            this.Write("\r\nApparel: ");
-            
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(", ", this.Data.TargetApparel)));
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Instructions));
             
             #line default
             #line hidden
-            this.Write("\r\nIdeology: ");
+            this.Write("\r\nIt is important that you respond with only ");
             
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.IdeologyName));
-            
-            #line default
-            #line hidden
-            this.Write("\r\nIdeology Description: ");
-            
-            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.IdeologyDescription));
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write("\r\nFaction: ");
+            this.Write("\'s thought.\r\n\r\n");
             
-            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionName));
-            
-            #line default
-            #line hidden
-            this.Write("\r\nFaction Description:");
-            
-            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionDescription));
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write("\r\nFactionTechLevel: ");
+            this.Write("\'s thought was: \r\n");
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionTechLevel));
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Label));
             
             #line default
             #line hidden
-            this.Write("\r\nFactionLeader: ");
+            this.Write("\r\n");
             
-            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionLeader));
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Description));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\nHow this affects ");
+            
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s mood: ");
+            
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.MoodOffset));
             
             #line default
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.PreceptLabel)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s thought was caused by their belief in this precept: \r\n");
+            
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.PreceptLabel));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.PreceptDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+ if (this.Target != null) { 
+            
+            #line default
+            #line hidden
+            
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s thought was about this person:\r\n");
+            
+            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.GetTarget()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawn()));
             
             #line default
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
             
             #line default
@@ -152,7 +193,7 @@ namespace RimDialogueObjects.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class BattleLogTemplateBase
+    public class ThoughtTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;
