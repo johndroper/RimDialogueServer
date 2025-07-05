@@ -290,7 +290,7 @@ namespace RimDialogueObjects.Templates
             this.Write(".\r\n");
             
             #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
- if (this.Config.ShowAnimal && this.Recipient.IsAnimal) { 
+ if (this.Recipient.IsAnimal) { 
             
             #line default
             #line hidden
@@ -440,7 +440,7 @@ namespace RimDialogueObjects.Templates
             #line hidden
             
             #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
- if (this.Config.ShowRoyaltyTitle && !string.IsNullOrWhiteSpace(this.Recipient.RoyaltyTitle)) { 
+ if (!string.IsNullOrWhiteSpace(this.Recipient.RoyaltyTitle)) { 
             
             #line default
             #line hidden

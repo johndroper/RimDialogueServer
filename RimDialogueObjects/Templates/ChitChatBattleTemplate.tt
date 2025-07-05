@@ -7,19 +7,25 @@
 
 <#= this.Header() #>
 
+<# if (this.Data.Factions.Any()) { #>
 Here are the factions involved in the battle:
 <# foreach(var faction in this.Data.Factions) { #>
 <#= faction #>
 <# } #>
+<# } #>
 
+<# if (this.Data.Participants.Any()) { #>
 Here are the participants involved in the battle:
 <# foreach(var participant in this.Data.Participants) { #>
 <#= participant #>
 <# } #>
+<# } #>
 
+<# if (this.Data.Entries.Any()) { #>
 Here are the events of the battle: 
 <# foreach(var entry in this.Data.Entries) { #>
 <#= entry #>
+<# } #>
 <# } #>
 
 <#= this.GetPawns() #>

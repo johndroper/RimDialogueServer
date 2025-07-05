@@ -49,12 +49,12 @@ namespace RimDialogueObjects
       }
     }
 
-    public async static Task<string> GenerateResponse(string prompt, Config config)
+    public async static Task<string> GenerateResponse(string prompt, Config config, string modelName)
     {
       string? text = null;
       try
       {
-        text = await GetResults(config, prompt);
+        text = await GetResults(config, prompt, modelName);
         //****Remove everything between the start <think> tag and the end </think> tag ******
         if (config.RemoveThinking)
           text = Regex.Replace(text, "<think>(.|\n)*?</think>", "").Trim();
@@ -229,56 +229,61 @@ namespace RimDialogueObjects
       }
     }
 
-    public static async Task<string> GetResults(Config config, string prompt)
+    public static async Task<string> GetResults(Config config, string prompt, string modelName)
     {
-      var provider = config.Provider?.ToUpper();
+
+      var model = config.Models.FirstOrDefault(m => m.Name == modelName) ;
+      if (model == null)
+        model = config.Models[0];
+    
       try
       {
-        switch (provider)
+        switch (model.Provider)
         {
           case "AWS":
-            return await GetFromAws(config, prompt);
+            return await GetFromAws(model, config.MaxOutputWords, prompt);
           case "OLLAMA":
-            return await GetFromOllama(config, prompt);
+            return await GetFromOllama(model, prompt);
           case "OPENAI":
-            return await GetFromOpenAI(config, prompt);
+            return await GetFromOpenAI(model, prompt);
           case "GROQ":
-            return await GetFromGroq(config, prompt);
-          case "GEMINI":
-            return await GetFromGemini(config, prompt);
+            return await GetFromGroq(model, prompt);
+          case "GOOGLE":
+            return await GetFromGemini(model, prompt);
           case null:
             throw new Exception($"Provider not set.");
           default:
-            throw new Exception($"Unknown provider:'{provider}'");
+            throw new Exception($"Unknown provider:'{model.Provider}'");
         }
       }
       catch (Exception ex)
       {
         Exception exception = new("Error fetching results.", ex);
-        exception.Data.Add("provider", provider);
+        exception.Data.Add("provider", model.Provider);
         throw exception;
       }
     }
 
     public static async Task<string> GetFromAws(
-      Config config,
+      Model model,
+      int maxOutputWords,
       string prompt)
     {
       try
       {
-        BasicAWSCredentials awsCredentials = new(config.AwsKey, config.AwsSecret);
-        var region = Amazon.RegionEndpoint.GetBySystemName(config.AwsRegion);
+        BasicAWSCredentials awsCredentials = new(model.AwsKey, model.AwsSecret);
+        var region = Amazon.RegionEndpoint.GetBySystemName(model.AwsRegion);
         AmazonBedrockRuntimeClient client = new AmazonBedrockRuntimeClient(awsCredentials, region);
         var message = new Amazon.BedrockRuntime.Model.Message();
         message.Content = new List<ContentBlock> { new ContentBlock { Text = prompt } };
         message.Role = ConversationRole.User;
         ConverseRequest request = new ConverseRequest
         {
-          ModelId = config.AwsModelId,
+          ModelId = model.AwsModelId,
           Messages = new List<Amazon.BedrockRuntime.Model.Message> { message },
           InferenceConfig = new InferenceConfiguration
           {
-            MaxTokens = config.MaxOutputWords,
+            MaxTokens = maxOutputWords,
           }
         };
         var converseResponse = await client.ConverseAsync(request);
@@ -287,8 +292,8 @@ namespace RimDialogueObjects
       catch (Exception ex)
       {
         Exception exception = new("Error accessing Bedrock.", ex);
-        exception.Data.Add("awsRegion", config.AwsRegion);
-        exception.Data.Add("modelId", config.AwsModelId);
+        exception.Data.Add("awsRegion", model.AwsRegion);
+        exception.Data.Add("modelId", model.AwsModelId);
         throw exception;
       }
     }
@@ -322,12 +327,12 @@ namespace RimDialogueObjects
     //  }
     //}
 
-    public static async Task<string> GetFromGroq(Config config, string prompt)
+    public static async Task<string> GetFromGroq(Model model, string prompt)
     {
-      var apiKey = config.GroqApiKey;
+      var apiKey = model.GroqApiKey;
       if (String.IsNullOrWhiteSpace(apiKey))
         throw new Exception("Provider is set to Groq but 'GroqApiKey' is empty in appsettings.");
-      var groqModelId = config.GroqModelId;
+      var groqModelId = model.GroqModelId;
       if (String.IsNullOrWhiteSpace(groqModelId))
         throw new Exception("Provider is set to Groq but 'GroqModelId' is empty in appsettings.");
       try
@@ -347,12 +352,12 @@ namespace RimDialogueObjects
       }
     }
 
-    public static async Task<string> GetFromOllama(Config config, string prompt)
+    public static async Task<string> GetFromOllama(Model model, string prompt)
     {
-      var ollamaUrl = config.OllamaUrl;
+      var ollamaUrl = model.OllamaUrl;
       if (String.IsNullOrWhiteSpace(ollamaUrl))
         throw new Exception("Provider is set to Ollama but 'OllamaUrl' is empty in appsettings.");
-      var ollamaModelId = config.OllamaModelId;
+      var ollamaModelId = model.OllamaModelId;
       if (String.IsNullOrWhiteSpace(ollamaModelId))
         throw new Exception("Provider is set to Ollama but 'OllamaModelId' is empty in appsettings.");
       try
@@ -376,12 +381,12 @@ namespace RimDialogueObjects
       }
     }
 
-    public static async Task<string> GetFromGemini(Config config, string prompt)
+    public static async Task<string> GetFromGemini(Model model, string prompt)
     {
-      var geminiApiKey = config.GeminiApiKey;
+      var geminiApiKey = model.GeminiApiKey;
       if (String.IsNullOrWhiteSpace(geminiApiKey))
         throw new Exception("Provider is set to Gemini but 'GeminiApiKey' is empty in appsettings.");
-      var geminiUrl = config.GeminiUrl;
+      var geminiUrl = model.GeminiUrl;
       if (String.IsNullOrWhiteSpace(geminiUrl))
         throw new Exception("Provider is set to Gemini but 'GeminiUrl' is empty in appsettings.");
       try
@@ -442,17 +447,17 @@ namespace RimDialogueObjects
         throw exception;
       }
     }
-    public static async Task<string> GetFromOpenAI(Config config, string prompt)
+    public static async Task<string> GetFromOpenAI(Model model, string prompt)
     {
-      var openAiApiKey = config.OpenAiApiKey;
-      var openAiModel = config.OpenAiModel;
+      var openAiApiKey = model.OpenAiApiKey;
+      var openAiModel = model.OpenAiModel;
       if (String.IsNullOrWhiteSpace(openAiModel))
         throw new Exception("Provider is set to OpenAi but 'OpenAiModel' is empty in appsettings.");
       try
       {
         OpenAIAuthentication openAiAuthentication = new(openAiApiKey);
-        string? openAiResourceName = config.OpenAiResourceName;
-        string? openAiVersion = config.OpenAiVersion;
+        string? openAiResourceName = model.OpenAiResourceName;
+        string? openAiVersion = model.OpenAiVersion;
         OpenAIClientSettings openAiClientSettings;
         if (openAiResourceName != null)
         {
@@ -469,8 +474,8 @@ namespace RimDialogueObjects
         {
           new OpenAI.Chat.Message(Role.User, prompt)
         };
-        Model model = new Model(openAiModel);
-        var chatRequest = new ChatRequest(messages, model);
+        var modelInstance = new OpenAI.Models.Model(openAiModel);
+        var chatRequest = new ChatRequest(messages, modelInstance);
 
         ChatResponse response;
         try

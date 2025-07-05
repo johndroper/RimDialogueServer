@@ -5,3 +5,6 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="RimDialogue.Core" #>
 
+<# if (this.Data.LanguageEnglish != "English") {#>
+It is important that you respond in only in <#= this.Data.LanguageEnglish #> <#= this.Data.LanguageNative #>.
+<# } #>

@@ -102,6 +102,8 @@ namespace RimDialogueObjects
       Log(sb.ToString());
     }
 
+    public abstract Task<IActionResult> Login(string clientId);
+
     public abstract Task<IActionResult> ProcessDialogue<DataT, TemplateT>(
       string action,
       string initiatorJson,
@@ -271,26 +273,30 @@ namespace RimDialogueObjects
     }
 
     [HttpPost]
-    public async Task<IActionResult> GetScenarioPrompt(string clientId, string scenarioText)
+    public async Task<IActionResult> GetScenarioPrompt(string clientId, string scenarioText, string modelName = "Default")
     {
       string prompt = "Write a one sentence prompt that succinctly describes this scenario from a Rimworld game from the third person perspective:\r\n" + scenarioText;
-      DialogueResponse response = await RunPrompt(clientId, prompt);
+      DialogueResponse response = await RunPrompt(clientId, prompt, modelName);
       return Json(response);
     }
 
     [HttpPost]
-    public async Task<IActionResult> GetCharacterPrompt(string clientId, string pawnJson)
+    public async Task<IActionResult> GetCharacterPrompt(string clientId, string pawnJson, string modelName = "Default")
     {
       var pawnData = JsonConvert.DeserializeObject<PawnData>(pawnJson);
       if (pawnData == null)
         throw new Exception("pawnData is null.");
       PawnTemplate pawnTemplate = new PawnTemplate(pawnData);
       string prompt = pawnTemplate.TransformText();
-      DialogueResponse response = await RunPrompt(clientId, prompt);
+      DialogueResponse response = await RunPrompt(clientId, prompt, modelName);
       return Json(response);
     }
 
-    public abstract Task<DialogueResponse> RunPrompt(string clientId, string prompt, [CallerMemberName] string? callerName = null);
+    public abstract Task<DialogueResponse> RunPrompt(
+      string clientId, 
+      string prompt, 
+      string modelName,
+      [CallerMemberName] string? callerName = null);
 
   }
 }

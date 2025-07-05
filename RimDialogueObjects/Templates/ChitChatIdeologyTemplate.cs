@@ -81,7 +81,7 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatIdeologyTemplate.tt"
-     if (this.Config.ShowPrecepts && this.Initiator.IdeologyPrecepts.Any()) {
+     if (this.Initiator.IdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
@@ -141,7 +141,7 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n");
             
             #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatIdeologyTemplate.tt"
-      if (this.Config.ShowPrecepts && this.Initiator.IdeologyPrecepts.Any()) {
+      if (this.Initiator.IdeologyPrecepts.Any()) {
             
             #line default
             #line hidden
@@ -201,7 +201,7 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n");
             
             #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatIdeologyTemplate.tt"
-      if (this.Config.ShowPrecepts && this.Recipient.IdeologyPrecepts.Any()) {
+      if (this.Recipient.IdeologyPrecepts.Any()) {
             
             #line default
             #line hidden

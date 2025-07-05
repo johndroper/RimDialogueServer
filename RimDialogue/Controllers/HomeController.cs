@@ -42,6 +42,26 @@ namespace RimDialogueLocal.Controllers
       return rateLimit;
     }
 
+    public override async Task<IActionResult> Login(string clientId)
+    {
+      await Task.Yield();
+
+      var config = this.Configuration.Get<Config>() ?? throw new Exception("Config is null.");
+      LoginData loginData = new()
+      {
+        tier = "Local",
+        maxPromptLength = config.MaxPromptLength,
+        maxResponseLength = config.MaxResponseLength,
+        maxOutputWords = config.MaxOutputWords,
+        rateLimit = config.RateLimit,
+        rateLimitCacheMinutes = config.RateLimitCacheMinutes,
+        minRateLimitRequestCount = config.MinRateLimitRequestCount,
+        models = config.Models?.Select(m => m.Name).ToArray() ?? Array.Empty<string>()
+      };
+
+      return new JsonResult(loginData);
+    }
+
     [NonAction]
     public override async Task<IActionResult> ProcessDialogue<DataT, TemplateT>(
       string action,
@@ -81,7 +101,7 @@ namespace RimDialogueLocal.Controllers
           Log(truncatedPrompt, $"inputTruncated: {inputTruncated}");
 
           //******Response Generation******
-          string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config);
+          string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config, "Default");
           Log(text);
           var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
           if (outputTruncated)
@@ -165,7 +185,7 @@ namespace RimDialogueLocal.Controllers
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, config);
+        string? text = await LlmHelper.GenerateResponse(prompt, config, dialogueData.ModelName);
         Log(text);
         var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
@@ -235,7 +255,7 @@ namespace RimDialogueLocal.Controllers
           Log(truncatedPrompt, $"inputTruncated: {inputTruncated}");
 
           //******Response Generation******
-          string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config);
+          string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config, dialogueData.ModelName);
           Log(text);
           var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
           if (outputTruncated)
@@ -331,7 +351,7 @@ namespace RimDialogueLocal.Controllers
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, config);
+        string? text = await LlmHelper.GenerateResponse(prompt, config, dialogueData.ModelName);
         Log(text);
         var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
@@ -353,7 +373,7 @@ namespace RimDialogueLocal.Controllers
       }
     }
 
-    public override async Task<DialogueResponse> RunPrompt(string clientId, string prompt, [CallerMemberName] string? callerName = null)
+    public override async Task<DialogueResponse> RunPrompt(string clientId, string prompt, string modelName, [CallerMemberName] string? callerName = null)
     {
       InitLog(callerName);
       string? ipAddress = GetIp();
@@ -363,7 +383,7 @@ namespace RimDialogueLocal.Controllers
         throw new Exception("config is null.");
       if (IsOverRateLimit(config, ipAddress, out float? rate))
         throw new Exception($"Rate limit exceeded. Please try again later. Rate: {rate}");
-      var results = await LlmHelper.GenerateResponse(prompt, config);
+      var results = await LlmHelper.GenerateResponse(prompt, config, modelName);
       Log(results);
       return LlmHelper.SerializeResponse(results, Configuration, rate ?? 0, out bool outputTruncated);
     }

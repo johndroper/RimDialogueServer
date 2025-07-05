@@ -72,7 +72,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\'s thought.\r\n\r\n");
+            this.Write("\'s thoughts.\r\n\r\n");
             
             #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));

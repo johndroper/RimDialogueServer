@@ -9,7 +9,7 @@ You are a dialogue writer for the game RimWorld a sci-fi colony simulation game 
 
 Your job is to create <#= TemplateHelper.DescribeOutputLength(this.WordCount) #> thought of <#= this.WordCount #> words or less total for <#= this.Initiator.NickName #> based on this: "<#= this.Data.Interaction #>"
 <#= this.Data.Instructions #>
-It is important that you respond with only <#= this.Initiator.NickName #>'s thought.
+It is important that you respond with only <#= this.Initiator.NickName #>'s thoughts.
 
 <#= this.Initiator.NickName #>'s thought was: 
 <#= this.Data.Label #>

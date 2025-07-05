@@ -30,6 +30,33 @@ namespace RimDialogueObjects.Templates
         public virtual string TransformText()
         {
             this.Write("\r\n");
+            
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnFooter.tt"
+ if (this.Data.LanguageEnglish != "English") {
+            
+            #line default
+            #line hidden
+            this.Write("It is important that you respond in only in ");
+            
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.LanguageEnglish));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.LanguageNative));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\n");
+            
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnFooter.tt"
+ } 
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

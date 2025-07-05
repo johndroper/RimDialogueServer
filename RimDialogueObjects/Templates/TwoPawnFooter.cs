@@ -30,7 +30,34 @@ namespace RimDialogueObjects.Templates
         public virtual string TransformText()
         {
             this.Write("\r\nWrite just a fragment of the conversation. Do not include the beginning or end " +
-                    "of the conversation, just a fleeting moment from it.");
+                    "of the conversation, just a fleeting moment from it.\r\n\r\n");
+            
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ if (this.Data.LanguageEnglish != "English") {
+            
+            #line default
+            #line hidden
+            this.Write("It is important that you respond in only in ");
+            
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.LanguageEnglish));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.LanguageNative));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\n");
+            
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ } 
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

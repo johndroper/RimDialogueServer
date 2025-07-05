@@ -6,3 +6,7 @@
 <#@ import namespace="RimDialogue.Core" #>
 
 Write just a fragment of the conversation. Do not include the beginning or end of the conversation, just a fleeting moment from it.
+
+<# if (this.Data.LanguageEnglish != "English") {#>
+It is important that you respond in only in <#= this.Data.LanguageEnglish #> <#= this.Data.LanguageNative #>.
+<# } #>
