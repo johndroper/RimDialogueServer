@@ -77,14 +77,12 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 ### 2. Configure the Server
 
 1. Open the `appsettings.json` file in a text editor.
-2. Configure your provider:
+2. In the `MODELS` area, configure your provider:
    - **For Ollama:**
-     - Set the `Provider` setting to `OLLAMA`.
      - Ensure `OllamaUrl` points to the correct port (default: `11434`).  
      - Set `OllamaModelId` to your chosen model (e.g., `"llama3.2"`).
    - **For Cloud Providers:**  
-     - Set the `Provider` setting to `AWS`, `OPENAI`, `GEMINI`, or `GROQ`.
-     - Fill in your API credentials in the `SETTINGS` section for your provider (e.g., `GroqApiKey` and `GroqModelId` for Groq).
+     - Fill in your API credentials in the `MODELS` section for your provider (e.g., `GroqApiKey` and `GroqModelId` for Groq).
 
 3. Adjust optional settings:
    - **RateLimit**: Sets the number of requests per second allowed.  
@@ -127,6 +125,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 4. Scroll to the **Server URL** setting and set it to:  
    `http://localhost:7293/home/getdialogue`  
    > Adjust the port if you changed it during server configuration.
+5. Select the model you configured with the `MODEL` button.
 
 ---
 
