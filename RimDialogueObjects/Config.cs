@@ -26,7 +26,7 @@
     public string? OpenAiResourceName { get; set; }
     public string? OpenAiVersion { get; set; }
     public string? GeminiApiKey { get; set; }
-    public string? GeminiUrl { get; set; }
+    public string? GeminiModel { get; set; }
     public string? OllamaUrl { get; set; }
     public string? OllamaModelId { get; set; }
     public string? GroqApiKey { get; set; }

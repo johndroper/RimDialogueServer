@@ -101,15 +101,15 @@ namespace RimDialogueLocal.Controllers
           Log(truncatedPrompt, $"inputTruncated: {inputTruncated}");
 
           //******Response Generation******
-          string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config, "Default");
-          Log(text);
-          var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
+          var result = await LlmHelper.GenerateResponse(truncatedPrompt, config, "Default");
+          Log(result.Text);
+          var dialogueResponse = LlmHelper.SerializeResponse(result.Text ?? string.Empty, Configuration, rate ?? 0f, out bool outputTruncated);
           if (outputTruncated)
-            Log($"Response was truncated. Original length was {text.Length} characters.");
+            Log($"Response was truncated. Original length was {result.Text?.Length} characters.");
           Metrics.AddRequest(
             this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
             truncatedPrompt.Length,
-            text.Length,
+            result.Text?.Length ?? 0,
             inputTruncated,
             outputTruncated,
             null);
@@ -185,15 +185,15 @@ namespace RimDialogueLocal.Controllers
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, config, dialogueData.ModelName);
-        Log(text);
-        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
+        var result = await LlmHelper.GenerateResponse(prompt, config, dialogueData.ModelName);
+        Log(result.Text);
+        var dialogueResponse = LlmHelper.SerializeResponse(result.Text ?? string.Empty, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
-          Log($"Response was truncated. Original length was {text.Length} characters.");
+          Log($"Response was truncated. Original length was {result.Text?.Length ?? 0} characters.");
         Metrics.AddRequest(
           this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
           prompt.Length,
-          text.Length,
+          result.Text?.Length ?? 0,
           inputTruncated,
           outputTruncated,
           null);
@@ -255,15 +255,15 @@ namespace RimDialogueLocal.Controllers
           Log(truncatedPrompt, $"inputTruncated: {inputTruncated}");
 
           //******Response Generation******
-          string? text = await LlmHelper.GenerateResponse(truncatedPrompt, config, dialogueData.ModelName);
-          Log(text);
-          var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0f, out bool outputTruncated);
+          var result = await LlmHelper.GenerateResponse(truncatedPrompt, config, dialogueData.ModelName);
+          Log(result.Text);
+          var dialogueResponse = LlmHelper.SerializeResponse(result.Text ?? String.Empty, Configuration, rate ?? 0f, out bool outputTruncated);
           if (outputTruncated)
-            Log($"Response was truncated. Original length was {text.Length} characters.");
+            Log($"Response was truncated. Original length was {result.Text?.Length ?? 0} characters.");
           Metrics.AddRequest(
             this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
             truncatedPrompt.Length,
-            text.Length,
+            result.Text?.Length ?? 0,
             inputTruncated,
             outputTruncated,
             null);
@@ -351,15 +351,15 @@ namespace RimDialogueLocal.Controllers
           out bool inputTruncated);
         Log(prompt, $"inputTruncated: {inputTruncated}");
         //******Response Generation******
-        string? text = await LlmHelper.GenerateResponse(prompt, config, dialogueData.ModelName);
-        Log(text);
-        var dialogueResponse = LlmHelper.SerializeResponse(text, Configuration, rate ?? 0, out bool outputTruncated);
+        var result = await LlmHelper.GenerateResponse(prompt, config, dialogueData.ModelName);
+        Log(result.Text);
+        var dialogueResponse = LlmHelper.SerializeResponse(result.Text ?? string.Empty, Configuration, rate ?? 0, out bool outputTruncated);
         if (outputTruncated)
-          Log($"Response was truncated. Original length was {text.Length} characters.");
+          Log($"Response was truncated. Original length was {result.Text?.Length ?? 0} characters.");
         Metrics.AddRequest(
           this.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
           prompt.Length,
-          text.Length,
+          result.Text?.Length ?? 0,
           inputTruncated,
           outputTruncated,
           null);
@@ -384,8 +384,8 @@ namespace RimDialogueLocal.Controllers
       if (IsOverRateLimit(config, ipAddress, out float? rate))
         throw new Exception($"Rate limit exceeded. Please try again later. Rate: {rate}");
       var results = await LlmHelper.GenerateResponse(prompt, config, modelName);
-      Log(results);
-      return LlmHelper.SerializeResponse(results, Configuration, rate ?? 0, out bool outputTruncated);
+      Log(results.Text);
+      return LlmHelper.SerializeResponse(results.Text ?? string.Empty, Configuration, rate ?? 0, out bool outputTruncated);
     }
 
 

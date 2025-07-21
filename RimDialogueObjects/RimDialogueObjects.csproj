@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.BedrockRuntime" Version="4.0.0-preview.4" />
     <PackageReference Include="AWSSDK.Core" Version="4.0.0-preview.4" />
-    <PackageReference Include="DotnetGeminiSDK" Version="1.0.14" />
     <PackageReference Include="GroqSharp" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
@@ -17,6 +16,7 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
+    <PackageReference Include="Mscc.GenerativeAI" Version="2.6.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OpenAI-DotNet" Version="8.5.4" />
     <PackageReference Include="System.CodeDom" Version="9.0.0" />
