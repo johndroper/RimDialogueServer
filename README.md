@@ -123,7 +123,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 2. Select **Mod Options**.  
 3. Choose **RimDialogue**.  
 4. Scroll to the **Server URL** setting and set it to:  
-   `http://localhost:7293/home/getdialogue`  
+   `http://localhost:7293/`  
    > Adjust the port if you changed it during server configuration.
 5. Select the model you configured with the `MODEL` button.
 
