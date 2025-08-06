@@ -81,6 +81,7 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
    - **For Ollama:**
      - Ensure `OllamaUrl` points to the correct port (default: `11434`).  
      - Set `OllamaModelId` to your chosen model (e.g., `"llama3.2"`).
+     - If you have a AMD GPU you may wnat to do something like: https://github.com/likelovewant/ollama-for-amd/releases
    - **For Cloud Providers:**  
      - Fill in your API credentials in the `MODELS` section for your provider (e.g., `GroqApiKey` and `GroqModelId` for Groq).
 
