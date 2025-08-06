@@ -34,7 +34,8 @@ To run RimDialogue with a local LLM:
 > Depending on the model you choose, Ollama may require a powerful machine.  
 > **Llama 3.2 3B** and **Llama 3.2 1B** are OK and will run on most machines.  
 > Find more models here: [Ollama Model Library](https://ollama.com/library)
-> If you have a AMD GPU you may want to do something like [ollama-for-amd](https://github.com/likelovewant/ollama-for-amd/releases).
+
+If you have a AMD GPU you may want to do something like [ollama-for-amd](https://github.com/likelovewant/ollama-for-amd/releases).
 
 #### Downloading Models
 1. Go to the model page on the Ollama website and copy the model name. 
