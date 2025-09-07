@@ -35,6 +35,8 @@ To run RimDialogue with a local LLM:
 > **Llama 3.2 3B** and **Llama 3.2 1B** are OK and will run on most machines.  
 > Find more models here: [Ollama Model Library](https://ollama.com/library)
 
+If you have a AMD GPU you may want to do something like [ollama-for-amd](https://github.com/likelovewant/ollama-for-amd/releases).
+
 #### Downloading Models
 1. Go to the model page on the Ollama website and copy the model name. 
 2. Open a command prompt by typing `cmd` in the Windows search bar.
@@ -123,9 +125,10 @@ If running a local LLM isn’t an option, you can use an API key for a cloud-hos
 2. Select **Mod Options**.  
 3. Choose **RimDialogue**.  
 4. Scroll to the **Server URL** setting and set it to:  
-   `http://localhost:7293/home/getdialogue`  
+   `http://localhost:7293/`  
    > Adjust the port if you changed it during server configuration.
-5. Select the model you configured with the `MODEL` button.
+5. Restart Rimworld.
+6. Go back into the RimDialogue mod options and select the model you configured with the `MODEL` button.
 
 ---
 
