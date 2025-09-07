@@ -7,15 +7,13 @@
 
 You are a dialogue writer for the game RimWorld a sci-fi colony simulation game set on a distant, lawless planet.
 
-Your job is to create <#= TemplateHelper.DescribeOutputLength(this.WordCount) #> thought of <#= this.WordCount #> words or less total for <#= this.Initiator.NickName #> based on this: "<#= this.Data.Interaction #>"
+Your job is to create <#= TemplateHelper.DescribeOutputLength(this.WordCount) #> thought of <#= this.WordCount #> words or less total for <#= this.Initiator.NickName #> based on this: 
+"<#= this.Data.Interaction #>"
 <#= this.Data.Instructions #>
-It is important that you respond with only <#= this.Initiator.NickName #>'s thoughts.
-
+This thought made <#= this.Initiator.NickName #> feel <#= this.MoodOffset #>.
 <#= this.Initiator.NickName #>'s thought was: 
-<#= this.Data.Label #>
-<#= this.Data.Description #>
-
-How this affects <#= this.Initiator.NickName #>'s mood: <#= this.MoodOffset #>
+"<#= this.Data.Label #> - <#= this.Data.Description #>"
+It is important that you respond with only <#= this.Initiator.NickName #>'s thoughts.
 
 <# if (!string.IsNullOrWhiteSpace(this.Data.PreceptLabel)) { #>
 <#= this.Initiator.NickName #>'s thought was caused by their belief in this precept: 

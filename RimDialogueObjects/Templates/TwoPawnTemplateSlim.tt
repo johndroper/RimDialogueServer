@@ -25,12 +25,20 @@ mood: <#= this.Initiator.MoodString #>
 full name: <#= this.Initiator.FullName #>
 past occupation: <#= this.Initiator.Adulthood #>
 childhood: <#= this.Initiator.Childhood #>
+<#  if (!string.IsNullOrWhiteSpace(this.Initiator.Role)) { #> 
+<#= this.Initiator.NickName #>'s role in the community is "<#= this.Initiator.Role #> - <#= this.Initiator.RoleDescription #>". 
+<#  } #>
+<# if (!string.IsNullOrWhiteSpace(this.Initiator.RoyaltyTitle)) { #>
+<#= this.Initiator.NickName #> is royalty.
+<#= this.Initiator.NickName #>'s royal title is <#= this.Initiator.RoyaltyTitle #>
+<# } #>
 <#   if (!string.IsNullOrWhiteSpace(this.Initiator.JobReport)) { #>
 current activity: <#= this.Initiator.JobReport #>
 <#     if (!string.IsNullOrWhiteSpace(this.Initiator.Carrying)) { #>
 carrying: <#= this.Initiator.Carrying #>
 <#     } #>
 <#   } #>
+
 ---
 <#= this.Recipient.NickName #>
 <#  if (!string.IsNullOrWhiteSpace(this.Recipient.Instructions)) { #>
@@ -51,12 +59,11 @@ full name: <#= this.Recipient.FullName #>
 <#= this.Recipient.NickName #>'s is a <#= this.Recipient.Gender #> <#= this.Recipient.Race #> age <#= this.Recipient.Age #> years old.
 past occupation: <#= this.Recipient.Adulthood #>
 childhood: <#= this.Recipient.Childhood #>
-<# if (!string.IsNullOrWhiteSpace(this.Initiator.RoyaltyTitle)) { #>
-<#= this.Initiator.NickName #> is royalty.
-<#= this.Initiator.NickName #>'s royal title is <#= this.Initiator.RoyaltyTitle #>
-<# } #>
+<#  if (!string.IsNullOrWhiteSpace(this.Recipient.Role)) { #> 
+<#= this.Recipient.NickName #>'s role in the community is "<#= this.Recipient.Role #> - <#= this.Recipient.RoleDescription #>". 
+<#  } #>
 <# if (!string.IsNullOrWhiteSpace(this.Recipient.RoyaltyTitle)) { #>
-<#= this.Recipient.RoyaltyTitle #> is royalty.
+<#= this.Recipient.NickName #> is royalty.
 <#= this.Recipient.NickName #>'s royal title is <#= this.Recipient.RoyaltyTitle #>
 <# } #>
 <# if (!string.IsNullOrWhiteSpace(this.Recipient.JobReport)) { #>

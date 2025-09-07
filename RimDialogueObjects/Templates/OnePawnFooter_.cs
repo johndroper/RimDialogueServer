@@ -25,6 +25,13 @@ namespace RimDialogueObjects.Templates
     public DialogueData Data { get; set; }
     public PawnData Initiator { get; set; }
     public Config Config { get; set; }
+    public string TimeOfDay
+    {
+      get
+      {
+        return TemplateHelper.DescribeTimeOfDay(Data.HourOfDay);
+      }
+    }
 
   }
 }

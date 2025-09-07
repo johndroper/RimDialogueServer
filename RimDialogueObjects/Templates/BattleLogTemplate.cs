@@ -43,7 +43,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nData about the enemy ");
+            this.Write("\r\n\r\nData about the ");
             
             #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetKind));
@@ -71,72 +71,177 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("\r\nWeapon: ");
+            this.Write("\r\n");
             
             #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.TargetWeapon)) { 
+            
+            #line default
+            #line hidden
+            this.Write("Weapon: ");
+            
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TargetWeapon));
             
             #line default
             #line hidden
-            this.Write("\r\nApparel: ");
+            this.Write("\r\n");
             
-            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (this.Data.TargetApparel.Any()) { 
+            
+            #line default
+            #line hidden
+            this.Write("Apparel: ");
+            
+            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(", ", this.Data.TargetApparel)));
             
             #line default
             #line hidden
-            this.Write("\r\nIdeology: ");
+            this.Write("\r\n");
             
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.IdeologyName)) { 
+            
+            #line default
+            #line hidden
+            this.Write("Ideology: ");
+            
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.IdeologyName));
             
             #line default
             #line hidden
-            this.Write("\r\nIdeology Description: ");
+            this.Write("\r\n");
             
-            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.IdeologyDescription)) { 
+            
+            #line default
+            #line hidden
+            this.Write("Ideology Description: ");
+            
+            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.IdeologyDescription));
             
             #line default
             #line hidden
-            this.Write("\r\nFaction: ");
+            this.Write("\r\n");
             
-            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.FactionName)) { 
+            
+            #line default
+            #line hidden
+            this.Write("Faction: ");
+            
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionName));
             
             #line default
             #line hidden
-            this.Write("\r\nFaction Description:");
+            this.Write("\r\n");
             
-            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.FactionDescription)) { 
+            
+            #line default
+            #line hidden
+            this.Write("Faction Description:");
+            
+            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionDescription));
             
             #line default
             #line hidden
-            this.Write("\r\nFactionTechLevel: ");
+            this.Write("\r\n");
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.FactionTechLevel)) { 
+            
+            #line default
+            #line hidden
+            this.Write("FactionTechLevel: ");
+            
+            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionTechLevel));
             
             #line default
             #line hidden
-            this.Write("\r\nFactionLeader: ");
+            this.Write("\r\n");
             
-            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ if (!string.IsNullOrWhiteSpace(this.Data.FactionLeader)) { 
+            
+            #line default
+            #line hidden
+            this.Write("FactionLeader: ");
+            
+            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.FactionLeader));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n");
+            this.Write("\r\n");
             
-            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawn()));
             
             #line default
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
+            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\BattleLogTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
             
             #line default

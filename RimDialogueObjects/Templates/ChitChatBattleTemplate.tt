@@ -23,7 +23,7 @@ Here are the participants involved in the battle:
 
 <# if (this.Data.Entries.Any()) { #>
 Here are the events of the battle: 
-<# foreach(var entry in this.Data.Entries) { #>
+<# foreach(var entry in this.Data.Entries.Take(50)) { #>
 <#= entry #>
 <# } #>
 <# } #>

@@ -29,35 +29,132 @@ namespace RimDialogueObjects.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nWrite just a fragment of the conversation. Do not include the beginning or end " +
-                    "of the conversation, just a fleeting moment from it.\r\n\r\n");
+            this.Write("\r\n");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            #line 8 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
  if (this.Data.LanguageEnglish != "English") {
             
             #line default
             #line hidden
             this.Write("It is important that you respond in only in ");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.LanguageEnglish));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            #line 9 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.LanguageNative));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
  } 
             
             #line default
             #line hidden
+            this.Write("\r\nThis colony started ");
+            
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.TotalColonyTime));
+            
+            #line default
+            #line hidden
+            this.Write(" ago. \r\nTime Of Day: ");
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.TimeOfDay));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nCurrent Weather: ");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Data.WeatherLabel));
+            
+            #line default
+            #line hidden
+            this.Write(" - ");
+            
+            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Data.WeatherDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nBiome: ");
+            
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Data.BiomeLabel));
+            
+            #line default
+            #line hidden
+            this.Write(" - ");
+            
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Data.BiomeDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nSeason: ");
+            
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Data.Season));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nTemperature: ");
+            
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Data.OutdoorTemp.ToString("N0")));
+            
+            #line default
+            #line hidden
+            this.Write("°C - ");
+            
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.TemperatureFeel(Data.OutdoorTemp)));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ if (this.Data.Context != null && this.Data.Context.Any()) {
+            
+            #line default
+            #line hidden
+            this.Write("Relevant events from the recent past:\r\n");
+            
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ foreach ( var context in this.Data.Context) { 
+            
+            #line default
+            #line hidden
+            
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(context));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nWrite just a fragment of the conversation. Do not include the beginning or end " +
+                    "of the conversation, just a fleeting moment from it.");
             return this.GenerationEnvironment.ToString();
         }
     }

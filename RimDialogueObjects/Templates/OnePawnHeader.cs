@@ -51,23 +51,23 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" based on this interaction: \"");
+            this.Write(" based on this interaction: \r\n\"");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnHeader.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Interaction));
             
             #line default
             #line hidden
-            this.Write("\"\r\n");
+            this.Write("\"\r\n\r\n");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnHeader.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Instructions));
             
             #line default
             #line hidden
-            this.Write("\r\nIt is important that you respond with only ");
+            this.Write("\r\n\r\nIt is important that you respond with only ");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnHeader.tt"
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\OnePawnHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default

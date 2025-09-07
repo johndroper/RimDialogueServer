@@ -8,10 +8,6 @@
 <#= this.Header() #>
 
 <#= this.Initiator.NickName #> and <#= this.Recipient.NickName #> are outside taking about the weather. 
-Current Weather: <#= Data.WeatherLabel #> - <#= Data.WeatherDescription #>
-Biome: <#= Data.BiomeLabel #> - <#= Data.BiomeDescription #>
-Season: <#= Data.Season #>
-Temperature: <#= Data.OutdoorTemp.ToString("N0") #>°C - <#= TemplateHelper.TemperatureFeel(Data.OutdoorTemp) #>
 
 <#= this.GetPawns() #>
 

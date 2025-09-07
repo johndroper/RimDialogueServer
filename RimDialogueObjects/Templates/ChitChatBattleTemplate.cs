@@ -112,7 +112,7 @@ namespace RimDialogueObjects.Templates
             this.Write("Here are the events of the battle: \r\n");
             
             #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatBattleTemplate.tt"
- foreach(var entry in this.Data.Entries) { 
+ foreach(var entry in this.Data.Entries.Take(50)) { 
             
             #line default
             #line hidden

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\RimDialogueClient\source\RimDialogueClient.csproj" />
+    <ProjectReference Include="..\..\RimDialogueClient\RimDialogueDataObjects\RimDialogueDataObjects.csproj" />
   </ItemGroup>
 
   <ItemGroup>

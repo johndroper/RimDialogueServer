@@ -58,49 +58,49 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" based on this interaction: \"");
+            this.Write(" based on this interaction: \r\n\"");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Interaction));
             
             #line default
             #line hidden
-            this.Write("\"\r\n");
+            this.Write("\"\r\n\r\n");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Instructions));
             
             #line default
             #line hidden
-            this.Write("\r\nThe format of the conversation should be as follows:\r\n");
+            this.Write("\r\n\r\nThe format of the conversation should be as follows:\r\n");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(": \"");
             
-            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s part in the conversation goes here.\"\r\n");
             
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(": \"");
             
-            #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
+            #line 17 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnBoilerPlate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
-            this.Write("\'s part in the conversation goes here.\"\r\n");
+            this.Write("\'s part in the conversation goes here.\"\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

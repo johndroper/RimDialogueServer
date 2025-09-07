@@ -10,17 +10,33 @@
 The thought: 
 <#= this.Data.BattleLogEntry #>
 
-Data about the enemy <#= this.Data.TargetKind #> that <#= this.Initiator.NickName #> is fighting:
+Data about the <#= this.Data.TargetKind #> that <#= this.Initiator.NickName #> is fighting:
 Description: <#= this.Data.TargetDescription #>
 Race: <#= this.Data.TargetRace #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.TargetWeapon)) { #>
 Weapon: <#= this.Data.TargetWeapon #>
+<# } #>
+<# if (this.Data.TargetApparel.Any()) { #>
 Apparel: <#= String.Join(", ", this.Data.TargetApparel) #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.IdeologyName)) { #>
 Ideology: <#= this.Data.IdeologyName #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.IdeologyDescription)) { #>
 Ideology Description: <#= this.Data.IdeologyDescription #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.FactionName)) { #>
 Faction: <#= this.Data.FactionName #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.FactionDescription)) { #>
 Faction Description:<#= this.Data.FactionDescription #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.FactionTechLevel)) { #>
 FactionTechLevel: <#= this.Data.FactionTechLevel #>
+<# } #>
+<# if (!string.IsNullOrWhiteSpace(this.Data.FactionLeader)) { #>
 FactionLeader: <#= this.Data.FactionLeader #>
+<# } #>
 
 <#= this.GetPawn() #>
 

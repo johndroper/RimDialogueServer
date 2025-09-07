@@ -251,7 +251,7 @@ namespace RimDialogueObjects
       var model = config.Models.FirstOrDefault(m => m.Name == modelName) ;
       if (model == null)
         model = config.Models[0];
-          
+
       try
       {
         switch (model.Provider)
@@ -417,6 +417,7 @@ namespace RimDialogueObjects
         catch (Exception ex)
         {
           Exception exception = new("Error in Gemini response.", ex);
+          exception.Data.Add("geminiModel", geminiModel);
           exception.Data.Add("PromptFeedback", response.PromptFeedback);
           throw exception;
         }
@@ -473,6 +474,8 @@ namespace RimDialogueObjects
         catch(Exception ex)
         {
           var newEx = new Exception("Error getting response form OpenAI.", ex);
+          newEx.Data.Add("openAiResourceName", openAiResourceName);
+          newEx.Data.Add("openAiModel", openAiModel);
           throw newEx;
         }
       }

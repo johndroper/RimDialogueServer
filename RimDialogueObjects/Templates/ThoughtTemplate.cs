@@ -51,133 +51,133 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" based on this: \"");
+            this.Write(" based on this: \r\n\"");
             
-            #line 10 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Interaction));
             
             #line default
             #line hidden
             this.Write("\"\r\n");
             
-            #line 11 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Instructions));
             
             #line default
             #line hidden
-            this.Write("\r\nIt is important that you respond with only ");
+            this.Write("\r\nThis thought made ");
             
-            #line 12 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write("\'s thoughts.\r\n\r\n");
+            this.Write(" feel ");
+            
+            #line 13 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.MoodOffset));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\n");
             
             #line 14 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write("\'s thought was: \r\n");
+            this.Write("\'s thought was: \r\n\"");
             
             #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Label));
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write(" - ");
             
-            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 15 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.Description));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nHow this affects ");
+            this.Write("\"\r\nIt is important that you respond with only ");
             
-            #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 16 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
-            this.Write("\'s mood: ");
+            this.Write("\'s thoughts.\r\n\r\n");
             
             #line 18 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.MoodOffset));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\n");
-            
-            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
  if (!string.IsNullOrWhiteSpace(this.Data.PreceptLabel)) { 
             
             #line default
             #line hidden
             
-            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 19 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s thought was caused by their belief in this precept: \r\n");
             
-            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 20 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.PreceptLabel));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 23 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Data.PreceptDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 22 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
  if (this.Target != null) { 
             
             #line default
             #line hidden
             
-            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 25 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s thought was about this person:\r\n");
             
-            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.GetTarget()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 27 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawn()));
             
             #line default
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ThoughtTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Footer()));
             
             #line default

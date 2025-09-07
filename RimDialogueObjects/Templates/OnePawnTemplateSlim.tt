@@ -30,6 +30,9 @@ current activity: <#= this.Initiator.JobReport #>
 carrying: <#= this.Initiator.Carrying #>
 <#     } #>
 <#   } #>
+<#  if (!string.IsNullOrWhiteSpace(this.Initiator.Role)) { #> 
+<#= this.Initiator.NickName #>'s role in the community is "<#= this.Initiator.Role #> - <#= this.Initiator.RoleDescription #>". 
+<#  } #>
 ---
 <#  if (this.Initiator.IsColonist) { #>
 <#= this.Initiator.NickName #> is a colonist and a member of the player's colony.  
@@ -37,9 +40,14 @@ carrying: <#= this.Initiator.Carrying #>
 <#= this.Initiator.NickName #> is a prisoner.  In RimWorld, prisoners are both assets and risks. Colonists house them in prison cells, meeting needs like food, care, and recreation to prevent escapes. Prisoners can be recruited, traded, or exploited for labor or medical resources.
 <#  } else if (this.Initiator.IsHostile) { #>
 <#= this.Initiator.NickName #> is a raider and is here to attack the player's colony.
-<#  } else if (!this.Initiator.IsAnimal) { #>
+<#  } else if (this.Initiator.IsWildMan) { #>
+<#= this.Initiator.NickName #> is living in a feral state, having lost touch with civilization. They may have limited speech and social skills.
+<#  } else if (this.Initiator.IsAnimal) { #>
+<#= this.Initiator.NickName #> can't speak, but they can communicate through actions, sounds, and body language.
+<#  } else { #>
 <#= this.Initiator.NickName #> is an NPC and just a temporary visitor here.  They are probably here as part of a trade caravan.
 <#  } #>
+
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.FactionName)) { #> 
 The faction <#= this.Initiator.NickName #> belongs to is called "<#= this.Initiator.FactionName #>". It is a <#= this.Initiator.FactionLabel #> faction. <#= this.Initiator.FactionDescription #>
 <#  } #>

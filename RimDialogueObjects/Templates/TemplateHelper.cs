@@ -357,17 +357,18 @@
 
     public static string DescribeNeedLevel(string need, float level)
     {
-      switch (need)
+      switch (need.ToLower())
       {
-        case "Comfort":
+        case "comfort":
           return DescribeComfortLevel(level);
-        case "Hunger":
+        case "hunger":
           return DescribeHungerLevel(level);
-        case "Rest":
+        case "rest":
+        case "sleep":
           return DescribeRestLevel(level);
-        case "Engagement":
+        case "engagement":
           return DescribeEngagementLevel(level);
-        case "Beauty":
+        case "beauty":
           return DescribeEnvironmentBeauty(level);
         default:
           return string.Empty;
@@ -505,6 +506,8 @@
       else
         return "unknown";
     }
+
+
 
   }
 }

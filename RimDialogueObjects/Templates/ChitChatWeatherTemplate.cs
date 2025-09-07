@@ -55,56 +55,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write(" are outside taking about the weather. \nCurrent Weather: ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Data.WeatherLabel));
-            
-            #line default
-            #line hidden
-            this.Write(" - ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Data.WeatherDescription));
-            
-            #line default
-            #line hidden
-            this.Write("\nBiome: ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Data.BiomeLabel));
-            
-            #line default
-            #line hidden
-            this.Write(" - ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Data.BiomeDescription));
-            
-            #line default
-            #line hidden
-            this.Write("\nSeason: ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Data.Season));
-            
-            #line default
-            #line hidden
-            this.Write("\nTemperature: ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Data.OutdoorTemp.ToString("N0")));
-            
-            #line default
-            #line hidden
-            this.Write("°C - ");
-            
-            #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.TemperatureFeel(Data.OutdoorTemp)));
-            
-            #line default
-            #line hidden
-            this.Write("\n\n");
+            this.Write(" are outside taking about the weather. \n\n");
             
             #line 1 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\ChitChatWeatherTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.GetPawns()));

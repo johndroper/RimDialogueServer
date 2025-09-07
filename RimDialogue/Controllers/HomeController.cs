@@ -114,6 +114,10 @@ namespace RimDialogueLocal.Controllers
             outputTruncated,
             null);
           Log("Metrics updated.");
+
+          if (result.Text != null)
+            SendWebHook([initiator.NickName], result.Text);
+
           return new JsonResult(dialogueResponse);
         }
         catch (Exception ex)
@@ -198,6 +202,10 @@ namespace RimDialogueLocal.Controllers
           outputTruncated,
           null);
         Log("Metrics updated.");
+
+        if (result.Text != null)
+          SendWebHook([initiator.NickName], result.Text);
+
         return new JsonResult(dialogueResponse);
       }
       catch (Exception ex)
@@ -268,6 +276,10 @@ namespace RimDialogueLocal.Controllers
             outputTruncated,
             null);
           Log("Metrics updated.");
+
+          if (result.Text != null)
+            SendWebHook([initiator.NickName, recipient.NickName], result.Text);
+
           return new JsonResult(dialogueResponse);
         }
         catch (Exception ex)
@@ -364,6 +376,10 @@ namespace RimDialogueLocal.Controllers
           outputTruncated,
           null);
         Log("Metrics updated.");
+
+        if (result.Text != null)
+          SendWebHook([initiator.NickName, recipient.NickName ], result.Text);
+
         return new JsonResult(dialogueResponse);
       }
       catch (Exception ex)
@@ -388,6 +404,49 @@ namespace RimDialogueLocal.Controllers
       return LlmHelper.SerializeResponse(results.Text ?? string.Empty, Configuration, rate ?? 0, out bool outputTruncated);
     }
 
+    public void SendWebHook(string[] speakers, string conversation)
+    {
+      try
+      {
+        var url = Configuration.GetValue<string>("WebHookUrl");
+        if (string.IsNullOrWhiteSpace(url))
+          return;
+        using (var client = new HttpClient())
+        {
+          string payload = JsonConvert.SerializeObject(new
+          {
+            timestamp = DateTime.UtcNow,
+            speakers,
+            conversation
+          });
+          var content = new StringContent(payload, System.Text.Encoding.UTF8, "application/json");
+          var response = client.PostAsync(url, content).Result;
+          if (!response.IsSuccessStatusCode)
+          {
+            Log($"WebHook to {url} failed with status code {response.StatusCode}");
+          }
+          else
+          {
+            Log($"WebHook to {url} succeeded.");
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        LogException(ex);
+        throw;
+      }
+    }
+
+    public async Task<IActionResult> WebHookTest()
+    {
+      using (var reader = new StreamReader(this.Request.Body))
+      {
+        var body = await reader.ReadToEndAsync();
+        Console.WriteLine(body);
+      }
+      return Json(new { success = true, message = "WebHook Test Successful" });
+    }
 
   }
 }
