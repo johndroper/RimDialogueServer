@@ -265,11 +265,16 @@ namespace RimDialogueObjects
       return await ProcessDialogue<BattleLogData, BattleLogTemplate>("BattleLog", initiatorJson, chitChatJson);
     }
 
-    //Thought
     [HttpPost]
     public async Task<IActionResult> Thought(string initiatorJson, string chitChatJson, string targetJson)
     {
       return await ProcessTargetDialogue<ThoughtData, ThoughtTemplate>("Thought", initiatorJson, chitChatJson, targetJson);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> QuestChitchat(string initiatorJson, string recipientJson, string chitChatJson)
+    {
+      return await ProcessTwoPawn<DialogueDataQuest, ChitChatQuestTemplate>("Quest", initiatorJson, recipientJson, chitChatJson);
     }
 
     [HttpPost]

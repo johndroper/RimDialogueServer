@@ -31,6 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Templates\ChitChatQuestTemplate.cs">
+      <DependentUpon>ChitChatQuestTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Templates\ThoughtTemplate.cs">
       <DependentUpon>ThoughtTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -199,6 +204,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Templates\ChitChatQuestTemplate.tt">
+      <LastGenOutput>ChitChatQuestTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
     <None Update="Templates\ThoughtTemplate.tt">
       <LastGenOutput>ThoughtTemplate.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
