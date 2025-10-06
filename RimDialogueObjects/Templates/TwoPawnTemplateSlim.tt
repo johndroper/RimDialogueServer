@@ -25,6 +25,10 @@ mood: <#= this.Initiator.MoodString #>
 full name: <#= this.Initiator.FullName #>
 past occupation: <#= this.Initiator.Adulthood #>
 childhood: <#= this.Initiator.Childhood #>
+<# if (this.Initiator.Traits.Any()) { #>
+<#= this.Initiator.NickName #>'s traits are: 
+<#= String.Join(Environment.NewLine, this.Initiator.Traits) #>
+<# } #>
 <#  if (!string.IsNullOrWhiteSpace(this.Initiator.Role)) { #> 
 <#= this.Initiator.NickName #>'s role in the community is "<#= this.Initiator.Role #> - <#= this.Initiator.RoleDescription #>". 
 <#  } #>
@@ -59,6 +63,10 @@ full name: <#= this.Recipient.FullName #>
 <#= this.Recipient.NickName #>'s is a <#= this.Recipient.Gender #> <#= this.Recipient.Race #> age <#= this.Recipient.Age #> years old.
 past occupation: <#= this.Recipient.Adulthood #>
 childhood: <#= this.Recipient.Childhood #>
+<# if (this.Recipient.Traits.Any()) { #>
+<#= this.Recipient.NickName #>'s traits are: 
+<#= String.Join(" ", this.Recipient.Traits) #>
+<# } #>
 <#  if (!string.IsNullOrWhiteSpace(this.Recipient.Role)) { #> 
 <#= this.Recipient.NickName #>'s role in the community is "<#= this.Recipient.Role #> - <#= this.Recipient.RoleDescription #>". 
 <#  } #>

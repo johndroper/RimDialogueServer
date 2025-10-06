@@ -202,167 +202,193 @@ namespace RimDialogueObjects.Templates
             this.Write("\r\n");
             
             #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+ if (this.Initiator.Traits.Any()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s traits are: \r\n");
+            
+            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(Environment.NewLine, this.Initiator.Traits)));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
   if (!string.IsNullOrWhiteSpace(this.Initiator.Role)) { 
             
             #line default
             #line hidden
             this.Write(" \r\n");
             
-            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s role in the community is \"");
             
-            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Role));
             
             #line default
             #line hidden
             this.Write(" - ");
             
-            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.RoleDescription));
             
             #line default
             #line hidden
             this.Write("\". \r\n");
             
-            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  if (!string.IsNullOrWhiteSpace(this.Initiator.RoyaltyTitle)) { 
             
             #line default
             #line hidden
             
-            #line 32 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" is royalty.\r\n");
             
-            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write("\'s royal title is ");
             
-            #line 33 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.RoyaltyTitle));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 34 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 35 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    if (!string.IsNullOrWhiteSpace(this.Initiator.JobReport)) { 
             
             #line default
             #line hidden
             this.Write("current activity: ");
             
-            #line 36 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.JobReport));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 37 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 41 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      if (!string.IsNullOrWhiteSpace(this.Initiator.Carrying)) { 
             
             #line default
             #line hidden
             this.Write("carrying: ");
             
-            #line 38 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 42 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.Carrying));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 39 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 40 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } 
             
             #line default
             #line hidden
             this.Write("\r\n---\r\n");
             
-            #line 43 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 44 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
   if (!string.IsNullOrWhiteSpace(this.Recipient.Instructions)) { 
             
             #line default
             #line hidden
             
-            #line 45 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 49 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Instructions));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 46 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TemplateHelper.DescribeOpinion(this.RecipientOpinionOfInitiator)));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 47 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 48 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  if (this.Recipient.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 49 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 53 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
@@ -370,48 +396,21 @@ namespace RimDialogueObjects.Templates
             this.Write(" can\'t speak, but they can communicate through actions, sounds, and body language" +
                     ".\r\n");
             
-            #line 50 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 51 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  if (!string.IsNullOrWhiteSpace(this.Recipient.Personality)) { 
             
             #line default
             #line hidden
             this.Write("personality: ");
             
-            #line 52 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Personality));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 53 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 54 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.PersonalityDescription));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 55 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
- if (!string.IsNullOrWhiteSpace(this.Recipient.MoodString)) { 
-            
-            #line default
-            #line hidden
-            this.Write("mood: ");
-            
             #line 56 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.MoodString));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Personality));
             
             #line default
             #line hidden
@@ -422,201 +421,254 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("full name: ");
             
             #line 58 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.PersonalityDescription));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+ if (!string.IsNullOrWhiteSpace(this.Recipient.MoodString)) { 
+            
+            #line default
+            #line hidden
+            this.Write("mood: ");
+            
+            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.MoodString));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("full name: ");
+            
+            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FullName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s is a ");
             
-            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Gender));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Race));
             
             #line default
             #line hidden
             this.Write(" age ");
             
-            #line 59 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Age));
             
             #line default
             #line hidden
             this.Write(" years old.\r\npast occupation: ");
             
-            #line 60 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Adulthood));
             
             #line default
             #line hidden
             this.Write("\r\nchildhood: ");
             
-            #line 61 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 65 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Childhood));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 62 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 66 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+ if (this.Recipient.Traits.Any()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
+            
+            #line default
+            #line hidden
+            this.Write("\'s traits are: \r\n");
+            
+            #line 68 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" ", this.Recipient.Traits)));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 70 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
   if (!string.IsNullOrWhiteSpace(this.Recipient.Role)) { 
             
             #line default
             #line hidden
             this.Write(" \r\n");
             
-            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s role in the community is \"");
             
-            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Role));
             
             #line default
             #line hidden
             this.Write(" - ");
             
-            #line 63 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.RoleDescription));
             
             #line default
             #line hidden
             this.Write("\". \r\n");
             
-            #line 64 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 72 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
   } 
             
             #line default
             #line hidden
             
-            #line 65 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 73 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  if (!string.IsNullOrWhiteSpace(this.Recipient.RoyaltyTitle)) { 
             
             #line default
             #line hidden
             
-            #line 66 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 74 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is royalty.\r\n");
             
-            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 75 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write("\'s royal title is ");
             
-            #line 67 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 75 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.RoyaltyTitle));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 68 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 76 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 69 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 77 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  if (!string.IsNullOrWhiteSpace(this.Recipient.JobReport)) { 
             
             #line default
             #line hidden
             this.Write("current activity: ");
             
-            #line 70 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 78 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.JobReport));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 71 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
 	if (!string.IsNullOrWhiteSpace(this.Recipient.Carrying)) { 
             
             #line default
             #line hidden
             this.Write("carrying: ");
             
-            #line 72 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 80 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.Carrying));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 73 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
 	} 
             
             #line default
             #line hidden
             
-            #line 74 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 82 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
  } 
             
             #line default
             #line hidden
             this.Write("---\r\n");
             
-            #line 76 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 84 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    if (this.Initiator.IsColonist && this.Recipient.IsColonist) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 77 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 85 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 77 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 85 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" are colonists and members of the player\'s colony.\r\n");
             
-            #line 78 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 86 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } else if (this.Initiator.IsPrisoner && this.Recipient.IsPrisoner) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 87 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 79 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 87 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
@@ -626,53 +678,53 @@ namespace RimDialogueObjects.Templates
                     "escapes. Prisoners can be recruited, traded, or exploited for labor or medical r" +
                     "esources.\r\n");
             
-            #line 80 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 88 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } else if (this.Initiator.IsHostile && this.Recipient.IsHostile) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 89 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 81 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 89 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" are raiders and are here to attack the player\'s colony.\r\n");
             
-            #line 82 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 90 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 83 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 91 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      if (this.Initiator.IsColonist) { 
             
             #line default
             #line hidden
             
-            #line 84 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 92 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" is a colonist and a member of the player\'s colony.  \r\n");
             
-            #line 85 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 93 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } else if (this.Initiator.IsPrisoner) { 
             
             #line default
             #line hidden
             
-            #line 86 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 94 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -682,26 +734,26 @@ namespace RimDialogueObjects.Templates
                     " escapes. Prisoners can be recruited, traded, or exploited for labor or medical " +
                     "resources.\r\n");
             
-            #line 87 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 95 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } else if (this.Initiator.IsHostile) { 
             
             #line default
             #line hidden
             
-            #line 88 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 96 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" is a raider and is here to attack the player\'s colony.\r\n");
             
-            #line 89 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 97 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } else if (!this.Initiator.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 90 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 98 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
@@ -709,32 +761,32 @@ namespace RimDialogueObjects.Templates
             this.Write(" is an NPC and just a temporary visitor here.  They are probably here as part of " +
                     "a trade caravan.\r\n");
             
-            #line 91 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 99 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 92 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 100 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      if (this.Recipient.IsColonist) { 
             
             #line default
             #line hidden
             
-            #line 93 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 101 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is a colonist and a member of the player\'s colony.  \r\n");
             
-            #line 94 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 102 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } else if (this.Recipient.IsPrisoner) { 
             
             #line default
             #line hidden
             
-            #line 95 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
@@ -744,175 +796,175 @@ namespace RimDialogueObjects.Templates
                     "escapes. Prisoners can be recruited, traded, or exploited for labor or medical r" +
                     "esources.\r\n");
             
-            #line 96 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 104 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } else if (this.Recipient.IsHostile) { 
             
             #line default
             #line hidden
             
-            #line 97 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is a raider and is here to attack the player\'s colony.\r\n");
             
-            #line 98 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } else if (!string.IsNullOrWhiteSpace(this.Recipient.NickName) && !this.Recipient.IsAnimal) { 
             
             #line default
             #line hidden
             
-            #line 99 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 107 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" is an NPC and just a temporary visitor here.\r\n");
             
-            #line 100 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 101 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 102 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 110 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    if (this.Initiator.FactionName == this.Recipient.FactionName) { 
             
             #line default
             #line hidden
             this.Write("Both ");
             
-            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" and ");
             
-            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" belong to the same faction, called \"");
             
-            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 103 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 104 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 112 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 105 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 113 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      if (!string.IsNullOrWhiteSpace(this.Initiator.FactionName)) { 
             
             #line default
             #line hidden
             this.Write(" \r\nThe faction ");
             
-            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 114 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.NickName));
             
             #line default
             #line hidden
             this.Write(" belongs to is called \"");
             
-            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 114 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 114 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 106 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 114 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Initiator.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 107 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 115 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 108 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 116 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      if (!string.IsNullOrWhiteSpace(this.Recipient.FactionName)) { 
             
             #line default
             #line hidden
             this.Write(" \r\nThe faction ");
             
-            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.NickName));
             
             #line default
             #line hidden
             this.Write(" belongs to is called \"");
             
-            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FactionName));
             
             #line default
             #line hidden
             this.Write("\". It is a ");
             
-            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FactionLabel));
             
             #line default
             #line hidden
             this.Write(" faction. ");
             
-            #line 109 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 117 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Recipient.FactionDescription));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 110 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 118 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 111 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
+            #line 119 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnTemplateSlim.tt"
    } 
             
             #line default

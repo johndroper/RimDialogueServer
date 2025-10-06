@@ -74,12 +74,12 @@ namespace RimDialogueObjects.Templates
 
     public static string GetPawns<DataT>(this IRecipientPromptTemplate<DataT> template) where DataT : RimDialogue.Core.InteractionData.DialogueData
     {
-        return TwoPawnTemplateSlim.Generate(
-          template.Initiator,
-          template.Recipient,
-          template.Data.InitiatorOpinionOfRecipient,
-          template.Data.RecipientOpinionOfInitiator,
-          template.Config);
+      return TwoPawnTemplateSlim.Generate(
+        template.Initiator,
+        template.Recipient,
+        template.Data.InitiatorOpinionOfRecipient,
+        template.Data.RecipientOpinionOfInitiator,
+        template.Config);
     }
   }
 

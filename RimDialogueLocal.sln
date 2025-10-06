@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimDialogueObjects", "RimDi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "..\RimworldSource2\Assembly-CSharp\Assembly-CSharp.csproj", "{986FE17C-F171-4036-8362-894407ED34C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimDialogueDataObjects", "..\RimDialogueClient\RimDialogueDataObjects\RimDialogueDataObjects.csproj", "{B7D3491A-DA86-4CE1-8FB4-EF4A69308E7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{986FE17C-F171-4036-8362-894407ED34C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{986FE17C-F171-4036-8362-894407ED34C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{986FE17C-F171-4036-8362-894407ED34C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D3491A-DA86-4CE1-8FB4-EF4A69308E7E}.Debug|Any CPU.ActiveCfg = Release 1.6|Any CPU
+		{B7D3491A-DA86-4CE1-8FB4-EF4A69308E7E}.Debug|Any CPU.Build.0 = Release 1.6|Any CPU
+		{B7D3491A-DA86-4CE1-8FB4-EF4A69308E7E}.Release|Any CPU.ActiveCfg = Release 1.6|Any CPU
+		{B7D3491A-DA86-4CE1-8FB4-EF4A69308E7E}.Release|Any CPU.Build.0 = Release 1.6|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

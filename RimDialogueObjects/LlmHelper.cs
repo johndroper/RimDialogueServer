@@ -1,19 +1,17 @@
 ﻿using Amazon.BedrockRuntime;
 using Amazon.BedrockRuntime.Model;
 using Amazon.Runtime;
-using Mscc.GenerativeAI;
 using GroqSharp.Models;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
+using Mscc.GenerativeAI;
 using Newtonsoft.Json;
 using OpenAI;
 using OpenAI.Chat;
-using OpenAI.Models;
 using RimDialogue.Core;
 using RimDialogueObjects.Templates;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RimDialogueObjects
 {
@@ -248,7 +246,7 @@ namespace RimDialogueObjects
     public static async Task<LlmResults> GetResults(Config config, string prompt, string modelName)
     {
 
-      var model = config.Models.FirstOrDefault(m => m.Name == modelName) ;
+      var model = config.Models.FirstOrDefault(m => m.Name == modelName);
       if (model == null)
         model = config.Models[0];
 
@@ -400,7 +398,8 @@ namespace RimDialogueObjects
           {
             ThinkingBudget = 0
           };
-        };
+        }
+        ;
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
         var response = await request.GenerateContent(prompt, generationConfig);
@@ -471,7 +470,7 @@ namespace RimDialogueObjects
             model.Name ?? "unknown",
             stopwatch.ElapsedMilliseconds);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
           var newEx = new Exception("Error getting response form OpenAI.", ex);
           newEx.Data.Add("openAiResourceName", openAiResourceName);

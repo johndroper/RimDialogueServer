@@ -200,7 +200,7 @@ namespace RimDialogueObjects
     {
       return await ProcessTwoPawn<DialogueDataNeed, ChitChatNeedTemplate>("NeedsChitchat", initiatorJson, recipientJson, chitChatJson);
     }
-    [HttpPost] 
+    [HttpPost]
     public async Task<IActionResult> FamilyChitchat(string initiatorJson, string recipientJson, string chitChatJson, string targetJson)
     {
       return await ProcessTwoPawnTarget<DialogueDataFamily, ChitChatFamilyTemplate>("FamilyChitchat", initiatorJson, recipientJson, chitChatJson, targetJson);
@@ -298,8 +298,8 @@ namespace RimDialogueObjects
     }
 
     public abstract Task<DialogueResponse> RunPrompt(
-      string clientId, 
-      string prompt, 
+      string clientId,
+      string prompt,
       string modelName,
       [CallerMemberName] string? callerName = null);
 

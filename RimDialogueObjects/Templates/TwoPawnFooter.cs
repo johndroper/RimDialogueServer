@@ -127,7 +127,7 @@ namespace RimDialogueObjects.Templates
             
             #line default
             #line hidden
-            this.Write("Relevant events from the recent past:\r\n");
+            this.Write("Facts about the colony and its colonists: \r\n");
             
             #line 21 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
  foreach ( var context in this.Data.Context) { 
@@ -149,6 +149,39 @@ namespace RimDialogueObjects.Templates
             #line hidden
             
             #line 24 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 26 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ if (this.Data.TemporalContext != null && this.Data.TemporalContext.Any()) {
+            
+            #line default
+            #line hidden
+            this.Write("Events from the recent past:\r\n");
+            
+            #line 28 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ foreach ( var context in this.Data.TemporalContext) { 
+            
+            #line default
+            #line hidden
+            
+            #line 29 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(context));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 30 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 31 "C:\Users\madja\source\repos\RImDialogueServer\RimDialogueObjects\Templates\TwoPawnFooter.tt"
  } 
             
             #line default
